@@ -1,10 +1,3 @@
-//
-//  MemoiryUITests.swift
-//  MemoiryUITests
-//
-//  Created by Renaud JENNY on 17/10/2020.
-//
-
 import XCTest
 
 class MemoiryUITests: XCTestCase {

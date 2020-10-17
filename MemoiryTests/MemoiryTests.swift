@@ -1,10 +1,3 @@
-//
-//  MemoiryTests.swift
-//  MemoiryTests
-//
-//  Created by Renaud JENNY on 17/10/2020.
-//
-
 import XCTest
 @testable import Memoiry
 
