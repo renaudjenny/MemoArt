@@ -31,9 +31,36 @@ struct ContentView: View {
     }
 }
 
-// TODO: put back the preview
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}
+#if DEBUG
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView(store: Store<AppState, AppAction>(
+            initialState: AppState(),
+            reducer: appReducer,
+            environment: AppEnvironment(mainQueue: DispatchQueue.main.eraseToAnyScheduler())
+        ))
+    }
+}
+
+struct ContentViewGameOver_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView(store: Store<AppState, AppAction>(
+            initialState: .mocked {
+                $0.game.isGameOver = true
+                $0.game.discoveredSymbolTypes = SymbolType.allCases
+                $0.game.moves = 42
+            },
+            reducer: appReducer,
+            environment: AppEnvironment(mainQueue: DispatchQueue.main.eraseToAnyScheduler())
+        ))
+    }
+}
+
+extension AppState {
+    static func mocked(modifier: (inout Self) -> Void) -> Self {
+        var state = AppState()
+        modifier(&state)
+        return state
+    }
+}
+#endif
