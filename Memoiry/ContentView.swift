@@ -12,7 +12,7 @@ struct ContentView: View {
                     Text("⭐️ Bravo! ⭐️").font(.largeTitle)
                     Text("Game Over")
                 }
-                Text("Moves: \(viewStore.game.moves/2)")
+                Text("Moves: \(viewStore.game.moves)")
                 LazyVGrid(columns: columns) {
                     ForEach(0..<20) {
                         CardView(store: store.scope(state: { $0.game }, action: AppAction.game), id: $0)
@@ -22,6 +22,7 @@ struct ContentView: View {
                     Button(action: { viewStore.send(.game(.new)) }) {
                         Text("New game")
                     }
+                    .padding()
                 }
             }
             .padding()

@@ -32,27 +32,27 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
         let turnedUpSymbols = state.symbols
             .filter { !state.discoveredSymbolTypes.contains($0.type) }
             .filter { $0.isReturned == false }
-        state.moves += 1
 
-        guard turnedUpSymbols.count > 1 else { return .none }
-
-        if turnedUpSymbols[0].type == turnedUpSymbols[1].type {
-            state.discoveredSymbolTypes.append(turnedUpSymbols[0].type)
-        }
-        if state.discoveredSymbolTypes.count >= 10 {
-            state.isGameOver = true
-        }
-
-        guard turnedUpSymbols.count > 2 else { return .none }
-
-        // turn down all cards (except ones already discovered and the one just returned)
-        state.symbols = state.symbols.map { symbol in
-            if symbol.id == cardId || state.discoveredSymbolTypes.contains(symbol.type) {
-                return Symbol(id: symbol.id, type: symbol.type, isReturned: false)
+        switch turnedUpSymbols.count {
+        case 1: return .none
+        case 2:
+            state.moves += 1
+            if turnedUpSymbols[0].type == turnedUpSymbols[1].type {
+                state.discoveredSymbolTypes.append(turnedUpSymbols[0].type)
             }
-            return Symbol(id: symbol.id, type: symbol.type, isReturned: true)
+            if state.discoveredSymbolTypes.count >= 10 {
+                state.isGameOver = true
+            }
+            return .none
+        default:
+            // turn down all cards (except ones already discovered and the one just returned)
+            state.symbols = state.symbols.map { symbol in
+                if symbol.id == cardId || state.discoveredSymbolTypes.contains(symbol.type) {
+                    return Symbol(id: symbol.id, type: symbol.type, isReturned: false)
+                }
+                return Symbol(id: symbol.id, type: symbol.type, isReturned: true)
+            }
+            return .none
         }
-
-        return .none
     }
 }
