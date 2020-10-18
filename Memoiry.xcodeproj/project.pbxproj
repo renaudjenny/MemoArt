@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,10 @@
 		4C8DF40E253B30DC00F2DE7C /* MemoiryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF40D253B30DC00F2DE7C /* MemoiryTests.swift */; };
 		4C8DF419253B30DC00F2DE7C /* MemoiryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF418253B30DC00F2DE7C /* MemoiryUITests.swift */; };
 		4C8DF42A253C520F00F2DE7C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF429253C520F00F2DE7C /* CardView.swift */; };
+		4C8DF430253C59CA00F2DE7C /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 4C8DF42F253C59CA00F2DE7C /* ComposableArchitecture */; };
+		4C8DF435253C5B0A00F2DE7C /* GameCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF434253C5B0A00F2DE7C /* GameCore.swift */; };
+		4C8DF43A253C5B2900F2DE7C /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF439253C5B2900F2DE7C /* AppCore.swift */; };
+		4C8DF43F253C5B9900F2DE7C /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF43E253C5B9900F2DE7C /* Symbol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,9 @@
 		4C8DF418253B30DC00F2DE7C /* MemoiryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoiryUITests.swift; sourceTree = "<group>"; };
 		4C8DF41A253B30DC00F2DE7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C8DF429253C520F00F2DE7C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		4C8DF434253C5B0A00F2DE7C /* GameCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCore.swift; sourceTree = "<group>"; };
+		4C8DF439253C5B2900F2DE7C /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
+		4C8DF43E253C5B9900F2DE7C /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C8DF430253C59CA00F2DE7C /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +111,9 @@
 				4C8DF404253B30DB00F2DE7C /* Info.plist */,
 				4C8DF401253B30DB00F2DE7C /* Preview Content */,
 				4C8DF429253C520F00F2DE7C /* CardView.swift */,
+				4C8DF434253C5B0A00F2DE7C /* GameCore.swift */,
+				4C8DF439253C5B2900F2DE7C /* AppCore.swift */,
+				4C8DF43E253C5B9900F2DE7C /* Symbol.swift */,
 			);
 			path = Memoiry;
 			sourceTree = "<group>";
@@ -149,6 +160,9 @@
 			dependencies = (
 			);
 			name = Memoiry;
+			packageProductDependencies = (
+				4C8DF42F253C59CA00F2DE7C /* ComposableArchitecture */,
+			);
 			productName = Memoiry;
 			productReference = 4C8DF3F8253B30D700F2DE7C /* Memoiry.app */;
 			productType = "com.apple.product-type.application";
@@ -220,6 +234,9 @@
 				Base,
 			);
 			mainGroup = 4C8DF3EF253B30D700F2DE7C;
+			packageReferences = (
+				4C8DF42E253C59CA00F2DE7C /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			productRefGroup = 4C8DF3F9253B30D700F2DE7C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -262,9 +279,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C8DF435253C5B0A00F2DE7C /* GameCore.swift in Sources */,
 				4C8DF3FE253B30D700F2DE7C /* ContentView.swift in Sources */,
 				4C8DF42A253C520F00F2DE7C /* CardView.swift in Sources */,
 				4C8DF3FC253B30D700F2DE7C /* MemoiryApp.swift in Sources */,
+				4C8DF43A253C5B2900F2DE7C /* AppCore.swift in Sources */,
+				4C8DF43F253C5B9900F2DE7C /* Symbol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +604,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4C8DF42E253C59CA00F2DE7C /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4C8DF42F253C59CA00F2DE7C /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C8DF42E253C59CA00F2DE7C /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4C8DF3F0253B30D700F2DE7C /* Project object */;
 }
