@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    let columns = Array(repeating: GridItem(.flexible()), count: 4)
+    let columns = [GridItem(.adaptive(minimum: 65))]
     @State private var symbols: [(String, Bool)] = Array(repeating: ("questionmark", true), count: 20)
     @State private var discoveredSymbols: [String] = []
     @State private var isGameOver = false
@@ -15,7 +15,7 @@ struct ContentView: View {
             Text("Pairs remaining: \(10 - discoveredSymbols.count)")
             LazyVGrid(columns: columns) {
                 ForEach(0..<20) {
-                    Card(symbol: symbols[$0].0, returned: $symbols[$0].1, cardReturned: checkGame)
+                    CardView(symbol: symbols[$0].0, returned: $symbols[$0].1, cardReturned: checkGame)
                 }
             }
             if isGameOver {
@@ -30,7 +30,9 @@ struct ContentView: View {
 
     private func generateSymbols() {
         discoveredSymbols = []
-        isGameOver = false
+        withAnimation {
+            isGameOver = false
+        }
         symbols = zip([
             "star.fill", "star.fill",
             "pencil", "pencil",
@@ -58,7 +60,9 @@ struct ContentView: View {
         }
 
         if discoveredSymbols.count >= 10 {
-            isGameOver = true
+            withAnimation {
+                isGameOver = true
+            }
         }
 
         guard returnedSymbols.count > 1 else { return }
@@ -69,37 +73,6 @@ struct ContentView: View {
                 }
                 return ($0.0, true)
             })
-        }
-    }
-}
-
-struct Card: View {
-    let symbol: String
-    @Binding var returned: Bool
-    let cardReturned: (String) -> Void
-
-    var body: some View {
-        if returned {
-            Button(action: returnCard) {
-                Color.red
-                    .cornerRadius(8.0)
-                    .aspectRatio(contentMode: .fit)
-            }
-        } else {
-            Image(systemName: symbol)
-                .renderingMode(.original)
-                .font(.largeTitle)
-                .padding()
-                .aspectRatio(contentMode: .fit)
-                .border(Color.red, width: 4)
-                .cornerRadius(8.0)
-        }
-    }
-
-    private func returnCard() {
-        cardReturned(symbol)
-        withAnimation {
-            returned = false
         }
     }
 }
