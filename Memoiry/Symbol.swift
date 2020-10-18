@@ -7,29 +7,29 @@ struct Symbol: Identifiable, Equatable {
 }
 
 enum SymbolType: CaseIterable {
-    case starFill
-    case pencil
-    case trash
-    case star
-    case heart
-    case paperplane
-    case folder
-    case sun
-    case moon
-    case flame
+    case artDeco
+    case arty
+    case cave
+    case childish
+    case destructured
+    case geometric
+    case gradient
+    case impressionism
+    case pixelArt
+    case watercolor
 
     var image: Image {
         switch self {
-        case .starFill: return Image(systemName: "star.fill")
-        case .pencil: return Image(systemName: "pencil")
-        case .trash: return Image(systemName: "trash")
-        case .star: return Image(systemName: "star")
-        case .heart: return Image(systemName: "heart.fill")
-        case .paperplane: return Image(systemName: "paperplane")
-        case .folder: return Image(systemName: "folder")
-        case .sun: return Image(systemName: "sun.min")
-        case .moon: return Image(systemName: "moon")
-        case .flame: return Image(systemName: "flame")
+        case .artDeco: return Image("Art Deco")
+        case .arty: return Image("Arty")
+        case .cave: return Image("Cave")
+        case .childish: return Image("Childish")
+        case .destructured: return Image("Destructured")
+        case .geometric: return Image("Geometric")
+        case .gradient: return Image("Gradient")
+        case .impressionism: return Image("Impressionism")
+        case .pixelArt: return Image("Pixel Art")
+        case .watercolor: return Image("Watercolor")
         }
     }
 }

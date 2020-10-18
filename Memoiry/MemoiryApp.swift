@@ -5,7 +5,7 @@ import ComposableArchitecture
 struct MemoiryApp: App {
     let store = Store(
         initialState: AppState(),
-        reducer: appReducer.debug(),
+        reducer: appReducer,
         environment: AppEnvironment(mainQueue: DispatchQueue.main.eraseToAnyScheduler())
     )
 

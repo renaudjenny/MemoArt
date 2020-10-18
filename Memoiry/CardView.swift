@@ -6,18 +6,20 @@ struct CardView: View {
     let id: Int
 
     var body: some View {
+        content
+            .frame(width: 65, height: 65)
+            .cornerRadius(8.0)
+            .shadow(radius: 1, x: 1, y: 1)
+    }
+
+    private var content: some View {
         WithViewStore(store) { viewStore in
             if viewStore.symbols.count > 0 && viewStore.symbols[id].isReturned {
                 Button(action: { returnCard(store: viewStore) }) {
                     Color.red
-                        .frame(width: 65, height: 65)
-                        .cornerRadius(8.0)
                 }
             } else {
                 image
-                    .frame(width: 65, height: 65)
-                    .border(Color.red, width: 4)
-                    .cornerRadius(8.0)
             }
         }
     }
@@ -27,6 +29,7 @@ struct CardView: View {
             if viewStore.symbols.count > 0 {
                 viewStore.symbols[id].type.image
                     .renderingMode(.original)
+                    .resizable()
                     .font(.largeTitle)
             } else {
                 Image(systemName: "questionmark")
