@@ -2,7 +2,7 @@ import ComposableArchitecture
 
 struct GameState: Equatable {
     var moves = 0
-    var symbols: [Symbol] = []
+    var symbols: [Symbol] = .newGameSymbols
     var discoveredSymbolTypes: [SymbolType] = []
     var isGameOver = false
 }
@@ -19,19 +19,16 @@ struct GameEnvironment {
 let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, action, _ in
     switch action {
     case .new:
-        let symbols = (SymbolType.allCases + SymbolType.allCases).shuffled()
-        state.symbols = symbols.enumerated().map({ (i, symbolType) in
-            Symbol(id: i, type: symbolType, isReturned: true)
-        })
+        state.symbols = .newGameSymbols
         state.moves = 0
         state.discoveredSymbolTypes = []
         state.isGameOver = false
         return .none
     case let .cardReturned(cardId):
-        state.symbols[cardId].isReturned = false
+        state.symbols[cardId].isFaceUp = true
         let turnedUpSymbols = state.symbols
             .filter { !state.discoveredSymbolTypes.contains($0.type) }
-            .filter { $0.isReturned == false }
+            .filter { $0.isFaceUp == false }
 
         switch turnedUpSymbols.count {
         case 1: return .none
@@ -48,9 +45,9 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
             // turn down all cards (except ones already discovered and the one just returned)
             state.symbols = state.symbols.map { symbol in
                 if symbol.id == cardId || state.discoveredSymbolTypes.contains(symbol.type) {
-                    return Symbol(id: symbol.id, type: symbol.type, isReturned: false)
+                    return Symbol(id: symbol.id, type: symbol.type, isFaceUp: true)
                 }
-                return Symbol(id: symbol.id, type: symbol.type, isReturned: true)
+                return Symbol(id: symbol.id, type: symbol.type, isFaceUp: false)
             }
             return .none
         }

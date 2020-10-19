@@ -14,7 +14,7 @@ struct CardView: View {
 
     private var content: some View {
         WithViewStore(store) { viewStore in
-            if viewStore.symbols.count > 0 && viewStore.symbols[id].isReturned {
+            if viewStore.symbols.count > 0 && !viewStore.symbols[id].isFaceUp {
                 Button(action: { returnCard(store: viewStore) }) {
                     Color.red
                 }

@@ -10,9 +10,9 @@ struct ContentView: View {
             VStack {
                 if viewStore.game.isGameOver {
                     Text("⭐️ Bravo! ⭐️").font(.largeTitle)
-                    Text("Game Over")
+                        .padding(.bottom)
                 }
-                Text("Moves: \(viewStore.game.moves)")
+                Text("Moves: ") + Text("\(viewStore.game.moves)").bold()
                 LazyVGrid(columns: columns) {
                     ForEach(0..<20) {
                         CardView(store: store.scope(state: { $0.game }, action: AppAction.game), id: $0)
@@ -26,7 +26,6 @@ struct ContentView: View {
                 }
             }
             .padding()
-            .onAppear { viewStore.send(.game(.new)) }
         }
     }
 }
@@ -49,6 +48,7 @@ struct ContentViewGameOver_Previews: PreviewProvider {
                 $0.game.isGameOver = true
                 $0.game.discoveredSymbolTypes = SymbolType.allCases
                 $0.game.moves = 42
+                $0.game.symbols = .predictedGameSymbols(isCardsFaceUp: true)
             },
             reducer: appReducer,
             environment: AppEnvironment(mainQueue: DispatchQueue.main.eraseToAnyScheduler())
