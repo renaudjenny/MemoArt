@@ -15,18 +15,17 @@ enum GameAction: Equatable {
 }
 
 struct GameEnvironment {
-
+    var mainQueue: AnySchedulerOf<DispatchQueue>
 }
 
-let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, action, _ in
+let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, action, environment in
     switch action {
     case .new:
         state.symbols = state.symbols.map { Symbol(id: $0.id, type: $0.type, isFaceUp: false) }
         state.moves = 0
         state.discoveredSymbolTypes = []
         state.isGameOver = false
-        // TODO: should pass the Environment Queue instead of explicit DispatchQueue.main
-        return .init(Just(.shuffleCards).delay(for: .seconds(1), scheduler: DispatchQueue.main))
+        return .init(Just(.shuffleCards).delay(for: .seconds(1), scheduler: environment.mainQueue))
     case .shuffleCards:
         state.symbols = .newGameSymbols
         return .none

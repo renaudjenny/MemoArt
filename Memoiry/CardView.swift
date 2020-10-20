@@ -4,7 +4,7 @@ import ComposableArchitecture
 struct CardView: View {
     let store: Store<GameState, GameAction>
     let id: Int
-    private static let turnCardAnimationDuration: Double = 2/3
+    private static let turnCardAnimationDuration: Double = 2/5
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -25,9 +25,11 @@ struct CardView: View {
                 viewStore.symbols[id].isFaceUp
                     ? .radians(.pi)
                     : .zero,
-                axis: (x: 0.0, y: 1.0, z: 0.0)
+                axis: (x: 0.0, y: 1.0, z: 0.0),
+                perspective: 1/3
             )
-            .animation(.linear(duration: Self.turnCardAnimationDuration))
+            .animation(.easeInOut(duration: Self.turnCardAnimationDuration))
+            .rotation3DEffect(.radians(.pi), axis: (x: 0.0, y: 1.0, z: 0.0))
         }
     }
 
@@ -53,6 +55,7 @@ struct CardView: View {
     }
 }
 
+#if DEBUG
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         Preview()
@@ -62,7 +65,7 @@ struct CardView_Previews: PreviewProvider {
         let store = Store<GameState, GameAction>(
             initialState: GameState(),
             reducer: gameReducer,
-            environment: GameEnvironment()
+            environment: GameEnvironment(mainQueue: .preview)
         )
 
         var body: some View {
@@ -93,3 +96,4 @@ struct CardView_Previews: PreviewProvider {
         }
     }
 }
+#endif

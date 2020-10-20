@@ -36,7 +36,7 @@ struct ContentView_Previews: PreviewProvider {
         ContentView(store: Store<AppState, AppAction>(
             initialState: AppState(),
             reducer: appReducer,
-            environment: AppEnvironment(mainQueue: DispatchQueue.main.eraseToAnyScheduler())
+            environment: AppEnvironment(mainQueue: .preview)
         ))
     }
 }
@@ -51,7 +51,7 @@ struct ContentViewGameOver_Previews: PreviewProvider {
                 $0.game.symbols = .predictedGameSymbols(isCardsFaceUp: true)
             },
             reducer: appReducer,
-            environment: AppEnvironment(mainQueue: DispatchQueue.main.eraseToAnyScheduler())
+            environment: AppEnvironment(mainQueue: .preview)
         ))
     }
 }
@@ -62,5 +62,9 @@ extension AppState {
         modifier(&state)
         return state
     }
+}
+
+extension AnyScheduler where SchedulerTimeType == DispatchQueue.SchedulerTimeType, SchedulerOptions == DispatchQueue.SchedulerOptions {
+    static var preview: Self { DispatchQueue.main.eraseToAnyScheduler() }
 }
 #endif

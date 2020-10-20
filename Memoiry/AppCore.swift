@@ -16,6 +16,6 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
     gameReducer.pullback(
         state: \.game,
         action: /AppAction.game,
-        environment: { _ in GameEnvironment() }
+        environment: { GameEnvironment(mainQueue: $0.mainQueue) }
     )
 )
