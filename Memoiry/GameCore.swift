@@ -1,4 +1,5 @@
 import ComposableArchitecture
+import Combine
 
 struct GameState: Equatable {
     var moves = 0
@@ -9,6 +10,7 @@ struct GameState: Equatable {
 
 enum GameAction: Equatable {
     case new
+    case shuffleCards
     case cardReturned(Int)
 }
 
@@ -19,16 +21,20 @@ struct GameEnvironment {
 let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, action, _ in
     switch action {
     case .new:
-        state.symbols = .newGameSymbols
+        state.symbols = state.symbols.map { Symbol(id: $0.id, type: $0.type, isFaceUp: false) }
         state.moves = 0
         state.discoveredSymbolTypes = []
         state.isGameOver = false
+        // TODO: should pass the Environment Queue instead of explicit DispatchQueue.main
+        return .init(Just(.shuffleCards).delay(for: .seconds(1), scheduler: DispatchQueue.main))
+    case .shuffleCards:
+        state.symbols = .newGameSymbols
         return .none
     case let .cardReturned(cardId):
         state.symbols[cardId].isFaceUp = true
         let turnedUpSymbols = state.symbols
             .filter { !state.discoveredSymbolTypes.contains($0.type) }
-            .filter { $0.isFaceUp == false }
+            .filter { $0.isFaceUp == true }
 
         switch turnedUpSymbols.count {
         case 1: return .none
