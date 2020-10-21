@@ -17,6 +17,8 @@ enum SymbolType: CaseIterable {
     case impressionism
     case pixelArt
     case watercolor
+    case stillLife
+    case popArt
 
     var image: Image {
         switch self {
@@ -30,13 +32,16 @@ enum SymbolType: CaseIterable {
         case .impressionism: return Image("Impressionism")
         case .pixelArt: return Image("Pixel Art")
         case .watercolor: return Image("Watercolor")
+        case .stillLife: return Image("Nature morte")
+        case .popArt: return Image("Pop Art")
         }
     }
 }
 
 extension Array where Element == Symbol {
     static var newGameSymbols: Self {
-        let symbolTypes = SymbolType.allCases + SymbolType.allCases
+        let selectedSymbols = SymbolType.allCases.shuffled().prefix(10)
+        let symbolTypes = selectedSymbols + selectedSymbols
         return symbolTypes.shuffled().enumerated().map {
             Symbol(id: $0, type: $1, isFaceUp: false)
         }
@@ -48,7 +53,8 @@ extension Array where Element == Symbol {
     }
 
     static func predictedGameSymbols(isCardsFaceUp: Bool = false) -> Self {
-        let symbolTypes = SymbolType.allCases + SymbolType.allCases
+        let selectedSymbols = SymbolType.allCases.prefix(10)
+        let symbolTypes = selectedSymbols + selectedSymbols
         return symbolTypes.enumerated().map {
             Symbol(id: $0, type: $1, isFaceUp: isCardsFaceUp)
         }
