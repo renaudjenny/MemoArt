@@ -19,6 +19,7 @@ enum SymbolType: CaseIterable {
     case watercolor
     case stillLife
     case popArt
+    case shadow
 
     var image: Image {
         switch self {
@@ -34,6 +35,7 @@ enum SymbolType: CaseIterable {
         case .watercolor: return Image("Watercolor")
         case .stillLife: return Image("Nature morte")
         case .popArt: return Image("Pop Art")
+        case .shadow: return Image("Shadow")
         }
     }
 }
