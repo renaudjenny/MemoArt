@@ -21,12 +21,9 @@ let highScoresReducer = Reducer<HighScoresState, HighScoresAction, HighScoresEnv
             return .none
         }
 
-        state.scores = state.scores.reduce([], { result, highScore in
-            if newHighScore.score <= highScore.score {
-                return result + [newHighScore, highScore]
-            }
-            return result + [highScore]
-        })
+        state.scores = (state.scores + [newHighScore])
+            .sorted(by: { $0.score < $1.score })
+
         return .none
     case .reset:
         state.scores = []
