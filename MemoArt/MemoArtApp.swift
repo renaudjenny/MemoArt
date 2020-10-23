@@ -2,7 +2,7 @@ import SwiftUI
 import ComposableArchitecture
 
 @main
-struct MemoiryApp: App {
+struct MemoArtApp: App {
     let store = Store(
         initialState: AppState(),
         reducer: appReducer,
