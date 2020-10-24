@@ -22,11 +22,23 @@ let highScoresReducer = Reducer<HighScoresState, HighScoresAction, HighScoresEnv
         }
 
         state.scores = (state.scores + [newHighScore])
-            .sorted(by: { $0.score < $1.score })
+            .sorted(by: {
+                $0.score == $1.score
+                    ? $0.date > $1.date
+                    : $0.score <= $1.score
+            })
+            .prefix(10)
 
         return .none
     case .reset:
         state.scores = []
         return .none
+    }
+}
+
+extension Array {
+    func prefix(_ maxLength: Int) -> Self {
+        let slicedArray: ArraySlice = self.prefix(maxLength)
+        return Array(slicedArray)
     }
 }
