@@ -7,7 +7,7 @@ class HighScoresCoreTests: XCTestCase {
         let store = TestStore(
             initialState: HighScoresState(),
             reducer: highScoresReducer,
-            environment: HighScoresEnvironment()
+            environment: .test
         )
         let newHighScore = HighScore(score: 100, name: "Mario", date: .test)
         store.assert(
@@ -23,7 +23,7 @@ class HighScoresCoreTests: XCTestCase {
                 scores: [HighScore(score: 100, name: "Mario", date: .test)]
             ),
             reducer: highScoresReducer,
-            environment: HighScoresEnvironment()
+            environment: .test
         )
         let newHighScore = HighScore(score: 90, name: "Luigi", date: .test)
         store.assert(
@@ -45,7 +45,7 @@ class HighScoresCoreTests: XCTestCase {
                 ]
             ),
             reducer: highScoresReducer,
-            environment: HighScoresEnvironment()
+            environment: .test
         )
         let newHighScore = HighScore(score: 95, name: "Peach", date: .test)
         let anotherNewHighScore = HighScore(score: 105, name: "Yoshi", date: .test)
@@ -95,7 +95,7 @@ class HighScoresCoreTests: XCTestCase {
                 scores: .test
             ),
             reducer: highScoresReducer,
-            environment: HighScoresEnvironment()
+            environment: .test
         )
 
         let newHighScore = HighScore(score: 10, name: "Peach", date: .test)
@@ -120,7 +120,7 @@ class HighScoresCoreTests: XCTestCase {
                 scores: .test
             ),
             reducer: highScoresReducer,
-            environment: HighScoresEnvironment()
+            environment: .test
         )
 
         let newHighScore = HighScore(score: 20, name: "Peach", date: Date.test.advanced(by: 1))
@@ -155,4 +155,8 @@ extension Array where Element == HighScore {
     static var test: Self {
         (0..<10).map { HighScore(score: ($0 + 2) * 10, name: "Test \($0)", date: .test) }
     }
+}
+
+extension HighScoresEnvironment {
+    static let test = HighScoresEnvironment(load: { [] }, save: { _ in })
 }

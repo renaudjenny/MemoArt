@@ -7,13 +7,16 @@ struct HighScoresState: Equatable {
 enum HighScoresAction: Equatable {
     case addScore(HighScore)
     case reset
+    case load
+    case save
 }
 
 struct HighScoresEnvironment {
-
+    let load: () -> [HighScore]
+    let save: ([HighScore]) -> Void
 }
 
-let highScoresReducer = Reducer<HighScoresState, HighScoresAction, HighScoresEnvironment> { state, action, _ in
+let highScoresReducer = Reducer<HighScoresState, HighScoresAction, HighScoresEnvironment> { state, action, environment in
     switch action {
     case let .addScore(newHighScore):
         guard !state.scores.isEmpty else {
@@ -29,9 +32,15 @@ let highScoresReducer = Reducer<HighScoresState, HighScoresAction, HighScoresEnv
             })
             .prefix(10)
 
-        return .none
+        return .init(value: .save)
     case .reset:
         state.scores = []
+        return .none
+    case .load:
+        state.scores = environment.load()
+        return .none
+    case .save:
+        environment.save(state.scores)
         return .none
     }
 }

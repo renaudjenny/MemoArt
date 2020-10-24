@@ -11,3 +11,9 @@ struct HighScore: Equatable {
         self.date = date
     }
 }
+
+extension HighScore: Identifiable {
+    var id: String {
+        "\(score) \(name) \(date)"
+    }
+}
