@@ -3,11 +3,6 @@ import ComposableArchitecture
 
 struct HighScoresView: View {
     let store: Store<HighScoresState, HighScoresAction>
-    let columns = [
-        GridItem(.fixed(40)),
-        GridItem(.flexible(minimum: 100)),
-        GridItem(.fixed(100)),
-    ]
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -18,19 +13,21 @@ struct HighScoresView: View {
                         .padding(.top, 64)
                         .padding()
                 } else {
-                    LazyVGrid(columns: columns) {
-                        ForEach(viewStore.scores, content: HighScoreView.init)
+                    VStack(spacing: 0) {
+                        ForEach(Array(viewStore.scores.enumerated()), id: \.0) { position, score in
+                            HighScoreView(position: position, highScore: score)
+                        }
                     }
-                    .padding(.horizontal)
                 }
             }
-            .navigationTitle("High Scores")
+            .navigationTitle("High Scores 🏆")
             .navigationBarHidden(false)
         }
     }
 }
 
 struct HighScoreView: View {
+    let position: Int
     let highScore: HighScore
     private static let dateFormat: DateFormatter = {
         let formatter = DateFormatter()
@@ -40,40 +37,74 @@ struct HighScoreView: View {
     }()
 
     var body: some View {
-        Group {
-            Text("\(highScore.score)").font(.title2)
+        HStack {
+            RoundedRectangle(cornerRadius: 8.0)
+                .foregroundColor(.red)
+                .overlay(positionView)
+                .aspectRatio(contentMode: .fit)
+                .shadow(radius: 1, x: 1, y: 1)
+                .frame(width: 50)
+            Text("\(highScore.score)")
+                .font(.title3)
+                .frame(width: 40)
             Text(highScore.name)
+                .frame(maxWidth: .infinity, alignment: .leading)
             Text(highScore.date, formatter: Self.dateFormat)
                 .font(.caption)
+                .frame(width: 120, alignment: .trailing)
         }
-        .padding(.vertical)
+        .padding(.horizontal)
+        .padding(.vertical, 8)
+        .background(
+            position.isMultiple(of: 2)
+                ? Color(UIColor.systemBackground)
+                : Color(UIColor.systemGray5)
+        )
+    }
+
+    private var positionView: some View {
+        Group {
+            switch position {
+            case 0: Text("🥇").font(.title)
+            case 1: Text("🥈").font(.title)
+            case 2: Text("🥉").font(.title)
+            default: Text("\(position + 1)")
+                .bold()
+                .font(.title2)
+            }
+        }
+        .foregroundColor(.yellow)
     }
 }
 
 #if DEBUG
 struct HighScoresView_Previews: PreviewProvider {
     static var previews: some View {
-        HighScoresView(store: .init(
-            initialState: HighScoresState(),
-            reducer: highScoresReducer,
-            environment: HighScoresEnvironment(
-                load: { .preview },
-                save: { _ in }
-            )
-        ))
+        NavigationView {
+            HighScoresView(store: .init(
+                initialState: HighScoresState(scores: .preview),
+                reducer: highScoresReducer,
+                environment: HighScoresEnvironment(
+                    load: { .preview },
+                    save: { _ in }
+                )
+            ))
+        }
     }
 }
 
 struct HighScoresViewEmptyScores_Previews: PreviewProvider {
     static var previews: some View {
-        HighScoresView(store: .init(
-            initialState: HighScoresState(),
-            reducer: highScoresReducer,
-            environment: HighScoresEnvironment(
-                load: { [] },
-                save: { _ in }
-            )
-        ))
+        NavigationView {
+            HighScoresView(store: .init(
+                initialState: HighScoresState(),
+                reducer: highScoresReducer,
+                environment: HighScoresEnvironment(
+                    load: { [] },
+                    save: { _ in }
+                )
+            ))
+        }
     }
 }
 
