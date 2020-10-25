@@ -5,7 +5,7 @@ struct HighScoresView: View {
     let store: Store<HighScoresState, HighScoresAction>
     let columns = [
         GridItem(.fixed(40)),
-        GridItem(.flexible(minimum: 100, maximum: 300)),
+        GridItem(.flexible(minimum: 100)),
         GridItem(.fixed(100)),
     ]
 
