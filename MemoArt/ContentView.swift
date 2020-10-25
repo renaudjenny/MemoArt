@@ -7,25 +7,43 @@ struct ContentView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            VStack {
-                if viewStore.game.isGameOver {
-                    Text("⭐️ Bravo! ⭐️").font(.largeTitle)
-                        .padding(.bottom)
-                }
-                Text("Moves: ") + Text("\(viewStore.game.moves)").bold()
-                LazyVGrid(columns: columns) {
-                    ForEach(0..<20) {
-                        CardView(store: store.scope(state: { $0.game }, action: AppAction.game), id: $0)
+            NavigationView {
+                VStack {
+                    HStack {
+                        Spacer()
+                        NavigationLink(
+                            destination: HighScoresView(store: store.scope(
+                                state: { $0.highScores },
+                                action: AppAction.highScores
+                            )),
+                            label: {
+                                Text("High Scores")
+                            }
+                        )
+                    }
+                    Spacer()
+                    if viewStore.game.isGameOver {
+                        Text("⭐️ Bravo! ⭐️").font(.largeTitle)
+                            .padding(.bottom)
+                    }
+                    Text("Moves: ") + Text("\(viewStore.game.moves)").bold()
+                    LazyVGrid(columns: columns) {
+                        ForEach(0..<20) {
+                            CardView(store: store.scope(state: { $0.game }, action: AppAction.game), id: $0)
+                        }
+                    }
+                    Spacer()
+                    if viewStore.game.isGameOver {
+                        Button(action: { viewStore.send(.game(.new)) }) {
+                            Text("New game")
+                        }
+                        .padding()
                     }
                 }
-                if viewStore.game.isGameOver {
-                    Button(action: { viewStore.send(.game(.new)) }) {
-                        Text("New game")
-                    }
-                    .padding()
-                }
+                .padding()
+                .navigationTitle("MemoArt")
+                .navigationBarHidden(true)
             }
-            .padding()
         }
     }
 }
@@ -36,7 +54,7 @@ struct ContentView_Previews: PreviewProvider {
         ContentView(store: Store<AppState, AppAction>(
             initialState: AppState(),
             reducer: appReducer,
-            environment: AppEnvironment(mainQueue: .preview)
+            environment: .preview
         ))
     }
 }
@@ -51,7 +69,7 @@ struct ContentViewGameOver_Previews: PreviewProvider {
                 $0.game.symbols = .predictedGameSymbols(isCardsFaceUp: true)
             },
             reducer: appReducer,
-            environment: AppEnvironment(mainQueue: .preview)
+            environment: .preview
         ))
     }
 }
@@ -66,5 +84,13 @@ extension AppState {
 
 extension AnyScheduler where SchedulerTimeType == DispatchQueue.SchedulerTimeType, SchedulerOptions == DispatchQueue.SchedulerOptions {
     static var preview: Self { DispatchQueue.main.eraseToAnyScheduler() }
+}
+
+extension AppEnvironment {
+    static let preview: Self = AppEnvironment(
+        mainQueue: .preview,
+        loadHighScores: { .preview },
+        saveHighScores: { _ in }
+    )
 }
 #endif
