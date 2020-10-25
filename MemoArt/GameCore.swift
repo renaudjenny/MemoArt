@@ -25,7 +25,7 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
         state.moves = 0
         state.discoveredSymbolTypes = []
         state.isGameOver = false
-        return .init(Just(.shuffleCards).delay(for: .seconds(1), scheduler: environment.mainQueue))
+        return .init(Just(.shuffleCards).delay(for: .seconds(0.5), scheduler: environment.mainQueue))
     case .shuffleCards:
         state.symbols = .newGameSymbols
         return .none
