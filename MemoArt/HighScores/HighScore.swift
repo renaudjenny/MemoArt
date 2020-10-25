@@ -1,6 +1,6 @@
 import Foundation
 
-struct HighScore: Equatable {
+struct HighScore: Equatable, Codable {
     let score: Int
     let name: String
     let date: Date

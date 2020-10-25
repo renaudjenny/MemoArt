@@ -41,9 +41,13 @@ struct ContentView: View {
                     }
                 }
                 .padding()
+                .onAppear(perform: { viewStore.send(.highScores(.load)) })
                 .navigationTitle("MemoArt")
                 .navigationBarHidden(true)
             }
+            .sheet(isPresented: viewStore.binding(get: { $0.isNewHighScoreEntryPresented }, send: .newHighScoreEntered), content: {
+                NewHighScoreView(store: store)
+            })
         }
     }
 }
@@ -74,11 +78,33 @@ struct ContentViewGameOver_Previews: PreviewProvider {
     }
 }
 
+struct ContentViewAlmostFinished_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView(store: Store(
+            initialState: .almostFinishedGame,
+            reducer: appReducer,
+            environment: .preview
+        ))
+    }
+}
+
 extension AppState {
     static func mocked(modifier: (inout Self) -> Void) -> Self {
         var state = AppState()
         modifier(&state)
         return state
+    }
+
+    static let almostFinishedGame: Self = .mocked {
+        $0.game.isGameOver = false
+        $0.game.discoveredSymbolTypes = SymbolType.allCases.filter({ $0 != .cave })
+        $0.game.moves = 42
+        $0.game.symbols = [Symbol].predictedGameSymbols(isCardsFaceUp: true).map {
+            if $0.type == .cave {
+                return Symbol(id: $0.id, type: $0.type, isFaceUp: false)
+            }
+            return $0
+        }
     }
 }
 

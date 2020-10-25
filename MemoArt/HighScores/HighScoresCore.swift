@@ -21,7 +21,7 @@ let highScoresReducer = Reducer<HighScoresState, HighScoresAction, HighScoresEnv
     case let .addScore(newHighScore):
         guard !state.scores.isEmpty else {
             state.scores = [newHighScore]
-            return .none
+            return .init(value: .save)
         }
 
         state.scores = (state.scores + [newHighScore])

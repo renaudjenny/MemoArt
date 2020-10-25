@@ -12,7 +12,6 @@ struct HighScoresView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             ScrollView {
-                Text("High Scores").font(.largeTitle)
                 if viewStore.scores.count <= 0 {
                     Text("Go win some game to see your best scores here ⭐️")
                         .bold()
@@ -25,7 +24,8 @@ struct HighScoresView: View {
                     .padding(.horizontal)
                 }
             }
-            .onAppear(perform: { viewStore.send(.load) })
+            .navigationTitle("High Scores")
+            .navigationBarHidden(false)
         }
     }
 }
