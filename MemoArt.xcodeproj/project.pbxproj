@@ -19,6 +19,8 @@
 		4C8DF43A253C5B2900F2DE7C /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF439253C5B2900F2DE7C /* AppCore.swift */; };
 		4C8DF43F253C5B9900F2DE7C /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF43E253C5B9900F2DE7C /* Symbol.swift */; };
 		4CC92F4B25458A8600DAC4AB /* NewHighScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F4A25458A8600DAC4AB /* NewHighScoreView.swift */; };
+		4CC92F5A2545E5C600DAC4AB /* AddCardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F592545E5C600DAC4AB /* AddCardStyle.swift */; };
+		4CC92F5F2545EC7000DAC4AB /* CommonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F5E2545EC7000DAC4AB /* CommonExtensions.swift */; };
 		4CD0E1EC2542A0B500A1E0FD /* HighScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1EB2542A0B400A1E0FD /* HighScore.swift */; };
 		4CD0E1F12542A1D200A1E0FD /* HighScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1F02542A1D200A1E0FD /* HighScoresView.swift */; };
 		4CD0E1F62542A29900A1E0FD /* HighScoresCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1F52542A29900A1E0FD /* HighScoresCore.swift */; };
@@ -60,6 +62,8 @@
 		4C8DF439253C5B2900F2DE7C /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
 		4C8DF43E253C5B9900F2DE7C /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
 		4CC92F4A25458A8600DAC4AB /* NewHighScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHighScoreView.swift; sourceTree = "<group>"; };
+		4CC92F592545E5C600DAC4AB /* AddCardStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardStyle.swift; sourceTree = "<group>"; };
+		4CC92F5E2545EC7000DAC4AB /* CommonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtensions.swift; sourceTree = "<group>"; };
 		4CD0E1EB2542A0B400A1E0FD /* HighScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScore.swift; sourceTree = "<group>"; };
 		4CD0E1F02542A1D200A1E0FD /* HighScoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresView.swift; sourceTree = "<group>"; };
 		4CD0E1F52542A29900A1E0FD /* HighScoresCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresCore.swift; sourceTree = "<group>"; };
@@ -115,16 +119,17 @@
 		4C8DF3FA253B30D700F2DE7C /* MemoArt */ = {
 			isa = PBXGroup;
 			children = (
+				4CC92F552545E54300DAC4AB /* Cards */,
 				4C8DF439253C5B2900F2DE7C /* AppCore.swift */,
 				4C8DF3FB253B30D700F2DE7C /* MemoArtApp.swift */,
 				4C8DF3FF253B30DB00F2DE7C /* Assets.xcassets */,
-				4C8DF429253C520F00F2DE7C /* CardView.swift */,
 				4C8DF3FD253B30D700F2DE7C /* ContentView.swift */,
 				4C8DF434253C5B0A00F2DE7C /* GameCore.swift */,
 				4CD0E1EA2542A09000A1E0FD /* HighScores */,
 				4C8DF404253B30DB00F2DE7C /* Info.plist */,
 				4C8DF401253B30DB00F2DE7C /* Preview Content */,
 				4C8DF43E253C5B9900F2DE7C /* Symbol.swift */,
+				4CC92F5E2545EC7000DAC4AB /* CommonExtensions.swift */,
 			);
 			path = MemoArt;
 			sourceTree = "<group>";
@@ -154,6 +159,15 @@
 				4C8DF41A253B30DC00F2DE7C /* Info.plist */,
 			);
 			path = MemoArtUITests;
+			sourceTree = "<group>";
+		};
+		4CC92F552545E54300DAC4AB /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				4C8DF429253C520F00F2DE7C /* CardView.swift */,
+				4CC92F592545E5C600DAC4AB /* AddCardStyle.swift */,
+			);
+			path = Cards;
 			sourceTree = "<group>";
 		};
 		4CD0E1EA2542A09000A1E0FD /* HighScores */ = {
@@ -320,6 +334,8 @@
 				4C8DF43A253C5B2900F2DE7C /* AppCore.swift in Sources */,
 				4CC92F4B25458A8600DAC4AB /* NewHighScoreView.swift in Sources */,
 				4C8DF43F253C5B9900F2DE7C /* Symbol.swift in Sources */,
+				4CC92F5F2545EC7000DAC4AB /* CommonExtensions.swift in Sources */,
+				4CC92F5A2545E5C600DAC4AB /* AddCardStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

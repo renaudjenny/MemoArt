@@ -8,7 +8,7 @@ struct ContentView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             NavigationView {
-                VStack {
+                ScrollView {
                     HStack {
                         Spacer()
                         NavigationLink(
@@ -17,30 +17,30 @@ struct ContentView: View {
                                 action: AppAction.highScores
                             )),
                             label: {
-                                Text("High Scores")
+                                Text("🏆")
+                                    .modifier(AddCardStyle())
+                                    .frame(width: 50)
                             }
                         )
+                        .accessibility(label: Text("High Scores"))
                     }
-                    Spacer()
-                    if viewStore.game.isGameOver {
-                        Text("⭐️ Bravo! ⭐️").font(.largeTitle)
-                            .padding(.bottom)
-                    }
+                    .padding()
+                    Text("⭐️ Bravo! ⭐️").font(.largeTitle)
+                        .padding(.bottom)
+                        .hidden(!viewStore.game.isGameOver)
                     Text("Moves: ") + Text("\(viewStore.game.moves)").bold()
                     LazyVGrid(columns: columns) {
                         ForEach(0..<20) {
                             CardView(store: store.scope(state: { $0.game }, action: AppAction.game), id: $0)
                         }
                     }
-                    Spacer()
-                    if viewStore.game.isGameOver {
-                        Button(action: { viewStore.send(.game(.new)) }) {
-                            Text("New game")
-                        }
-                        .padding()
+                    .padding()
+                    Button(action: { viewStore.send(.game(.new)) }) {
+                        Text("New Game")
                     }
+                    .hidden(!viewStore.game.isGameOver)
+                    .padding()
                 }
-                .padding()
                 .onAppear(perform: { viewStore.send(.highScores(.load)) })
                 .navigationTitle("MemoArt")
                 .navigationBarHidden(true)

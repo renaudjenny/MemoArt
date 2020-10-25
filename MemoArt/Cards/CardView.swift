@@ -18,9 +18,8 @@ struct CardView: View {
                     image.transition(turnTransition)
                 }
             }
-            .cornerRadius(8.0)
+            .modifier(AddCardStyle())
             .frame(width: 65, height: 65)
-            .shadow(radius: 1, x: 1, y: 1)
             .rotation3DEffect(
                 viewStore.symbols[id].isFaceUp
                     ? .radians(.pi)

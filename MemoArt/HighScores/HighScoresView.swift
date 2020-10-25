@@ -38,11 +38,8 @@ struct HighScoreView: View {
 
     var body: some View {
         HStack {
-            RoundedRectangle(cornerRadius: 8.0)
-                .foregroundColor(.red)
-                .overlay(positionView)
-                .aspectRatio(contentMode: .fit)
-                .shadow(radius: 1, x: 1, y: 1)
+            positionView
+                .modifier(AddCardStyle())
                 .frame(width: 50)
             Text("\(highScore.score)")
                 .font(.title3)
@@ -65,12 +62,19 @@ struct HighScoreView: View {
     private var positionView: some View {
         Group {
             switch position {
-            case 0: Text("🥇").font(.title)
-            case 1: Text("🥈").font(.title)
-            case 2: Text("🥉").font(.title)
+            case 0: Text("🥇")
+                .font(.title)
+                .accessibility(label: Text("First"))
+            case 1: Text("🥈")
+                .font(.title)
+                .accessibility(label: Text("Second"))
+            case 2: Text("🥉")
+                .font(.title)
+                .accessibility(label: Text("Third"))
             default: Text("\(position + 1)")
                 .bold()
                 .font(.title2)
+                .accessibilityLabel("Position: \(position)")
             }
         }
         .foregroundColor(.yellow)
