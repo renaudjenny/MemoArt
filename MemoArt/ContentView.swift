@@ -48,6 +48,7 @@ struct ContentView: View {
             .sheet(isPresented: viewStore.binding(get: { $0.isNewHighScoreEntryPresented }, send: .newHighScoreEntered), content: {
                 NewHighScoreView(store: store)
             })
+            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }
