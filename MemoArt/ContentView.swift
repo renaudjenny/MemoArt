@@ -3,7 +3,8 @@ import ComposableArchitecture
 
 struct ContentView: View {
     let store: Store<AppState, AppAction>
-    let columns = [GridItem(.adaptive(minimum: 65))]
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -49,6 +50,23 @@ struct ContentView: View {
                 NewHighScoreView(store: store)
             })
             .navigationViewStyle(StackNavigationViewStyle())
+        }
+    }
+
+    var columns: [GridItem] {
+        let gridItemPattern = GridItem(.flexible(minimum: 50, maximum: 125))
+        switch (horizontalSizeClass, verticalSizeClass) {
+        case (.compact, .regular):
+            // 4x5 Grid
+            return Array(repeating: gridItemPattern, count: 4)
+        case (.compact, .compact):
+            // 7x3 Grid
+            return Array(repeating: gridItemPattern, count: 7)
+        case (.regular, .regular):
+            // 5x4 Grid, bigger images
+            return Array(repeating: gridItemPattern, count: 5)
+        default:
+            return [GridItem(.adaptive(minimum: 100))]
         }
     }
 }

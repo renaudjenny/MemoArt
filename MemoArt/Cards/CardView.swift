@@ -19,7 +19,6 @@ struct CardView: View {
                 }
             }
             .modifier(AddCardStyle())
-            .frame(width: 65, height: 65)
             .rotation3DEffect(
                 viewStore.symbols[id].isFaceUp
                     ? .radians(.pi)
@@ -90,7 +89,7 @@ struct CardView_Previews: PreviewProvider {
                         Text("New game!")
                     }
                     .padding()
-                }
+                }.padding()
             }
         }
     }
