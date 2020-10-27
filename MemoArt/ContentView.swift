@@ -9,42 +9,19 @@ struct ContentView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             NavigationView {
-                ScrollView {
-                    HStack {
-                        Spacer()
-                        NavigationLink(
-                            destination: HighScoresView(store: store.scope(
-                                state: { $0.highScores },
-                                action: AppAction.highScores
-                            )),
-                            label: {
-                                Text("🏆")
-                                    .modifier(AddCardStyle())
-                                    .frame(width: 50)
-                            }
-                        )
-                        .accessibility(label: Text("High Scores"))
-                    }
-                    .padding()
-                    Text("⭐️ Bravo! ⭐️").font(.largeTitle)
-                        .padding(.bottom)
-                        .hidden(!viewStore.game.isGameOver)
-                    Text("Moves: ") + Text("\(viewStore.game.moves)").bold()
+                stackOrScroll {
+                    gameOverView
                     LazyVGrid(columns: columns) {
                         ForEach(0..<20) {
                             CardView(store: store.scope(state: { $0.game }, action: AppAction.game), id: $0)
                         }
                     }
                     .padding()
-                    Button(action: { viewStore.send(.game(.new)) }) {
-                        Text("New Game")
-                    }
-                    .hidden(!viewStore.game.isGameOver)
-                    .padding()
                 }
+                .animation(.spring())
                 .onAppear(perform: { viewStore.send(.highScores(.load)) })
-                .navigationTitle("MemoArt")
-                .navigationBarHidden(true)
+                .navigationBarTitle("Moves: \(viewStore.game.moves)", displayMode: .inline)
+                .navigationBarItems(trailing: highScoresNavigationLink)
             }
             .sheet(isPresented: viewStore.binding(get: { $0.isNewHighScoreEntryPresented }, send: .newHighScoreEntered), content: {
                 NewHighScoreView(store: store)
@@ -68,6 +45,57 @@ struct ContentView: View {
         default:
             return [GridItem(.adaptive(minimum: 100))]
         }
+    }
+
+    private var highScoresNavigationLink: some View {
+        NavigationLink(
+            destination: HighScoresView(store: store.scope(
+                state: { $0.highScores },
+                action: AppAction.highScores
+            )),
+            label: {
+                Text("🏆")
+            }
+        )
+        .accessibility(label: Text("High Scores"))
+    }
+
+    private var gameOverView: some View {
+        WithViewStore(store) { viewStore in
+            if viewStore.game.isGameOver {
+                VStack {
+                    Text("⭐️ Bravo ⭐️").font(.largeTitle)
+                    Button(action: { viewStore.send(.game(.new)) }) {
+                        Text("New Game")
+                    }
+                }
+                .padding(.top)
+                .transition(
+                    .asymmetric(insertion: .slide, removal: .opacity)
+                )
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func stackOrScroll<Content: View>(@ViewBuilder content: () -> Content) -> some View {
+        switch (horizontalSizeClass, verticalSizeClass) {
+        case (.regular, .regular): VStack { content() }
+        default: ScrollView { content() }
+        }
+    }
+}
+
+struct FlippedUpsideDown: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .rotationEffect(.radians(.pi))
+            .scaleEffect(x: -1, y: 1, anchor: .center)
+    }
+}
+extension View{
+    func flippedUpsideDown() -> some View{
+        self.modifier(FlippedUpsideDown())
     }
 }
 
@@ -117,7 +145,7 @@ extension AppState {
     static let almostFinishedGame: Self = .mocked {
         $0.game.isGameOver = false
         $0.game.discoveredSymbolTypes = SymbolType.allCases.filter({ $0 != .cave })
-        $0.game.moves = 42
+        $0.game.moves = 142
         $0.game.symbols = [Symbol].predictedGameSymbols(isCardsFaceUp: true).map {
             if $0.type == .cave {
                 return Symbol(id: $0.id, type: $0.type, isFaceUp: false)
