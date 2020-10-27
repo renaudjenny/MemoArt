@@ -5,6 +5,7 @@ struct ContentView: View {
     let store: Store<AppState, AppAction>
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.verticalSizeClass) private var verticalSizeClass
+    @State private var isNavigationActive = false
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -20,7 +21,8 @@ struct ContentView: View {
                 }
                 .animation(.spring())
                 .onAppear(perform: { viewStore.send(.highScores(.load)) })
-                .navigationBarTitle("Moves: \(viewStore.game.moves)", displayMode: .inline)
+                .navigationTitle(isNavigationActive ? "MemoArt" : "Moves: \(viewStore.game.moves)")
+                .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(trailing: highScoresNavigationLink)
             }
             .sheet(isPresented: viewStore.binding(get: { $0.isNewHighScoreEntryPresented }, send: .newHighScoreEntered), content: {
@@ -53,6 +55,7 @@ struct ContentView: View {
                 state: { $0.highScores },
                 action: AppAction.highScores
             )),
+            isActive: $isNavigationActive,
             label: {
                 Text("🏆")
             }
@@ -81,21 +84,8 @@ struct ContentView: View {
     private func stackOrScroll<Content: View>(@ViewBuilder content: () -> Content) -> some View {
         switch (horizontalSizeClass, verticalSizeClass) {
         case (.regular, .regular): VStack { content() }
-        default: ScrollView { content() }
+        default: ReversedScrollView { content() }
         }
-    }
-}
-
-struct FlippedUpsideDown: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .rotationEffect(.radians(.pi))
-            .scaleEffect(x: -1, y: 1, anchor: .center)
-    }
-}
-extension View{
-    func flippedUpsideDown() -> some View{
-        self.modifier(FlippedUpsideDown())
     }
 }
 
