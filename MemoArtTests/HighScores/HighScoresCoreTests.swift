@@ -13,7 +13,8 @@ class HighScoresCoreTests: XCTestCase {
         store.assert(
             .send(.addScore(newHighScore)) {
                 $0.scores = [newHighScore]
-            }
+            },
+            .receive(.save)
         )
     }
 
@@ -32,7 +33,8 @@ class HighScoresCoreTests: XCTestCase {
                     newHighScore,
                     HighScore(score: 100, name: "Mario", date: .test)
                 ]
-            }
+            },
+            .receive(.save)
         )
     }
 
@@ -59,6 +61,7 @@ class HighScoresCoreTests: XCTestCase {
                     HighScore(score: 100, name: "Mario", date: .test),
                 ]
             },
+            .receive(.save),
             .send(.addScore(anotherNewHighScore)) {
                 $0.scores = [
                     HighScore(score: 90, name: "Luigi", date: .test),
@@ -67,6 +70,7 @@ class HighScoresCoreTests: XCTestCase {
                     anotherNewHighScore,
                 ]
             },
+            .receive(.save),
             .send(.addScore(aThirdNewHighScore)) {
                 $0.scores = [
                     HighScore(score: 90, name: "Luigi", date: .test),
@@ -76,6 +80,7 @@ class HighScoresCoreTests: XCTestCase {
                     anotherNewHighScore,
                 ]
             },
+            .receive(.save),
             .send(.addScore(aFourthNewHighScore)) {
                 $0.scores = [
                     aFourthNewHighScore,
@@ -85,7 +90,8 @@ class HighScoresCoreTests: XCTestCase {
                     HighScore(score: 100, name: "Mario", date: .test),
                     anotherNewHighScore,
                 ]
-            }
+            },
+            .receive(.save)
         )
     }
 
@@ -104,13 +110,16 @@ class HighScoresCoreTests: XCTestCase {
             .send(.addScore(newHighScore)) {
                 $0.scores = [newHighScore] + [HighScore].test.prefix(9)
             },
+            .receive(.save),
             .send(.addScore(anotherNewHighScore)) {
                 $0.scores = [newHighScore, anotherNewHighScore] + [HighScore].test.prefix(8)
             },
+            .receive(.save),
             .send(.addScore(HighScore(score: 200, name: "Will not be in the HighScore", date: .test))) {
                 // Ensure we are not adding a score that is out of the best 10 scores
                 $0.scores = [newHighScore, anotherNewHighScore] + [HighScore].test.prefix(8)
-            }
+            },
+            .receive(.save)
         )
     }
 
@@ -129,6 +138,7 @@ class HighScoresCoreTests: XCTestCase {
             .send(.addScore(newHighScore)) {
                 $0.scores = [newHighScore] + [HighScore].test.prefix(9)
             },
+            .receive(.save),
             .send(.addScore(anotherNewHighScore)) {
                 $0.scores = [
                     newHighScore,
@@ -142,7 +152,8 @@ class HighScoresCoreTests: XCTestCase {
                     HighScore(score: 80, name: "Test 6", date: .test),
                     HighScore(score: 90, name: "Test 7", date: .test),
                 ]
-            }
+            },
+            .receive(.save)
         )
     }
 }
