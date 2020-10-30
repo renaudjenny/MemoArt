@@ -156,6 +156,38 @@ class HighScoresCoreTests: XCTestCase {
             .receive(.save)
         )
     }
+
+    func testLoadPersistedHighScores() {
+        let store = TestStore(
+            initialState: HighScoresState(
+                scores: .test
+            ),
+            reducer: highScoresReducer,
+            environment: .mockedHighScores
+        )
+
+        store.assert(
+            .send(.load) {
+                $0.scores = .mocked
+            }
+        )
+    }
+
+    func testResetHighScores() {
+        let store = TestStore(
+            initialState: HighScoresState(
+                scores: .test
+            ),
+            reducer: highScoresReducer,
+            environment: .test
+        )
+
+        store.assert(
+            .send(.reset) {
+                $0.scores = []
+            }
+        )
+    }
 }
 
 extension Date {
@@ -166,8 +198,18 @@ extension Array where Element == HighScore {
     static var test: Self {
         (0..<10).map { HighScore(score: ($0 + 2) * 10, name: "Test \($0)", date: .test) }
     }
+
+    static let mocked: Self = [
+        HighScore(score: 10, name: "First mocked High Score", date: .test),
+        HighScore(score: 11, name: "Second mocked High Score", date: .test),
+        HighScore(score: 12, name: "Third mocked High Score", date: .test),
+    ]
 }
 
 extension HighScoresEnvironment {
     static let test = HighScoresEnvironment(load: { [] }, save: { _ in })
+    static let mockedHighScores = HighScoresEnvironment(
+        load: { .mocked },
+        save: { _ in }
+    )
 }
