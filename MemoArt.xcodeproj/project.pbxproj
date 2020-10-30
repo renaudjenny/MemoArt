@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C4454CB254CBB2700AA5C87 /* GameCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4454CA254CBB2700AA5C87 /* GameCoreTests.swift */; };
 		4C8DF3FC253B30D700F2DE7C /* MemoArtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF3FB253B30D700F2DE7C /* MemoArtApp.swift */; };
 		4C8DF3FE253B30D700F2DE7C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF3FD253B30D700F2DE7C /* ContentView.swift */; };
 		4C8DF400253B30DB00F2DE7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8DF3FF253B30DB00F2DE7C /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C4454CA254CBB2700AA5C87 /* GameCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoreTests.swift; sourceTree = "<group>"; };
 		4C8DF3F8253B30D700F2DE7C /* MemoArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8DF3FB253B30D700F2DE7C /* MemoArtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoArtApp.swift; sourceTree = "<group>"; };
 		4C8DF3FD253B30D700F2DE7C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -96,6 +98,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C4454C9254CBA8200AA5C87 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				4C4454CA254CBB2700AA5C87 /* GameCoreTests.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		4C4454D2254CBB6B00AA5C87 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				4C8DF434253C5B0A00F2DE7C /* GameCore.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
 		4C8DF3EF253B30D700F2DE7C = {
 			isa = PBXGroup;
 			children = (
@@ -119,17 +137,16 @@
 		4C8DF3FA253B30D700F2DE7C /* MemoArt */ = {
 			isa = PBXGroup;
 			children = (
+				4C4454D2254CBB6B00AA5C87 /* Game */,
 				4CC92F6C2548BB0F00DAC4AB /* Common */,
 				4CC92F552545E54300DAC4AB /* Cards */,
 				4C8DF439253C5B2900F2DE7C /* AppCore.swift */,
 				4C8DF3FB253B30D700F2DE7C /* MemoArtApp.swift */,
 				4C8DF3FF253B30DB00F2DE7C /* Assets.xcassets */,
 				4C8DF3FD253B30D700F2DE7C /* ContentView.swift */,
-				4C8DF434253C5B0A00F2DE7C /* GameCore.swift */,
 				4CD0E1EA2542A09000A1E0FD /* HighScores */,
 				4C8DF404253B30DB00F2DE7C /* Info.plist */,
 				4C8DF401253B30DB00F2DE7C /* Preview Content */,
-				4C8DF43E253C5B9900F2DE7C /* Symbol.swift */,
 			);
 			path = MemoArt;
 			sourceTree = "<group>";
@@ -145,6 +162,7 @@
 		4C8DF40C253B30DC00F2DE7C /* MemoArtTests */ = {
 			isa = PBXGroup;
 			children = (
+				4C4454C9254CBA8200AA5C87 /* Game */,
 				4CD0E1FA2542A72300A1E0FD /* HighScores */,
 				4C8DF40D253B30DC00F2DE7C /* MemoArtTests.swift */,
 				4C8DF40F253B30DC00F2DE7C /* Info.plist */,
@@ -164,6 +182,7 @@
 		4CC92F552545E54300DAC4AB /* Cards */ = {
 			isa = PBXGroup;
 			children = (
+				4C8DF43E253C5B9900F2DE7C /* Symbol.swift */,
 				4C8DF429253C520F00F2DE7C /* CardView.swift */,
 				4CC92F592545E5C600DAC4AB /* AddCardStyle.swift */,
 			);
@@ -351,6 +370,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C4454CB254CBB2700AA5C87 /* GameCoreTests.swift in Sources */,
 				4CD0E1FC2542A74D00A1E0FD /* HighScoresCoreTests.swift in Sources */,
 				4C8DF40E253B30DC00F2DE7C /* MemoArtTests.swift in Sources */,
 			);

@@ -24,7 +24,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
     gameReducer.pullback(
         state: \.game,
         action: /AppAction.game,
-        environment: { GameEnvironment(mainQueue: $0.mainQueue) }
+        environment: { GameEnvironment(mainQueue: $0.mainQueue, generateRandomSymbols: { .newGameSymbols }) }
     ),
     highScoresReducer.pullback(
         state: \.highScores,

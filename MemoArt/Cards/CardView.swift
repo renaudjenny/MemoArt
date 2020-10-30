@@ -63,7 +63,7 @@ struct CardView_Previews: PreviewProvider {
         let store = Store<GameState, GameAction>(
             initialState: GameState(),
             reducer: gameReducer,
-            environment: GameEnvironment(mainQueue: .preview)
+            environment: GameEnvironment(mainQueue: .preview, generateRandomSymbols: { .predictedGameSymbols })
         )
 
         var body: some View {

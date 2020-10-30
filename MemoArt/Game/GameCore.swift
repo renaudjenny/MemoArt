@@ -16,6 +16,7 @@ enum GameAction: Equatable {
 
 struct GameEnvironment {
     var mainQueue: AnySchedulerOf<DispatchQueue>
+    var generateRandomSymbols: () -> [Symbol]
 }
 
 let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, action, environment in
@@ -27,7 +28,7 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
         state.isGameOver = false
         return .init(Just(.shuffleCards).delay(for: .seconds(0.5), scheduler: environment.mainQueue))
     case .shuffleCards:
-        state.symbols = .newGameSymbols
+        state.symbols = environment.generateRandomSymbols()
         return .none
     case let .cardReturned(cardId):
         state.symbols[cardId].isFaceUp = true
