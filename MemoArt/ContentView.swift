@@ -19,7 +19,6 @@ struct ContentView: View {
                     }
                     .padding()
                 }
-                .animation(.spring())
                 .onAppear(perform: { viewStore.send(.highScores(.load)) })
                 .navigationTitle(isNavigationActive ? "MemoArt" : "Moves: \(viewStore.game.moves)")
                 .navigationBarTitleDisplayMode(.inline)
@@ -68,7 +67,7 @@ struct ContentView: View {
             if viewStore.game.isGameOver {
                 VStack {
                     Text("⭐️ Bravo ⭐️").font(.largeTitle)
-                    Button(action: { viewStore.send(.game(.new)) }) {
+                    Button(action: { withAnimation(.spring()) { viewStore.send(.game(.new)) } }) {
                         Text("New Game")
                     }
                 }

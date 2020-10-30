@@ -49,7 +49,7 @@ struct CardView: View {
     }
 
     private func returnCard(store: ViewStore<GameState, GameAction>) {
-        store.send(.cardReturned(id))
+        withAnimation(.spring()) { store.send(.cardReturned(id)) }
     }
 }
 
