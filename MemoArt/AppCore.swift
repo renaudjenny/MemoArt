@@ -18,13 +18,14 @@ struct AppEnvironment {
     var mainQueue: AnySchedulerOf<DispatchQueue>
     var loadHighScores: () -> [HighScore]
     var saveHighScores: ([HighScore]) -> Void
+    var generateRandomSymbols: () -> [Symbol]
 }
 
 let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
     gameReducer.pullback(
         state: \.game,
         action: /AppAction.game,
-        environment: { GameEnvironment(mainQueue: $0.mainQueue, generateRandomSymbols: { .newGameSymbols }) }
+        environment: { GameEnvironment(mainQueue: $0.mainQueue, generateRandomSymbols: $0.generateRandomSymbols) }
     ),
     highScoresReducer.pullback(
         state: \.highScores,

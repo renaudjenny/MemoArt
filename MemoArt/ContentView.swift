@@ -152,7 +152,8 @@ extension AppEnvironment {
     static let preview: Self = AppEnvironment(
         mainQueue: .preview,
         loadHighScores: { .preview },
-        saveHighScores: { _ in }
+        saveHighScores: { _ in },
+        generateRandomSymbols: { .predictedGameSymbols }
     )
 }
 #endif

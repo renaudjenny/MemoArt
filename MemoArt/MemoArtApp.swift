@@ -9,7 +9,8 @@ struct MemoArtApp: App {
         environment: AppEnvironment(
             mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
             loadHighScores: loadHighScores,
-            saveHighScores: saveHighScores
+            saveHighScores: saveHighScores,
+            generateRandomSymbols: { .newGameSymbols }
         )
     )
 
