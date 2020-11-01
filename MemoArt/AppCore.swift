@@ -35,7 +35,6 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
     Reducer { state, action, environment in
         switch action {
         case .game(.cardReturned):
-            // TODO: test that
             if state.game.isGameOver {
                 let presentNewHighScoreEffect = Just(AppAction.presentNewHighScoreView)
                     .delay(for: .seconds(0.8), scheduler: environment.mainQueue)

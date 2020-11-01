@@ -13,7 +13,6 @@
 		4C8DF400253B30DB00F2DE7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8DF3FF253B30DB00F2DE7C /* Assets.xcassets */; };
 		4C8DF403253B30DB00F2DE7C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8DF402253B30DB00F2DE7C /* Preview Assets.xcassets */; };
 		4C8DF40E253B30DC00F2DE7C /* AppCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF40D253B30DC00F2DE7C /* AppCoreTests.swift */; };
-		4C8DF419253B30DC00F2DE7C /* MemoArtUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF418253B30DC00F2DE7C /* MemoArtUITests.swift */; };
 		4C8DF42A253C520F00F2DE7C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF429253C520F00F2DE7C /* CardView.swift */; };
 		4C8DF430253C59CA00F2DE7C /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 4C8DF42F253C59CA00F2DE7C /* ComposableArchitecture */; };
 		4C8DF435253C5B0A00F2DE7C /* GameCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF434253C5B0A00F2DE7C /* GameCore.swift */; };
@@ -57,7 +56,6 @@
 		4C8DF40D253B30DC00F2DE7C /* AppCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoreTests.swift; sourceTree = "<group>"; };
 		4C8DF40F253B30DC00F2DE7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C8DF414253B30DC00F2DE7C /* MemoArtUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemoArtUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C8DF418253B30DC00F2DE7C /* MemoArtUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoArtUITests.swift; sourceTree = "<group>"; };
 		4C8DF41A253B30DC00F2DE7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C8DF429253C520F00F2DE7C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		4C8DF434253C5B0A00F2DE7C /* GameCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCore.swift; sourceTree = "<group>"; };
@@ -173,7 +171,6 @@
 		4C8DF417253B30DC00F2DE7C /* MemoArtUITests */ = {
 			isa = PBXGroup;
 			children = (
-				4C8DF418253B30DC00F2DE7C /* MemoArtUITests.swift */,
 				4C8DF41A253B30DC00F2DE7C /* Info.plist */,
 			);
 			path = MemoArtUITests;
@@ -226,6 +223,7 @@
 				4C8DF3F4253B30D700F2DE7C /* Sources */,
 				4C8DF3F5253B30D700F2DE7C /* Frameworks */,
 				4C8DF3F6253B30D700F2DE7C /* Resources */,
+				4C865719254EFE440040EA04 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -346,6 +344,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4C865719254EFE440040EA04 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4C8DF3F4253B30D700F2DE7C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -380,7 +398,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C8DF419253B30DC00F2DE7C /* MemoArtUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

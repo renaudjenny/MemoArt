@@ -24,9 +24,13 @@ struct ContentView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(trailing: highScoresNavigationLink)
             }
-            .sheet(isPresented: viewStore.binding(get: { $0.isNewHighScoreEntryPresented }, send: .newHighScoreEntered), content: {
-                NewHighScoreView(store: store)
-            })
+            .sheet(
+                isPresented: viewStore.binding(
+                    get: { $0.isNewHighScoreEntryPresented },
+                    send: .newHighScoreEntered
+                ),
+                content: { NewHighScoreView(store: store) }
+            )
             .navigationViewStyle(StackNavigationViewStyle())
         }
     }
@@ -67,9 +71,9 @@ struct ContentView: View {
             if viewStore.game.isGameOver {
                 VStack {
                     Text("⭐️ Bravo ⭐️").font(.largeTitle)
-                    Button(action: { withAnimation(.spring()) { viewStore.send(.game(.new)) } }) {
+                    Button(action: { withAnimation(.spring()) { viewStore.send(.game(.new)) } }, label: {
                         Text("New Game")
-                    }
+                    })
                 }
                 .padding(.top)
                 .transition(
@@ -144,7 +148,10 @@ extension AppState {
     }
 }
 
-extension AnyScheduler where SchedulerTimeType == DispatchQueue.SchedulerTimeType, SchedulerOptions == DispatchQueue.SchedulerOptions {
+extension AnyScheduler
+where
+    SchedulerTimeType == DispatchQueue.SchedulerTimeType,
+    SchedulerOptions == DispatchQueue.SchedulerOptions {
     static var preview: Self { DispatchQueue.main.eraseToAnyScheduler() }
 }
 

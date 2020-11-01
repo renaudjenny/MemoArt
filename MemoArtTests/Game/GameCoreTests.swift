@@ -29,6 +29,7 @@ class GameCoreTests: XCTestCase {
         )
     }
 
+    // swiftlint:disable:next cyclomatic_complexity
     func testReturningCards() {
         let store = TestStore(
             initialState: GameState(),
@@ -124,14 +125,16 @@ class GameCoreTests: XCTestCase {
                     if numberOfCardReturned == 20 {
                         $0.isGameOver = true
                     }
-                }
+                },
             ]
         }
 
         store.assert(
-            [.send(.shuffleCards) {
-                $0.symbols = .predictedGameSymbols
-            }]
+            [
+                .send(.shuffleCards) {
+                    $0.symbols = .predictedGameSymbols
+                },
+            ]
             +
             returnAllCardsSteps
         )

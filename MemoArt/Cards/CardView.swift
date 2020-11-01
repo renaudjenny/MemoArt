@@ -10,9 +10,9 @@ struct CardView: View {
         WithViewStore(store) { viewStore in
             ZStack {
                 if !viewStore.symbols[id].isFaceUp {
-                    Button(action: { returnCard(store: viewStore) }) {
+                    Button(action: { returnCard(store: viewStore) }, label: {
                         Color.red
-                    }
+                    })
                     .transition(turnTransition)
                 } else {
                     image.transition(turnTransition)
@@ -85,9 +85,9 @@ struct CardView_Previews: PreviewProvider {
                         }
                     }
                     Spacer()
-                    Button(action: { viewStore.send(.new) }) {
+                    Button(action: { viewStore.send(.new) }, label: {
                         Text("New game!")
-                    }
+                    })
                     .padding()
                 }.padding()
             }

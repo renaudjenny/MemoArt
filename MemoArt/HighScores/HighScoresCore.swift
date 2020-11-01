@@ -16,7 +16,11 @@ struct HighScoresEnvironment {
     let save: ([HighScore]) -> Void
 }
 
-let highScoresReducer = Reducer<HighScoresState, HighScoresAction, HighScoresEnvironment> { state, action, environment in
+let highScoresReducer = Reducer<
+    HighScoresState,
+    HighScoresAction,
+    HighScoresEnvironment
+> { state, action, environment in
     switch action {
     case let .addScore(newHighScore):
         guard !state.scores.isEmpty else {

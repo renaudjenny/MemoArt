@@ -31,13 +31,14 @@ class HighScoresCoreTests: XCTestCase {
             .send(.addScore(newHighScore)) {
                 $0.scores = [
                     newHighScore,
-                    HighScore(score: 100, name: "Mario", date: .test)
+                    HighScore(score: 100, name: "Mario", date: .test),
                 ]
             },
             .receive(.save)
         )
     }
 
+    // swiftlint:disable:next function_body_length
     func testAddNewScoreButScoreIsNotTheBest() {
         let store = TestStore(
             initialState: HighScoresState(
