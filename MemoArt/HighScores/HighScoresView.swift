@@ -21,7 +21,6 @@ struct HighScoresView: View {
                 }
             }
             .navigationTitle("High Scores 🏆")
-            .navigationBarHidden(false)
         }
     }
 }
