@@ -35,13 +35,6 @@
 			remoteGlobalIDString = 4C8DF3F7253B30D700F2DE7C;
 			remoteInfo = Memoiry;
 		};
-		4C8DF415253B30DC00F2DE7C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4C8DF3F0253B30D700F2DE7C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4C8DF3F7253B30D700F2DE7C;
-			remoteInfo = Memoiry;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -55,8 +48,6 @@
 		4C8DF409253B30DC00F2DE7C /* MemoArtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemoArtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8DF40D253B30DC00F2DE7C /* AppCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoreTests.swift; sourceTree = "<group>"; };
 		4C8DF40F253B30DC00F2DE7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C8DF414253B30DC00F2DE7C /* MemoArtUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemoArtUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C8DF41A253B30DC00F2DE7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C8DF429253C520F00F2DE7C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		4C8DF434253C5B0A00F2DE7C /* GameCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCore.swift; sourceTree = "<group>"; };
 		4C8DF439253C5B2900F2DE7C /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
@@ -80,13 +71,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4C8DF406253B30DC00F2DE7C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4C8DF411253B30DC00F2DE7C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -117,7 +101,6 @@
 			children = (
 				4C8DF3FA253B30D700F2DE7C /* MemoArt */,
 				4C8DF40C253B30DC00F2DE7C /* MemoArtTests */,
-				4C8DF417253B30DC00F2DE7C /* MemoArtUITests */,
 				4C8DF3F9253B30D700F2DE7C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -127,7 +110,6 @@
 			children = (
 				4C8DF3F8253B30D700F2DE7C /* MemoArt.app */,
 				4C8DF409253B30DC00F2DE7C /* MemoArtTests.xctest */,
-				4C8DF414253B30DC00F2DE7C /* MemoArtUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -166,14 +148,6 @@
 				4C8DF40F253B30DC00F2DE7C /* Info.plist */,
 			);
 			path = MemoArtTests;
-			sourceTree = "<group>";
-		};
-		4C8DF417253B30DC00F2DE7C /* MemoArtUITests */ = {
-			isa = PBXGroup;
-			children = (
-				4C8DF41A253B30DC00F2DE7C /* Info.plist */,
-			);
-			path = MemoArtUITests;
 			sourceTree = "<group>";
 		};
 		4CC92F552545E54300DAC4AB /* Cards */ = {
@@ -255,24 +229,6 @@
 			productReference = 4C8DF409253B30DC00F2DE7C /* MemoArtTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4C8DF413253B30DC00F2DE7C /* MemoArtUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4C8DF423253B30DC00F2DE7C /* Build configuration list for PBXNativeTarget "MemoArtUITests" */;
-			buildPhases = (
-				4C8DF410253B30DC00F2DE7C /* Sources */,
-				4C8DF411253B30DC00F2DE7C /* Frameworks */,
-				4C8DF412253B30DC00F2DE7C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4C8DF416253B30DC00F2DE7C /* PBXTargetDependency */,
-			);
-			name = MemoArtUITests;
-			productName = MemoiryUITests;
-			productReference = 4C8DF414253B30DC00F2DE7C /* MemoArtUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -286,10 +242,6 @@
 						CreatedOnToolsVersion = 12.0.1;
 					};
 					4C8DF408253B30DC00F2DE7C = {
-						CreatedOnToolsVersion = 12.0.1;
-						TestTargetID = 4C8DF3F7253B30D700F2DE7C;
-					};
-					4C8DF413253B30DC00F2DE7C = {
 						CreatedOnToolsVersion = 12.0.1;
 						TestTargetID = 4C8DF3F7253B30D700F2DE7C;
 					};
@@ -313,7 +265,6 @@
 			targets = (
 				4C8DF3F7253B30D700F2DE7C /* MemoArt */,
 				4C8DF408253B30DC00F2DE7C /* MemoArtTests */,
-				4C8DF413253B30DC00F2DE7C /* MemoArtUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -329,13 +280,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4C8DF407253B30DC00F2DE7C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4C8DF412253B30DC00F2DE7C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -394,13 +338,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4C8DF410253B30DC00F2DE7C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -408,11 +345,6 @@
 			isa = PBXTargetDependency;
 			target = 4C8DF3F7253B30D700F2DE7C /* MemoArt */;
 			targetProxy = 4C8DF40A253B30DC00F2DE7C /* PBXContainerItemProxy */;
-		};
-		4C8DF416253B30DC00F2DE7C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4C8DF3F7253B30D700F2DE7C /* MemoArt */;
-			targetProxy = 4C8DF415253B30DC00F2DE7C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -623,46 +555,6 @@
 			};
 			name = Release;
 		};
-		4C8DF424253B30DC00F2DE7C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MBQ98GC8JT;
-				INFOPLIST_FILE = MemoArtUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = renaud.jenny.MemoiryUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MemoArt;
-			};
-			name = Debug;
-		};
-		4C8DF425253B30DC00F2DE7C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MBQ98GC8JT;
-				INFOPLIST_FILE = MemoArtUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = renaud.jenny.MemoiryUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MemoArt;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -689,15 +581,6 @@
 			buildConfigurations = (
 				4C8DF421253B30DC00F2DE7C /* Debug */,
 				4C8DF422253B30DC00F2DE7C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4C8DF423253B30DC00F2DE7C /* Build configuration list for PBXNativeTarget "MemoArtUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4C8DF424253B30DC00F2DE7C /* Debug */,
-				4C8DF425253B30DC00F2DE7C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
