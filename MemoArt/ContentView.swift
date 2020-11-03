@@ -5,7 +5,6 @@ struct ContentView: View {
     let store: Store<AppState, AppAction>
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.verticalSizeClass) private var verticalSizeClass
-    @State private var isNavigationActive = false
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -20,9 +19,19 @@ struct ContentView: View {
                     .padding()
                 }
                 .onAppear(perform: { viewStore.send(.highScores(.load)) })
-                .navigationTitle(isNavigationActive ? "MemoArt" : "Moves: \(viewStore.game.moves)")
                 .navigationBarTitleDisplayMode(.inline)
-                .navigationBarItems(trailing: highScoresNavigationLink)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        VStack {
+                            Text("MemoArt").font(.headline)
+                            Text("Moves: \(viewStore.game.moves)").font(.subheadline)
+                        }
+                    }
+                }
+                .navigationBarItems(
+                    leading: NavigationLink(destination: AboutView()) { Image(systemName: "questionmark.circle") },
+                    trailing: highScoresNavigationLink
+                )
             }
             .sheet(
                 isPresented: viewStore.binding(
@@ -58,7 +67,6 @@ struct ContentView: View {
                 state: { $0.highScores },
                 action: AppAction.highScores
             )),
-            isActive: $isNavigationActive,
             label: {
                 Text("🏆")
             }
