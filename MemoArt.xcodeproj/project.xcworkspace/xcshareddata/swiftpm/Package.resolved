@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "RenaudJennyAboutView",
+        "repositoryURL": "https://github.com/renaudjenny/RenaudJennyAboutView",
+        "state": {
+          "branch": "main",
+          "revision": "1b45a8e107622c91948c72b14baab3f9de0bd9a2",
+          "version": null
+        }
+      },
+      {
         "package": "swift-case-paths",
         "repositoryURL": "https://github.com/pointfreeco/swift-case-paths",
         "state": {

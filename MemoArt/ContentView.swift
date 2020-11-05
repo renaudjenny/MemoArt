@@ -1,5 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
+import RenaudJennyAboutView
 
 struct ContentView: View {
     let store: Store<AppState, AppAction>
@@ -29,7 +30,7 @@ struct ContentView: View {
                     }
                 }
                 .navigationBarItems(
-                    leading: NavigationLink(destination: AboutView()) { Image(systemName: "questionmark.circle") },
+                    leading: aboutNavigationLink,
                     trailing: highScoresNavigationLink
                 )
             }
@@ -59,6 +60,22 @@ struct ContentView: View {
         default:
             return [GridItem(.adaptive(minimum: 100))]
         }
+    }
+
+    private var aboutNavigationLink: some View {
+        NavigationLink(
+            destination: AboutView(
+                appId: "id1536330844",
+                logo: {
+                    Image("Pixel Art")
+                        .resizable()
+                        .modifier(AddCardStyle())
+
+                }),
+            label: {
+                Image(systemName: "questionmark.circle")
+            }
+        )
     }
 
     private var highScoresNavigationLink: some View {

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4C4454CB254CBB2700AA5C87 /* GameCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4454CA254CBB2700AA5C87 /* GameCoreTests.swift */; };
-		4C865726255089530040EA04 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C865725255089530040EA04 /* AboutView.swift */; };
+		4C86574D2551FAB30040EA04 /* RenaudJennyAboutView in Frameworks */ = {isa = PBXBuildFile; productRef = 4C86574C2551FAB30040EA04 /* RenaudJennyAboutView */; };
 		4C8DF3FC253B30D700F2DE7C /* MemoArtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF3FB253B30D700F2DE7C /* MemoArtApp.swift */; };
 		4C8DF3FE253B30D700F2DE7C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF3FD253B30D700F2DE7C /* ContentView.swift */; };
 		4C8DF400253B30DB00F2DE7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8DF3FF253B30DB00F2DE7C /* Assets.xcassets */; };
@@ -40,7 +40,6 @@
 
 /* Begin PBXFileReference section */
 		4C4454CA254CBB2700AA5C87 /* GameCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoreTests.swift; sourceTree = "<group>"; };
-		4C865725255089530040EA04 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		4C8DF3F8253B30D700F2DE7C /* MemoArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8DF3FB253B30D700F2DE7C /* MemoArtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoArtApp.swift; sourceTree = "<group>"; };
 		4C8DF3FD253B30D700F2DE7C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -69,6 +68,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C8DF430253C59CA00F2DE7C /* ComposableArchitecture in Frameworks */,
+				4C86574D2551FAB30040EA04 /* RenaudJennyAboutView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,14 +98,6 @@
 			path = Game;
 			sourceTree = "<group>";
 		};
-		4C865724255088B30040EA04 /* About */ = {
-			isa = PBXGroup;
-			children = (
-				4C865725255089530040EA04 /* AboutView.swift */,
-			);
-			path = About;
-			sourceTree = "<group>";
-		};
 		4C8DF3EF253B30D700F2DE7C = {
 			isa = PBXGroup;
 			children = (
@@ -127,7 +119,6 @@
 		4C8DF3FA253B30D700F2DE7C /* MemoArt */ = {
 			isa = PBXGroup;
 			children = (
-				4C865724255088B30040EA04 /* About */,
 				4C4454D2254CBB6B00AA5C87 /* Game */,
 				4CC92F6C2548BB0F00DAC4AB /* Common */,
 				4CC92F552545E54300DAC4AB /* Cards */,
@@ -217,6 +208,7 @@
 			name = MemoArt;
 			packageProductDependencies = (
 				4C8DF42F253C59CA00F2DE7C /* ComposableArchitecture */,
+				4C86574C2551FAB30040EA04 /* RenaudJennyAboutView */,
 			);
 			productName = Memoiry;
 			productReference = 4C8DF3F8253B30D700F2DE7C /* MemoArt.app */;
@@ -269,6 +261,7 @@
 			mainGroup = 4C8DF3EF253B30D700F2DE7C;
 			packageReferences = (
 				4C8DF42E253C59CA00F2DE7C /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				4C86574B2551FAB30040EA04 /* XCRemoteSwiftPackageReference "RenaudJennyAboutView" */,
 			);
 			productRefGroup = 4C8DF3F9253B30D700F2DE7C /* Products */;
 			projectDirPath = "";
@@ -328,7 +321,6 @@
 				4C8DF435253C5B0A00F2DE7C /* GameCore.swift in Sources */,
 				4CD0E1F12542A1D200A1E0FD /* HighScoresView.swift in Sources */,
 				4CD0E1EC2542A0B500A1E0FD /* HighScore.swift in Sources */,
-				4C865726255089530040EA04 /* AboutView.swift in Sources */,
 				4C8DF3FE253B30D700F2DE7C /* ContentView.swift in Sources */,
 				4C8DF42A253C520F00F2DE7C /* CardView.swift in Sources */,
 				4C8DF3FC253B30D700F2DE7C /* MemoArtApp.swift in Sources */,
@@ -600,6 +592,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4C86574B2551FAB30040EA04 /* XCRemoteSwiftPackageReference "RenaudJennyAboutView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/renaudjenny/RenaudJennyAboutView";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		4C8DF42E253C59CA00F2DE7C /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
@@ -611,6 +611,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4C86574C2551FAB30040EA04 /* RenaudJennyAboutView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C86574B2551FAB30040EA04 /* XCRemoteSwiftPackageReference "RenaudJennyAboutView" */;
+			productName = RenaudJennyAboutView;
+		};
 		4C8DF42F253C59CA00F2DE7C /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4C8DF42E253C59CA00F2DE7C /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
