@@ -70,6 +70,7 @@ struct ContentView: View {
                     Image("Pixel Art")
                         .resizable()
                         .modifier(AddCardStyle())
+                        .frame(width: 120, height: 120)
 
                 }),
             label: {

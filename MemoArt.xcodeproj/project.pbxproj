@@ -596,8 +596,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/renaudjenny/RenaudJennyAboutView";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 		4C8DF42E253C59CA00F2DE7C /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
