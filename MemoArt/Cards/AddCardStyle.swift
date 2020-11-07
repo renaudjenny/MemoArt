@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct AddCardStyle: ViewModifier {
+    var foregroundColor: Color = .red
+
     func body(content: Content) -> some View {
         RoundedRectangle(cornerRadius: 8.0)
-            .foregroundColor(.red)
+            .foregroundColor(foregroundColor)
             .overlay(
                 content.clipShape(RoundedRectangle(cornerRadius: 8.0))
             )
@@ -24,6 +26,10 @@ struct AddCardStyle_Previews: PreviewProvider {
             Image("Pop Art")
                 .resizable()
                 .modifier(AddCardStyle())
+                .frame(width: 150)
+            Image("Shadow")
+                .resizable()
+                .modifier(AddCardStyle(foregroundColor: .black))
                 .frame(width: 150)
         }
     }
