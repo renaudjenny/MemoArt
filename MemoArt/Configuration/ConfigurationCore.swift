@@ -9,7 +9,9 @@ enum ConfigurationAction: Equatable {
     case selectSymbolType(SymbolType)
 }
 
-struct ConfigurationEnvironment { }
+struct ConfigurationEnvironment {
+    var mainQueue: AnySchedulerOf<DispatchQueue>
+}
 
 let configurationReducer = Reducer<
     ConfigurationState,
@@ -18,6 +20,7 @@ let configurationReducer = Reducer<
 > { state, action, _ in
     switch action {
     case let .unselectSymbolType(symbol):
+        // TODO: prevent user from unselect too much cards (this should always be >= 10)
         state.selectedSymbolTypes = state.selectedSymbolTypes.filter({ $0 != symbol })
         return .none
     case let .selectSymbolType(symbol):
