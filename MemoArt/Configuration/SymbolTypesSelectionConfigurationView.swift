@@ -30,7 +30,7 @@ struct SymbolTypesSelectionConfigurationView: View {
                 .animation(nil)
 
                 if viewStore.selectedSymbolTypes.count <= 10 {
-                    Text("Attention! You have to use 10 cards or more")
+                    Text("Attention! You have to use 10 cards or more to play")
                         .font(.subheadline)
                         .foregroundColor(.orange)
                         .padding(.top)

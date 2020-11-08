@@ -20,7 +20,8 @@ let configurationReducer = Reducer<
 > { state, action, _ in
     switch action {
     case let .unselectSymbolType(symbol):
-        // TODO: prevent user from unselect too much cards (this should always be >= 10)
+        guard state.selectedSymbolTypes.count > 10 else { return .none }
+
         state.selectedSymbolTypes = state.selectedSymbolTypes.filter({ $0 != symbol })
         return .none
     case let .selectSymbolType(symbol):
