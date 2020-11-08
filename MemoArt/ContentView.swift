@@ -30,7 +30,10 @@ struct ContentView: View {
                     }
                 }
                 .navigationBarItems(
-                    leading: aboutNavigationLink,
+                    leading: HStack {
+                        aboutNavigationLink
+                        configurationLink.padding(.leading)
+                    },
                     trailing: highScoresNavigationLink
                 )
             }
@@ -75,6 +78,17 @@ struct ContentView: View {
                 }),
             label: {
                 Image(systemName: "questionmark.circle")
+            }
+        )
+    }
+
+    private var configurationLink: some View {
+        NavigationLink(
+            destination: SymbolTypesSelectionConfigurationView(
+                store: store.scope(state: { $0.configuration }, action: AppAction.configuration)
+            ),
+            label: {
+                Image(systemName: "gearshape")
             }
         )
     }
@@ -186,7 +200,7 @@ extension AppEnvironment {
         mainQueue: .preview,
         loadHighScores: { .preview },
         saveHighScores: { _ in },
-        generateRandomSymbols: { .predictedGameSymbols }
+        generateRandomSymbols: { _ in .predictedGameSymbols }
     )
 }
 #endif

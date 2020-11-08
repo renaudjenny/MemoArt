@@ -4,12 +4,14 @@ import Combine
 struct AppState: Equatable {
     var game = GameState()
     var highScores = HighScoresState()
+    var configuration = ConfigurationState()
     var isNewHighScoreEntryPresented = false
 }
 
 enum AppAction: Equatable {
     case game(GameAction)
     case highScores(HighScoresAction)
+    case configuration(ConfigurationAction)
     case presentNewHighScoreView
     case newHighScoreEntered
 }
@@ -18,19 +20,24 @@ struct AppEnvironment {
     var mainQueue: AnySchedulerOf<DispatchQueue>
     var loadHighScores: () -> [HighScore]
     var saveHighScores: ([HighScore]) -> Void
-    var generateRandomSymbols: () -> [Symbol]
+    var generateRandomSymbols: (Set<SymbolType>) -> [Symbol]
 }
 
 let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
     gameReducer.pullback(
         state: \.game,
         action: /AppAction.game,
-        environment: { GameEnvironment(mainQueue: $0.mainQueue, generateRandomSymbols: $0.generateRandomSymbols) }
+        environment: { GameEnvironment(mainQueue: $0.mainQueue) }
     ),
     highScoresReducer.pullback(
         state: \.highScores,
         action: /AppAction.highScores,
         environment: { HighScoresEnvironment(load: $0.loadHighScores, save: $0.saveHighScores) }
+    ),
+    configurationReducer.pullback(
+        state: \.configuration,
+        action: /AppAction.configuration,
+        environment: { ConfigurationEnvironment(mainQueue: $0.mainQueue) }
     ),
     Reducer { state, action, environment in
         switch action {
@@ -51,6 +58,9 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
                 }
             }
             return .none
+        case .game(.shuffleCards):
+            state.game.symbols = environment.generateRandomSymbols(state.configuration.selectedSymbolTypes)
+            return .none
         case .presentNewHighScoreView:
             state.isNewHighScoreEntryPresented = true
             return .none
@@ -59,6 +69,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
             return .none
         case .game: return .none
         case .highScores: return .none
+        case .configuration: return .none
         }
     }
 )

@@ -12,7 +12,7 @@ struct SymbolTypesSelectionConfigurationView: View {
                     .font(.title)
                     .multilineTextAlignment(.center)
                     .padding()
-                Text("The game will randomly display 10 cards among the ones you chose")
+                Text("A new game will randomly display 10 cards among the ones you chose")
                     .font(.subheadline)
                     .multilineTextAlignment(.center)
 
@@ -33,7 +33,7 @@ struct SymbolTypesSelectionConfigurationView: View {
                     Text("Attention! You have to use 10 cards or more to play")
                         .font(.subheadline)
                         .foregroundColor(.orange)
-                        .padding(.top)
+                        .padding([.top, .horizontal])
                 }
 
                 LazyVGrid(columns: columns) {

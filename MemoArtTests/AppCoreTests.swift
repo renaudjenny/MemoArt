@@ -15,7 +15,7 @@ class AppCoreTests: XCTestCase {
                 mainQueue: testScheduler.eraseToAnyScheduler(),
                 loadHighScores: { [] },
                 saveHighScores: { _ in },
-                generateRandomSymbols: { .predictedGameSymbols }
+                generateRandomSymbols: { _ in .predictedGameSymbols }
             )
         )
 
@@ -39,7 +39,7 @@ class AppCoreTests: XCTestCase {
                 mainQueue: testScheduler.eraseToAnyScheduler(),
                 loadHighScores: { [] },
                 saveHighScores: { _ in },
-                generateRandomSymbols: { .predictedGameSymbols }
+                generateRandomSymbols: { _ in .predictedGameSymbols }
             )
         )
 
@@ -82,7 +82,7 @@ class AppCoreTests: XCTestCase {
                 mainQueue: testScheduler.eraseToAnyScheduler(),
                 loadHighScores: { [] },
                 saveHighScores: { _ in },
-                generateRandomSymbols: { .predictedGameSymbols }
+                generateRandomSymbols: { _ in .predictedGameSymbols }
             )
         )
 
@@ -124,7 +124,7 @@ class AppCoreTests: XCTestCase {
                 mainQueue: testScheduler.eraseToAnyScheduler(),
                 loadHighScores: { [] },
                 saveHighScores: { _ in },
-                generateRandomSymbols: { .predictedGameSymbols }
+                generateRandomSymbols: { _ in .predictedGameSymbols }
             )
         )
 
@@ -161,13 +161,36 @@ class AppCoreTests: XCTestCase {
                 mainQueue: testScheduler.eraseToAnyScheduler(),
                 loadHighScores: { [] },
                 saveHighScores: { _ in },
-                generateRandomSymbols: { .predictedGameSymbols }
+                generateRandomSymbols: { _ in .predictedGameSymbols }
             )
         )
 
         store.assert(
             .send(.newHighScoreEntered) {
                 $0.isNewHighScoreEntryPresented = false
+            }
+        )
+    }
+
+    func testShuffleCardWithRestrictedSymbolTypes() {
+        let selectedSymbolTypes: [SymbolType] = [
+            .artDeco, .cave, .arty, .chalk, .childish,
+            .destructured, .geometric, .gradient, .impressionism, .moderArt,
+        ]
+
+        let store = TestStore(
+            initialState: AppState(),
+            reducer: appReducer,
+            environment: AppEnvironment(
+                mainQueue: testScheduler.eraseToAnyScheduler(),
+                loadHighScores: { [] },
+                saveHighScores: { _ in },
+                generateRandomSymbols: { _ in .predictedGameSymbols(from: selectedSymbolTypes) }
+            )
+        )
+        store.assert(
+            .send(.game(.shuffleCards)) {
+                $0.game.symbols = .predictedGameSymbols(from: selectedSymbolTypes)
             }
         )
     }
