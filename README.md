@@ -10,7 +10,7 @@
 ## Features
 
 * 🀄️ 20 tiles to return one after another to find the pair
-* 👩🏻‍🎨 Every pair of tiles represent a different art style. Currently 16 different art style are available for free.
+* 👩🏻‍🎨 Every pair of tiles represent a different art style. Currently 17 different art style are available for free.
 * 🏆 There is a counter of moves, so you can track your progress to decrease the number of moves you have made in the next game. You can even visualise your top 10 in High Scores.
 * 💸 This application is available for iOS (iPhone and iPad) for **free** and **no ads**.
 
