@@ -69,7 +69,11 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
             return .none
         case .game: return .none
         case .highScores: return .none
-        case .configuration: return .none
+        case .configuration:
+            if state.game.moves <= 0 {
+                return Effect(value: .game(.new))
+            }
+            return .none
         }
     }
 )

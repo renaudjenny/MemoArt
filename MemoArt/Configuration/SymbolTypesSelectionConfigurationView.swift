@@ -15,6 +15,7 @@ struct SymbolTypesSelectionConfigurationView: View {
                 Text("A new game will randomly display 10 cards among the ones you chose")
                     .font(.subheadline)
                     .multilineTextAlignment(.center)
+                    .padding(.horizontal)
 
                 Group {
                     Text("\(viewStore.selectedSymbolTypes.count)")
