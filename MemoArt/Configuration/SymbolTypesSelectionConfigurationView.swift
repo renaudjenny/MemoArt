@@ -6,8 +6,8 @@ struct SymbolTypesSelectionConfigurationView: View {
     let columns =  Array(repeating: GridItem(.flexible(minimum: 65, maximum: 120)), count: 4)
 
     var body: some View {
-        WithViewStore(store) { viewStore in
-            ScrollView {
+        ScrollView {
+            WithViewStore(store) { viewStore in
                 Text("Choose the cards you want to play with")
                     .font(.title)
                     .multilineTextAlignment(.center)
@@ -17,7 +17,7 @@ struct SymbolTypesSelectionConfigurationView: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
 
-                Group {
+                VStack {
                     Text("\(viewStore.selectedSymbolTypes.count)")
                         .bold()
                         .foregroundColor(
@@ -30,60 +30,60 @@ struct SymbolTypesSelectionConfigurationView: View {
                 .padding(.top)
                 .animation(nil)
 
-                if viewStore.selectedSymbolTypes.count <= 10 {
-                    Text("Attention! You have to use 10 cards or more to play")
-                        .font(.subheadline)
-                        .foregroundColor(.orange)
-                        .padding([.top, .horizontal])
+                VStack {
+                    if viewStore.selectedSymbolTypes.count <= 10 {
+                        Text("Attention! You have to use 10 cards or more to play.")
+                            .font(.callout)
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .foregroundColor(.orange)
+                            )
+                            .padding(.horizontal)
+                    }
                 }
+                .animation(.spring())
 
                 LazyVGrid(columns: columns) {
                     ForEach(SymbolType.allCases, id: \.self) { symbolType in
                         Button {
-                            withAnimation {
-                                viewStore.send(
-                                    viewStore.selectedSymbolTypes.contains(symbolType)
-                                        ? .unselectSymbolType(symbolType)
-                                        : .selectSymbolType(symbolType)
-                                )
-                            }
+                            viewStore.send(
+                                viewStore.selectedSymbolTypes.contains(symbolType)
+                                    ? .unselectSymbolType(symbolType)
+                                    : .selectSymbolType(symbolType)
+                            )
                         } label: {
                             symbolType.image
                                 .resizable()
                                 .modifier(AddCardStyle(foregroundColor: .black))
                                 .modifier(SelectionCardStyle(
-                                    store: store,
-                                    symbolType: symbolType
+                                    symbolType: symbolType,
+                                    isSelected: viewStore.selectedSymbolTypes.contains(symbolType)
                                 ))
                         }
                     }
                 }
                 .padding()
+                .animation(.spring())
             }
         }
     }
 }
 
 private struct SelectionCardStyle: ViewModifier {
-    let store: Store<ConfigurationState, ConfigurationAction>
     let symbolType: SymbolType
+    let isSelected: Bool
 
     func body(content: Content) -> some View {
-        WithViewStore(store) { viewStore in
-            if viewStore.selectedSymbolTypes.contains(symbolType) {
-                content
-                    .accessibility(label: Text("selected"))
-            } else {
-                content
-                    .overlay(Color.black.opacity(2/3))
-                    .overlay(Text("❌"))
-                    .cornerRadius(8)
-                    .accessibility(label: Text("unselected"))
-            }
-        }
+        content
+            .overlay(isSelected ? Color.clear : Color.black.opacity(2/3))
+            .overlay(isSelected ? nil : Text("❌"))
+            .cornerRadius(8)
+            .accessibility(label: isSelected ? Text("selected") : Text("unselected"))
     }
 }
 
+#if DEBUG
 struct SymbolTypesSelectionConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
         SymbolTypesSelectionConfigurationView(store: Store(
@@ -93,3 +93,20 @@ struct SymbolTypesSelectionConfigurationView_Previews: PreviewProvider {
         ))
     }
 }
+
+struct SymbolTypesSelectionConfigurationView2_Previews: PreviewProvider {
+    static var previews: some View {
+        SymbolTypesSelectionConfigurationView(store: Store(
+            initialState: ConfigurationState(selectedSymbolTypes: .countLimit),
+            reducer: configurationReducer,
+            environment: ConfigurationEnvironment(mainQueue: .preview)
+        ))
+    }
+}
+
+extension Set where Element == SymbolType {
+    static var countLimit: Self {
+        Set(SymbolType.allCases.prefix(10))
+    }
+}
+#endif
