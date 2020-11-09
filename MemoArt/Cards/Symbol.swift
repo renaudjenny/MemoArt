@@ -47,12 +47,16 @@ enum SymbolType: CaseIterable {
 }
 
 extension Array where Element == Symbol {
-    static var newGameSymbols: Self {
-        let selectedSymbols = SymbolType.allCases.shuffled().prefix(10)
+    static func newGameSymbols(from symbolTypes: Set<SymbolType>) -> Self {
+        let selectedSymbols = symbolTypes.shuffled().prefix(10)
         let symbolTypes = selectedSymbols + selectedSymbols
         return symbolTypes.shuffled().enumerated().map {
             Symbol(id: $0, type: $1, isFaceUp: false)
         }
+    }
+
+    static var newGameSymbols: Self {
+        newGameSymbols(from: Set(SymbolType.allCases))
     }
 
     #if DEBUG
@@ -60,8 +64,11 @@ extension Array where Element == Symbol {
         predictedGameSymbols()
     }
 
-    static func predictedGameSymbols(isCardsFaceUp: Bool = false) -> Self {
-        let selectedSymbols = SymbolType.allCases.prefix(10)
+    static func predictedGameSymbols(
+        from symbolTypes: [SymbolType] = SymbolType.allCases,
+        isCardsFaceUp: Bool = false
+    ) -> Self {
+        let selectedSymbols = symbolTypes.prefix(10)
         let symbolTypes = selectedSymbols + selectedSymbols
         return symbolTypes.enumerated().map {
             Symbol(id: $0, type: $1, isFaceUp: isCardsFaceUp)

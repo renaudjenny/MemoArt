@@ -10,7 +10,7 @@ struct MemoArtApp: App {
             mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
             loadHighScores: loadHighScores,
             saveHighScores: saveHighScores,
-            generateRandomSymbols: { .newGameSymbols }
+            generateRandomSymbols: { .newGameSymbols(from: $0) }
         )
     )
 

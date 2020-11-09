@@ -8,11 +8,10 @@ class GameCoreTests: XCTestCase {
 
     func testNewGame() {
         let store = TestStore(
-            initialState: GameState(),
+            initialState: GameState(symbols: .predictedGameSymbols),
             reducer: gameReducer,
             environment: GameEnvironment(
-                mainQueue: scheduler.eraseToAnyScheduler(),
-                generateRandomSymbols: { .predictedGameSymbols }
+                mainQueue: scheduler.eraseToAnyScheduler()
             )
         )
         store.assert(
@@ -32,11 +31,10 @@ class GameCoreTests: XCTestCase {
     // swiftlint:disable:next cyclomatic_complexity
     func testReturningCards() {
         let store = TestStore(
-            initialState: GameState(),
+            initialState: GameState(symbols: .predictedGameSymbols),
             reducer: gameReducer,
             environment: GameEnvironment(
-                mainQueue: scheduler.eraseToAnyScheduler(),
-                generateRandomSymbols: { .predictedGameSymbols }
+                mainQueue: scheduler.eraseToAnyScheduler()
             )
         )
 
@@ -89,11 +87,10 @@ class GameCoreTests: XCTestCase {
 
     func testFinishingAGame() {
         let store = TestStore(
-            initialState: GameState(),
+            initialState: GameState(symbols: .predictedGameSymbols),
             reducer: gameReducer,
             environment: GameEnvironment(
-                mainQueue: scheduler.eraseToAnyScheduler(),
-                generateRandomSymbols: { .predictedGameSymbols }
+                mainQueue: scheduler.eraseToAnyScheduler()
             )
         )
 

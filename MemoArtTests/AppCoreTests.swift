@@ -15,7 +15,7 @@ class AppCoreTests: XCTestCase {
                 mainQueue: testScheduler.eraseToAnyScheduler(),
                 loadHighScores: { [] },
                 saveHighScores: { _ in },
-                generateRandomSymbols: { .predictedGameSymbols }
+                generateRandomSymbols: { _ in .predictedGameSymbols }
             )
         )
 
@@ -39,7 +39,7 @@ class AppCoreTests: XCTestCase {
                 mainQueue: testScheduler.eraseToAnyScheduler(),
                 loadHighScores: { [] },
                 saveHighScores: { _ in },
-                generateRandomSymbols: { .predictedGameSymbols }
+                generateRandomSymbols: { _ in .predictedGameSymbols }
             )
         )
 
@@ -82,7 +82,7 @@ class AppCoreTests: XCTestCase {
                 mainQueue: testScheduler.eraseToAnyScheduler(),
                 loadHighScores: { [] },
                 saveHighScores: { _ in },
-                generateRandomSymbols: { .predictedGameSymbols }
+                generateRandomSymbols: { _ in .predictedGameSymbols }
             )
         )
 
@@ -124,7 +124,7 @@ class AppCoreTests: XCTestCase {
                 mainQueue: testScheduler.eraseToAnyScheduler(),
                 loadHighScores: { [] },
                 saveHighScores: { _ in },
-                generateRandomSymbols: { .predictedGameSymbols }
+                generateRandomSymbols: { _ in .predictedGameSymbols }
             )
         )
 
@@ -161,7 +161,7 @@ class AppCoreTests: XCTestCase {
                 mainQueue: testScheduler.eraseToAnyScheduler(),
                 loadHighScores: { [] },
                 saveHighScores: { _ in },
-                generateRandomSymbols: { .predictedGameSymbols }
+                generateRandomSymbols: { _ in .predictedGameSymbols }
             )
         )
 
@@ -169,6 +169,84 @@ class AppCoreTests: XCTestCase {
             .send(.newHighScoreEntered) {
                 $0.isNewHighScoreEntryPresented = false
             }
+        )
+    }
+
+    func testShuffleCardWithRestrictedSymbolTypes() {
+        let selectedSymbolTypes: [SymbolType] = [
+            .artDeco, .cave, .arty, .chalk, .childish,
+            .destructured, .geometric, .gradient, .impressionism, .moderArt,
+        ]
+
+        let store = TestStore(
+            initialState: AppState(),
+            reducer: appReducer,
+            environment: AppEnvironment(
+                mainQueue: testScheduler.eraseToAnyScheduler(),
+                loadHighScores: { [] },
+                saveHighScores: { _ in },
+                generateRandomSymbols: { _ in .predictedGameSymbols(from: selectedSymbolTypes) }
+            )
+        )
+        store.assert(
+            .send(.game(.shuffleCards)) {
+                $0.game.symbols = .predictedGameSymbols(from: selectedSymbolTypes)
+            }
+        )
+    }
+
+    func testConfiguringSymbolTypesWillReshuffleCardWhenGameHasNotStartedYet() {
+        let store = TestStore(
+            initialState: AppState(),
+            reducer: appReducer,
+            environment: AppEnvironment(
+                mainQueue: testScheduler.eraseToAnyScheduler(),
+                loadHighScores: { [] },
+                saveHighScores: { _ in },
+                generateRandomSymbols: { _ in .predictedGameSymbols }
+            )
+        )
+        store.assert(
+            .send(.configuration(.unselectSymbolType(.cave))) {
+                $0.configuration.selectedSymbolTypes = Set(SymbolType.allCases.filter({ $0 != .cave }))
+            },
+            .receive(.game(.new)),
+            .do { self.testScheduler.advance(by: .seconds(0.5)) },
+            .receive(.game(.shuffleCards)) {
+                $0.game.symbols = .predictedGameSymbols
+            },
+            .send(.configuration(.selectSymbolType(.cave))) {
+                $0.configuration.selectedSymbolTypes = Set(SymbolType.allCases)
+            },
+            .receive(.game(.new)),
+            .do { self.testScheduler.advance(by: .seconds(0.5)) },
+            .receive(.game(.shuffleCards)) {
+                $0.game.symbols = .predictedGameSymbols
+            },
+            .send(.game(.cardReturned(0))) {
+                $0.game.symbols = $0.game.symbols.map { $0.id == 0 ? Symbol(id: 0, type: $0.type, isFaceUp: true) : $0 }
+            },
+            .send(.configuration(.unselectSymbolType(.cave))) {
+                $0.configuration.selectedSymbolTypes = Set(SymbolType.allCases.filter({ $0 != .cave }))
+            },
+            .receive(.game(.new)) {
+                $0.game.symbols = $0.game.symbols.map { Symbol(id: $0.id, type: $0.type, isFaceUp: false) }
+            },
+            .do { self.testScheduler.advance(by: .seconds(0.5)) },
+            .receive(.game(.shuffleCards)) {
+                $0.game.symbols = .predictedGameSymbols
+            },
+            .send(.game(.cardReturned(0))) {
+                $0.game.symbols = $0.game.symbols.map { $0.id == 0 ? Symbol(id: 0, type: $0.type, isFaceUp: true) : $0 }
+            },
+            .send(.game(.cardReturned(1))) {
+                $0.game.symbols = $0.game.symbols.map { $0.id == 1 ? Symbol(id: 1, type: $0.type, isFaceUp: true) : $0 }
+                $0.game.moves = 1
+            },
+            .send(.configuration(.selectSymbolType(.cave))) {
+                $0.configuration.selectedSymbolTypes = Set(SymbolType.allCases)
+            }
+            // As game has started, we shouldn't receive a .game(.new) action anymore
         )
     }
 }
