@@ -2,6 +2,7 @@ import XCTest
 @testable import MemoArt
 import ComposableArchitecture
 
+// swiftlint:disable:next type_body_length
 class AppCoreTests: XCTestCase {
     let scheduler = DispatchQueue.testScheduler
 
@@ -207,6 +208,7 @@ class AppCoreTests: XCTestCase {
         )
     }
 
+    // swiftlint:disable:next function_body_length
     func testConfiguringSymbolTypesWillReshuffleCardWhenGameHasNotStartedYet() {
         let store = TestStore(
             initialState: AppState(),
