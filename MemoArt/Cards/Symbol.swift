@@ -6,7 +6,7 @@ struct Symbol: Identifiable, Equatable {
     var isFaceUp: Bool
 }
 
-enum SymbolType: CaseIterable {
+enum SymbolType: String, CaseIterable, Codable {
     case artDeco
     case arty
     case cave

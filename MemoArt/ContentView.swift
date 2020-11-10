@@ -200,7 +200,9 @@ extension AppEnvironment {
         mainQueue: .preview,
         loadHighScores: { .preview },
         saveHighScores: { _ in },
-        generateRandomSymbols: { _ in .predictedGameSymbols }
+        generateRandomSymbols: { _ in .predictedGameSymbols },
+        saveConfiguration: { _ in },
+        loadConfiguration: { ConfigurationState() }
     )
 }
 #endif

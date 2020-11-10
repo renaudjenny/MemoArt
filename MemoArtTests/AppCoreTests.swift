@@ -3,7 +3,7 @@ import XCTest
 import ComposableArchitecture
 
 class AppCoreTests: XCTestCase {
-    let testScheduler = DispatchQueue.testScheduler
+    let scheduler = DispatchQueue.testScheduler
 
     func testDoNotPresentNewHighScoreWhenTheGameIsNotFinished() throws {
         let store = TestStore(
@@ -12,10 +12,12 @@ class AppCoreTests: XCTestCase {
             },
             reducer: appReducer,
             environment: AppEnvironment(
-                mainQueue: testScheduler.eraseToAnyScheduler(),
+                mainQueue: scheduler.eraseToAnyScheduler(),
                 loadHighScores: { [] },
                 saveHighScores: { _ in },
-                generateRandomSymbols: { _ in .predictedGameSymbols }
+                generateRandomSymbols: { _ in .predictedGameSymbols },
+                saveConfiguration: { _ in },
+                loadConfiguration: { ConfigurationState() }
             )
         )
 
@@ -36,10 +38,12 @@ class AppCoreTests: XCTestCase {
             initialState: AppState.almostFinishedGame,
             reducer: appReducer,
             environment: AppEnvironment(
-                mainQueue: testScheduler.eraseToAnyScheduler(),
+                mainQueue: scheduler.eraseToAnyScheduler(),
                 loadHighScores: { [] },
                 saveHighScores: { _ in },
-                generateRandomSymbols: { _ in .predictedGameSymbols }
+                generateRandomSymbols: { _ in .predictedGameSymbols },
+                saveConfiguration: { _ in },
+                loadConfiguration: { ConfigurationState() }
             )
         )
 
@@ -63,7 +67,7 @@ class AppCoreTests: XCTestCase {
                 $0.game.moves = 143
                 $0.game.discoveredSymbolTypes = $0.game.discoveredSymbolTypes + [.cave]
             },
-            .do { self.testScheduler.advance(by: .seconds(0.8)) },
+            .do { self.scheduler.advance(by: .seconds(0.8)) },
             .receive(.presentNewHighScoreView) {
                 $0.isNewHighScoreEntryPresented = true
             }
@@ -79,10 +83,12 @@ class AppCoreTests: XCTestCase {
             },
             reducer: appReducer,
             environment: AppEnvironment(
-                mainQueue: testScheduler.eraseToAnyScheduler(),
+                mainQueue: scheduler.eraseToAnyScheduler(),
                 loadHighScores: { [] },
                 saveHighScores: { _ in },
-                generateRandomSymbols: { _ in .predictedGameSymbols }
+                generateRandomSymbols: { _ in .predictedGameSymbols },
+                saveConfiguration: { _ in },
+                loadConfiguration: { ConfigurationState() }
             )
         )
 
@@ -106,7 +112,7 @@ class AppCoreTests: XCTestCase {
                 $0.game.moves = 11
                 $0.game.discoveredSymbolTypes = $0.game.discoveredSymbolTypes + [.cave]
             },
-            .do { self.testScheduler.advance(by: .seconds(0.8)) },
+            .do { self.scheduler.advance(by: .seconds(0.8)) },
             .receive(.presentNewHighScoreView) {
                 $0.isNewHighScoreEntryPresented = true
             }
@@ -121,10 +127,12 @@ class AppCoreTests: XCTestCase {
             },
             reducer: appReducer,
             environment: AppEnvironment(
-                mainQueue: testScheduler.eraseToAnyScheduler(),
+                mainQueue: scheduler.eraseToAnyScheduler(),
                 loadHighScores: { [] },
                 saveHighScores: { _ in },
-                generateRandomSymbols: { _ in .predictedGameSymbols }
+                generateRandomSymbols: { _ in .predictedGameSymbols },
+                saveConfiguration: { _ in },
+                loadConfiguration: { ConfigurationState() }
             )
         )
 
@@ -158,10 +166,12 @@ class AppCoreTests: XCTestCase {
             },
             reducer: appReducer,
             environment: AppEnvironment(
-                mainQueue: testScheduler.eraseToAnyScheduler(),
+                mainQueue: scheduler.eraseToAnyScheduler(),
                 loadHighScores: { [] },
                 saveHighScores: { _ in },
-                generateRandomSymbols: { _ in .predictedGameSymbols }
+                generateRandomSymbols: { _ in .predictedGameSymbols },
+                saveConfiguration: { _ in },
+                loadConfiguration: { ConfigurationState() }
             )
         )
 
@@ -182,10 +192,12 @@ class AppCoreTests: XCTestCase {
             initialState: AppState(),
             reducer: appReducer,
             environment: AppEnvironment(
-                mainQueue: testScheduler.eraseToAnyScheduler(),
+                mainQueue: scheduler.eraseToAnyScheduler(),
                 loadHighScores: { [] },
                 saveHighScores: { _ in },
-                generateRandomSymbols: { _ in .predictedGameSymbols(from: selectedSymbolTypes) }
+                generateRandomSymbols: { _ in .predictedGameSymbols(from: selectedSymbolTypes) },
+                saveConfiguration: { _ in },
+                loadConfiguration: { ConfigurationState() }
             )
         )
         store.assert(
@@ -200,10 +212,12 @@ class AppCoreTests: XCTestCase {
             initialState: AppState(),
             reducer: appReducer,
             environment: AppEnvironment(
-                mainQueue: testScheduler.eraseToAnyScheduler(),
+                mainQueue: scheduler.eraseToAnyScheduler(),
                 loadHighScores: { [] },
                 saveHighScores: { _ in },
-                generateRandomSymbols: { _ in .predictedGameSymbols }
+                generateRandomSymbols: { _ in .predictedGameSymbols },
+                saveConfiguration: { _ in },
+                loadConfiguration: { ConfigurationState() }
             )
         )
         store.assert(
@@ -211,18 +225,22 @@ class AppCoreTests: XCTestCase {
                 $0.configuration.selectedSymbolTypes = Set(SymbolType.allCases.filter({ $0 != .cave }))
             },
             .receive(.game(.new)),
-            .do { self.testScheduler.advance(by: .seconds(0.5)) },
+            .do { self.scheduler.advance(by: .seconds(0.5)) },
             .receive(.game(.shuffleCards)) {
                 $0.game.symbols = .predictedGameSymbols
             },
+            .do { self.scheduler.advance(by: .seconds(1.5)) },
+            .receive(.configuration(.save)),
             .send(.configuration(.selectSymbolType(.cave))) {
                 $0.configuration.selectedSymbolTypes = Set(SymbolType.allCases)
             },
             .receive(.game(.new)),
-            .do { self.testScheduler.advance(by: .seconds(0.5)) },
+            .do { self.scheduler.advance(by: .seconds(0.5)) },
             .receive(.game(.shuffleCards)) {
                 $0.game.symbols = .predictedGameSymbols
             },
+            .do { self.scheduler.advance(by: .seconds(1.5)) },
+            .receive(.configuration(.save)),
             .send(.game(.cardReturned(0))) {
                 $0.game.symbols = $0.game.symbols.map { $0.id == 0 ? Symbol(id: 0, type: $0.type, isFaceUp: true) : $0 }
             },
@@ -232,10 +250,12 @@ class AppCoreTests: XCTestCase {
             .receive(.game(.new)) {
                 $0.game.symbols = $0.game.symbols.map { Symbol(id: $0.id, type: $0.type, isFaceUp: false) }
             },
-            .do { self.testScheduler.advance(by: .seconds(0.5)) },
+            .do { self.scheduler.advance(by: .seconds(0.5)) },
             .receive(.game(.shuffleCards)) {
                 $0.game.symbols = .predictedGameSymbols
             },
+            .do { self.scheduler.advance(by: .seconds(1.5)) },
+            .receive(.configuration(.save)),
             .send(.game(.cardReturned(0))) {
                 $0.game.symbols = $0.game.symbols.map { $0.id == 0 ? Symbol(id: 0, type: $0.type, isFaceUp: true) : $0 }
             },
@@ -245,8 +265,60 @@ class AppCoreTests: XCTestCase {
             },
             .send(.configuration(.selectSymbolType(.cave))) {
                 $0.configuration.selectedSymbolTypes = Set(SymbolType.allCases)
-            }
+            },
             // As game has started, we shouldn't receive a .game(.new) action anymore
+            .do { self.scheduler.advance(by: .seconds(2)) },
+            .receive(.configuration(.save))
         )
+    }
+
+    func testSavingConfiguration() {
+        let expectingSaveConfigurationToBeCalled = expectation(description: "Expect save configuration to be called")
+        let mockedSaveConfiguration: (ConfigurationState) -> Void = { _ in
+            expectingSaveConfigurationToBeCalled.fulfill()
+        }
+        let store = TestStore(
+            initialState: AppState(),
+            reducer: appReducer,
+            environment: AppEnvironment(
+                mainQueue: scheduler.eraseToAnyScheduler(),
+                loadHighScores: { [] },
+                saveHighScores: { _ in },
+                generateRandomSymbols: { _ in .predictedGameSymbols },
+                saveConfiguration: mockedSaveConfiguration,
+                loadConfiguration: { ConfigurationState() }
+            )
+        )
+        store.assert(
+            .send(.configuration(.save))
+        )
+        wait(for: [expectingSaveConfigurationToBeCalled], timeout: 0.1)
+    }
+
+    func testLoadConfiguration() {
+        let expectingLoadConfigurationToBeCalled = expectation(description: "Expect load configuration to be called")
+        let mockedLoadConfiguration: () -> ConfigurationState = {
+            expectingLoadConfigurationToBeCalled.fulfill()
+            return ConfigurationState()
+        }
+        let store = TestStore(
+            initialState: AppState(),
+            reducer: appReducer,
+            environment: AppEnvironment(
+                mainQueue: scheduler.eraseToAnyScheduler(),
+                loadHighScores: { [] },
+                saveHighScores: { _ in },
+                generateRandomSymbols: { _ in .predictedGameSymbols },
+                saveConfiguration: { _ in },
+                loadConfiguration: mockedLoadConfiguration
+            )
+        )
+        store.assert(
+            .send(.configuration(.load)),
+            .receive(.game(.shuffleCards)) {
+                $0.game.symbols = .predictedGameSymbols
+            }
+        )
+        wait(for: [expectingLoadConfigurationToBeCalled], timeout: 0.1)
     }
 }

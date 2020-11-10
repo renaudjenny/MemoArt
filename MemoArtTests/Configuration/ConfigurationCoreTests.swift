@@ -9,12 +9,18 @@ class ConfigurationCoreTests: XCTestCase {
         let store = TestStore(
             initialState: ConfigurationState(),
             reducer: configurationReducer,
-            environment: ConfigurationEnvironment(mainQueue: scheduler.eraseToAnyScheduler())
+            environment: ConfigurationEnvironment(
+                mainQueue: scheduler.eraseToAnyScheduler(),
+                save: { _ in },
+                load: { ConfigurationState() }
+            )
         )
         store.assert(
             .send(.unselectSymbolType(.cave)) {
                 $0.selectedSymbolTypes = Set(SymbolType.allCases.filter({ $0 != .cave }))
-            }
+            },
+            .do { self.scheduler.advance(by: .seconds(2)) },
+            .receive(.save)
         )
     }
 
@@ -22,12 +28,18 @@ class ConfigurationCoreTests: XCTestCase {
         let store = TestStore(
             initialState: .allSymbolsButCave,
             reducer: configurationReducer,
-            environment: ConfigurationEnvironment(mainQueue: scheduler.eraseToAnyScheduler())
+            environment: ConfigurationEnvironment(
+                mainQueue: scheduler.eraseToAnyScheduler(),
+                save: { _ in },
+                load: { ConfigurationState() }
+            )
         )
         store.assert(
             .send(.selectSymbolType(.cave)) {
                 $0.selectedSymbolTypes = Set(SymbolType.allCases)
-            }
+            },
+            .do { self.scheduler.advance(by: .seconds(2)) },
+            .receive(.save)
         )
     }
 
@@ -35,11 +47,16 @@ class ConfigurationCoreTests: XCTestCase {
         let store = TestStore(
             initialState: .onlyTenSelectedSymbolTypes,
             reducer: configurationReducer,
-            environment: ConfigurationEnvironment(mainQueue: scheduler.eraseToAnyScheduler())
+            environment: ConfigurationEnvironment(
+                mainQueue: scheduler.eraseToAnyScheduler(),
+                save: { _ in },
+                load: { ConfigurationState() }
+            )
         )
         store.assert(
             .send(.unselectSymbolType(.cave))
         )
+        // Do not receive .save here, it's not necessary
     }
 }
 

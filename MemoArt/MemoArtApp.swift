@@ -4,13 +4,18 @@ import ComposableArchitecture
 @main
 struct MemoArtApp: App {
     let store = Store(
-        initialState: AppState(),
+        initialState: AppState(
+            game: GameState(symbols: .newGameSymbols(from: loadConfiguration().selectedSymbolTypes)),
+            configuration: loadConfiguration()
+        ),
         reducer: appReducer,
         environment: AppEnvironment(
             mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
             loadHighScores: loadHighScores,
             saveHighScores: saveHighScores,
-            generateRandomSymbols: { .newGameSymbols(from: $0) }
+            generateRandomSymbols: { .newGameSymbols(from: $0) },
+            saveConfiguration: saveConfiguration,
+            loadConfiguration: loadConfiguration
         )
     )
 
@@ -36,5 +41,23 @@ extension MemoArtApp {
 
     private static func saveHighScores(highScores: [HighScore]) {
         UserDefaults.standard.setValue(try? JSONEncoder().encode(highScores), forKey: highScoresKey)
+    }
+}
+
+// MARK: Configuration Persistence
+extension MemoArtApp {
+    private static let configurationKey = "MemoArtConfigurationState"
+
+    private static func saveConfiguration(configuration: ConfigurationState) {
+        UserDefaults.standard.setValue(try? JSONEncoder().encode(configuration), forKey: configurationKey)
+    }
+
+    private static func loadConfiguration() -> ConfigurationState {
+        guard
+            let data = UserDefaults.standard.data(forKey: configurationKey),
+            let configuration = try? JSONDecoder().decode(ConfigurationState.self, from: data)
+        else { return ConfigurationState() }
+
+        return configuration
     }
 }

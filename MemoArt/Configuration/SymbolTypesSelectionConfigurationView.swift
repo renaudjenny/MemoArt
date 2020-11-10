@@ -89,7 +89,11 @@ struct SymbolTypesSelectionConfigurationView_Previews: PreviewProvider {
         SymbolTypesSelectionConfigurationView(store: Store(
             initialState: ConfigurationState(),
             reducer: configurationReducer,
-            environment: ConfigurationEnvironment(mainQueue: .preview)
+            environment: ConfigurationEnvironment(
+                mainQueue: .preview,
+                save: { _ in },
+                load: { ConfigurationState() }
+            )
         ))
     }
 }
@@ -99,7 +103,11 @@ struct SymbolTypesSelectionConfigurationView2_Previews: PreviewProvider {
         SymbolTypesSelectionConfigurationView(store: Store(
             initialState: ConfigurationState(selectedSymbolTypes: .countLimit),
             reducer: configurationReducer,
-            environment: ConfigurationEnvironment(mainQueue: .preview)
+            environment: ConfigurationEnvironment(
+                mainQueue: .preview,
+                save: { _ in },
+                load: { ConfigurationState() }
+            )
         ))
     }
 }

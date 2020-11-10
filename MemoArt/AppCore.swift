@@ -21,6 +21,8 @@ struct AppEnvironment {
     var loadHighScores: () -> [HighScore]
     var saveHighScores: ([HighScore]) -> Void
     var generateRandomSymbols: (Set<SymbolType>) -> [Symbol]
+    var saveConfiguration: (ConfigurationState) -> Void
+    var loadConfiguration: () -> ConfigurationState
 }
 
 let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
@@ -37,7 +39,11 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
     configurationReducer.pullback(
         state: \.configuration,
         action: /AppAction.configuration,
-        environment: { ConfigurationEnvironment(mainQueue: $0.mainQueue) }
+        environment: { ConfigurationEnvironment(
+            mainQueue: $0.mainQueue,
+            save: $0.saveConfiguration,
+            load: $0.loadConfiguration
+        ) }
     ),
     Reducer { state, action, environment in
         switch action {
@@ -67,13 +73,16 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
         case .newHighScoreEntered:
             state.isNewHighScoreEntryPresented = false
             return .none
-        case .game: return .none
-        case .highScores: return .none
-        case .configuration:
+        case .configuration(.selectSymbolType), .configuration(.unselectSymbolType):
             if state.game.moves <= 0 {
                 return Effect(value: .game(.new))
             }
             return .none
+        case .configuration(.load):
+            return Effect(value: .game(.shuffleCards))
+        case .game: return .none
+        case .highScores: return .none
+        case .configuration: return .none
         }
     }
 )
