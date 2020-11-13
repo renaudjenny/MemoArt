@@ -53,8 +53,8 @@ struct HighScoreView: View {
         .padding(.vertical, 8)
         .background(
             position.isMultiple(of: 2)
-                ? Color(UIColor.systemBackground)
-                : Color(UIColor.systemGray5)
+                ? Color.systemBackground
+                : Color.systemGray5
         )
     }
 

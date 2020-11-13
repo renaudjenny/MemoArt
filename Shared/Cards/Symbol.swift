@@ -46,6 +46,28 @@ enum SymbolType: String, CaseIterable, Codable {
         case .fruitArt: return Image("Fruit Art")
         }
     }
+
+    var description: String {
+        switch self {
+        case .artDeco: return "Art Deco"
+        case .arty: return "Arty"
+        case .cave: return "Cave"
+        case .childish: return "Childish"
+        case .destructured: return "Destructured"
+        case .geometric: return "Geometric"
+        case .gradient: return "Gradient"
+        case .impressionism: return "Impressionism"
+        case .pixelArt: return "Pixel Art"
+        case .watercolor: return "Watercolor"
+        case .stillLife: return "Still Life"
+        case .popArt: return "Pop Art"
+        case .shadow: return "Shadow"
+        case .moderArt: return "Modern Art"
+        case .chalk: return "Chalk"
+        case .symmetry: return "Symmetry"
+        case .fruitArt: return "Fruit Art"
+        }
+    }
 }
 
 extension Array where Element == Symbol {

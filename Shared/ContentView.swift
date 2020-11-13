@@ -20,7 +20,6 @@ struct ContentView: View {
                     .padding()
                 }
                 .onAppear(perform: { viewStore.send(.highScores(.load)) })
-                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
                         VStack {
@@ -28,14 +27,16 @@ struct ContentView: View {
                             Text("Moves: \(viewStore.game.moves)").font(.subheadline)
                         }
                     }
+                    ToolbarItem(placement: Self.navigationBarLeadingPlacement) {
+                        HStack {
+                            aboutNavigationLink
+                            configurationLink.padding(.leading)
+                        }
+                    }
+                    ToolbarItem(placement: Self.navigationBarTrailingPlacement) {
+                        highScoresNavigationLink
+                    }
                 }
-                .navigationBarItems(
-                    leading: HStack {
-                        aboutNavigationLink
-                        configurationLink.padding(.leading)
-                    },
-                    trailing: highScoresNavigationLink
-                )
             }
             .sheet(
                 isPresented: viewStore.binding(
@@ -44,7 +45,7 @@ struct ContentView: View {
                 ),
                 content: { NewHighScoreView(store: store) }
             )
-            .navigationViewStyle(StackNavigationViewStyle())
+            .navigationViewStyle(Self.navigationViewStyle)
         }
     }
 
@@ -130,6 +131,26 @@ struct ContentView: View {
         default: ReversedScrollView { content() }
         }
     }
+}
+
+extension ContentView {
+    #if !os(macOS)
+    private static let navigationViewStyle = StackNavigationViewStyle()
+    #else
+    private static let navigationViewStyle = DefaultNavigationViewStyle()
+    #endif
+
+    #if !os(macOS)
+    private static let navigationBarLeadingPlacement = ToolbarItemPlacement.navigationBarLeading
+    #else
+    private static let navigationBarLeadingPlacement = ToolbarItemPlacement.automatic
+    #endif
+
+    #if !os(macOS)
+    private static let navigationBarTrailingPlacement = ToolbarItemPlacement.navigationBarTrailing
+    #else
+    private static let navigationBarTrailingPlacement = ToolbarItemPlacement.automatic
+    #endif
 }
 
 #if DEBUG

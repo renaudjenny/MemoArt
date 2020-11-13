@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4C8DF3F7253B30D700F2DE7C"
-               BuildableName = "MemoArt.app"
-               BlueprintName = "MemoArt"
+               BlueprintIdentifier = "4C217A3C255F2CE000A631BB"
+               BuildableName = "MemoArtMac.app"
+               BlueprintName = "MemoArtMac"
                ReferencedContainer = "container:MemoArt.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,26 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4C8DF408253B30DC00F2DE7C"
-               BuildableName = "MemoArtTests.xctest"
-               BlueprintName = "MemoArtTests"
-               ReferencedContainer = "container:MemoArt.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4C8DF413253B30DC00F2DE7C"
-               BuildableName = "MemoArtUITests.xctest"
-               BlueprintName = "MemoArtUITests"
-               ReferencedContainer = "container:MemoArt.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -64,9 +44,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4C8DF3F7253B30D700F2DE7C"
-            BuildableName = "MemoArt.app"
-            BlueprintName = "MemoArt"
+            BlueprintIdentifier = "4C217A3C255F2CE000A631BB"
+            BuildableName = "MemoArtMac.app"
+            BlueprintName = "MemoArtMac"
             ReferencedContainer = "container:MemoArt.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -81,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4C8DF3F7253B30D700F2DE7C"
-            BuildableName = "MemoArt.app"
-            BlueprintName = "MemoArt"
+            BlueprintIdentifier = "4C217A3C255F2CE000A631BB"
+            BuildableName = "MemoArtMac.app"
+            BlueprintName = "MemoArtMac"
             ReferencedContainer = "container:MemoArt.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
