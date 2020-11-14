@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build-and-test-ios:
     runs-on: macOS-latest
 
     steps:

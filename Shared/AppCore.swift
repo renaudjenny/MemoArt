@@ -86,3 +86,55 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
         }
     }
 )
+
+extension Store where State == AppState, Action == AppAction {
+    var gameStore: Store<GameState, GameAction> {
+        scope(state: { $0.game }, action: AppAction.game)
+    }
+    var configurationStore: Store<ConfigurationState, ConfigurationAction> {
+        scope(state: { $0.configuration }, action: AppAction.configuration)
+    }
+    var highScoresStore: Store<HighScoresState, HighScoresAction> {
+        scope(state: { $0.highScores }, action: AppAction.highScores)
+    }
+}
+
+#if DEBUG
+extension AppState {
+    static func mocked(modifier: (inout Self) -> Void) -> Self {
+        var state = AppState()
+        modifier(&state)
+        return state
+    }
+
+    static let almostFinishedGame: Self = .mocked {
+        $0.game.isGameOver = false
+        $0.game.discoveredSymbolTypes = SymbolType.allCases.filter({ $0 != .cave })
+        $0.game.moves = 142
+        $0.game.symbols = [Symbol].predictedGameSymbols(isCardsFaceUp: true).map {
+            if $0.type == .cave {
+                return Symbol(id: $0.id, type: $0.type, isFaceUp: false)
+            }
+            return $0
+        }
+    }
+}
+
+extension AnyScheduler
+where
+    SchedulerTimeType == DispatchQueue.SchedulerTimeType,
+    SchedulerOptions == DispatchQueue.SchedulerOptions {
+    static var preview: Self { DispatchQueue.main.eraseToAnyScheduler() }
+}
+
+extension AppEnvironment {
+    static let preview: Self = AppEnvironment(
+        mainQueue: .preview,
+        loadHighScores: { .preview },
+        saveHighScores: { _ in },
+        generateRandomSymbols: { _ in .predictedGameSymbols },
+        saveConfiguration: { _ in },
+        loadConfiguration: { ConfigurationState() }
+    )
+}
+#endif

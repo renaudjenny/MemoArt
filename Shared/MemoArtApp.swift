@@ -21,7 +21,7 @@ struct MemoArtApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView(store: store)
+            MainView(store: store)
         }
     }
 }
