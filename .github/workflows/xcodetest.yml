@@ -30,3 +30,14 @@ jobs:
 
     - name: Xcode test on iPhone SE
       run: xcodebuild clean test -scheme MemoArt -destination 'platform=iOS Simulator,name=iPhone SE (1st generation)'
+  build-macos:
+    runs-on: macOS-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Xcode version
+      run: /usr/bin/xcodebuild -version
+
+    - name: Xcode build on Mac
+      run: xcodebuild clean build -scheme MemoArtMac
