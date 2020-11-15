@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4C8DF3F7253B30D700F2DE7C"
-               BuildableName = "MemoArt.app"
-               BlueprintName = "MemoArt"
+               BuildableName = "MemoArt (iOS).app"
+               BlueprintName = "MemoArt (iOS)"
                ReferencedContainer = "container:MemoArt.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -65,8 +65,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4C8DF3F7253B30D700F2DE7C"
-            BuildableName = "MemoArt.app"
-            BlueprintName = "MemoArt"
+            BuildableName = "MemoArt (iOS).app"
+            BlueprintName = "MemoArt (iOS)"
             ReferencedContainer = "container:MemoArt.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -82,8 +82,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4C8DF3F7253B30D700F2DE7C"
-            BuildableName = "MemoArt.app"
-            BlueprintName = "MemoArt"
+            BuildableName = "MemoArt (iOS).app"
+            BlueprintName = "MemoArt (iOS)"
             ReferencedContainer = "container:MemoArt.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

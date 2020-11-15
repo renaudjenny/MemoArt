@@ -70,14 +70,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4C217A3D255F2CE100A631BB /* MemoArtMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoArtMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C217A3D255F2CE100A631BB /* MemoArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C217A48255F2CE600A631BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C217A49255F2CE600A631BB /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		4C4454CA254CBB2700AA5C87 /* GameCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoreTests.swift; sourceTree = "<group>"; };
 		4C84849F2555F35900FBDEC2 /* ConfigurationCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationCore.swift; sourceTree = "<group>"; };
 		4C8484A42555F45A00FBDEC2 /* ConfigurationCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationCoreTests.swift; sourceTree = "<group>"; };
 		4C8484AA2556DF1C00FBDEC2 /* SymbolTypesSelectionConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolTypesSelectionConfigurationView.swift; sourceTree = "<group>"; };
-		4C8DF3F8253B30D700F2DE7C /* MemoArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C8DF3F8253B30D700F2DE7C /* MemoArt (iOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MemoArt (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8DF3FB253B30D700F2DE7C /* MemoArtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoArtApp.swift; sourceTree = "<group>"; };
 		4C8DF3FF253B30DB00F2DE7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C8DF404253B30DB00F2DE7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -224,9 +224,9 @@
 		4C8DF3F9253B30D700F2DE7C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4C8DF3F8253B30D700F2DE7C /* MemoArt.app */,
+				4C8DF3F8253B30D700F2DE7C /* MemoArt (iOS).app */,
 				4C8DF409253B30DC00F2DE7C /* MemoArtTests.xctest */,
-				4C217A3D255F2CE100A631BB /* MemoArtMac.app */,
+				4C217A3D255F2CE100A631BB /* MemoArt.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -286,9 +286,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4C217A3C255F2CE000A631BB /* MemoArtMac */ = {
+		4C217A3C255F2CE000A631BB /* MemoArt (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4C217A4C255F2CE600A631BB /* Build configuration list for PBXNativeTarget "MemoArtMac" */;
+			buildConfigurationList = 4C217A4C255F2CE600A631BB /* Build configuration list for PBXNativeTarget "MemoArt (macOS)" */;
 			buildPhases = (
 				4C217A39255F2CE000A631BB /* Sources */,
 				4C217A3A255F2CE000A631BB /* Frameworks */,
@@ -299,18 +299,18 @@
 			);
 			dependencies = (
 			);
-			name = MemoArtMac;
+			name = "MemoArt (macOS)";
 			packageProductDependencies = (
 				4C217ADB255F39C400A631BB /* ComposableArchitecture */,
 				4C217ADD255F39C400A631BB /* RenaudJennyAboutView */,
 			);
 			productName = MemoArtMac;
-			productReference = 4C217A3D255F2CE100A631BB /* MemoArtMac.app */;
+			productReference = 4C217A3D255F2CE100A631BB /* MemoArt.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4C8DF3F7253B30D700F2DE7C /* MemoArt */ = {
+		4C8DF3F7253B30D700F2DE7C /* MemoArt (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4C8DF41D253B30DC00F2DE7C /* Build configuration list for PBXNativeTarget "MemoArt" */;
+			buildConfigurationList = 4C8DF41D253B30DC00F2DE7C /* Build configuration list for PBXNativeTarget "MemoArt (iOS)" */;
 			buildPhases = (
 				4C8DF3F4253B30D700F2DE7C /* Sources */,
 				4C8DF3F5253B30D700F2DE7C /* Frameworks */,
@@ -321,13 +321,13 @@
 			);
 			dependencies = (
 			);
-			name = MemoArt;
+			name = "MemoArt (iOS)";
 			packageProductDependencies = (
 				4C8DF42F253C59CA00F2DE7C /* ComposableArchitecture */,
 				4C86574C2551FAB30040EA04 /* RenaudJennyAboutView */,
 			);
 			productName = Memoiry;
-			productReference = 4C8DF3F8253B30D700F2DE7C /* MemoArt.app */;
+			productReference = 4C8DF3F8253B30D700F2DE7C /* MemoArt (iOS).app */;
 			productType = "com.apple.product-type.application";
 		};
 		4C8DF408253B30DC00F2DE7C /* MemoArtTests */ = {
@@ -386,9 +386,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4C8DF3F7253B30D700F2DE7C /* MemoArt */,
+				4C8DF3F7253B30D700F2DE7C /* MemoArt (iOS) */,
 				4C8DF408253B30DC00F2DE7C /* MemoArtTests */,
-				4C217A3C255F2CE000A631BB /* MemoArtMac */,
+				4C217A3C255F2CE000A631BB /* MemoArt (macOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -527,7 +527,7 @@
 /* Begin PBXTargetDependency section */
 		4C8DF40B253B30DC00F2DE7C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4C8DF3F7253B30D700F2DE7C /* MemoArt */;
+			target = 4C8DF3F7253B30D700F2DE7C /* MemoArt (iOS) */;
 			targetProxy = 4C8DF40A253B30DC00F2DE7C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -552,7 +552,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = renaud.jenny.Memoiry;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MemoArt;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
@@ -577,7 +577,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = renaud.jenny.Memoiry;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MemoArt;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
@@ -794,7 +794,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4C217A4C255F2CE600A631BB /* Build configuration list for PBXNativeTarget "MemoArtMac" */ = {
+		4C217A4C255F2CE600A631BB /* Build configuration list for PBXNativeTarget "MemoArt (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C217A4A255F2CE600A631BB /* Debug */,
@@ -812,7 +812,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4C8DF41D253B30DC00F2DE7C /* Build configuration list for PBXNativeTarget "MemoArt" */ = {
+		4C8DF41D253B30DC00F2DE7C /* Build configuration list for PBXNativeTarget "MemoArt (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C8DF41E253B30DC00F2DE7C /* Debug */,
