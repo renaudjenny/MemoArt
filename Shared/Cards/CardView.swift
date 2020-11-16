@@ -10,9 +10,9 @@ struct CardView: View {
         WithViewStore(store) { viewStore in
             ZStack {
                 if !viewStore.symbols[id].isFaceUp {
-                    Button(action: { returnCard(store: viewStore) }, label: {
-                        Color.red
-                    })
+                    Color.red.onTapGesture {
+                        returnCard(store: viewStore)
+                    }
                     .transition(turnTransition)
                 } else {
                     image.transition(turnTransition)
