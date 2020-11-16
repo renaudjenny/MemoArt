@@ -5,6 +5,8 @@ import RenaudJennyAboutView
 
 struct MainView: View {
     let store: Store<AppState, AppAction>
+    @State private var isConfigurationPresented = false
+    @State private var isHighScoresPresented = false
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -17,6 +19,55 @@ struct MainView: View {
                 }
                 .padding()
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .toolbar {
+                ToolbarItemGroup(placement: .primaryAction) {
+                    Button {
+                        isConfigurationPresented = true
+                    } label: {
+                        Image(systemName: "gearshape")
+                    }
+                    .accessibility(label: Text("Configuration"))
+                }
+                ToolbarItemGroup(placement: .status) {
+                    Button {
+                        isHighScoresPresented = true
+                    } label: {
+                        Image(systemName: "list.number")
+                    }
+                    .accessibility(label: Text("High Scores"))
+                }
+            }
+            .background(EmptyView().sheet(isPresented: $isConfigurationPresented) {
+                // TODO: put that in its own file
+                VStack {
+                    SymbolTypesSelectionConfigurationView(store: store.configurationStore)
+                    HStack {
+                        Spacer()
+                        Button {
+                            isConfigurationPresented = false
+                        } label: {
+                            Text("Done")
+                        }
+                        .padding([.bottom, .trailing])
+                    }
+                }
+            })
+            .background(EmptyView().sheet(isPresented: $isHighScoresPresented) {
+                // TODO: put that in its own file
+                VStack {
+                    HighScoresView(store: store.highScoresStore)
+                    HStack {
+                        Spacer()
+                        Button {
+                            isHighScoresPresented = false
+                        } label: {
+                            Text("Done")
+                        }
+                        .padding([.bottom, .trailing])
+                    }
+                }
+            })
             .onAppear(perform: { viewStore.send(.highScores(.load)) })
         }
     }
