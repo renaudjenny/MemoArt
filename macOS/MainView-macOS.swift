@@ -11,6 +11,9 @@ struct MainView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
+                Text("Moves: \(viewStore.game.moves)")
+                    .font(.title)
+                    .animation(nil)
                 GameOverView(store: store.gameStore)
                 LazyVGrid(columns: columns) {
                     ForEach(0..<20) {
@@ -76,7 +79,7 @@ struct MainView: View {
 }
 
 #if DEBUG
-struct ContentView_Previews: PreviewProvider {
+struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView(store: Store<AppState, AppAction>(
             initialState: AppState(),
@@ -86,7 +89,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-struct ContentViewGameOver_Previews: PreviewProvider {
+struct MainViewGameOver_Previews: PreviewProvider {
     static var previews: some View {
         MainView(store: Store<AppState, AppAction>(
             initialState: .mocked {
@@ -101,7 +104,7 @@ struct ContentViewGameOver_Previews: PreviewProvider {
     }
 }
 
-struct ContentViewAlmostFinished_Previews: PreviewProvider {
+struct MainViewAlmostFinished_Previews: PreviewProvider {
     static var previews: some View {
         MainView(store: Store(
             initialState: .almostFinishedGame,
