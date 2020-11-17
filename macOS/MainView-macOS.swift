@@ -71,6 +71,13 @@ struct MainView: View {
                     }
                 }
             })
+            .background(EmptyView().sheet(
+                isPresented: viewStore.binding(
+                    get: { $0.isNewHighScoreEntryPresented },
+                    send: .newHighScoreEntered
+                ),
+                content: { NewHighScoreView(store: store) }
+            ))
             .onAppear(perform: { viewStore.send(.highScores(.load)) })
         }
     }
