@@ -57,6 +57,10 @@
 		4CD0E1F12542A1D200A1E0FD /* HighScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1F02542A1D200A1E0FD /* HighScoresView.swift */; };
 		4CD0E1F62542A29900A1E0FD /* HighScoresCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1F52542A29900A1E0FD /* HighScoresCore.swift */; };
 		4CD0E1FC2542A74D00A1E0FD /* HighScoresCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1FB2542A74D00A1E0FD /* HighScoresCoreTests.swift */; };
+		4CD88EB92565B5570074EE39 /* ConfigurationSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD88EB82565B5570074EE39 /* ConfigurationSheetView.swift */; };
+		4CD88EBA2565B5570074EE39 /* ConfigurationSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD88EB82565B5570074EE39 /* ConfigurationSheetView.swift */; };
+		4CD88EBF2565B6690074EE39 /* HighScoresSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD88EBE2565B6690074EE39 /* HighScoresSheetView.swift */; };
+		4CD88EC02565B6690074EE39 /* HighScoresSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD88EBE2565B6690074EE39 /* HighScoresSheetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +106,8 @@
 		4CD0E1F02542A1D200A1E0FD /* HighScoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresView.swift; sourceTree = "<group>"; };
 		4CD0E1F52542A29900A1E0FD /* HighScoresCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresCore.swift; sourceTree = "<group>"; };
 		4CD0E1FB2542A74D00A1E0FD /* HighScoresCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresCoreTests.swift; sourceTree = "<group>"; };
+		4CD88EB82565B5570074EE39 /* ConfigurationSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationSheetView.swift; sourceTree = "<group>"; };
+		4CD88EBE2565B6690074EE39 /* HighScoresSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresSheetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +203,7 @@
 				4C84849F2555F35900FBDEC2 /* ConfigurationCore.swift */,
 				4C8484AA2556DF1C00FBDEC2 /* SymbolTypesSelectionConfigurationView.swift */,
 				4CAC43AB255FD523009FFF68 /* ConfigurationNavigationLink.swift */,
+				4CD88EB82565B5570074EE39 /* ConfigurationSheetView.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -271,6 +278,7 @@
 				4CD0E1F02542A1D200A1E0FD /* HighScoresView.swift */,
 				4CC92F4A25458A8600DAC4AB /* NewHighScoreView.swift */,
 				4CAC43BA255FD76F009FFF68 /* HighScoresNavigationLink.swift */,
+				4CD88EBE2565B6690074EE39 /* HighScoresSheetView.swift */,
 			);
 			path = HighScores;
 			sourceTree = "<group>";
@@ -464,6 +472,7 @@
 				4C217AB5255F391300A631BB /* ReversedScrollView.swift in Sources */,
 				4C217ACE255F392F00A631BB /* HighScoresView.swift in Sources */,
 				4C217ABA255F391A00A631BB /* SymbolTypesSelectionConfigurationView.swift in Sources */,
+				4CD88EC02565B6690074EE39 /* HighScoresSheetView.swift in Sources */,
 				4CAC436B255F4BA2009FFF68 /* Color.swift in Sources */,
 				4C217AB9255F391700A631BB /* ConfigurationCore.swift in Sources */,
 				4CAC43B6255FD6EA009FFF68 /* AboutNavigationLink.swift in Sources */,
@@ -473,6 +482,7 @@
 				4C217AB1255F390F00A631BB /* Symbol.swift in Sources */,
 				4CAC4380255FCCBE009FFF68 /* MainView-iOS.swift in Sources */,
 				4C217AD2255F393200A631BB /* NewHighScoreView.swift in Sources */,
+				4CD88EBA2565B5570074EE39 /* ConfigurationSheetView.swift in Sources */,
 				4CAC4386255FCD15009FFF68 /* MainView-macOS.swift in Sources */,
 				4C217AD6255F393800A631BB /* MemoArtApp.swift in Sources */,
 				4CAC43AD255FD523009FFF68 /* ConfigurationNavigationLink.swift in Sources */,
@@ -491,6 +501,7 @@
 				4C8484A02555F35900FBDEC2 /* ConfigurationCore.swift in Sources */,
 				4CD0E1F62542A29900A1E0FD /* HighScoresCore.swift in Sources */,
 				4C8DF435253C5B0A00F2DE7C /* GameCore.swift in Sources */,
+				4CD88EBF2565B6690074EE39 /* HighScoresSheetView.swift in Sources */,
 				4CD0E1F12542A1D200A1E0FD /* HighScoresView.swift in Sources */,
 				4CAC436A255F4BA2009FFF68 /* Color.swift in Sources */,
 				4CAC43B5255FD6EA009FFF68 /* AboutNavigationLink.swift in Sources */,
@@ -500,6 +511,7 @@
 				4C8DF42A253C520F00F2DE7C /* CardView.swift in Sources */,
 				4CAC437F255FCCBE009FFF68 /* MainView-iOS.swift in Sources */,
 				4C8DF3FC253B30D700F2DE7C /* MemoArtApp.swift in Sources */,
+				4CD88EB92565B5570074EE39 /* ConfigurationSheetView.swift in Sources */,
 				4CAC4385255FCD15009FFF68 /* MainView-macOS.swift in Sources */,
 				4C8DF43A253C5B2900F2DE7C /* AppCore.swift in Sources */,
 				4CAC43AC255FD523009FFF68 /* ConfigurationNavigationLink.swift in Sources */,

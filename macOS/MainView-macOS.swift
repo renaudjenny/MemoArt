@@ -42,34 +42,16 @@ struct MainView: View {
                 }
             }
             .background(EmptyView().sheet(isPresented: $isConfigurationPresented) {
-                // TODO: put that in its own file
-                VStack {
-                    SymbolTypesSelectionConfigurationView(store: store.configurationStore)
-                    HStack {
-                        Spacer()
-                        Button {
-                            isConfigurationPresented = false
-                        } label: {
-                            Text("Done")
-                        }
-                        .padding([.bottom, .trailing])
-                    }
-                }
+                ConfigurationSheetView(
+                    store: store.configurationStore,
+                    isPresented: $isConfigurationPresented
+                )
             })
             .background(EmptyView().sheet(isPresented: $isHighScoresPresented) {
-                // TODO: put that in its own file
-                VStack {
-                    HighScoresView(store: store.highScoresStore)
-                    HStack {
-                        Spacer()
-                        Button {
-                            isHighScoresPresented = false
-                        } label: {
-                            Text("Done")
-                        }
-                        .padding([.bottom, .trailing])
-                    }
-                }
+                HighScoresSheetView(
+                    store: store.highScoresStore,
+                    isPresented: $isHighScoresPresented
+                )
             })
             .background(EmptyView().sheet(
                 isPresented: viewStore.binding(
