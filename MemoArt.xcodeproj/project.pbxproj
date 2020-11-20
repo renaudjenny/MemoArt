@@ -61,6 +61,10 @@
 		4CD88EBA2565B5570074EE39 /* ConfigurationSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD88EB82565B5570074EE39 /* ConfigurationSheetView.swift */; };
 		4CD88EBF2565B6690074EE39 /* HighScoresSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD88EBE2565B6690074EE39 /* HighScoresSheetView.swift */; };
 		4CD88EC02565B6690074EE39 /* HighScoresSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD88EBE2565B6690074EE39 /* HighScoresSheetView.swift */; };
+		4CD88F3F256797270074EE39 /* AppCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF40D253B30DC00F2DE7C /* AppCoreTests.swift */; };
+		4CD88F40256797270074EE39 /* ConfigurationCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8484A42555F45A00FBDEC2 /* ConfigurationCoreTests.swift */; };
+		4CD88F41256797270074EE39 /* HighScoresCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1FB2542A74D00A1E0FD /* HighScoresCoreTests.swift */; };
+		4CD88F42256797270074EE39 /* GameCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4454CA254CBB2700AA5C87 /* GameCoreTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +74,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4C8DF3F7253B30D700F2DE7C;
 			remoteInfo = Memoiry;
+		};
+		4CD88ECA256712670074EE39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C8DF3F0253B30D700F2DE7C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C217A3C255F2CE000A631BB;
+			remoteInfo = "MemoArt (macOS)";
+		};
+		4CD88F2E256795E00074EE39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C8DF3F0253B30D700F2DE7C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C217A3C255F2CE000A631BB;
+			remoteInfo = "MemoArt (macOS)";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -81,11 +99,11 @@
 		4C84849F2555F35900FBDEC2 /* ConfigurationCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationCore.swift; sourceTree = "<group>"; };
 		4C8484A42555F45A00FBDEC2 /* ConfigurationCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationCoreTests.swift; sourceTree = "<group>"; };
 		4C8484AA2556DF1C00FBDEC2 /* SymbolTypesSelectionConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolTypesSelectionConfigurationView.swift; sourceTree = "<group>"; };
-		4C8DF3F8253B30D700F2DE7C /* MemoArt (iOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MemoArt (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C8DF3F8253B30D700F2DE7C /* MemoArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8DF3FB253B30D700F2DE7C /* MemoArtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoArtApp.swift; sourceTree = "<group>"; };
 		4C8DF3FF253B30DB00F2DE7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C8DF404253B30DB00F2DE7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C8DF409253B30DC00F2DE7C /* MemoArtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemoArtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C8DF409253B30DC00F2DE7C /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8DF40D253B30DC00F2DE7C /* AppCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoreTests.swift; sourceTree = "<group>"; };
 		4C8DF40F253B30DC00F2DE7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C8DF429253C520F00F2DE7C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -108,6 +126,8 @@
 		4CD0E1FB2542A74D00A1E0FD /* HighScoresCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresCoreTests.swift; sourceTree = "<group>"; };
 		4CD88EB82565B5570074EE39 /* ConfigurationSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationSheetView.swift; sourceTree = "<group>"; };
 		4CD88EBE2565B6690074EE39 /* HighScoresSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresSheetView.swift; sourceTree = "<group>"; };
+		4CD88F29256795E00074EE39 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CD88F2D256795E00074EE39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +150,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4C8DF406253B30DC00F2DE7C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CD88F26256795E00074EE39 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -219,35 +246,37 @@
 		4C8DF3EF253B30D700F2DE7C = {
 			isa = PBXGroup;
 			children = (
+				4C217ADA255F39C400A631BB /* Frameworks */,
 				4C217A84255F2E8800A631BB /* iOS */,
 				4C217A85255F2E9000A631BB /* macOS */,
-				4C8DF40C253B30DC00F2DE7C /* MemoArtTests */,
 				4C8DF3F9253B30D700F2DE7C /* Products */,
 				4C217A83255F2E7B00A631BB /* Shared */,
-				4C217ADA255F39C400A631BB /* Frameworks */,
+				4CD88F47256797C50074EE39 /* Tests iOS */,
+				4CD88F2A256795E00074EE39 /* Tests macOS */,
+				4C8DF40C253B30DC00F2DE7C /* Tests Shared */,
 			);
 			sourceTree = "<group>";
 		};
 		4C8DF3F9253B30D700F2DE7C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4C8DF3F8253B30D700F2DE7C /* MemoArt (iOS).app */,
-				4C8DF409253B30DC00F2DE7C /* MemoArtTests.xctest */,
+				4C8DF3F8253B30D700F2DE7C /* MemoArt.app */,
+				4C8DF409253B30DC00F2DE7C /* Tests iOS.xctest */,
 				4C217A3D255F2CE100A631BB /* MemoArt.app */,
+				4CD88F29256795E00074EE39 /* Tests macOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4C8DF40C253B30DC00F2DE7C /* MemoArtTests */ = {
+		4C8DF40C253B30DC00F2DE7C /* Tests Shared */ = {
 			isa = PBXGroup;
 			children = (
 				4C8DF40D253B30DC00F2DE7C /* AppCoreTests.swift */,
 				4C8484A32555F3D700FBDEC2 /* Configuration */,
 				4C4454C9254CBA8200AA5C87 /* Game */,
 				4CD0E1FA2542A72300A1E0FD /* HighScores */,
-				4C8DF40F253B30DC00F2DE7C /* Info.plist */,
 			);
-			path = MemoArtTests;
+			path = "Tests Shared";
 			sourceTree = "<group>";
 		};
 		4CC92F552545E54300DAC4AB /* Cards */ = {
@@ -289,6 +318,22 @@
 				4CD0E1FB2542A74D00A1E0FD /* HighScoresCoreTests.swift */,
 			);
 			path = HighScores;
+			sourceTree = "<group>";
+		};
+		4CD88F2A256795E00074EE39 /* Tests macOS */ = {
+			isa = PBXGroup;
+			children = (
+				4CD88F2D256795E00074EE39 /* Info.plist */,
+			);
+			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		4CD88F47256797C50074EE39 /* Tests iOS */ = {
+			isa = PBXGroup;
+			children = (
+				4C8DF40F253B30DC00F2DE7C /* Info.plist */,
+			);
+			path = "Tests iOS";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,12 +380,12 @@
 				4C86574C2551FAB30040EA04 /* RenaudJennyAboutView */,
 			);
 			productName = Memoiry;
-			productReference = 4C8DF3F8253B30D700F2DE7C /* MemoArt (iOS).app */;
+			productReference = 4C8DF3F8253B30D700F2DE7C /* MemoArt.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4C8DF408253B30DC00F2DE7C /* MemoArtTests */ = {
+		4C8DF408253B30DC00F2DE7C /* Tests iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4C8DF420253B30DC00F2DE7C /* Build configuration list for PBXNativeTarget "MemoArtTests" */;
+			buildConfigurationList = 4C8DF420253B30DC00F2DE7C /* Build configuration list for PBXNativeTarget "Tests iOS" */;
 			buildPhases = (
 				4C8DF405253B30DC00F2DE7C /* Sources */,
 				4C8DF406253B30DC00F2DE7C /* Frameworks */,
@@ -350,10 +395,29 @@
 			);
 			dependencies = (
 				4C8DF40B253B30DC00F2DE7C /* PBXTargetDependency */,
+				4CD88ECB256712670074EE39 /* PBXTargetDependency */,
 			);
-			name = MemoArtTests;
+			name = "Tests iOS";
 			productName = MemoiryTests;
-			productReference = 4C8DF409253B30DC00F2DE7C /* MemoArtTests.xctest */;
+			productReference = 4C8DF409253B30DC00F2DE7C /* Tests iOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4CD88F28256795E00074EE39 /* Tests macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4CD88F30256795E00074EE39 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
+			buildPhases = (
+				4CD88F25256795E00074EE39 /* Sources */,
+				4CD88F26256795E00074EE39 /* Frameworks */,
+				4CD88F27256795E00074EE39 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4CD88F2F256795E00074EE39 /* PBXTargetDependency */,
+			);
+			name = "Tests macOS";
+			productName = "Tests macOS";
+			productReference = 4CD88F29256795E00074EE39 /* Tests macOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -375,6 +439,10 @@
 						CreatedOnToolsVersion = 12.0.1;
 						TestTargetID = 4C8DF3F7253B30D700F2DE7C;
 					};
+					4CD88F28256795E00074EE39 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 4C217A3C255F2CE000A631BB;
+					};
 				};
 			};
 			buildConfigurationList = 4C8DF3F3253B30D700F2DE7C /* Build configuration list for PBXProject "MemoArt" */;
@@ -395,8 +463,9 @@
 			projectRoot = "";
 			targets = (
 				4C8DF3F7253B30D700F2DE7C /* MemoArt (iOS) */,
-				4C8DF408253B30DC00F2DE7C /* MemoArtTests */,
 				4C217A3C255F2CE000A631BB /* MemoArt (macOS) */,
+				4C8DF408253B30DC00F2DE7C /* Tests iOS */,
+				4CD88F28256795E00074EE39 /* Tests macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -419,6 +488,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4C8DF407253B30DC00F2DE7C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CD88F27256795E00074EE39 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -534,6 +610,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4CD88F25256795E00074EE39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CD88F42256797270074EE39 /* GameCoreTests.swift in Sources */,
+				4CD88F3F256797270074EE39 /* AppCoreTests.swift in Sources */,
+				4CD88F40256797270074EE39 /* ConfigurationCoreTests.swift in Sources */,
+				4CD88F41256797270074EE39 /* HighScoresCoreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -541,6 +628,16 @@
 			isa = PBXTargetDependency;
 			target = 4C8DF3F7253B30D700F2DE7C /* MemoArt (iOS) */;
 			targetProxy = 4C8DF40A253B30DC00F2DE7C /* PBXContainerItemProxy */;
+		};
+		4CD88ECB256712670074EE39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C217A3C255F2CE000A631BB /* MemoArt (macOS) */;
+			targetProxy = 4CD88ECA256712670074EE39 /* PBXContainerItemProxy */;
+		};
+		4CD88F2F256795E00074EE39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C217A3C255F2CE000A631BB /* MemoArt (macOS) */;
+			targetProxy = 4CD88F2E256795E00074EE39 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -731,7 +828,7 @@
 				);
 				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = renaud.jenny.Memoiry;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MemoArt;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -753,7 +850,7 @@
 				);
 				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = renaud.jenny.Memoiry;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MemoArt;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -766,7 +863,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBQ98GC8JT;
-				INFOPLIST_FILE = MemoArtTests/Info.plist;
+				INFOPLIST_FILE = "Tests iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -788,7 +885,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBQ98GC8JT;
-				INFOPLIST_FILE = MemoArtTests/Info.plist;
+				INFOPLIST_FILE = "Tests iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -800,6 +897,48 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MemoArt.app/MemoArt";
+			};
+			name = Release;
+		};
+		4CD88F31256795E00074EE39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = MBQ98GC8JT;
+				INFOPLIST_FILE = "Tests macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "renaud.jenny.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MemoArt.app/Contents/MacOS/MemoArt";
+			};
+			name = Debug;
+		};
+		4CD88F32256795E00074EE39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = MBQ98GC8JT;
+				INFOPLIST_FILE = "Tests macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "renaud.jenny.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MemoArt.app/Contents/MacOS/MemoArt";
 			};
 			name = Release;
 		};
@@ -833,11 +972,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4C8DF420253B30DC00F2DE7C /* Build configuration list for PBXNativeTarget "MemoArtTests" */ = {
+		4C8DF420253B30DC00F2DE7C /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C8DF421253B30DC00F2DE7C /* Debug */,
 				4C8DF422253B30DC00F2DE7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4CD88F30256795E00074EE39 /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CD88F31256795E00074EE39 /* Debug */,
+				4CD88F32256795E00074EE39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

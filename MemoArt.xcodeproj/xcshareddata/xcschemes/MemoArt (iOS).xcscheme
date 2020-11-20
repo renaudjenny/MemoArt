@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4C8DF3F7253B30D700F2DE7C"
-               BuildableName = "MemoArt (iOS).app"
+               BuildableName = "MemoArt.app"
                BlueprintName = "MemoArt (iOS)"
                ReferencedContainer = "container:MemoArt.xcodeproj">
             </BuildableReference>
@@ -33,18 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4C8DF408253B30DC00F2DE7C"
-               BuildableName = "MemoArtTests.xctest"
-               BlueprintName = "MemoArtTests"
-               ReferencedContainer = "container:MemoArt.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4C8DF413253B30DC00F2DE7C"
-               BuildableName = "MemoArtUITests.xctest"
-               BlueprintName = "MemoArtUITests"
+               BuildableName = "Tests iOS.xctest"
+               BlueprintName = "Tests iOS"
                ReferencedContainer = "container:MemoArt.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -65,7 +55,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4C8DF3F7253B30D700F2DE7C"
-            BuildableName = "MemoArt (iOS).app"
+            BuildableName = "MemoArt.app"
             BlueprintName = "MemoArt (iOS)"
             ReferencedContainer = "container:MemoArt.xcodeproj">
          </BuildableReference>
@@ -82,7 +72,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4C8DF3F7253B30D700F2DE7C"
-            BuildableName = "MemoArt (iOS).app"
+            BuildableName = "MemoArt.app"
             BlueprintName = "MemoArt (iOS)"
             ReferencedContainer = "container:MemoArt.xcodeproj">
          </BuildableReference>
