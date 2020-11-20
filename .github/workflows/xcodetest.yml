@@ -19,9 +19,6 @@ jobs:
     - name: Linter
       run: swiftlint
 
-    - name: Select Xcode
-      run: sudo xcode-select -switch /Applications/Xcode_12.app
-
     - name: Xcode version
       run: /usr/bin/xcodebuild -version
 
@@ -29,7 +26,7 @@ jobs:
       run: xcrun simctl create "iPhone SE (1st generation)" "iPhone SE (1st generation)"
 
     - name: Xcode test on iPhone SE
-      run: xcodebuild clean test -scheme MemoArt -destination 'platform=iOS Simulator,name=iPhone SE (1st generation)'
+      run: xcodebuild clean test -scheme "MemoArt (iOS)" -destination 'platform=iOS Simulator,name=iPhone SE (1st generation)'
   build-macos:
     runs-on: macOS-latest
 
@@ -39,5 +36,5 @@ jobs:
     - name: Xcode version
       run: /usr/bin/xcodebuild -version
 
-    - name: Xcode build on Mac
-      run: xcodebuild clean build -scheme MemoArtMac
+    - name: Xcode test on Mac
+      run: xcodebuild clean test -scheme "MemoArt (macOS)"
