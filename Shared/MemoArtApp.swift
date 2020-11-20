@@ -23,6 +23,20 @@ struct MemoArtApp: App {
         WindowGroup {
             MainView(store: store)
         }
+        .commands {
+            CommandGroup(replacing: CommandGroupPlacement.newItem) {
+                EmptyView()
+            }
+            CommandGroup(replacing: CommandGroupPlacement.pasteboard) {
+                EmptyView()
+            }
+            CommandGroup(replacing: CommandGroupPlacement.undoRedo) {
+                EmptyView()
+            }
+            CommandGroup(replacing: CommandGroupPlacement.help) {
+                EmptyView()
+            }
+        }
     }
 }
 

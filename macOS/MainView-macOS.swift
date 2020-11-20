@@ -60,7 +60,8 @@ struct MainView: View {
                 ),
                 content: { NewHighScoreView(store: store) }
             ))
-            .onAppear(perform: { viewStore.send(.highScores(.load)) })
+            .onAppear { viewStore.send(.highScores(.load)) }
+            .onAppear { NSWindow.allowsAutomaticWindowTabbing = false }
         }
     }
 
