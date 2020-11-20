@@ -46,18 +46,22 @@ struct SymbolTypesSelectionConfigurationView: View {
 
                 LazyVGrid(columns: columns) {
                     ForEach(SymbolType.allCases, id: \.self) { symbolType in
-                        symbolType.image
-                            .resizable()
-                            .modifier(AddCardStyle(foregroundColor: .black))
-                            .modifier(SelectionCardStyle(
-                                symbolType: symbolType,
-                                isSelected: viewStore.selectedSymbolTypes.contains(symbolType)
-                            ))
-                            .onTapGesture { viewStore.send(
+                        Button {
+                            viewStore.send(
                                 viewStore.selectedSymbolTypes.contains(symbolType)
                                     ? .unselectSymbolType(symbolType)
                                     : .selectSymbolType(symbolType)
-                            )}
+                            )
+                        } label: {
+                            symbolType.image
+                                .resizable()
+                                .modifier(AddCardStyle(foregroundColor: .black))
+                                .modifier(SelectionCardStyle(
+                                    symbolType: symbolType,
+                                    isSelected: viewStore.selectedSymbolTypes.contains(symbolType)
+                                ))
+                        }
+                        .buttonStyle(PlainButtonStyle())
                     }
                 }
                 .padding()

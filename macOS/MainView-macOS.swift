@@ -13,6 +13,8 @@ struct MainView: View {
             VStack {
                 Text("Moves: \(viewStore.game.moves)")
                     .font(.title)
+                    .padding()
+                    .padding(.top)
                     .animation(nil)
                 GameOverView(store: store.gameStore)
                 LazyVGrid(columns: columns) {
@@ -21,6 +23,7 @@ struct MainView: View {
                     }
                 }
                 .padding()
+                .padding(.bottom)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .toolbar {

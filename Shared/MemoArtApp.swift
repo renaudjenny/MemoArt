@@ -1,5 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
+import RenaudJennyAboutView
 
 @main
 struct MemoArtApp: App {
@@ -18,10 +19,31 @@ struct MemoArtApp: App {
             loadConfiguration: loadConfiguration
         )
     )
+    @State private var isAboutWindowOpened = false
 
     var body: some Scene {
         WindowGroup {
             MainView(store: store)
+                .background(EmptyView().sheet(isPresented: $isAboutWindowOpened) {
+                    VStack {
+                        AboutView(
+                            appId: "id1536330844",
+                            logo: {
+                                Image("Pixel Art")
+                                    .resizable()
+                                    .modifier(AddCardStyle())
+                                    .frame(width: 120, height: 120)
+                            }
+                        )
+                        .buttonStyle(PlainButtonStyle())
+                        Button {
+                            isAboutWindowOpened = false
+                        } label: {
+                            Text("Done")
+                        }
+                        .padding(.bottom)
+                    }
+                })
         }
         .commands {
             CommandGroup(replacing: CommandGroupPlacement.newItem) {
@@ -35,6 +57,13 @@ struct MemoArtApp: App {
             }
             CommandGroup(replacing: CommandGroupPlacement.help) {
                 EmptyView()
+            }
+            CommandGroup(replacing: CommandGroupPlacement.appInfo) {
+                Button {
+                    isAboutWindowOpened = true
+                } label: {
+                    Text("About MemoArt")
+                }
             }
         }
     }
