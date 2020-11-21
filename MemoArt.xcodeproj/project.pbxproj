@@ -660,6 +660,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = renaud.jenny.Memoiry;
 				PRODUCT_NAME = MemoArt;
 				SDKROOT = macosx;
@@ -685,6 +686,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = renaud.jenny.Memoiry;
 				PRODUCT_NAME = MemoArt;
 				SDKROOT = macosx;
@@ -826,7 +828,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = renaud.jenny.Memoiry;
 				PRODUCT_NAME = MemoArt;
 				SWIFT_VERSION = 5.0;
@@ -848,7 +850,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = renaud.jenny.Memoiry;
 				PRODUCT_NAME = MemoArt;
 				SWIFT_VERSION = 5.0;
