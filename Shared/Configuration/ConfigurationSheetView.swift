@@ -6,7 +6,12 @@ struct ConfigurationSheetView: View {
     @Binding var isPresented: Bool
 
     var body: some View {
-        SymbolTypesSelectionConfigurationView(store: store)
+        ScrollView {
+            GroupBox(label: artTypeSelectionLabel) {
+                SymbolTypesSelectionConfigurationView(store: store)
+            }
+            .padding()
+        }
         HStack {
             Spacer()
             Button {
@@ -16,5 +21,9 @@ struct ConfigurationSheetView: View {
             }
             .padding([.bottom, .trailing])
         }
+    }
+
+    private var artTypeSelectionLabel: some View {
+        Text("Choose the cards you want to play with")
     }
 }

@@ -35,7 +35,7 @@ struct MemoArtApp: App {
                                     .frame(width: 120, height: 120)
                             }
                         )
-                        .buttonStyle(LinkButtonStyle())
+                        .buttonStyle(aboutBoutonStyle)
                         Button {
                             isAboutWindowOpened = false
                         } label: {
@@ -66,6 +66,14 @@ struct MemoArtApp: App {
                 }
             }
         }
+    }
+
+    private var aboutBoutonStyle: some PrimitiveButtonStyle {
+        #if os(macOS)
+        return LinkButtonStyle()
+        #else
+        return DefaultButtonStyle()
+        #endif
     }
 }
 

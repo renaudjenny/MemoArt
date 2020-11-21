@@ -5,11 +5,21 @@ struct ConfigurationNavigationLink: View {
     let store: Store<ConfigurationState, ConfigurationAction>
 
     var body: some View {
-        NavigationLink(
-            destination: SymbolTypesSelectionConfigurationView(store: store),
-            label: {
-                Image(systemName: "gearshape")
-            }
-        )
+        NavigationLink(destination: destination) {
+            Image(systemName: "gearshape")
+        }
+    }
+
+    private var destination: some View {
+        ScrollView {
+            Divider()
+            Text("Choose the cards you want to play with")
+                .font(.title2)
+                .multilineTextAlignment(.center)
+                .padding()
+            SymbolTypesSelectionConfigurationView(store: store)
+            Divider()
+        }
+        .navigationTitle("Configuration")
     }
 }

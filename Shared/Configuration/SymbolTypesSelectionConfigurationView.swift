@@ -6,16 +6,12 @@ struct SymbolTypesSelectionConfigurationView: View {
     let columns =  Array(repeating: GridItem(.flexible(minimum: 65, maximum: 120)), count: 4)
 
     var body: some View {
-        ScrollView {
-            WithViewStore(store) { viewStore in
-                Text("Choose the cards you want to play with")
-                    .font(.title)
-                    .multilineTextAlignment(.center)
-                    .padding()
+        WithViewStore(store) { viewStore in
+            VStack {
                 Text("A new game will randomly display 10 cards among the ones you chose")
                     .font(.subheadline)
                     .multilineTextAlignment(.center)
-                    .padding(.horizontal)
+                    .padding()
 
                 VStack {
                     Text("\(viewStore.selectedSymbolTypes.count)")
@@ -27,7 +23,6 @@ struct SymbolTypesSelectionConfigurationView: View {
                         )
                         + Text("/10")
                 }
-                .padding(.top)
                 .animation(nil)
 
                 VStack {
@@ -39,7 +34,7 @@ struct SymbolTypesSelectionConfigurationView: View {
                                 RoundedRectangle(cornerRadius: 8)
                                     .foregroundColor(.orange)
                             )
-                            .padding(.horizontal)
+                            .padding([.horizontal, .top])
                     }
                 }
                 .animation(.spring())
