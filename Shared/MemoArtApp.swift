@@ -25,7 +25,7 @@ struct MemoArtApp: App {
         WindowGroup {
             MainView(store: store)
                 .background(EmptyView().sheet(isPresented: $isAboutWindowOpened) {
-                    VStack {
+                    ZStack {
                         AboutView(
                             appId: "id1536330844",
                             logo: {
@@ -36,12 +36,22 @@ struct MemoArtApp: App {
                             }
                         )
                         .buttonStyle(aboutBoutonStyle)
-                        Button {
-                            isAboutWindowOpened = false
-                        } label: {
-                            Text("Done")
+                        .padding(.bottom, 30)
+                        .background(
+                            Image("Motif")
+                                .resizable(resizingMode: .tile)
+                                .renderingMode(.template)
+                                .opacity(1/16)
+                        )
+                        VStack {
+                            Spacer()
+                            Button {
+                                isAboutWindowOpened = false
+                            } label: {
+                                Text("Done")
+                            }
+                            .padding()
                         }
-                        .padding()
                     }
                 })
         }
