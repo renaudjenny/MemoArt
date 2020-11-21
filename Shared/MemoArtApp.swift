@@ -35,13 +35,13 @@ struct MemoArtApp: App {
                                     .frame(width: 120, height: 120)
                             }
                         )
-                        .buttonStyle(PlainButtonStyle())
+                        .buttonStyle(LinkButtonStyle())
                         Button {
                             isAboutWindowOpened = false
                         } label: {
                             Text("Done")
                         }
-                        .padding(.bottom)
+                        .padding()
                     }
                 })
         }

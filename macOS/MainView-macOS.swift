@@ -27,7 +27,7 @@ struct MainView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .toolbar {
-                ToolbarItemGroup(placement: .primaryAction) {
+                ToolbarItem {
                     Button {
                         isConfigurationPresented = true
                     } label: {
@@ -35,7 +35,7 @@ struct MainView: View {
                     }
                     .accessibility(label: Text("Configuration"))
                 }
-                ToolbarItemGroup(placement: .status) {
+                ToolbarItem {
                     Button {
                         isHighScoresPresented = true
                     } label: {
@@ -61,7 +61,10 @@ struct MainView: View {
                     get: { $0.isNewHighScoreEntryPresented },
                     send: .newHighScoreEntered
                 ),
-                content: { NewHighScoreView(store: store) }
+                content: {
+                    NewHighScoreView(store: store)
+                        .padding()
+                }
             ))
             .onAppear { viewStore.send(.highScores(.load)) }
             .onAppear { NSWindow.allowsAutomaticWindowTabbing = false }

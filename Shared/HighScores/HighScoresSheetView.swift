@@ -7,6 +7,9 @@ struct HighScoresSheetView: View {
 
     var body: some View {
         VStack {
+            Text("High Scores 🏆")
+                .font(.largeTitle)
+                .padding()
             HighScoresView(store: store)
             HStack {
                 Spacer()
@@ -15,8 +18,7 @@ struct HighScoresSheetView: View {
                 } label: {
                     Text("Done")
                 }
-                .padding([.bottom, .trailing])
-            }
+            }.padding()
         }
     }
 }
