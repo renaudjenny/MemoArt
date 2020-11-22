@@ -10,9 +10,7 @@ class GameCoreTests: XCTestCase {
         let store = TestStore(
             initialState: GameState(symbols: .predictedGameSymbols),
             reducer: gameReducer,
-            environment: GameEnvironment(
-                mainQueue: scheduler.eraseToAnyScheduler()
-            )
+            environment: .mocked(scheduler: scheduler)
         )
         store.assert(
             .send(.new) {
@@ -33,9 +31,7 @@ class GameCoreTests: XCTestCase {
         let store = TestStore(
             initialState: GameState(symbols: .predictedGameSymbols),
             reducer: gameReducer,
-            environment: GameEnvironment(
-                mainQueue: scheduler.eraseToAnyScheduler()
-            )
+            environment: .mocked(scheduler: scheduler)
         )
 
         store.assert(
@@ -51,6 +47,7 @@ class GameCoreTests: XCTestCase {
                 }
                 $0.moves = 0
             },
+            .receive(.save),
             .send(.cardReturned(1)) {
                 $0.symbols = $0.symbols.map {
                     switch $0.id {
@@ -61,6 +58,7 @@ class GameCoreTests: XCTestCase {
                 }
                 $0.moves = 1
             },
+            .receive(.save),
             .send(.cardReturned(2)) {
                 $0.symbols = $0.symbols.map {
                     switch $0.id {
@@ -71,6 +69,7 @@ class GameCoreTests: XCTestCase {
                 }
                 $0.moves = 1
             },
+            .receive(.save),
             .send(.cardReturned(12)) {
                 $0.symbols = $0.symbols.map {
                     switch $0.id {
@@ -81,7 +80,8 @@ class GameCoreTests: XCTestCase {
                 }
                 $0.moves = 2
                 $0.discoveredSymbolTypes = [.cave]
-            }
+            },
+            .receive(.save)
         )
     }
 
@@ -89,9 +89,7 @@ class GameCoreTests: XCTestCase {
         let store = TestStore(
             initialState: GameState(symbols: .predictedGameSymbols),
             reducer: gameReducer,
-            environment: GameEnvironment(
-                mainQueue: scheduler.eraseToAnyScheduler()
-            )
+            environment: .mocked(scheduler: scheduler)
         )
 
         let returnAllCardsSteps: [Step] = (0..<10).flatMap { cardId in
@@ -106,6 +104,7 @@ class GameCoreTests: XCTestCase {
                         }
                     }
                 },
+                .receive(.save),
                 .send(.cardReturned(cardId + 10)) {
                     $0.symbols = $0.symbols.map { symbol in
                         switch symbol.id {
@@ -123,6 +122,7 @@ class GameCoreTests: XCTestCase {
                         $0.isGameOver = true
                     }
                 },
+                .receive(cardId + 11 < 20 ? .save : .clearBackup),
             ]
         }
 
@@ -135,5 +135,84 @@ class GameCoreTests: XCTestCase {
             +
             returnAllCardsSteps
         )
+    }
+
+    func testSavingGame() {
+        let expectingSaveGameToBeCalled = expectation(description: "Expect save game to be called")
+        let mockedSaveGame: (GameState) -> Void = { _ in
+            expectingSaveGameToBeCalled.fulfill()
+        }
+        let store = TestStore(
+            initialState: AppState(),
+            reducer: appReducer,
+            environment: .mocked(scheduler: scheduler) {
+                $0.saveGame = mockedSaveGame
+            }
+        )
+        store.assert(
+            .send(.game(.save))
+        )
+        wait(for: [expectingSaveGameToBeCalled], timeout: 0.1)
+    }
+
+    func testLoadGame() {
+        let expectingLoadGameToBeCalled = expectation(description: "Expect load game to be called")
+        let mockedGameState = GameState(
+            moves: 42,
+            symbols: .predictedGameSymbols,
+            discoveredSymbolTypes: [.cave, .popArt],
+            isGameOver: false
+        )
+        let mockedLoadGame: () -> GameState = {
+            expectingLoadGameToBeCalled.fulfill()
+            return mockedGameState
+        }
+        let store = TestStore(
+            initialState: AppState(),
+            reducer: appReducer,
+            environment: .mocked(scheduler: scheduler) {
+                $0.loadGame = mockedLoadGame
+            }
+        )
+        store.assert(
+            .send(.game(.load)) {
+                $0.game = mockedGameState
+            }
+        )
+        wait(for: [expectingLoadGameToBeCalled], timeout: 0.1)
+    }
+
+    func testClearBackup() {
+        let expectingClearGameBackupToBeCalled = expectation(description: "Expect clear game backup to be called")
+        let mockedClearGameBackup: () -> Void = {
+            expectingClearGameBackupToBeCalled.fulfill()
+        }
+        let store = TestStore(
+            initialState: AppState(),
+            reducer: appReducer,
+            environment: .mocked(scheduler: scheduler) {
+                $0.clearGameBackup = mockedClearGameBackup
+            }
+        )
+        store.assert(
+            .send(.game(.clearBackup))
+        )
+        wait(for: [expectingClearGameBackupToBeCalled], timeout: 0.1)
+    }
+}
+
+extension GameEnvironment {
+    static func mocked(
+        scheduler: TestSchedulerOf<DispatchQueue>,
+        modifier: (inout Self) -> Void = { _ in }
+    ) -> Self {
+        var gameEnvironment = GameEnvironment(
+            mainQueue: scheduler.eraseToAnyScheduler(),
+            save: { _ in },
+            load: { GameState() },
+            clearBackup: { }
+        )
+        modifier(&gameEnvironment)
+        return gameEnvironment
     }
 }

@@ -46,7 +46,6 @@ struct MainView: View {
                 content: { NewHighScoreView(store: store) }
             )
             .navigationViewStyle(StackNavigationViewStyle())
-            .onAppear(perform: { viewStore.send(.highScores(.load)) })
         }
     }
 

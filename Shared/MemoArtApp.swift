@@ -1,9 +1,13 @@
 import SwiftUI
 import ComposableArchitecture
-import RenaudJennyAboutView
 
 @main
 struct MemoArtApp: App {
+    #if os(macOS)
+    // swiftlint:disable:next weak_delegate
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    #endif
+
     let store = Store(
         initialState: AppState(
             game: GameState(symbols: .newGameSymbols(from: loadConfiguration().selectedSymbolTypes)),
@@ -12,6 +16,9 @@ struct MemoArtApp: App {
         reducer: appReducer,
         environment: AppEnvironment(
             mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
+            saveGame: saveGame,
+            loadGame: loadGame,
+            clearGameBackup: clearGameBackup,
             loadHighScores: loadHighScores,
             saveHighScores: saveHighScores,
             generateRandomSymbols: { .newGameSymbols(from: $0) },
@@ -23,37 +30,14 @@ struct MemoArtApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView(store: store)
-                .background(EmptyView().sheet(isPresented: $isAboutWindowOpened) {
-                    ZStack {
-                        AboutView(
-                            appId: "id1536330844",
-                            logo: {
-                                Image("Pixel Art")
-                                    .resizable()
-                                    .modifier(AddCardStyle())
-                                    .frame(width: 120, height: 120)
-                            }
-                        )
-                        .buttonStyle(aboutBoutonStyle)
-                        .padding(.bottom, 30)
-                        .background(
-                            Image("Motif")
-                                .resizable(resizingMode: .tile)
-                                .renderingMode(.template)
-                                .opacity(1/16)
-                        )
-                        VStack {
-                            Spacer()
-                            Button {
-                                isAboutWindowOpened = false
-                            } label: {
-                                Text("Done")
-                            }
-                            .padding()
-                        }
-                    }
-                })
+            WithViewStore(store) { viewStore in
+                MainView(store: store)
+                    .background(EmptyView().sheet(isPresented: $isAboutWindowOpened) {
+                        AboutSheetView(isOpen: $isAboutWindowOpened)
+                    })
+                    .onAppear { viewStore.send(.game(.load)) }
+                    .onAppear { viewStore.send(.highScores(.load)) }
+            }
         }
         .commands {
             CommandGroup(replacing: CommandGroupPlacement.newItem) {
@@ -77,13 +61,27 @@ struct MemoArtApp: App {
             }
         }
     }
+}
 
-    private var aboutBoutonStyle: some PrimitiveButtonStyle {
-        #if os(macOS)
-        return LinkButtonStyle()
-        #else
-        return DefaultButtonStyle()
-        #endif
+// MARK: Game Persistence
+extension MemoArtApp {
+    private static let gameKey = "MemoArtGameState"
+
+    private static func saveGame(game: GameState) {
+        UserDefaults.standard.setValue(try? JSONEncoder().encode(game), forKey: gameKey)
+    }
+
+    private static func loadGame() -> GameState {
+        guard
+            let data = UserDefaults.standard.data(forKey: gameKey),
+            let game = try? JSONDecoder().decode(GameState.self, from: data)
+        else { return GameState() }
+
+        return game
+    }
+
+    private static func clearGameBackup() {
+        UserDefaults.standard.removeObject(forKey: gameKey)
     }
 }
 

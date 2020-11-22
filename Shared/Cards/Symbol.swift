@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct Symbol: Identifiable, Equatable {
+struct Symbol: Identifiable, Equatable, Codable {
     let id: Int
     let type: SymbolType
     var isFaceUp: Bool

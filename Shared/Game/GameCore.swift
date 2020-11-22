@@ -1,7 +1,7 @@
 import ComposableArchitecture
 import Combine
 
-struct GameState: Equatable {
+struct GameState: Equatable, Codable {
     var moves = 0
     var symbols: [Symbol] = .newGameSymbols
     var discoveredSymbolTypes: [SymbolType] = []
@@ -12,10 +12,16 @@ enum GameAction: Equatable {
     case new
     case shuffleCards
     case cardReturned(Int)
+    case save
+    case load
+    case clearBackup
 }
 
 struct GameEnvironment {
     var mainQueue: AnySchedulerOf<DispatchQueue>
+    var save: (GameState) -> Void
+    var load: () -> GameState
+    var clearBackup: () -> Void
 }
 
 let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, action, environment in
@@ -37,16 +43,17 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
             .filter { $0.isFaceUp == true }
 
         switch turnedUpSymbols.count {
-        case 1: return .none
+        case 1: return Effect(value: .save)
         case 2:
             state.moves += 1
             if turnedUpSymbols[0].type == turnedUpSymbols[1].type {
                 state.discoveredSymbolTypes.append(turnedUpSymbols[0].type)
             }
-            if state.discoveredSymbolTypes.count >= 10 {
+            guard state.discoveredSymbolTypes.count < 10 else {
                 state.isGameOver = true
+                return Effect(value: .clearBackup)
             }
-            return .none
+            return Effect(value: .save)
         default:
             // turn down all cards (except ones already discovered and the one just returned)
             state.symbols = state.symbols.map { symbol in
@@ -55,7 +62,16 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
                 }
                 return Symbol(id: symbol.id, type: symbol.type, isFaceUp: false)
             }
-            return .none
+            return Effect(value: .save)
         }
+    case .save:
+        environment.save(state)
+        return .none
+    case .load:
+        state = environment.load()
+        return .none
+    case .clearBackup:
+        environment.clearBackup()
+        return .none
     }
 }

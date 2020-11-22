@@ -173,22 +173,6 @@ class HighScoresCoreTests: XCTestCase {
             }
         )
     }
-
-    func testResetHighScores() {
-        let store = TestStore(
-            initialState: HighScoresState(
-                scores: .test
-            ),
-            reducer: highScoresReducer,
-            environment: .test
-        )
-
-        store.assert(
-            .send(.reset) {
-                $0.scores = []
-            }
-        )
-    }
 }
 
 extension Date {

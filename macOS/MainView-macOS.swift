@@ -72,7 +72,6 @@ struct MainView: View {
                     .renderingMode(.template)
                     .opacity(1/10)
             )
-            .onAppear { viewStore.send(.highScores(.load)) }
             .onAppear { NSWindow.allowsAutomaticWindowTabbing = false }
         }
     }

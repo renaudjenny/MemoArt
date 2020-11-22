@@ -18,6 +18,9 @@ enum AppAction: Equatable {
 
 struct AppEnvironment {
     var mainQueue: AnySchedulerOf<DispatchQueue>
+    var saveGame: (GameState) -> Void
+    var loadGame: () -> GameState
+    var clearGameBackup: () -> Void
     var loadHighScores: () -> [HighScore]
     var saveHighScores: ([HighScore]) -> Void
     var generateRandomSymbols: (Set<SymbolType>) -> [Symbol]
@@ -29,7 +32,12 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
     gameReducer.pullback(
         state: \.game,
         action: /AppAction.game,
-        environment: { GameEnvironment(mainQueue: $0.mainQueue) }
+        environment: { GameEnvironment(
+            mainQueue: $0.mainQueue,
+            save: $0.saveGame,
+            load: $0.loadGame,
+            clearBackup: $0.clearGameBackup
+        ) }
     ),
     highScoresReducer.pullback(
         state: \.highScores,
@@ -130,6 +138,9 @@ where
 extension AppEnvironment {
     static let preview: Self = AppEnvironment(
         mainQueue: .preview,
+        saveGame: { _ in },
+        loadGame: { GameState() },
+        clearGameBackup: { },
         loadHighScores: { .preview },
         saveHighScores: { _ in },
         generateRandomSymbols: { _ in .predictedGameSymbols },
