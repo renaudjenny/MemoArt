@@ -28,6 +28,8 @@
 		4C805D0E256A6F4D003D8F25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C805D08256A6EF6003D8F25 /* AppDelegate.swift */; };
 		4C805D14256A82F4003D8F25 /* AboutSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C805D13256A82F4003D8F25 /* AboutSheetView.swift */; };
 		4C805D19256A838B003D8F25 /* AboutSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C805D13256A82F4003D8F25 /* AboutSheetView.swift */; };
+		4C805D23256C4A79003D8F25 /* SetupNewGameAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C805D22256C4A79003D8F25 /* SetupNewGameAlert.swift */; };
+		4C805D28256C4BD0003D8F25 /* SetupNewGameAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C805D22256C4A79003D8F25 /* SetupNewGameAlert.swift */; };
 		4C8484A02555F35900FBDEC2 /* ConfigurationCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84849F2555F35900FBDEC2 /* ConfigurationCore.swift */; };
 		4C8484A52555F45A00FBDEC2 /* ConfigurationCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8484A42555F45A00FBDEC2 /* ConfigurationCoreTests.swift */; };
 		4C8484AB2556DF1C00FBDEC2 /* SymbolTypesSelectionConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8484AA2556DF1C00FBDEC2 /* SymbolTypesSelectionConfigurationView.swift */; };
@@ -102,6 +104,7 @@
 		4C4454CA254CBB2700AA5C87 /* GameCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoreTests.swift; sourceTree = "<group>"; };
 		4C805D08256A6EF6003D8F25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C805D13256A82F4003D8F25 /* AboutSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSheetView.swift; sourceTree = "<group>"; };
+		4C805D22256C4A79003D8F25 /* SetupNewGameAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupNewGameAlert.swift; sourceTree = "<group>"; };
 		4C84849F2555F35900FBDEC2 /* ConfigurationCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationCore.swift; sourceTree = "<group>"; };
 		4C8484A42555F45A00FBDEC2 /* ConfigurationCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationCoreTests.swift; sourceTree = "<group>"; };
 		4C8484AA2556DF1C00FBDEC2 /* SymbolTypesSelectionConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolTypesSelectionConfigurationView.swift; sourceTree = "<group>"; };
@@ -227,6 +230,7 @@
 			children = (
 				4C8DF434253C5B0A00F2DE7C /* GameCore.swift */,
 				4CAC43A5255FD0CE009FFF68 /* GameOverView.swift */,
+				4C805D22256C4A79003D8F25 /* SetupNewGameAlert.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -577,6 +581,7 @@
 				4C217ACA255F392C00A631BB /* HighScoresCore.swift in Sources */,
 				4C217AC2255F392400A631BB /* GameCore.swift in Sources */,
 				4C805D0E256A6F4D003D8F25 /* AppDelegate.swift in Sources */,
+				4C805D28256C4BD0003D8F25 /* SetupNewGameAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +613,7 @@
 				4C8DF43F253C5B9900F2DE7C /* Symbol.swift in Sources */,
 				4CC92F5A2545E5C600DAC4AB /* AddCardStyle.swift in Sources */,
 				4C805D09256A6EF6003D8F25 /* AppDelegate.swift in Sources */,
+				4C805D23256C4A79003D8F25 /* SetupNewGameAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

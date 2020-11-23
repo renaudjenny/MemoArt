@@ -27,6 +27,7 @@ struct MemoArtApp: App {
         )
     )
     @State private var isAboutWindowOpened = false
+    @State private var isNewGameAlertPresented = false
 
     var body: some Scene {
         WindowGroup {
@@ -35,13 +36,29 @@ struct MemoArtApp: App {
                     .background(EmptyView().sheet(isPresented: $isAboutWindowOpened) {
                         AboutSheetView(isOpen: $isAboutWindowOpened)
                     })
+                    .modifier(SetupNewGameAlert(
+                        store: store.gameStore,
+                        isPresented: $isNewGameAlertPresented
+                    ))
                     .onAppear { viewStore.send(.game(.load)) }
                     .onAppear { viewStore.send(.highScores(.load)) }
             }
         }
         .commands {
             CommandGroup(replacing: CommandGroupPlacement.newItem) {
-                EmptyView()
+                WithViewStore(store) { viewStore in
+                    Button {
+                        guard viewStore.game.moves > 0 else {
+                            viewStore.send(.game(.new))
+                            return
+                        }
+                        isNewGameAlertPresented = true
+                    } label: {
+                        Text("New Game")
+                    }
+                    .disabled(viewStore.game.moves <= 0 && !viewStore.game.hasCardsFacedUp)
+                }
+                .keyboardShortcut("n", modifiers: .command)
             }
             CommandGroup(replacing: CommandGroupPlacement.pasteboard) {
                 EmptyView()

@@ -7,6 +7,7 @@ struct MainView: View {
     let store: Store<AppState, AppAction>
     @State private var isConfigurationPresented = false
     @State private var isHighScoresPresented = false
+    @State private var isNewGameAlertPresented = false
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -27,6 +28,19 @@ struct MainView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .toolbar {
+                ToolbarItem {
+                    Button {
+                        guard viewStore.game.moves > 0 else {
+                            viewStore.send(.game(.new))
+                            return
+                        }
+                        isNewGameAlertPresented = true
+                    } label: {
+                        Image(systemName: "arrow.triangle.2.circlepath")
+                    }
+                    .accessibility(label: Text("New Game"))
+                    .disabled(viewStore.game.moves <= 0 && !viewStore.game.hasCardsFacedUp)
+                }
                 ToolbarItem {
                     Button {
                         isConfigurationPresented = true
@@ -66,6 +80,7 @@ struct MainView: View {
                         .padding()
                 }
             ))
+            .modifier(SetupNewGameAlert(store: store.gameStore, isPresented: $isNewGameAlertPresented))
             .background(
                 Image("Motif")
                     .resizable(resizingMode: .tile)

@@ -6,6 +6,8 @@ struct GameState: Equatable, Codable {
     var symbols: [Symbol] = .newGameSymbols
     var discoveredSymbolTypes: [SymbolType] = []
     var isGameOver = false
+
+    var hasCardsFacedUp: Bool { symbols.filter { $0.isFaceUp }.count > 0 }
 }
 
 enum GameAction: Equatable {
