@@ -8,6 +8,7 @@ struct GameState: Equatable, Codable {
     var isGameOver = false
 
     var hasCardsFacedUp: Bool { symbols.filter { $0.isFaceUp }.count > 0 }
+    var isGameInProgress: Bool { moves > 0 || hasCardsFacedUp }
 }
 
 enum GameAction: Equatable {

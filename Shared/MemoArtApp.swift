@@ -56,7 +56,7 @@ struct MemoArtApp: App {
                     } label: {
                         Text("New Game")
                     }
-                    .disabled(viewStore.game.moves <= 0 && !viewStore.game.hasCardsFacedUp)
+                    .disabled(!viewStore.game.isGameInProgress)
                 }
                 .keyboardShortcut("n", modifiers: .command)
             }
