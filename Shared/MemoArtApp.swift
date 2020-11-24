@@ -10,7 +10,7 @@ struct MemoArtApp: App {
 
     let store = Store(
         initialState: AppState(
-            game: GameState(symbols: .newGameSymbols(from: loadConfiguration().selectedSymbolTypes)),
+            game: GameState(cards: .newGame(from: loadConfiguration().selectedArts)),
             configuration: loadConfiguration()
         ),
         reducer: appReducer,
@@ -21,7 +21,7 @@ struct MemoArtApp: App {
             clearGameBackup: clearGameBackup,
             loadHighScores: loadHighScores,
             saveHighScores: saveHighScores,
-            generateRandomSymbols: { .newGameSymbols(from: $0) },
+            generateRandomCards: { .newGame(from: $0) },
             saveConfiguration: saveConfiguration,
             loadConfiguration: loadConfiguration
         )

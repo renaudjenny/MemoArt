@@ -3,11 +3,11 @@ import Combine
 
 struct GameState: Equatable, Codable {
     var moves = 0
-    var symbols: [Symbol] = .newGameSymbols
-    var discoveredSymbolTypes: [SymbolType] = []
+    var cards: [Card] = .newGame
+    var discoveredArts: [Art] = []
     var isGameOver = false
 
-    var hasCardsFacedUp: Bool { symbols.filter { $0.isFaceUp }.count > 0 }
+    var hasCardsFacedUp: Bool { cards.filter { $0.isFaceUp }.count > 0 }
     var isGameInProgress: Bool { moves > 0 || hasCardsFacedUp }
 }
 
@@ -30,9 +30,9 @@ struct GameEnvironment {
 let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, action, environment in
     switch action {
     case .new:
-        state.symbols = state.symbols.map { Symbol(id: $0.id, type: $0.type, isFaceUp: false) }
+        state.cards = state.cards.map { Card(id: $0.id, art: $0.art, isFaceUp: false) }
         state.moves = 0
-        state.discoveredSymbolTypes = []
+        state.discoveredArts = []
         state.isGameOver = false
         return Effect(value: .shuffleCards)
             .delay(for: .seconds(0.5), scheduler: environment.mainQueue)
@@ -40,30 +40,30 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
     case .shuffleCards:
         return .none
     case let .cardReturned(cardId):
-        state.symbols[cardId].isFaceUp = true
-        let turnedUpSymbols = state.symbols
-            .filter { !state.discoveredSymbolTypes.contains($0.type) }
+        state.cards[cardId].isFaceUp = true
+        let facedUpCards = state.cards
+            .filter { !state.discoveredArts.contains($0.art) }
             .filter { $0.isFaceUp == true }
 
-        switch turnedUpSymbols.count {
+        switch facedUpCards.count {
         case 1: return Effect(value: .save)
         case 2:
             state.moves += 1
-            if turnedUpSymbols[0].type == turnedUpSymbols[1].type {
-                state.discoveredSymbolTypes.append(turnedUpSymbols[0].type)
+            if facedUpCards[0].art == facedUpCards[1].art {
+                state.discoveredArts.append(facedUpCards[0].art)
             }
-            guard state.discoveredSymbolTypes.count < 10 else {
+            guard state.discoveredArts.count < 10 else {
                 state.isGameOver = true
                 return Effect(value: .clearBackup)
             }
             return Effect(value: .save)
         default:
             // turn down all cards (except ones already discovered and the one just returned)
-            state.symbols = state.symbols.map { symbol in
-                if symbol.id == cardId || state.discoveredSymbolTypes.contains(symbol.type) {
-                    return Symbol(id: symbol.id, type: symbol.type, isFaceUp: true)
+            state.cards = state.cards.map { card in
+                if card.id == cardId || state.discoveredArts.contains(card.art) {
+                    return Card(id: card.id, art: card.art, isFaceUp: true)
                 }
-                return Symbol(id: symbol.id, type: symbol.type, isFaceUp: false)
+                return Card(id: card.id, art: card.art, isFaceUp: false)
             }
             return Effect(value: .save)
         }

@@ -110,9 +110,9 @@ struct MainViewGameOver_Previews: PreviewProvider {
         MainView(store: Store<AppState, AppAction>(
             initialState: .mocked {
                 $0.game.isGameOver = true
-                $0.game.discoveredSymbolTypes = SymbolType.allCases
+                $0.game.discoveredArts = Art.allCases
                 $0.game.moves = 42
-                $0.game.symbols = .predictedGameSymbols(isCardsFaceUp: true)
+                $0.game.cards = .predicted(isFaceUp: true)
             },
             reducer: appReducer,
             environment: .preview

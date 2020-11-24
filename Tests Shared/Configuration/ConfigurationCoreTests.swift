@@ -5,7 +5,7 @@ import ComposableArchitecture
 class ConfigurationCoreTests: XCTestCase {
     let scheduler = DispatchQueue.testScheduler
 
-    func testUnselectSymbolType() {
+    func testUnselectArt() {
         let store = TestStore(
             initialState: ConfigurationState(),
             reducer: configurationReducer,
@@ -16,17 +16,17 @@ class ConfigurationCoreTests: XCTestCase {
             )
         )
         store.assert(
-            .send(.unselectSymbolType(.cave)) {
-                $0.selectedSymbolTypes = Set(SymbolType.allCases.filter({ $0 != .cave }))
+            .send(.unselectArt(.cave)) {
+                $0.selectedArts = Set(Art.allCases.filter({ $0 != .cave }))
             },
             .do { self.scheduler.advance(by: .seconds(2)) },
             .receive(.save)
         )
     }
 
-    func testSelectSymbolType() {
+    func testSelectArt() {
         let store = TestStore(
-            initialState: .allSymbolsButCave,
+            initialState: .allArtsButCave,
             reducer: configurationReducer,
             environment: ConfigurationEnvironment(
                 mainQueue: scheduler.eraseToAnyScheduler(),
@@ -35,17 +35,17 @@ class ConfigurationCoreTests: XCTestCase {
             )
         )
         store.assert(
-            .send(.selectSymbolType(.cave)) {
-                $0.selectedSymbolTypes = Set(SymbolType.allCases)
+            .send(.selectArt(.cave)) {
+                $0.selectedArts = Set(Art.allCases)
             },
             .do { self.scheduler.advance(by: .seconds(2)) },
             .receive(.save)
         )
     }
 
-    func testUnselectSymbolTypeWhenThereIsOnlyTenRemainingSelectedSymbolTypes() {
+    func testUnselectArtWhenThereIsOnlyTenRemainingSelectedArts() {
         let store = TestStore(
-            initialState: .onlyTenSelectedSymbolTypes,
+            initialState: .onlyTenSelectedArts,
             reducer: configurationReducer,
             environment: ConfigurationEnvironment(
                 mainQueue: scheduler.eraseToAnyScheduler(),
@@ -54,22 +54,22 @@ class ConfigurationCoreTests: XCTestCase {
             )
         )
         store.assert(
-            .send(.unselectSymbolType(.cave))
+            .send(.unselectArt(.cave))
         )
         // Do not receive .save here, it's not necessary
     }
 }
 
 extension ConfigurationState {
-    static var allSymbolsButCave: Self {
+    static var allArtsButCave: Self {
         ConfigurationState(
-            selectedSymbolTypes: Set(SymbolType.allCases.filter({ $0 != .cave }))
+            selectedArts: Set(Art.allCases.filter({ $0 != .cave }))
         )
     }
 
-    static var onlyTenSelectedSymbolTypes: Self {
+    static var onlyTenSelectedArts: Self {
         ConfigurationState(
-            selectedSymbolTypes: Set(SymbolType.allCases.prefix(10))
+            selectedArts: Set(Art.allCases.prefix(10))
         )
     }
 }

@@ -1,12 +1,12 @@
 import SwiftUI
 
-struct Symbol: Identifiable, Equatable, Codable {
+struct Card: Identifiable, Equatable, Codable {
     let id: Int
-    let type: SymbolType
+    let art: Art
     var isFaceUp: Bool
 }
 
-enum SymbolType: String, CaseIterable, Codable {
+enum Art: String, CaseIterable, Codable {
     case artDeco
     case arty
     case cave
@@ -70,32 +70,32 @@ enum SymbolType: String, CaseIterable, Codable {
     }
 }
 
-extension Array where Element == Symbol {
-    static func newGameSymbols(from symbolTypes: Set<SymbolType>) -> Self {
-        let selectedSymbols = symbolTypes.shuffled().prefix(10)
-        let symbolTypes = selectedSymbols + selectedSymbols
-        return symbolTypes.shuffled().enumerated().map {
-            Symbol(id: $0, type: $1, isFaceUp: false)
+extension Array where Element == Card {
+    static func newGame(from arts: Set<Art>) -> Self {
+        let selectedArts = arts.shuffled().prefix(10)
+        let arts = selectedArts + selectedArts
+        return arts.shuffled().enumerated().map {
+            Card(id: $0, art: $1, isFaceUp: false)
         }
     }
 
-    static var newGameSymbols: Self {
-        newGameSymbols(from: Set(SymbolType.allCases))
+    static var newGame: Self {
+        newGame(from: Set(Art.allCases))
     }
 
     #if DEBUG
-    static var predictedGameSymbols: Self {
-        predictedGameSymbols()
+    static var predicted: Self {
+        predicted()
     }
 
-    static func predictedGameSymbols(
-        from symbolTypes: [SymbolType] = SymbolType.allCases,
-        isCardsFaceUp: Bool = false
+    static func predicted(
+        from arts: [Art] = Art.allCases,
+        isFaceUp: Bool = false
     ) -> Self {
-        let selectedSymbols = symbolTypes.prefix(10)
-        let symbolTypes = selectedSymbols + selectedSymbols
-        return symbolTypes.enumerated().map {
-            Symbol(id: $0, type: $1, isFaceUp: isCardsFaceUp)
+        let selectedArts = arts.prefix(10)
+        let cards = selectedArts + selectedArts
+        return cards.enumerated().map {
+            Card(id: $0, art: $1, isFaceUp: isFaceUp)
         }
     }
     #endif

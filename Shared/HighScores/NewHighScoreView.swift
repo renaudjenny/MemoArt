@@ -39,8 +39,8 @@ struct NewHighScoreView_Previews: PreviewProvider {
             initialState: AppState(
                 game: GameState(
                     moves: 42,
-                    symbols: [],
-                    discoveredSymbolTypes: [],
+                    cards: [],
+                    discoveredArts: [],
                     isGameOver: true
                 ),
                 highScores: HighScoresState(scores: .preview),

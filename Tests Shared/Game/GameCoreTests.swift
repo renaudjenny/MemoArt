@@ -8,20 +8,20 @@ class GameCoreTests: XCTestCase {
 
     func testNewGame() {
         let store = TestStore(
-            initialState: GameState(symbols: .predictedGameSymbols),
+            initialState: GameState(cards: .predicted),
             reducer: gameReducer,
             environment: .mocked(scheduler: scheduler)
         )
         store.assert(
             .send(.new) {
                 $0.isGameOver = false
-                $0.discoveredSymbolTypes = []
+                $0.discoveredArts = []
                 $0.moves = 0
-                $0.symbols = $0.symbols.map { Symbol(id: $0.id, type: $0.type, isFaceUp: false) }
+                $0.cards = $0.cards.map { Card(id: $0.id, art: $0.art, isFaceUp: false) }
             },
             .do { self.scheduler.advance(by: .seconds(0.5)) },
             .receive(.shuffleCards) {
-                $0.symbols = .predictedGameSymbols
+                $0.cards = .predicted
             }
         )
     }
@@ -29,19 +29,19 @@ class GameCoreTests: XCTestCase {
     // swiftlint:disable:next cyclomatic_complexity
     func testReturningCards() {
         let store = TestStore(
-            initialState: GameState(symbols: .predictedGameSymbols),
+            initialState: GameState(cards: .predicted),
             reducer: gameReducer,
             environment: .mocked(scheduler: scheduler)
         )
 
         store.assert(
             .send(.shuffleCards) {
-                $0.symbols = .predictedGameSymbols
+                $0.cards = .predicted
             },
             .send(.cardReturned(0)) {
-                $0.symbols = $0.symbols.map {
+                $0.cards = $0.cards.map {
                     switch $0.id {
-                    case 0: return Symbol(id: 0, type: .artDeco, isFaceUp: true)
+                    case 0: return Card(id: 0, art: .artDeco, isFaceUp: true)
                     default: return $0
                     }
                 }
@@ -49,10 +49,10 @@ class GameCoreTests: XCTestCase {
             },
             .receive(.save),
             .send(.cardReturned(1)) {
-                $0.symbols = $0.symbols.map {
+                $0.cards = $0.cards.map {
                     switch $0.id {
-                    case 0: return Symbol(id: $0.id, type: $0.type, isFaceUp: true)
-                    case 1: return Symbol(id: 1, type: .arty, isFaceUp: true)
+                    case 0: return Card(id: $0.id, art: $0.art, isFaceUp: true)
+                    case 1: return Card(id: 1, art: .arty, isFaceUp: true)
                     default: return $0
                     }
                 }
@@ -60,10 +60,10 @@ class GameCoreTests: XCTestCase {
             },
             .receive(.save),
             .send(.cardReturned(2)) {
-                $0.symbols = $0.symbols.map {
+                $0.cards = $0.cards.map {
                     switch $0.id {
-                    case 0, 1: return Symbol(id: $0.id, type: $0.type, isFaceUp: false)
-                    case 2: return Symbol(id: 2, type: .cave, isFaceUp: true)
+                    case 0, 1: return Card(id: $0.id, art: $0.art, isFaceUp: false)
+                    case 2: return Card(id: 2, art: .cave, isFaceUp: true)
                     default: return $0
                     }
                 }
@@ -71,15 +71,15 @@ class GameCoreTests: XCTestCase {
             },
             .receive(.save),
             .send(.cardReturned(12)) {
-                $0.symbols = $0.symbols.map {
+                $0.cards = $0.cards.map {
                     switch $0.id {
-                    case 2: return Symbol(id: 2, type: .cave, isFaceUp: true)
-                    case 12: return Symbol(id: 12, type: .cave, isFaceUp: true)
+                    case 2: return Card(id: 2, art: .cave, isFaceUp: true)
+                    case 12: return Card(id: 12, art: .cave, isFaceUp: true)
                     default: return $0
                     }
                 }
                 $0.moves = 2
-                $0.discoveredSymbolTypes = [.cave]
+                $0.discoveredArts = [.cave]
             },
             .receive(.save)
         )
@@ -87,7 +87,7 @@ class GameCoreTests: XCTestCase {
 
     func testFinishingAGame() {
         let store = TestStore(
-            initialState: GameState(symbols: .predictedGameSymbols),
+            initialState: GameState(cards: .predicted),
             reducer: gameReducer,
             environment: .mocked(scheduler: scheduler)
         )
@@ -95,28 +95,28 @@ class GameCoreTests: XCTestCase {
         let returnAllCardsSteps: [Step] = (0..<10).flatMap { cardId in
             [
                 .send(.cardReturned(cardId)) {
-                    $0.symbols = $0.symbols.map { symbol in
-                        switch symbol.id {
-                        case cardId: return Symbol(id: cardId, type: symbol.type, isFaceUp: true)
-                        case 0..<cardId: return Symbol(id: symbol.id, type: symbol.type, isFaceUp: true)
-                        case 10..<(cardId + 10): return Symbol(id: symbol.id, type: symbol.type, isFaceUp: true)
-                        default: return Symbol(id: symbol.id, type: symbol.type, isFaceUp: false)
+                    $0.cards = $0.cards.map { card in
+                        switch card.id {
+                        case cardId: return Card(id: cardId, art: card.art, isFaceUp: true)
+                        case 0..<cardId: return Card(id: card.id, art: card.art, isFaceUp: true)
+                        case 10..<(cardId + 10): return Card(id: card.id, art: card.art, isFaceUp: true)
+                        default: return Card(id: card.id, art: card.art, isFaceUp: false)
                         }
                     }
                 },
                 .receive(.save),
                 .send(.cardReturned(cardId + 10)) {
-                    $0.symbols = $0.symbols.map { symbol in
-                        switch symbol.id {
-                        case cardId: return Symbol(id: cardId, type: symbol.type, isFaceUp: true)
-                        case cardId + 10: return Symbol(id: cardId + 10, type: symbol.type, isFaceUp: true)
-                        case 0..<cardId: return Symbol(id: symbol.id, type: symbol.type, isFaceUp: true)
-                        case 10..<(cardId + 10): return Symbol(id: symbol.id, type: symbol.type, isFaceUp: true)
-                        default: return Symbol(id: symbol.id, type: symbol.type, isFaceUp: false)
+                    $0.cards = $0.cards.map { card in
+                        switch card.id {
+                        case cardId: return Card(id: cardId, art: card.art, isFaceUp: true)
+                        case cardId + 10: return Card(id: cardId + 10, art: card.art, isFaceUp: true)
+                        case 0..<cardId: return Card(id: card.id, art: card.art, isFaceUp: true)
+                        case 10..<(cardId + 10): return Card(id: card.id, art: card.art, isFaceUp: true)
+                        default: return Card(id: card.id, art: card.art, isFaceUp: false)
                         }
                     }
                     let numberOfCardReturned = (cardId + 1) * 2
-                    $0.discoveredSymbolTypes = SymbolType.allCases.prefix(numberOfCardReturned/2)
+                    $0.discoveredArts = Art.allCases.prefix(numberOfCardReturned/2)
                     $0.moves = numberOfCardReturned/2
                     if numberOfCardReturned == 20 {
                         $0.isGameOver = true
@@ -129,7 +129,7 @@ class GameCoreTests: XCTestCase {
         store.assert(
             [
                 .send(.shuffleCards) {
-                    $0.symbols = .predictedGameSymbols
+                    $0.cards = .predicted
                 },
             ]
             +
@@ -159,8 +159,8 @@ class GameCoreTests: XCTestCase {
         let expectingLoadGameToBeCalled = expectation(description: "Expect load game to be called")
         let mockedGameState = GameState(
             moves: 42,
-            symbols: .predictedGameSymbols,
-            discoveredSymbolTypes: [.cave, .popArt],
+            cards: .predicted,
+            discoveredArts: [.cave, .popArt],
             isGameOver: false
         )
         let mockedLoadGame: () -> GameState = {

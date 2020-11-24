@@ -9,7 +9,7 @@ struct CardView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             ZStack {
-                if !viewStore.symbols[id].isFaceUp {
+                if !viewStore.cards[id].isFaceUp {
                     Button {
                         returnCard(store: viewStore)
                     } label: {
@@ -23,7 +23,7 @@ struct CardView: View {
             }
             .modifier(AddCardStyle())
             .rotation3DEffect(
-                viewStore.symbols[id].isFaceUp
+                viewStore.cards[id].isFaceUp
                     ? .radians(.pi)
                     : .zero,
                 axis: (x: 0.0, y: 1.0, z: 0.0),
@@ -36,7 +36,7 @@ struct CardView: View {
 
     private var image: some View {
         WithViewStore(store) { viewStore in
-            viewStore.symbols[id].type.image
+            viewStore.cards[id].art.image
                 .renderingMode(.original)
                 .resizable()
                 .font(.largeTitle)

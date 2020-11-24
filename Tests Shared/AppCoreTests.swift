@@ -2,14 +2,13 @@ import XCTest
 @testable import MemoArt
 import ComposableArchitecture
 
-// swiftlint:disable:next type_body_length
 class AppCoreTests: XCTestCase {
     let scheduler = DispatchQueue.testScheduler
 
     func testDoNotPresentNewHighScoreWhenTheGameIsNotFinished() throws {
         let store = TestStore(
             initialState: AppState.mocked {
-                $0.game.symbols = .predictedGameSymbols
+                $0.game.cards = .predicted
             },
             reducer: appReducer,
             environment: .mocked(scheduler: scheduler)
@@ -17,10 +16,10 @@ class AppCoreTests: XCTestCase {
 
         store.assert(
             .send(.game(.cardReturned(0))) {
-                $0.game.symbols = $0.game.symbols.map { symbol in
-                    switch symbol.id {
-                    case 0: return Symbol(id: 0, type: .artDeco, isFaceUp: true)
-                    default: return symbol
+                $0.game.cards = $0.game.cards.map { card in
+                    switch card.id {
+                    case 0: return Card(id: 0, art: .artDeco, isFaceUp: true)
+                    default: return card
                     }
                 }
             },
@@ -37,24 +36,24 @@ class AppCoreTests: XCTestCase {
 
         store.assert(
             .send(.game(.cardReturned(2))) {
-                $0.game.symbols = $0.game.symbols.map { symbol in
-                    switch symbol.id {
-                    case 2: return Symbol(id: 2, type: .cave, isFaceUp: true)
-                    default: return symbol
+                $0.game.cards = $0.game.cards.map { card in
+                    switch card.id {
+                    case 2: return Card(id: 2, art: .cave, isFaceUp: true)
+                    default: return card
                     }
                 }
             },
             .receive(.game(.save)),
             .send(.game(.cardReturned(12))) {
-                $0.game.symbols = $0.game.symbols.map { symbol in
-                    switch symbol.id {
-                    case 12: return Symbol(id: 12, type: .cave, isFaceUp: true)
-                    default: return symbol
+                $0.game.cards = $0.game.cards.map { card in
+                    switch card.id {
+                    case 12: return Card(id: 12, art: .cave, isFaceUp: true)
+                    default: return card
                     }
                 }
                 $0.game.isGameOver = true
                 $0.game.moves = 143
-                $0.game.discoveredSymbolTypes = $0.game.discoveredSymbolTypes + [.cave]
+                $0.game.discoveredArts = $0.game.discoveredArts + [.cave]
             },
             .receive(.game(.clearBackup)),
             .do { self.scheduler.advance(by: .seconds(0.8)) },
@@ -77,24 +76,24 @@ class AppCoreTests: XCTestCase {
 
         store.assert(
             .send(.game(.cardReturned(2))) {
-                $0.game.symbols = $0.game.symbols.map { symbol in
-                    switch symbol.id {
-                    case 2: return Symbol(id: 2, type: .cave, isFaceUp: true)
-                    default: return symbol
+                $0.game.cards = $0.game.cards.map { card in
+                    switch card.id {
+                    case 2: return Card(id: 2, art: .cave, isFaceUp: true)
+                    default: return card
                     }
                 }
             },
             .receive(.game(.save)),
             .send(.game(.cardReturned(12))) {
-                $0.game.symbols = $0.game.symbols.map { symbol in
-                    switch symbol.id {
-                    case 12: return Symbol(id: 12, type: .cave, isFaceUp: true)
-                    default: return symbol
+                $0.game.cards = $0.game.cards.map { card in
+                    switch card.id {
+                    case 12: return Card(id: 12, art: .cave, isFaceUp: true)
+                    default: return card
                     }
                 }
                 $0.game.isGameOver = true
                 $0.game.moves = 11
-                $0.game.discoveredSymbolTypes = $0.game.discoveredSymbolTypes + [.cave]
+                $0.game.discoveredArts = $0.game.discoveredArts + [.cave]
             },
             .receive(.game(.clearBackup)),
             .do { self.scheduler.advance(by: .seconds(0.8)) },
@@ -116,24 +115,24 @@ class AppCoreTests: XCTestCase {
 
         store.assert(
             .send(.game(.cardReturned(2))) {
-                $0.game.symbols = $0.game.symbols.map { symbol in
-                    switch symbol.id {
-                    case 2: return Symbol(id: 2, type: .cave, isFaceUp: true)
-                    default: return symbol
+                $0.game.cards = $0.game.cards.map { card in
+                    switch card.id {
+                    case 2: return Card(id: 2, art: .cave, isFaceUp: true)
+                    default: return card
                     }
                 }
             },
             .receive(.game(.save)),
             .send(.game(.cardReturned(12))) {
-                $0.game.symbols = $0.game.symbols.map { symbol in
-                    switch symbol.id {
-                    case 12: return Symbol(id: 12, type: .cave, isFaceUp: true)
-                    default: return symbol
+                $0.game.cards = $0.game.cards.map { card in
+                    switch card.id {
+                    case 12: return Card(id: 12, art: .cave, isFaceUp: true)
+                    default: return card
                     }
                 }
                 $0.game.isGameOver = true
                 $0.game.moves = 143
-                $0.game.discoveredSymbolTypes = $0.game.discoveredSymbolTypes + [.cave]
+                $0.game.discoveredArts = $0.game.discoveredArts + [.cave]
             },
             .receive(.game(.clearBackup))
         )
@@ -155,8 +154,8 @@ class AppCoreTests: XCTestCase {
         )
     }
 
-    func testShuffleCardWithRestrictedSymbolTypes() {
-        let selectedSymbolTypes: [SymbolType] = [
+    func testShuffleCardWithRestrictedArts() {
+        let selectedArts: [Art] = [
             .artDeco, .cave, .arty, .chalk, .childish,
             .destructured, .geometric, .gradient, .impressionism, .moderArt,
         ]
@@ -165,71 +164,71 @@ class AppCoreTests: XCTestCase {
             initialState: AppState(),
             reducer: appReducer,
             environment: .mocked(scheduler: scheduler) {
-                $0.generateRandomSymbols = { _ in .predictedGameSymbols(from: selectedSymbolTypes) }
+                $0.generateRandomCards = { _ in .predicted(from: selectedArts) }
             }
         )
         store.assert(
             .send(.game(.shuffleCards)) {
-                $0.game.symbols = .predictedGameSymbols(from: selectedSymbolTypes)
+                $0.game.cards = .predicted(from: selectedArts)
             }
         )
     }
 
     // swiftlint:disable:next function_body_length
-    func testConfiguringSymbolTypesWillReshuffleCardWhenGameHasNotStartedYet() {
+    func testConfiguringArtsWillReshuffleCardWhenGameHasNotStartedYet() {
         let store = TestStore(
             initialState: AppState(),
             reducer: appReducer,
             environment: .mocked(scheduler: scheduler)
         )
         store.assert(
-            .send(.configuration(.unselectSymbolType(.cave))) {
-                $0.configuration.selectedSymbolTypes = Set(SymbolType.allCases.filter({ $0 != .cave }))
+            .send(.configuration(.unselectArt(.cave))) {
+                $0.configuration.selectedArts = Set(Art.allCases.filter({ $0 != .cave }))
             },
             .receive(.game(.new)),
             .do { self.scheduler.advance(by: .seconds(0.5)) },
             .receive(.game(.shuffleCards)) {
-                $0.game.symbols = .predictedGameSymbols
+                $0.game.cards = .predicted
             },
             .do { self.scheduler.advance(by: .seconds(1.5)) },
             .receive(.configuration(.save)),
-            .send(.configuration(.selectSymbolType(.cave))) {
-                $0.configuration.selectedSymbolTypes = Set(SymbolType.allCases)
+            .send(.configuration(.selectArt(.cave))) {
+                $0.configuration.selectedArts = Set(Art.allCases)
             },
             .receive(.game(.new)),
             .do { self.scheduler.advance(by: .seconds(0.5)) },
             .receive(.game(.shuffleCards)) {
-                $0.game.symbols = .predictedGameSymbols
+                $0.game.cards = .predicted
             },
             .do { self.scheduler.advance(by: .seconds(1.5)) },
             .receive(.configuration(.save)),
             .send(.game(.cardReturned(0))) {
-                $0.game.symbols = $0.game.symbols.map { $0.id == 0 ? Symbol(id: 0, type: $0.type, isFaceUp: true) : $0 }
+                $0.game.cards = $0.game.cards.map { $0.id == 0 ? Card(id: 0, art: $0.art, isFaceUp: true) : $0 }
             },
             .receive(.game(.save)),
-            .send(.configuration(.unselectSymbolType(.cave))) {
-                $0.configuration.selectedSymbolTypes = Set(SymbolType.allCases.filter({ $0 != .cave }))
+            .send(.configuration(.unselectArt(.cave))) {
+                $0.configuration.selectedArts = Set(Art.allCases.filter({ $0 != .cave }))
             },
             .receive(.game(.new)) {
-                $0.game.symbols = $0.game.symbols.map { Symbol(id: $0.id, type: $0.type, isFaceUp: false) }
+                $0.game.cards = $0.game.cards.map { Card(id: $0.id, art: $0.art, isFaceUp: false) }
             },
             .do { self.scheduler.advance(by: .seconds(0.5)) },
             .receive(.game(.shuffleCards)) {
-                $0.game.symbols = .predictedGameSymbols
+                $0.game.cards = .predicted
             },
             .do { self.scheduler.advance(by: .seconds(1.5)) },
             .receive(.configuration(.save)),
             .send(.game(.cardReturned(0))) {
-                $0.game.symbols = $0.game.symbols.map { $0.id == 0 ? Symbol(id: 0, type: $0.type, isFaceUp: true) : $0 }
+                $0.game.cards = $0.game.cards.map { $0.id == 0 ? Card(id: 0, art: $0.art, isFaceUp: true) : $0 }
             },
             .receive(.game(.save)),
             .send(.game(.cardReturned(1))) {
-                $0.game.symbols = $0.game.symbols.map { $0.id == 1 ? Symbol(id: 1, type: $0.type, isFaceUp: true) : $0 }
+                $0.game.cards = $0.game.cards.map { $0.id == 1 ? Card(id: 1, art: $0.art, isFaceUp: true) : $0 }
                 $0.game.moves = 1
             },
             .receive(.game(.save)),
-            .send(.configuration(.selectSymbolType(.cave))) {
-                $0.configuration.selectedSymbolTypes = Set(SymbolType.allCases)
+            .send(.configuration(.selectArt(.cave))) {
+                $0.configuration.selectedArts = Set(Art.allCases)
             },
             // As game has started, we shouldn't receive a .game(.new) action anymore
             .do { self.scheduler.advance(by: .seconds(2)) },
@@ -271,7 +270,7 @@ class AppCoreTests: XCTestCase {
         store.assert(
             .send(.configuration(.load)),
             .receive(.game(.shuffleCards)) {
-                $0.game.symbols = .predictedGameSymbols
+                $0.game.cards = .predicted
             }
         )
         wait(for: [expectingLoadConfigurationToBeCalled], timeout: 0.1)
@@ -290,7 +289,7 @@ extension AppEnvironment {
             clearGameBackup: { },
             loadHighScores: { [] },
             saveHighScores: { _ in },
-            generateRandomSymbols: { _ in .predictedGameSymbols },
+            generateRandomCards: { _ in .predicted },
             saveConfiguration: { _ in },
             loadConfiguration: { ConfigurationState() }
         )

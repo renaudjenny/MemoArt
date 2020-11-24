@@ -14,10 +14,10 @@ struct SymbolTypesSelectionConfigurationView: View {
                     .padding()
 
                 VStack {
-                    Text("\(viewStore.selectedSymbolTypes.count)")
+                    Text("\(viewStore.selectedArts.count)")
                         .bold()
                         .foregroundColor(
-                            viewStore.selectedSymbolTypes.count > 10
+                            viewStore.selectedArts.count > 10
                                 ? .green
                                 : .orange
                         )
@@ -26,7 +26,7 @@ struct SymbolTypesSelectionConfigurationView: View {
                 .animation(nil)
 
                 VStack {
-                    if viewStore.selectedSymbolTypes.count <= 10 {
+                    if viewStore.selectedArts.count <= 10 {
                         Text("Attention! You have to use 10 cards or more to play.")
                             .font(.callout)
                             .padding()
@@ -40,20 +40,19 @@ struct SymbolTypesSelectionConfigurationView: View {
                 .animation(.spring())
 
                 LazyVGrid(columns: columns) {
-                    ForEach(SymbolType.allCases, id: \.self) { symbolType in
+                    ForEach(Art.allCases, id: \.self) { art in
                         Button {
                             viewStore.send(
-                                viewStore.selectedSymbolTypes.contains(symbolType)
-                                    ? .unselectSymbolType(symbolType)
-                                    : .selectSymbolType(symbolType)
+                                viewStore.selectedArts.contains(art)
+                                    ? .unselectArt(art)
+                                    : .selectArt(art)
                             )
                         } label: {
-                            symbolType.image
+                            art.image
                                 .resizable()
                                 .modifier(AddCardStyle(foregroundColor: .black))
                                 .modifier(SelectionCardStyle(
-                                    symbolType: symbolType,
-                                    isSelected: viewStore.selectedSymbolTypes.contains(symbolType)
+                                    isSelected: viewStore.selectedArts.contains(art)
                                 ))
                         }
                         .buttonStyle(PlainButtonStyle())
@@ -67,7 +66,6 @@ struct SymbolTypesSelectionConfigurationView: View {
 }
 
 private struct SelectionCardStyle: ViewModifier {
-    let symbolType: SymbolType
     let isSelected: Bool
 
     func body(content: Content) -> some View {
@@ -97,7 +95,7 @@ struct SymbolTypesSelectionConfigurationView_Previews: PreviewProvider {
 struct SymbolTypesSelectionConfigurationView2_Previews: PreviewProvider {
     static var previews: some View {
         SymbolTypesSelectionConfigurationView(store: Store(
-            initialState: ConfigurationState(selectedSymbolTypes: .countLimit),
+            initialState: ConfigurationState(selectedArts: .countLimit),
             reducer: configurationReducer,
             environment: ConfigurationEnvironment(
                 mainQueue: .preview,
@@ -108,9 +106,9 @@ struct SymbolTypesSelectionConfigurationView2_Previews: PreviewProvider {
     }
 }
 
-extension Set where Element == SymbolType {
+extension Set where Element == Art {
     static var countLimit: Self {
-        Set(SymbolType.allCases.prefix(10))
+        Set(Art.allCases.prefix(10))
     }
 }
 #endif

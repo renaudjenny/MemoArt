@@ -1,12 +1,12 @@
 import ComposableArchitecture
 
 struct ConfigurationState: Equatable, Codable {
-    var selectedSymbolTypes: Set<SymbolType> = Set(SymbolType.allCases)
+    var selectedArts: Set<Art> = Set(Art.allCases)
 }
 
 enum ConfigurationAction: Equatable {
-    case unselectSymbolType(SymbolType)
-    case selectSymbolType(SymbolType)
+    case unselectArt(Art)
+    case selectArt(Art)
     case save
     case load
 }
@@ -25,15 +25,15 @@ let configurationReducer = Reducer<
     ConfigurationEnvironment
 > { state, action, environment in
     switch action {
-    case let .unselectSymbolType(symbol):
-        guard state.selectedSymbolTypes.count > 10 else { return .none }
+    case let .unselectArt(art):
+        guard state.selectedArts.count > 10 else { return .none }
 
-        state.selectedSymbolTypes = state.selectedSymbolTypes.filter({ $0 != symbol })
+        state.selectedArts = state.selectedArts.filter({ $0 != art })
         return Effect(value: .save)
             .debounce(id: saveDebounceId, for: .seconds(2), scheduler: environment.mainQueue)
             .eraseToEffect()
-    case let .selectSymbolType(symbol):
-        state.selectedSymbolTypes.insert(symbol)
+    case let .selectArt(art):
+        state.selectedArts.insert(art)
         return Effect(value: .save)
             .debounce(id: saveDebounceId, for: .seconds(2), scheduler: environment.mainQueue)
             .eraseToEffect()

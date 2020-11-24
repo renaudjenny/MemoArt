@@ -23,7 +23,7 @@ struct AppEnvironment {
     var clearGameBackup: () -> Void
     var loadHighScores: () -> [HighScore]
     var saveHighScores: ([HighScore]) -> Void
-    var generateRandomSymbols: (Set<SymbolType>) -> [Symbol]
+    var generateRandomCards: (Set<Art>) -> [Card]
     var saveConfiguration: (ConfigurationState) -> Void
     var loadConfiguration: () -> ConfigurationState
 }
@@ -73,7 +73,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
             }
             return .none
         case .game(.shuffleCards):
-            state.game.symbols = environment.generateRandomSymbols(state.configuration.selectedSymbolTypes)
+            state.game.cards = environment.generateRandomCards(state.configuration.selectedArts)
             return .none
         case .presentNewHighScoreView:
             state.isNewHighScoreEntryPresented = true
@@ -81,7 +81,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
         case .newHighScoreEntered:
             state.isNewHighScoreEntryPresented = false
             return .none
-        case .configuration(.selectSymbolType), .configuration(.unselectSymbolType):
+        case .configuration(.selectArt), .configuration(.unselectArt):
             if state.game.moves <= 0 {
                 return Effect(value: .game(.new))
             }
@@ -117,11 +117,11 @@ extension AppState {
 
     static let almostFinishedGame: Self = .mocked {
         $0.game.isGameOver = false
-        $0.game.discoveredSymbolTypes = SymbolType.allCases.filter({ $0 != .cave })
+        $0.game.discoveredArts = Art.allCases.filter({ $0 != .cave })
         $0.game.moves = 142
-        $0.game.symbols = [Symbol].predictedGameSymbols(isCardsFaceUp: true).map {
-            if $0.type == .cave {
-                return Symbol(id: $0.id, type: $0.type, isFaceUp: false)
+        $0.game.cards = [Card].predicted(isFaceUp: true).map {
+            if $0.art == .cave {
+                return Card(id: $0.id, art: $0.art, isFaceUp: false)
             }
             return $0
         }
@@ -143,7 +143,7 @@ extension AppEnvironment {
         clearGameBackup: { },
         loadHighScores: { .preview },
         saveHighScores: { _ in },
-        generateRandomSymbols: { _ in .predictedGameSymbols },
+        generateRandomCards: { _ in .predicted },
         saveConfiguration: { _ in },
         loadConfiguration: { ConfigurationState() }
     )
