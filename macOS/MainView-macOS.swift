@@ -29,17 +29,7 @@ struct MainView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .toolbar {
                 ToolbarItem {
-                    Button {
-                        guard viewStore.game.moves > 0 else {
-                            viewStore.send(.game(.new))
-                            return
-                        }
-                        isNewGameAlertPresented = true
-                    } label: {
-                        Image(systemName: "arrow.triangle.2.circlepath")
-                    }
-                    .accessibility(label: Text("New Game"))
-                    .disabled(!viewStore.game.isGameInProgress)
+                    NewGameButton(store: store.gameStore, isNewGameAlertPresented: $isNewGameAlertPresented)
                 }
                 ToolbarItem {
                     Button {

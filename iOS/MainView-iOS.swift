@@ -6,11 +6,15 @@ struct MainView: View {
     let store: Store<AppState, AppAction>
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.verticalSizeClass) private var verticalSizeClass
+    @State private var isNewGameAlertPresented = false
 
     var body: some View {
         WithViewStore(store) { viewStore in
             NavigationView {
                 stackOrScroll {
+                    Text("Moves: \(viewStore.game.moves)")
+                        .font(.title)
+                        .animation(nil)
                     GameOverView(store: store.gameStore)
                     LazyVGrid(columns: columns) {
                         ForEach(0..<20) {
@@ -21,19 +25,14 @@ struct MainView: View {
                 }
                 .toolbar {
                     ToolbarItem(placement: .principal) {
-                        VStack {
-                            Text("MemoArt").font(.headline)
-                            Text("Moves: \(viewStore.game.moves)").font(.subheadline)
-                        }
+                        Text("MemoArt")
                     }
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        HStack {
-                            AboutNavigationLink()
-                            ConfigurationNavigationLink(store: store.configurationStore)
-                                .padding(.leading)
-                        }
+                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                        AboutNavigationLink()
+                        ConfigurationNavigationLink(store: store.configurationStore)
                     }
-                    ToolbarItem(placement: .navigationBarTrailing) {
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        NewGameButton(store: store.gameStore, isNewGameAlertPresented: $isNewGameAlertPresented)
                         HighScoresNavigationLink(store: store.highScoresStore)
                     }
                 }
@@ -45,6 +44,7 @@ struct MainView: View {
                 ),
                 content: { NewHighScoreView(store: store) }
             )
+            .modifier(SetupNewGameAlert(store: store.gameStore, isPresented: $isNewGameAlertPresented))
             .navigationViewStyle(StackNavigationViewStyle())
         }
     }
