@@ -1,7 +1,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct SymbolTypesSelectionConfigurationView: View {
+struct ArtsSelectionConfigurationView: View {
     let store: Store<ConfigurationState, ConfigurationAction>
     let columns =  Array(repeating: GridItem(.flexible(minimum: 65, maximum: 120)), count: 4)
 
@@ -78,9 +78,9 @@ private struct SelectionCardStyle: ViewModifier {
 }
 
 #if DEBUG
-struct SymbolTypesSelectionConfigurationView_Previews: PreviewProvider {
+struct ArtsSelectionConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
-        SymbolTypesSelectionConfigurationView(store: Store(
+        ArtsSelectionConfigurationView(store: Store(
             initialState: ConfigurationState(),
             reducer: configurationReducer,
             environment: ConfigurationEnvironment(
@@ -92,9 +92,9 @@ struct SymbolTypesSelectionConfigurationView_Previews: PreviewProvider {
     }
 }
 
-struct SymbolTypesSelectionConfigurationView2_Previews: PreviewProvider {
+struct ArtsSelectionConfigurationView2_Previews: PreviewProvider {
     static var previews: some View {
-        SymbolTypesSelectionConfigurationView(store: Store(
+        ArtsSelectionConfigurationView(store: Store(
             initialState: ConfigurationState(selectedArts: .countLimit),
             reducer: configurationReducer,
             environment: ConfigurationEnvironment(

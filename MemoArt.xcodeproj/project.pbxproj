@@ -14,7 +14,7 @@
 		4C217AB1255F390F00A631BB /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF43E253C5B9900F2DE7C /* Symbol.swift */; };
 		4C217AB5255F391300A631BB /* ReversedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F6D2548BB2300DAC4AB /* ReversedScrollView.swift */; };
 		4C217AB9255F391700A631BB /* ConfigurationCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84849F2555F35900FBDEC2 /* ConfigurationCore.swift */; };
-		4C217ABA255F391A00A631BB /* SymbolTypesSelectionConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8484AA2556DF1C00FBDEC2 /* SymbolTypesSelectionConfigurationView.swift */; };
+		4C217ABA255F391A00A631BB /* ArtsSelectionConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8484AA2556DF1C00FBDEC2 /* ArtsSelectionConfigurationView.swift */; };
 		4C217AC2255F392400A631BB /* GameCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF434253C5B0A00F2DE7C /* GameCore.swift */; };
 		4C217AC6255F392800A631BB /* HighScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1EB2542A0B400A1E0FD /* HighScore.swift */; };
 		4C217ACA255F392C00A631BB /* HighScoresCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1F52542A29900A1E0FD /* HighScoresCore.swift */; };
@@ -32,7 +32,7 @@
 		4C805D28256C4BD0003D8F25 /* SetupNewGameAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C805D22256C4A79003D8F25 /* SetupNewGameAlert.swift */; };
 		4C8484A02555F35900FBDEC2 /* ConfigurationCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84849F2555F35900FBDEC2 /* ConfigurationCore.swift */; };
 		4C8484A52555F45A00FBDEC2 /* ConfigurationCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8484A42555F45A00FBDEC2 /* ConfigurationCoreTests.swift */; };
-		4C8484AB2556DF1C00FBDEC2 /* SymbolTypesSelectionConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8484AA2556DF1C00FBDEC2 /* SymbolTypesSelectionConfigurationView.swift */; };
+		4C8484AB2556DF1C00FBDEC2 /* ArtsSelectionConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8484AA2556DF1C00FBDEC2 /* ArtsSelectionConfigurationView.swift */; };
 		4C86574D2551FAB30040EA04 /* RenaudJennyAboutView in Frameworks */ = {isa = PBXBuildFile; productRef = 4C86574C2551FAB30040EA04 /* RenaudJennyAboutView */; };
 		4C8DF3FC253B30D700F2DE7C /* MemoArtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF3FB253B30D700F2DE7C /* MemoArtApp.swift */; };
 		4C8DF400253B30DB00F2DE7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8DF3FF253B30DB00F2DE7C /* Assets.xcassets */; };
@@ -107,7 +107,7 @@
 		4C805D22256C4A79003D8F25 /* SetupNewGameAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupNewGameAlert.swift; sourceTree = "<group>"; };
 		4C84849F2555F35900FBDEC2 /* ConfigurationCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationCore.swift; sourceTree = "<group>"; };
 		4C8484A42555F45A00FBDEC2 /* ConfigurationCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationCoreTests.swift; sourceTree = "<group>"; };
-		4C8484AA2556DF1C00FBDEC2 /* SymbolTypesSelectionConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolTypesSelectionConfigurationView.swift; sourceTree = "<group>"; };
+		4C8484AA2556DF1C00FBDEC2 /* ArtsSelectionConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtsSelectionConfigurationView.swift; sourceTree = "<group>"; };
 		4C8DF3F8253B30D700F2DE7C /* MemoArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8DF3FB253B30D700F2DE7C /* MemoArtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoArtApp.swift; sourceTree = "<group>"; };
 		4C8DF3FF253B30DB00F2DE7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				4C84849F2555F35900FBDEC2 /* ConfigurationCore.swift */,
-				4C8484AA2556DF1C00FBDEC2 /* SymbolTypesSelectionConfigurationView.swift */,
+				4C8484AA2556DF1C00FBDEC2 /* ArtsSelectionConfigurationView.swift */,
 				4CAC43AB255FD523009FFF68 /* ConfigurationNavigationLink.swift */,
 				4CD88EB82565B5570074EE39 /* ConfigurationSheetView.swift */,
 			);
@@ -559,7 +559,7 @@
 			files = (
 				4C217AB5255F391300A631BB /* ReversedScrollView.swift in Sources */,
 				4C217ACE255F392F00A631BB /* HighScoresView.swift in Sources */,
-				4C217ABA255F391A00A631BB /* SymbolTypesSelectionConfigurationView.swift in Sources */,
+				4C217ABA255F391A00A631BB /* ArtsSelectionConfigurationView.swift in Sources */,
 				4CD88EC02565B6690074EE39 /* HighScoresSheetView.swift in Sources */,
 				4CAC436B255F4BA2009FFF68 /* Color.swift in Sources */,
 				4C217AB9255F391700A631BB /* ConfigurationCore.swift in Sources */,
@@ -598,7 +598,7 @@
 				4CAC43B5255FD6EA009FFF68 /* AboutNavigationLink.swift in Sources */,
 				4CAC43A6255FD0CE009FFF68 /* GameOverView.swift in Sources */,
 				4CD0E1EC2542A0B500A1E0FD /* HighScore.swift in Sources */,
-				4C8484AB2556DF1C00FBDEC2 /* SymbolTypesSelectionConfigurationView.swift in Sources */,
+				4C8484AB2556DF1C00FBDEC2 /* ArtsSelectionConfigurationView.swift in Sources */,
 				4C8DF42A253C520F00F2DE7C /* CardView.swift in Sources */,
 				4CAC437F255FCCBE009FFF68 /* MainView-iOS.swift in Sources */,
 				4C8DF3FC253B30D700F2DE7C /* MemoArtApp.swift in Sources */,

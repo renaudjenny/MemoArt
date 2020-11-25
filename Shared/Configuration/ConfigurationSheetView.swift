@@ -8,7 +8,7 @@ struct ConfigurationSheetView: View {
     var body: some View {
         ScrollView {
             GroupBox(label: artTypeSelectionLabel) {
-                SymbolTypesSelectionConfigurationView(store: store)
+                ArtsSelectionConfigurationView(store: store)
             }
             .padding()
         }

@@ -17,7 +17,7 @@ struct ConfigurationNavigationLink: View {
                 .font(.title2)
                 .multilineTextAlignment(.center)
                 .padding()
-            SymbolTypesSelectionConfigurationView(store: store)
+            ArtsSelectionConfigurationView(store: store)
             Divider()
         }
         .navigationTitle("Configuration")
