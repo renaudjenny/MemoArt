@@ -43,4 +43,4 @@ jobs:
       run: /usr/bin/xcodebuild -version
 
     - name: Xcode test on Mac
-      run: xcodebuild clean test -scheme "MemoArt (macOS)"
+      run: xcodebuild clean test -scheme "MemoArt (macOS)" CODE_SIGNING_ALLOWED=NO
