@@ -14,9 +14,9 @@
         "package": "RenaudJennyAboutView",
         "repositoryURL": "https://github.com/renaudjenny/RenaudJennyAboutView",
         "state": {
-          "branch": null,
-          "revision": "7c91b9715f3f52e73eeb583ebc5be7e095e83c81",
-          "version": "1.0.0"
+          "branch": "main",
+          "revision": "a3f9c74a6d204ecd66a1469f3b6c101739414ae3",
+          "version": null
         }
       },
       {
@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/pointfreeco/swift-composable-architecture",
         "state": {
           "branch": null,
-          "revision": "47a9d368d1f314a630bf91b71acfb5054420eeb3",
-          "version": "0.8.0"
+          "revision": "b67569f69813140cd9c984db33ee959d9711a008",
+          "version": "0.9.0"
         }
       }
     ]

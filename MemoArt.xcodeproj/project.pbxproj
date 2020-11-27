@@ -7,21 +7,55 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C217AA1255F38FF00A631BB /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF439253C5B2900F2DE7C /* AppCore.swift */; };
+		4C217AA5255F390300A631BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8DF3FF253B30DB00F2DE7C /* Assets.xcassets */; };
+		4C217AA9255F390900A631BB /* AddCardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F592545E5C600DAC4AB /* AddCardStyle.swift */; };
+		4C217AAD255F390C00A631BB /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF429253C520F00F2DE7C /* CardView.swift */; };
+		4C217AB1255F390F00A631BB /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF43E253C5B9900F2DE7C /* Symbol.swift */; };
+		4C217AB5255F391300A631BB /* ReversedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F6D2548BB2300DAC4AB /* ReversedScrollView.swift */; };
+		4C217AB9255F391700A631BB /* ConfigurationCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84849F2555F35900FBDEC2 /* ConfigurationCore.swift */; };
+		4C217ABA255F391A00A631BB /* ArtsSelectionConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8484AA2556DF1C00FBDEC2 /* ArtsSelectionConfigurationView.swift */; };
+		4C217AC2255F392400A631BB /* GameCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF434253C5B0A00F2DE7C /* GameCore.swift */; };
+		4C217AC6255F392800A631BB /* HighScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1EB2542A0B400A1E0FD /* HighScore.swift */; };
+		4C217ACA255F392C00A631BB /* HighScoresCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1F52542A29900A1E0FD /* HighScoresCore.swift */; };
+		4C217ACE255F392F00A631BB /* HighScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1F02542A1D200A1E0FD /* HighScoresView.swift */; };
+		4C217AD2255F393200A631BB /* NewHighScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F4A25458A8600DAC4AB /* NewHighScoreView.swift */; };
+		4C217AD6255F393800A631BB /* MemoArtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF3FB253B30D700F2DE7C /* MemoArtApp.swift */; };
+		4C217ADC255F39C400A631BB /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 4C217ADB255F39C400A631BB /* ComposableArchitecture */; };
+		4C217ADE255F39C400A631BB /* RenaudJennyAboutView in Frameworks */ = {isa = PBXBuildFile; productRef = 4C217ADD255F39C400A631BB /* RenaudJennyAboutView */; };
 		4C4454CB254CBB2700AA5C87 /* GameCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4454CA254CBB2700AA5C87 /* GameCoreTests.swift */; };
+		4C805D09256A6EF6003D8F25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C805D08256A6EF6003D8F25 /* AppDelegate.swift */; };
+		4C805D0E256A6F4D003D8F25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C805D08256A6EF6003D8F25 /* AppDelegate.swift */; };
+		4C805D14256A82F4003D8F25 /* AboutSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C805D13256A82F4003D8F25 /* AboutSheetView.swift */; };
+		4C805D19256A838B003D8F25 /* AboutSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C805D13256A82F4003D8F25 /* AboutSheetView.swift */; };
+		4C805D23256C4A79003D8F25 /* SetupNewGameAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C805D22256C4A79003D8F25 /* SetupNewGameAlert.swift */; };
+		4C805D28256C4BD0003D8F25 /* SetupNewGameAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C805D22256C4A79003D8F25 /* SetupNewGameAlert.swift */; };
 		4C8484A02555F35900FBDEC2 /* ConfigurationCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84849F2555F35900FBDEC2 /* ConfigurationCore.swift */; };
 		4C8484A52555F45A00FBDEC2 /* ConfigurationCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8484A42555F45A00FBDEC2 /* ConfigurationCoreTests.swift */; };
-		4C8484AB2556DF1C00FBDEC2 /* SymbolTypesSelectionConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8484AA2556DF1C00FBDEC2 /* SymbolTypesSelectionConfigurationView.swift */; };
+		4C8484AB2556DF1C00FBDEC2 /* ArtsSelectionConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8484AA2556DF1C00FBDEC2 /* ArtsSelectionConfigurationView.swift */; };
 		4C86574D2551FAB30040EA04 /* RenaudJennyAboutView in Frameworks */ = {isa = PBXBuildFile; productRef = 4C86574C2551FAB30040EA04 /* RenaudJennyAboutView */; };
 		4C8DF3FC253B30D700F2DE7C /* MemoArtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF3FB253B30D700F2DE7C /* MemoArtApp.swift */; };
-		4C8DF3FE253B30D700F2DE7C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF3FD253B30D700F2DE7C /* ContentView.swift */; };
 		4C8DF400253B30DB00F2DE7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8DF3FF253B30DB00F2DE7C /* Assets.xcassets */; };
-		4C8DF403253B30DB00F2DE7C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8DF402253B30DB00F2DE7C /* Preview Assets.xcassets */; };
 		4C8DF40E253B30DC00F2DE7C /* AppCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF40D253B30DC00F2DE7C /* AppCoreTests.swift */; };
 		4C8DF42A253C520F00F2DE7C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF429253C520F00F2DE7C /* CardView.swift */; };
 		4C8DF430253C59CA00F2DE7C /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 4C8DF42F253C59CA00F2DE7C /* ComposableArchitecture */; };
 		4C8DF435253C5B0A00F2DE7C /* GameCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF434253C5B0A00F2DE7C /* GameCore.swift */; };
 		4C8DF43A253C5B2900F2DE7C /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF439253C5B2900F2DE7C /* AppCore.swift */; };
 		4C8DF43F253C5B9900F2DE7C /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF43E253C5B9900F2DE7C /* Symbol.swift */; };
+		4CAC436A255F4BA2009FFF68 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC4369255F4BA2009FFF68 /* Color.swift */; };
+		4CAC436B255F4BA2009FFF68 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC4369255F4BA2009FFF68 /* Color.swift */; };
+		4CAC437F255FCCBE009FFF68 /* MainView-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC437E255FCCBE009FFF68 /* MainView-iOS.swift */; };
+		4CAC4380255FCCBE009FFF68 /* MainView-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC437E255FCCBE009FFF68 /* MainView-iOS.swift */; };
+		4CAC4385255FCD15009FFF68 /* MainView-macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC4384255FCD15009FFF68 /* MainView-macOS.swift */; };
+		4CAC4386255FCD15009FFF68 /* MainView-macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC4384255FCD15009FFF68 /* MainView-macOS.swift */; };
+		4CAC43A6255FD0CE009FFF68 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43A5255FD0CE009FFF68 /* GameOverView.swift */; };
+		4CAC43A7255FD0CE009FFF68 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43A5255FD0CE009FFF68 /* GameOverView.swift */; };
+		4CAC43AC255FD523009FFF68 /* ConfigurationNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43AB255FD523009FFF68 /* ConfigurationNavigationLink.swift */; };
+		4CAC43AD255FD523009FFF68 /* ConfigurationNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43AB255FD523009FFF68 /* ConfigurationNavigationLink.swift */; };
+		4CAC43B5255FD6EA009FFF68 /* AboutNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43B4255FD6EA009FFF68 /* AboutNavigationLink.swift */; };
+		4CAC43B6255FD6EA009FFF68 /* AboutNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43B4255FD6EA009FFF68 /* AboutNavigationLink.swift */; };
+		4CAC43BB255FD76F009FFF68 /* HighScoresNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43BA255FD76F009FFF68 /* HighScoresNavigationLink.swift */; };
+		4CAC43BC255FD76F009FFF68 /* HighScoresNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43BA255FD76F009FFF68 /* HighScoresNavigationLink.swift */; };
 		4CC92F4B25458A8600DAC4AB /* NewHighScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F4A25458A8600DAC4AB /* NewHighScoreView.swift */; };
 		4CC92F5A2545E5C600DAC4AB /* AddCardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F592545E5C600DAC4AB /* AddCardStyle.swift */; };
 		4CC92F6E2548BB2300DAC4AB /* ReversedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F6D2548BB2300DAC4AB /* ReversedScrollView.swift */; };
@@ -29,6 +63,16 @@
 		4CD0E1F12542A1D200A1E0FD /* HighScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1F02542A1D200A1E0FD /* HighScoresView.swift */; };
 		4CD0E1F62542A29900A1E0FD /* HighScoresCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1F52542A29900A1E0FD /* HighScoresCore.swift */; };
 		4CD0E1FC2542A74D00A1E0FD /* HighScoresCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1FB2542A74D00A1E0FD /* HighScoresCoreTests.swift */; };
+		4CD88EB92565B5570074EE39 /* ConfigurationSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD88EB82565B5570074EE39 /* ConfigurationSheetView.swift */; };
+		4CD88EBA2565B5570074EE39 /* ConfigurationSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD88EB82565B5570074EE39 /* ConfigurationSheetView.swift */; };
+		4CD88EBF2565B6690074EE39 /* HighScoresSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD88EBE2565B6690074EE39 /* HighScoresSheetView.swift */; };
+		4CD88EC02565B6690074EE39 /* HighScoresSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD88EBE2565B6690074EE39 /* HighScoresSheetView.swift */; };
+		4CD88F3F256797270074EE39 /* AppCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF40D253B30DC00F2DE7C /* AppCoreTests.swift */; };
+		4CD88F40256797270074EE39 /* ConfigurationCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8484A42555F45A00FBDEC2 /* ConfigurationCoreTests.swift */; };
+		4CD88F41256797270074EE39 /* HighScoresCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1FB2542A74D00A1E0FD /* HighScoresCoreTests.swift */; };
+		4CD88F42256797270074EE39 /* GameCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4454CA254CBB2700AA5C87 /* GameCoreTests.swift */; };
+		4CE02F44256ED6BC00A925F0 /* NewGameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE02F43256ED6BB00A925F0 /* NewGameButton.swift */; };
+		4CE02F45256ED6BC00A925F0 /* NewGameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE02F43256ED6BB00A925F0 /* NewGameButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,26 +83,51 @@
 			remoteGlobalIDString = 4C8DF3F7253B30D700F2DE7C;
 			remoteInfo = Memoiry;
 		};
+		4CD88ECA256712670074EE39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C8DF3F0253B30D700F2DE7C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C217A3C255F2CE000A631BB;
+			remoteInfo = "MemoArt (macOS)";
+		};
+		4CD88F2E256795E00074EE39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C8DF3F0253B30D700F2DE7C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C217A3C255F2CE000A631BB;
+			remoteInfo = "MemoArt (macOS)";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C217A3D255F2CE100A631BB /* MemoArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C217A48255F2CE600A631BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C217A49255F2CE600A631BB /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		4C4454CA254CBB2700AA5C87 /* GameCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoreTests.swift; sourceTree = "<group>"; };
+		4C805D08256A6EF6003D8F25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4C805D13256A82F4003D8F25 /* AboutSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSheetView.swift; sourceTree = "<group>"; };
+		4C805D22256C4A79003D8F25 /* SetupNewGameAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupNewGameAlert.swift; sourceTree = "<group>"; };
 		4C84849F2555F35900FBDEC2 /* ConfigurationCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationCore.swift; sourceTree = "<group>"; };
 		4C8484A42555F45A00FBDEC2 /* ConfigurationCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationCoreTests.swift; sourceTree = "<group>"; };
-		4C8484AA2556DF1C00FBDEC2 /* SymbolTypesSelectionConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolTypesSelectionConfigurationView.swift; sourceTree = "<group>"; };
+		4C8484AA2556DF1C00FBDEC2 /* ArtsSelectionConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtsSelectionConfigurationView.swift; sourceTree = "<group>"; };
 		4C8DF3F8253B30D700F2DE7C /* MemoArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8DF3FB253B30D700F2DE7C /* MemoArtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoArtApp.swift; sourceTree = "<group>"; };
-		4C8DF3FD253B30D700F2DE7C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4C8DF3FF253B30DB00F2DE7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4C8DF402253B30DB00F2DE7C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4C8DF404253B30DB00F2DE7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C8DF409253B30DC00F2DE7C /* MemoArtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemoArtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C8DF409253B30DC00F2DE7C /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8DF40D253B30DC00F2DE7C /* AppCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoreTests.swift; sourceTree = "<group>"; };
 		4C8DF40F253B30DC00F2DE7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C8DF429253C520F00F2DE7C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		4C8DF434253C5B0A00F2DE7C /* GameCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCore.swift; sourceTree = "<group>"; };
 		4C8DF439253C5B2900F2DE7C /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
 		4C8DF43E253C5B9900F2DE7C /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
+		4CAC4369255F4BA2009FFF68 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		4CAC437E255FCCBE009FFF68 /* MainView-iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainView-iOS.swift"; sourceTree = "<group>"; };
+		4CAC4384255FCD15009FFF68 /* MainView-macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainView-macOS.swift"; sourceTree = "<group>"; };
+		4CAC43A5255FD0CE009FFF68 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
+		4CAC43AB255FD523009FFF68 /* ConfigurationNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationNavigationLink.swift; sourceTree = "<group>"; };
+		4CAC43B4255FD6EA009FFF68 /* AboutNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutNavigationLink.swift; sourceTree = "<group>"; };
+		4CAC43BA255FD76F009FFF68 /* HighScoresNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresNavigationLink.swift; sourceTree = "<group>"; };
 		4CC92F4A25458A8600DAC4AB /* NewHighScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHighScoreView.swift; sourceTree = "<group>"; };
 		4CC92F592545E5C600DAC4AB /* AddCardStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardStyle.swift; sourceTree = "<group>"; };
 		4CC92F6D2548BB2300DAC4AB /* ReversedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversedScrollView.swift; sourceTree = "<group>"; };
@@ -66,9 +135,23 @@
 		4CD0E1F02542A1D200A1E0FD /* HighScoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresView.swift; sourceTree = "<group>"; };
 		4CD0E1F52542A29900A1E0FD /* HighScoresCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresCore.swift; sourceTree = "<group>"; };
 		4CD0E1FB2542A74D00A1E0FD /* HighScoresCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresCoreTests.swift; sourceTree = "<group>"; };
+		4CD88EB82565B5570074EE39 /* ConfigurationSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationSheetView.swift; sourceTree = "<group>"; };
+		4CD88EBE2565B6690074EE39 /* HighScoresSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresSheetView.swift; sourceTree = "<group>"; };
+		4CD88F29256795E00074EE39 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CD88F2D256795E00074EE39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CE02F43256ED6BB00A925F0 /* NewGameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4C217A3A255F2CE000A631BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C217ADC255F39C400A631BB /* ComposableArchitecture in Frameworks */,
+				4C217ADE255F39C400A631BB /* RenaudJennyAboutView in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C8DF3F5253B30D700F2DE7C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -85,9 +168,58 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4CD88F26256795E00074EE39 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C217A83255F2E7B00A631BB /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				4C8DF439253C5B2900F2DE7C /* AppCore.swift */,
+				4C8DF3FF253B30DB00F2DE7C /* Assets.xcassets */,
+				4CC92F552545E54300DAC4AB /* Cards */,
+				4CC92F6C2548BB0F00DAC4AB /* Common */,
+				4C84849E2555F34800FBDEC2 /* Configuration */,
+				4C4454D2254CBB6B00AA5C87 /* Game */,
+				4CD0E1EA2542A09000A1E0FD /* HighScores */,
+				4C8DF3FB253B30D700F2DE7C /* MemoArtApp.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		4C217A84255F2E8800A631BB /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				4C8DF404253B30DB00F2DE7C /* Info.plist */,
+				4CAC437E255FCCBE009FFF68 /* MainView-iOS.swift */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		4C217A85255F2E9000A631BB /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				4C217A48255F2CE600A631BB /* Info.plist */,
+				4C217A49255F2CE600A631BB /* macOS.entitlements */,
+				4CAC4384255FCD15009FFF68 /* MainView-macOS.swift */,
+				4C805D08256A6EF6003D8F25 /* AppDelegate.swift */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		4C217ADA255F39C400A631BB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4C4454C9254CBA8200AA5C87 /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +232,9 @@
 			isa = PBXGroup;
 			children = (
 				4C8DF434253C5B0A00F2DE7C /* GameCore.swift */,
+				4CAC43A5255FD0CE009FFF68 /* GameOverView.swift */,
+				4C805D22256C4A79003D8F25 /* SetupNewGameAlert.swift */,
+				4CE02F43256ED6BB00A925F0 /* NewGameButton.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -108,7 +243,9 @@
 			isa = PBXGroup;
 			children = (
 				4C84849F2555F35900FBDEC2 /* ConfigurationCore.swift */,
-				4C8484AA2556DF1C00FBDEC2 /* SymbolTypesSelectionConfigurationView.swift */,
+				4C8484AA2556DF1C00FBDEC2 /* ArtsSelectionConfigurationView.swift */,
+				4CAC43AB255FD523009FFF68 /* ConfigurationNavigationLink.swift */,
+				4CD88EB82565B5570074EE39 /* ConfigurationSheetView.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -124,9 +261,14 @@
 		4C8DF3EF253B30D700F2DE7C = {
 			isa = PBXGroup;
 			children = (
-				4C8DF3FA253B30D700F2DE7C /* MemoArt */,
-				4C8DF40C253B30DC00F2DE7C /* MemoArtTests */,
+				4C217ADA255F39C400A631BB /* Frameworks */,
+				4C217A84255F2E8800A631BB /* iOS */,
+				4C217A85255F2E9000A631BB /* macOS */,
 				4C8DF3F9253B30D700F2DE7C /* Products */,
+				4C217A83255F2E7B00A631BB /* Shared */,
+				4CD88F47256797C50074EE39 /* Tests iOS */,
+				4CD88F2A256795E00074EE39 /* Tests macOS */,
+				4C8DF40C253B30DC00F2DE7C /* Tests Shared */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,55 +276,30 @@
 			isa = PBXGroup;
 			children = (
 				4C8DF3F8253B30D700F2DE7C /* MemoArt.app */,
-				4C8DF409253B30DC00F2DE7C /* MemoArtTests.xctest */,
+				4C8DF409253B30DC00F2DE7C /* Tests iOS.xctest */,
+				4C217A3D255F2CE100A631BB /* MemoArt.app */,
+				4CD88F29256795E00074EE39 /* Tests macOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4C8DF3FA253B30D700F2DE7C /* MemoArt */ = {
-			isa = PBXGroup;
-			children = (
-				4C8DF439253C5B2900F2DE7C /* AppCore.swift */,
-				4C8DF3FF253B30DB00F2DE7C /* Assets.xcassets */,
-				4CC92F552545E54300DAC4AB /* Cards */,
-				4CC92F6C2548BB0F00DAC4AB /* Common */,
-				4C84849E2555F34800FBDEC2 /* Configuration */,
-				4C8DF3FD253B30D700F2DE7C /* ContentView.swift */,
-				4C4454D2254CBB6B00AA5C87 /* Game */,
-				4CD0E1EA2542A09000A1E0FD /* HighScores */,
-				4C8DF404253B30DB00F2DE7C /* Info.plist */,
-				4C8DF3FB253B30D700F2DE7C /* MemoArtApp.swift */,
-				4C8DF401253B30DB00F2DE7C /* Preview Content */,
-			);
-			path = MemoArt;
-			sourceTree = "<group>";
-		};
-		4C8DF401253B30DB00F2DE7C /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				4C8DF402253B30DB00F2DE7C /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		4C8DF40C253B30DC00F2DE7C /* MemoArtTests */ = {
+		4C8DF40C253B30DC00F2DE7C /* Tests Shared */ = {
 			isa = PBXGroup;
 			children = (
 				4C8DF40D253B30DC00F2DE7C /* AppCoreTests.swift */,
 				4C8484A32555F3D700FBDEC2 /* Configuration */,
 				4C4454C9254CBA8200AA5C87 /* Game */,
 				4CD0E1FA2542A72300A1E0FD /* HighScores */,
-				4C8DF40F253B30DC00F2DE7C /* Info.plist */,
 			);
-			path = MemoArtTests;
+			path = "Tests Shared";
 			sourceTree = "<group>";
 		};
 		4CC92F552545E54300DAC4AB /* Cards */ = {
 			isa = PBXGroup;
 			children = (
-				4C8DF43E253C5B9900F2DE7C /* Symbol.swift */,
-				4C8DF429253C520F00F2DE7C /* CardView.swift */,
 				4CC92F592545E5C600DAC4AB /* AddCardStyle.swift */,
+				4C8DF429253C520F00F2DE7C /* CardView.swift */,
+				4C8DF43E253C5B9900F2DE7C /* Symbol.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -191,6 +308,9 @@
 			isa = PBXGroup;
 			children = (
 				4CC92F6D2548BB2300DAC4AB /* ReversedScrollView.swift */,
+				4CAC4369255F4BA2009FFF68 /* Color.swift */,
+				4CAC43B4255FD6EA009FFF68 /* AboutNavigationLink.swift */,
+				4C805D13256A82F4003D8F25 /* AboutSheetView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -199,9 +319,11 @@
 			isa = PBXGroup;
 			children = (
 				4CD0E1EB2542A0B400A1E0FD /* HighScore.swift */,
-				4CD0E1F02542A1D200A1E0FD /* HighScoresView.swift */,
 				4CD0E1F52542A29900A1E0FD /* HighScoresCore.swift */,
+				4CD0E1F02542A1D200A1E0FD /* HighScoresView.swift */,
 				4CC92F4A25458A8600DAC4AB /* NewHighScoreView.swift */,
+				4CAC43BA255FD76F009FFF68 /* HighScoresNavigationLink.swift */,
+				4CD88EBE2565B6690074EE39 /* HighScoresSheetView.swift */,
 			);
 			path = HighScores;
 			sourceTree = "<group>";
@@ -214,12 +336,50 @@
 			path = HighScores;
 			sourceTree = "<group>";
 		};
+		4CD88F2A256795E00074EE39 /* Tests macOS */ = {
+			isa = PBXGroup;
+			children = (
+				4CD88F2D256795E00074EE39 /* Info.plist */,
+			);
+			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		4CD88F47256797C50074EE39 /* Tests iOS */ = {
+			isa = PBXGroup;
+			children = (
+				4C8DF40F253B30DC00F2DE7C /* Info.plist */,
+			);
+			path = "Tests iOS";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4C8DF3F7253B30D700F2DE7C /* MemoArt */ = {
+		4C217A3C255F2CE000A631BB /* MemoArt (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4C8DF41D253B30DC00F2DE7C /* Build configuration list for PBXNativeTarget "MemoArt" */;
+			buildConfigurationList = 4C217A4C255F2CE600A631BB /* Build configuration list for PBXNativeTarget "MemoArt (macOS)" */;
+			buildPhases = (
+				4C217A39255F2CE000A631BB /* Sources */,
+				4C217A3A255F2CE000A631BB /* Frameworks */,
+				4C217A3B255F2CE000A631BB /* Resources */,
+				4C217ADF255F39D600A631BB /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MemoArt (macOS)";
+			packageProductDependencies = (
+				4C217ADB255F39C400A631BB /* ComposableArchitecture */,
+				4C217ADD255F39C400A631BB /* RenaudJennyAboutView */,
+			);
+			productName = MemoArtMac;
+			productReference = 4C217A3D255F2CE100A631BB /* MemoArt.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4C8DF3F7253B30D700F2DE7C /* MemoArt (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C8DF41D253B30DC00F2DE7C /* Build configuration list for PBXNativeTarget "MemoArt (iOS)" */;
 			buildPhases = (
 				4C8DF3F4253B30D700F2DE7C /* Sources */,
 				4C8DF3F5253B30D700F2DE7C /* Frameworks */,
@@ -230,7 +390,7 @@
 			);
 			dependencies = (
 			);
-			name = MemoArt;
+			name = "MemoArt (iOS)";
 			packageProductDependencies = (
 				4C8DF42F253C59CA00F2DE7C /* ComposableArchitecture */,
 				4C86574C2551FAB30040EA04 /* RenaudJennyAboutView */,
@@ -239,9 +399,9 @@
 			productReference = 4C8DF3F8253B30D700F2DE7C /* MemoArt.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4C8DF408253B30DC00F2DE7C /* MemoArtTests */ = {
+		4C8DF408253B30DC00F2DE7C /* Tests iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4C8DF420253B30DC00F2DE7C /* Build configuration list for PBXNativeTarget "MemoArtTests" */;
+			buildConfigurationList = 4C8DF420253B30DC00F2DE7C /* Build configuration list for PBXNativeTarget "Tests iOS" */;
 			buildPhases = (
 				4C8DF405253B30DC00F2DE7C /* Sources */,
 				4C8DF406253B30DC00F2DE7C /* Frameworks */,
@@ -251,10 +411,29 @@
 			);
 			dependencies = (
 				4C8DF40B253B30DC00F2DE7C /* PBXTargetDependency */,
+				4CD88ECB256712670074EE39 /* PBXTargetDependency */,
 			);
-			name = MemoArtTests;
+			name = "Tests iOS";
 			productName = MemoiryTests;
-			productReference = 4C8DF409253B30DC00F2DE7C /* MemoArtTests.xctest */;
+			productReference = 4C8DF409253B30DC00F2DE7C /* Tests iOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4CD88F28256795E00074EE39 /* Tests macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4CD88F30256795E00074EE39 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
+			buildPhases = (
+				4CD88F25256795E00074EE39 /* Sources */,
+				4CD88F26256795E00074EE39 /* Frameworks */,
+				4CD88F27256795E00074EE39 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4CD88F2F256795E00074EE39 /* PBXTargetDependency */,
+			);
+			name = "Tests macOS";
+			productName = "Tests macOS";
+			productReference = 4CD88F29256795E00074EE39 /* Tests macOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -263,15 +442,22 @@
 		4C8DF3F0253B30D700F2DE7C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1200;
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1220;
 				TargetAttributes = {
+					4C217A3C255F2CE000A631BB = {
+						CreatedOnToolsVersion = 12.2;
+					};
 					4C8DF3F7253B30D700F2DE7C = {
 						CreatedOnToolsVersion = 12.0.1;
 					};
 					4C8DF408253B30DC00F2DE7C = {
 						CreatedOnToolsVersion = 12.0.1;
 						TestTargetID = 4C8DF3F7253B30D700F2DE7C;
+					};
+					4CD88F28256795E00074EE39 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 4C217A3C255F2CE000A631BB;
 					};
 				};
 			};
@@ -292,18 +478,27 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4C8DF3F7253B30D700F2DE7C /* MemoArt */,
-				4C8DF408253B30DC00F2DE7C /* MemoArtTests */,
+				4C8DF3F7253B30D700F2DE7C /* MemoArt (iOS) */,
+				4C217A3C255F2CE000A631BB /* MemoArt (macOS) */,
+				4C8DF408253B30DC00F2DE7C /* Tests iOS */,
+				4CD88F28256795E00074EE39 /* Tests macOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4C217A3B255F2CE000A631BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C217AA5255F390300A631BB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C8DF3F6253B30D700F2DE7C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C8DF403253B30DB00F2DE7C /* Preview Assets.xcassets in Resources */,
 				4C8DF400253B30DB00F2DE7C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,9 +510,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4CD88F27256795E00074EE39 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4C217ADF255F39D600A631BB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		4C865719254EFE440040EA04 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -338,6 +557,39 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4C217A39255F2CE000A631BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C217AB5255F391300A631BB /* ReversedScrollView.swift in Sources */,
+				4C217ACE255F392F00A631BB /* HighScoresView.swift in Sources */,
+				4C217ABA255F391A00A631BB /* ArtsSelectionConfigurationView.swift in Sources */,
+				4CD88EC02565B6690074EE39 /* HighScoresSheetView.swift in Sources */,
+				4CAC436B255F4BA2009FFF68 /* Color.swift in Sources */,
+				4C217AB9255F391700A631BB /* ConfigurationCore.swift in Sources */,
+				4CAC43B6255FD6EA009FFF68 /* AboutNavigationLink.swift in Sources */,
+				4CAC43A7255FD0CE009FFF68 /* GameOverView.swift in Sources */,
+				4C217AC6255F392800A631BB /* HighScore.swift in Sources */,
+				4C217AA1255F38FF00A631BB /* AppCore.swift in Sources */,
+				4C217AB1255F390F00A631BB /* Symbol.swift in Sources */,
+				4CAC4380255FCCBE009FFF68 /* MainView-iOS.swift in Sources */,
+				4C217AD2255F393200A631BB /* NewHighScoreView.swift in Sources */,
+				4CD88EBA2565B5570074EE39 /* ConfigurationSheetView.swift in Sources */,
+				4C805D19256A838B003D8F25 /* AboutSheetView.swift in Sources */,
+				4CAC4386255FCD15009FFF68 /* MainView-macOS.swift in Sources */,
+				4C217AD6255F393800A631BB /* MemoArtApp.swift in Sources */,
+				4CAC43AD255FD523009FFF68 /* ConfigurationNavigationLink.swift in Sources */,
+				4C217AAD255F390C00A631BB /* CardView.swift in Sources */,
+				4CAC43BC255FD76F009FFF68 /* HighScoresNavigationLink.swift in Sources */,
+				4C217AA9255F390900A631BB /* AddCardStyle.swift in Sources */,
+				4C217ACA255F392C00A631BB /* HighScoresCore.swift in Sources */,
+				4CE02F45256ED6BC00A925F0 /* NewGameButton.swift in Sources */,
+				4C217AC2255F392400A631BB /* GameCore.swift in Sources */,
+				4C805D0E256A6F4D003D8F25 /* AppDelegate.swift in Sources */,
+				4C805D28256C4BD0003D8F25 /* SetupNewGameAlert.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C8DF3F4253B30D700F2DE7C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -345,17 +597,29 @@
 				4C8484A02555F35900FBDEC2 /* ConfigurationCore.swift in Sources */,
 				4CD0E1F62542A29900A1E0FD /* HighScoresCore.swift in Sources */,
 				4C8DF435253C5B0A00F2DE7C /* GameCore.swift in Sources */,
+				4CD88EBF2565B6690074EE39 /* HighScoresSheetView.swift in Sources */,
 				4CD0E1F12542A1D200A1E0FD /* HighScoresView.swift in Sources */,
+				4CAC436A255F4BA2009FFF68 /* Color.swift in Sources */,
+				4CAC43B5255FD6EA009FFF68 /* AboutNavigationLink.swift in Sources */,
+				4CAC43A6255FD0CE009FFF68 /* GameOverView.swift in Sources */,
 				4CD0E1EC2542A0B500A1E0FD /* HighScore.swift in Sources */,
-				4C8DF3FE253B30D700F2DE7C /* ContentView.swift in Sources */,
-				4C8484AB2556DF1C00FBDEC2 /* SymbolTypesSelectionConfigurationView.swift in Sources */,
+				4C8484AB2556DF1C00FBDEC2 /* ArtsSelectionConfigurationView.swift in Sources */,
 				4C8DF42A253C520F00F2DE7C /* CardView.swift in Sources */,
+				4CAC437F255FCCBE009FFF68 /* MainView-iOS.swift in Sources */,
 				4C8DF3FC253B30D700F2DE7C /* MemoArtApp.swift in Sources */,
+				4CD88EB92565B5570074EE39 /* ConfigurationSheetView.swift in Sources */,
+				4C805D14256A82F4003D8F25 /* AboutSheetView.swift in Sources */,
+				4CAC4385255FCD15009FFF68 /* MainView-macOS.swift in Sources */,
 				4C8DF43A253C5B2900F2DE7C /* AppCore.swift in Sources */,
+				4CAC43AC255FD523009FFF68 /* ConfigurationNavigationLink.swift in Sources */,
 				4CC92F4B25458A8600DAC4AB /* NewHighScoreView.swift in Sources */,
+				4CAC43BB255FD76F009FFF68 /* HighScoresNavigationLink.swift in Sources */,
 				4CC92F6E2548BB2300DAC4AB /* ReversedScrollView.swift in Sources */,
 				4C8DF43F253C5B9900F2DE7C /* Symbol.swift in Sources */,
+				4CE02F44256ED6BC00A925F0 /* NewGameButton.swift in Sources */,
 				4CC92F5A2545E5C600DAC4AB /* AddCardStyle.swift in Sources */,
+				4C805D09256A6EF6003D8F25 /* AppDelegate.swift in Sources */,
+				4C805D23256C4A79003D8F25 /* SetupNewGameAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,17 +634,92 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4CD88F25256795E00074EE39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CD88F42256797270074EE39 /* GameCoreTests.swift in Sources */,
+				4CD88F3F256797270074EE39 /* AppCoreTests.swift in Sources */,
+				4CD88F40256797270074EE39 /* ConfigurationCoreTests.swift in Sources */,
+				4CD88F41256797270074EE39 /* HighScoresCoreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		4C8DF40B253B30DC00F2DE7C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4C8DF3F7253B30D700F2DE7C /* MemoArt */;
+			target = 4C8DF3F7253B30D700F2DE7C /* MemoArt (iOS) */;
 			targetProxy = 4C8DF40A253B30DC00F2DE7C /* PBXContainerItemProxy */;
+		};
+		4CD88ECB256712670074EE39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C217A3C255F2CE000A631BB /* MemoArt (macOS) */;
+			targetProxy = 4CD88ECA256712670074EE39 /* PBXContainerItemProxy */;
+		};
+		4CD88F2F256795E00074EE39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C217A3C255F2CE000A631BB /* MemoArt (macOS) */;
+			targetProxy = 4CD88F2E256795E00074EE39 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		4C217A4A255F2CE600A631BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = MBQ98GC8JT;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.6.0;
+				PRODUCT_BUNDLE_IDENTIFIER = renaud.jenny.Memoiry;
+				PRODUCT_NAME = MemoArt;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4C217A4B255F2CE600A631BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = MBQ98GC8JT;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.6.0;
+				PRODUCT_BUNDLE_IDENTIFIER = renaud.jenny.Memoiry;
+				PRODUCT_NAME = MemoArt;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		4C8DF41B253B30DC00F2DE7C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -433,12 +772,14 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "";
 			};
 			name = Debug;
 		};
@@ -488,11 +829,13 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TARGETED_DEVICE_FAMILY = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -503,18 +846,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"MemoArt/Preview Content\"";
 				DEVELOPMENT_TEAM = MBQ98GC8JT;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = MemoArt/Info.plist;
+				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = renaud.jenny.Memoiry;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MemoArt;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -526,18 +868,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"MemoArt/Preview Content\"";
 				DEVELOPMENT_TEAM = MBQ98GC8JT;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = MemoArt/Info.plist;
+				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = renaud.jenny.Memoiry;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MemoArt;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -548,9 +889,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBQ98GC8JT;
-				INFOPLIST_FILE = MemoArtTests/Info.plist;
+				INFOPLIST_FILE = "Tests iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -570,9 +912,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBQ98GC8JT;
-				INFOPLIST_FILE = MemoArtTests/Info.plist;
+				INFOPLIST_FILE = "Tests iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -587,9 +930,62 @@
 			};
 			name = Release;
 		};
+		4CD88F31256795E00074EE39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = MBQ98GC8JT;
+				INFOPLIST_FILE = "Tests macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = renaud.jenny.MemoiryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MemoArt.app/Contents/MacOS/MemoArt";
+			};
+			name = Debug;
+		};
+		4CD88F32256795E00074EE39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = MBQ98GC8JT;
+				INFOPLIST_FILE = "Tests macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = renaud.jenny.MemoiryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MemoArt.app/Contents/MacOS/MemoArt";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4C217A4C255F2CE600A631BB /* Build configuration list for PBXNativeTarget "MemoArt (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C217A4A255F2CE600A631BB /* Debug */,
+				4C217A4B255F2CE600A631BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4C8DF3F3253B30D700F2DE7C /* Build configuration list for PBXProject "MemoArt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -599,7 +995,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4C8DF41D253B30DC00F2DE7C /* Build configuration list for PBXNativeTarget "MemoArt" */ = {
+		4C8DF41D253B30DC00F2DE7C /* Build configuration list for PBXNativeTarget "MemoArt (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C8DF41E253B30DC00F2DE7C /* Debug */,
@@ -608,11 +1004,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4C8DF420253B30DC00F2DE7C /* Build configuration list for PBXNativeTarget "MemoArtTests" */ = {
+		4C8DF420253B30DC00F2DE7C /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C8DF421253B30DC00F2DE7C /* Debug */,
 				4C8DF422253B30DC00F2DE7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4CD88F30256795E00074EE39 /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CD88F31256795E00074EE39 /* Debug */,
+				4CD88F32256795E00074EE39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -624,8 +1029,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/renaudjenny/RenaudJennyAboutView";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 		4C8DF42E253C59CA00F2DE7C /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
@@ -639,6 +1044,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4C217ADB255F39C400A631BB /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C8DF42E253C59CA00F2DE7C /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+		4C217ADD255F39C400A631BB /* RenaudJennyAboutView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C86574B2551FAB30040EA04 /* XCRemoteSwiftPackageReference "RenaudJennyAboutView" */;
+			productName = RenaudJennyAboutView;
+		};
 		4C86574C2551FAB30040EA04 /* RenaudJennyAboutView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4C86574B2551FAB30040EA04 /* XCRemoteSwiftPackageReference "RenaudJennyAboutView" */;
