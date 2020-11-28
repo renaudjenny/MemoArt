@@ -7,6 +7,7 @@ struct MainView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.verticalSizeClass) private var verticalSizeClass
     @State private var isNewGameAlertPresented = false
+    @State private var isConfigurationNavigationActive = false
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -28,14 +29,21 @@ struct MainView: View {
                         Text("MemoArt")
                     }
                     ToolbarItemGroup(placement: .navigationBarLeading) {
+                        // TODO: AboutNavigationLink Should have the same behaviour as ConfigurationView
                         AboutNavigationLink()
-                        ConfigurationNavigationLink(store: store.configurationStore)
+                        Button {
+                            isConfigurationNavigationActive = true
+                        } label: {
+                            Image(systemName: "gearshape")
+                        }
                     }
                     ToolbarItemGroup(placement: .navigationBarTrailing) {
                         NewGameButton(store: store.gameStore, isNewGameAlertPresented: $isNewGameAlertPresented)
+                        // TODO: HighScoresNavigationLink Should have the same behaviour as ConfigurationView
                         HighScoresNavigationLink(store: store.highScoresStore)
                     }
                 }
+                .background(navigation)
             }
             .sheet(
                 isPresented: viewStore.binding(
@@ -71,6 +79,16 @@ struct MainView: View {
         switch (horizontalSizeClass, verticalSizeClass) {
         case (.regular, .regular): VStack { content() }
         default: ReversedScrollView { content() }
+        }
+    }
+
+    private var navigation: some View {
+        VStack {
+            NavigationLink(
+                destination: ConfigurationView(store: store.configurationStore),
+                isActive: $isConfigurationNavigationActive,
+                label: EmptyView.init
+            )
         }
     }
 }

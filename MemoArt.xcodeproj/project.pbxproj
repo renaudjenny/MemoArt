@@ -50,8 +50,8 @@
 		4CAC4386255FCD15009FFF68 /* MainView-macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC4384255FCD15009FFF68 /* MainView-macOS.swift */; };
 		4CAC43A6255FD0CE009FFF68 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43A5255FD0CE009FFF68 /* GameOverView.swift */; };
 		4CAC43A7255FD0CE009FFF68 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43A5255FD0CE009FFF68 /* GameOverView.swift */; };
-		4CAC43AC255FD523009FFF68 /* ConfigurationNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43AB255FD523009FFF68 /* ConfigurationNavigationLink.swift */; };
-		4CAC43AD255FD523009FFF68 /* ConfigurationNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43AB255FD523009FFF68 /* ConfigurationNavigationLink.swift */; };
+		4CAC43AC255FD523009FFF68 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43AB255FD523009FFF68 /* ConfigurationView.swift */; };
+		4CAC43AD255FD523009FFF68 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43AB255FD523009FFF68 /* ConfigurationView.swift */; };
 		4CAC43B5255FD6EA009FFF68 /* AboutNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43B4255FD6EA009FFF68 /* AboutNavigationLink.swift */; };
 		4CAC43B6255FD6EA009FFF68 /* AboutNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43B4255FD6EA009FFF68 /* AboutNavigationLink.swift */; };
 		4CAC43BB255FD76F009FFF68 /* HighScoresNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43BA255FD76F009FFF68 /* HighScoresNavigationLink.swift */; };
@@ -125,7 +125,7 @@
 		4CAC437E255FCCBE009FFF68 /* MainView-iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainView-iOS.swift"; sourceTree = "<group>"; };
 		4CAC4384255FCD15009FFF68 /* MainView-macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainView-macOS.swift"; sourceTree = "<group>"; };
 		4CAC43A5255FD0CE009FFF68 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
-		4CAC43AB255FD523009FFF68 /* ConfigurationNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationNavigationLink.swift; sourceTree = "<group>"; };
+		4CAC43AB255FD523009FFF68 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		4CAC43B4255FD6EA009FFF68 /* AboutNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutNavigationLink.swift; sourceTree = "<group>"; };
 		4CAC43BA255FD76F009FFF68 /* HighScoresNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresNavigationLink.swift; sourceTree = "<group>"; };
 		4CC92F4A25458A8600DAC4AB /* NewHighScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHighScoreView.swift; sourceTree = "<group>"; };
@@ -244,7 +244,7 @@
 			children = (
 				4C84849F2555F35900FBDEC2 /* ConfigurationCore.swift */,
 				4C8484AA2556DF1C00FBDEC2 /* ArtsSelectionConfigurationView.swift */,
-				4CAC43AB255FD523009FFF68 /* ConfigurationNavigationLink.swift */,
+				4CAC43AB255FD523009FFF68 /* ConfigurationView.swift */,
 				4CD88EB82565B5570074EE39 /* ConfigurationSheetView.swift */,
 			);
 			path = Configuration;
@@ -578,7 +578,7 @@
 				4C805D19256A838B003D8F25 /* AboutSheetView.swift in Sources */,
 				4CAC4386255FCD15009FFF68 /* MainView-macOS.swift in Sources */,
 				4C217AD6255F393800A631BB /* MemoArtApp.swift in Sources */,
-				4CAC43AD255FD523009FFF68 /* ConfigurationNavigationLink.swift in Sources */,
+				4CAC43AD255FD523009FFF68 /* ConfigurationView.swift in Sources */,
 				4C217AAD255F390C00A631BB /* CardView.swift in Sources */,
 				4CAC43BC255FD76F009FFF68 /* HighScoresNavigationLink.swift in Sources */,
 				4C217AA9255F390900A631BB /* AddCardStyle.swift in Sources */,
@@ -611,7 +611,7 @@
 				4C805D14256A82F4003D8F25 /* AboutSheetView.swift in Sources */,
 				4CAC4385255FCD15009FFF68 /* MainView-macOS.swift in Sources */,
 				4C8DF43A253C5B2900F2DE7C /* AppCore.swift in Sources */,
-				4CAC43AC255FD523009FFF68 /* ConfigurationNavigationLink.swift in Sources */,
+				4CAC43AC255FD523009FFF68 /* ConfigurationView.swift in Sources */,
 				4CC92F4B25458A8600DAC4AB /* NewHighScoreView.swift in Sources */,
 				4CAC43BB255FD76F009FFF68 /* HighScoresNavigationLink.swift in Sources */,
 				4CC92F6E2548BB2300DAC4AB /* ReversedScrollView.swift in Sources */,
