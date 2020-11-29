@@ -6,6 +6,7 @@ struct GameState: Equatable, Codable {
     var cards: [Card] = .newGame
     var discoveredArts: [Art] = []
     var isGameOver = false
+    var level: DifficultyLevel = .normal
 
     var hasCardsFacedUp: Bool { cards.filter { $0.isFaceUp }.count > 0 }
     var isGameInProgress: Bool { moves > 0 || hasCardsFacedUp }

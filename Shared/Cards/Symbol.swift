@@ -71,8 +71,8 @@ enum Art: String, CaseIterable, Codable {
 }
 
 extension Array where Element == Card {
-    static func newGame(from arts: Set<Art>) -> Self {
-        let selectedArts = arts.shuffled().prefix(10)
+    static func newGame(from arts: Set<Art>, level: DifficultyLevel) -> Self {
+        let selectedArts = arts.shuffled().prefix(level.cardsCount/2)
         let arts = selectedArts + selectedArts
         return arts.shuffled().enumerated().map {
             Card(id: $0, art: $1, isFaceUp: false)
@@ -80,7 +80,7 @@ extension Array where Element == Card {
     }
 
     static var newGame: Self {
-        newGame(from: Set(Art.allCases))
+        newGame(from: Set(Art.allCases), level: .normal)
     }
 
     #if DEBUG
@@ -90,9 +90,10 @@ extension Array where Element == Card {
 
     static func predicted(
         from arts: [Art] = Art.allCases,
-        isFaceUp: Bool = false
+        isFaceUp: Bool = false,
+        level: DifficultyLevel = .normal
     ) -> Self {
-        let selectedArts = arts.prefix(10)
+        let selectedArts = arts.prefix(level.cardsCount/2)
         let cards = selectedArts + selectedArts
         return cards.enumerated().map {
             Card(id: $0, art: $1, isFaceUp: isFaceUp)

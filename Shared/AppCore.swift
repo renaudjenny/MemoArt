@@ -23,7 +23,7 @@ struct AppEnvironment {
     var clearGameBackup: () -> Void
     var loadHighScores: () -> [HighScore]
     var saveHighScores: ([HighScore]) -> Void
-    var generateRandomCards: (Set<Art>) -> [Card]
+    var generateRandomCards: (Set<Art>, DifficultyLevel) -> [Card]
     var saveConfiguration: (ConfigurationState) -> Void
     var loadConfiguration: () -> ConfigurationState
 }
@@ -73,7 +73,10 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
             }
             return .none
         case .game(.shuffleCards):
-            state.game.cards = environment.generateRandomCards(state.configuration.selectedArts)
+            state.game.cards = environment.generateRandomCards(
+                state.configuration.selectedArts,
+                state.configuration.difficultyLevel
+            )
             return .none
         case .presentNewHighScoreView:
             state.isNewHighScoreEntryPresented = true
@@ -143,7 +146,7 @@ extension AppEnvironment {
         clearGameBackup: { },
         loadHighScores: { .preview },
         saveHighScores: { _ in },
-        generateRandomCards: { _ in .predicted },
+        generateRandomCards: { _, _ in .predicted },
         saveConfiguration: { _ in },
         loadConfiguration: { ConfigurationState() }
     )

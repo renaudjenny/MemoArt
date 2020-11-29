@@ -164,7 +164,7 @@ class AppCoreTests: XCTestCase {
             initialState: AppState(),
             reducer: appReducer,
             environment: .mocked(scheduler: scheduler) {
-                $0.generateRandomCards = { _ in .predicted(from: selectedArts) }
+                $0.generateRandomCards = { _, _ in .predicted(from: selectedArts) }
             }
         )
         store.assert(
@@ -289,7 +289,7 @@ extension AppEnvironment {
             clearGameBackup: { },
             loadHighScores: { [] },
             saveHighScores: { _ in },
-            generateRandomCards: { _ in .predicted },
+            generateRandomCards: { _, _ in .predicted },
             saveConfiguration: { _ in },
             loadConfiguration: { ConfigurationState() }
         )

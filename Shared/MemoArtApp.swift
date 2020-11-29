@@ -10,7 +10,10 @@ struct MemoArtApp: App {
 
     let store = Store(
         initialState: AppState(
-            game: GameState(cards: .newGame(from: loadConfiguration().selectedArts)),
+            game: GameState(cards: .newGame(
+                from: loadConfiguration().selectedArts,
+                level: loadConfiguration().difficultyLevel
+            )),
             configuration: loadConfiguration()
         ),
         reducer: appReducer,
@@ -21,7 +24,7 @@ struct MemoArtApp: App {
             clearGameBackup: clearGameBackup,
             loadHighScores: loadHighScores,
             saveHighScores: saveHighScores,
-            generateRandomCards: { .newGame(from: $0) },
+            generateRandomCards: { .newGame(from: $0, level: $1) },
             saveConfiguration: saveConfiguration,
             loadConfiguration: loadConfiguration
         )

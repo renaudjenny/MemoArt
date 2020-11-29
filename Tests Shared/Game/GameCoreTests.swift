@@ -199,6 +199,46 @@ class GameCoreTests: XCTestCase {
         )
         wait(for: [expectingClearGameBackupToBeCalled], timeout: 0.1)
     }
+
+    func testNewGameWithHardDifficultyLevel() {
+        let store = TestStore(
+            initialState: GameState(cards: .predicted(level: .hard)),
+            reducer: gameReducer,
+            environment: .mocked(scheduler: scheduler)
+        )
+        store.assert(
+            .send(.new) {
+                $0.isGameOver = false
+                $0.discoveredArts = []
+                $0.moves = 0
+                $0.cards = $0.cards.map { Card(id: $0.id, art: $0.art, isFaceUp: false) }
+            },
+            .do { self.scheduler.advance(by: .seconds(0.5)) },
+            .receive(.shuffleCards) {
+                $0.cards = .predicted(level: .hard)
+            }
+        )
+    }
+
+    func testNewGameWithEasyDifficultyLevel() {
+        let store = TestStore(
+            initialState: GameState(cards: .predicted(level: .easy)),
+            reducer: gameReducer,
+            environment: .mocked(scheduler: scheduler)
+        )
+        store.assert(
+            .send(.new) {
+                $0.isGameOver = false
+                $0.discoveredArts = []
+                $0.moves = 0
+                $0.cards = $0.cards.map { Card(id: $0.id, art: $0.art, isFaceUp: false) }
+            },
+            .do { self.scheduler.advance(by: .seconds(0.5)) },
+            .receive(.shuffleCards) {
+                $0.cards = .predicted(level: .easy)
+            }
+        )
+    }
 }
 
 extension GameEnvironment {
