@@ -52,10 +52,6 @@
 		4CAC43A7255FD0CE009FFF68 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43A5255FD0CE009FFF68 /* GameOverView.swift */; };
 		4CAC43AC255FD523009FFF68 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43AB255FD523009FFF68 /* ConfigurationView.swift */; };
 		4CAC43AD255FD523009FFF68 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43AB255FD523009FFF68 /* ConfigurationView.swift */; };
-		4CAC43B5255FD6EA009FFF68 /* AboutNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43B4255FD6EA009FFF68 /* AboutNavigationLink.swift */; };
-		4CAC43B6255FD6EA009FFF68 /* AboutNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43B4255FD6EA009FFF68 /* AboutNavigationLink.swift */; };
-		4CAC43BB255FD76F009FFF68 /* HighScoresNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43BA255FD76F009FFF68 /* HighScoresNavigationLink.swift */; };
-		4CAC43BC255FD76F009FFF68 /* HighScoresNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43BA255FD76F009FFF68 /* HighScoresNavigationLink.swift */; };
 		4CC92F4B25458A8600DAC4AB /* NewHighScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F4A25458A8600DAC4AB /* NewHighScoreView.swift */; };
 		4CC92F5A2545E5C600DAC4AB /* AddCardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F592545E5C600DAC4AB /* AddCardStyle.swift */; };
 		4CC92F6E2548BB2300DAC4AB /* ReversedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F6D2548BB2300DAC4AB /* ReversedScrollView.swift */; };
@@ -126,8 +122,6 @@
 		4CAC4384255FCD15009FFF68 /* MainView-macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainView-macOS.swift"; sourceTree = "<group>"; };
 		4CAC43A5255FD0CE009FFF68 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		4CAC43AB255FD523009FFF68 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
-		4CAC43B4255FD6EA009FFF68 /* AboutNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutNavigationLink.swift; sourceTree = "<group>"; };
-		4CAC43BA255FD76F009FFF68 /* HighScoresNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresNavigationLink.swift; sourceTree = "<group>"; };
 		4CC92F4A25458A8600DAC4AB /* NewHighScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHighScoreView.swift; sourceTree = "<group>"; };
 		4CC92F592545E5C600DAC4AB /* AddCardStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardStyle.swift; sourceTree = "<group>"; };
 		4CC92F6D2548BB2300DAC4AB /* ReversedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversedScrollView.swift; sourceTree = "<group>"; };
@@ -309,7 +303,6 @@
 			children = (
 				4CC92F6D2548BB2300DAC4AB /* ReversedScrollView.swift */,
 				4CAC4369255F4BA2009FFF68 /* Color.swift */,
-				4CAC43B4255FD6EA009FFF68 /* AboutNavigationLink.swift */,
 				4C805D13256A82F4003D8F25 /* AboutSheetView.swift */,
 			);
 			path = Common;
@@ -322,7 +315,6 @@
 				4CD0E1F52542A29900A1E0FD /* HighScoresCore.swift */,
 				4CD0E1F02542A1D200A1E0FD /* HighScoresView.swift */,
 				4CC92F4A25458A8600DAC4AB /* NewHighScoreView.swift */,
-				4CAC43BA255FD76F009FFF68 /* HighScoresNavigationLink.swift */,
 				4CD88EBE2565B6690074EE39 /* HighScoresSheetView.swift */,
 			);
 			path = HighScores;
@@ -567,7 +559,6 @@
 				4CD88EC02565B6690074EE39 /* HighScoresSheetView.swift in Sources */,
 				4CAC436B255F4BA2009FFF68 /* Color.swift in Sources */,
 				4C217AB9255F391700A631BB /* ConfigurationCore.swift in Sources */,
-				4CAC43B6255FD6EA009FFF68 /* AboutNavigationLink.swift in Sources */,
 				4CAC43A7255FD0CE009FFF68 /* GameOverView.swift in Sources */,
 				4C217AC6255F392800A631BB /* HighScore.swift in Sources */,
 				4C217AA1255F38FF00A631BB /* AppCore.swift in Sources */,
@@ -580,7 +571,6 @@
 				4C217AD6255F393800A631BB /* MemoArtApp.swift in Sources */,
 				4CAC43AD255FD523009FFF68 /* ConfigurationView.swift in Sources */,
 				4C217AAD255F390C00A631BB /* CardView.swift in Sources */,
-				4CAC43BC255FD76F009FFF68 /* HighScoresNavigationLink.swift in Sources */,
 				4C217AA9255F390900A631BB /* AddCardStyle.swift in Sources */,
 				4C217ACA255F392C00A631BB /* HighScoresCore.swift in Sources */,
 				4CE02F45256ED6BC00A925F0 /* NewGameButton.swift in Sources */,
@@ -600,7 +590,6 @@
 				4CD88EBF2565B6690074EE39 /* HighScoresSheetView.swift in Sources */,
 				4CD0E1F12542A1D200A1E0FD /* HighScoresView.swift in Sources */,
 				4CAC436A255F4BA2009FFF68 /* Color.swift in Sources */,
-				4CAC43B5255FD6EA009FFF68 /* AboutNavigationLink.swift in Sources */,
 				4CAC43A6255FD0CE009FFF68 /* GameOverView.swift in Sources */,
 				4CD0E1EC2542A0B500A1E0FD /* HighScore.swift in Sources */,
 				4C8484AB2556DF1C00FBDEC2 /* ArtsSelectionConfigurationView.swift in Sources */,
@@ -613,7 +602,6 @@
 				4C8DF43A253C5B2900F2DE7C /* AppCore.swift in Sources */,
 				4CAC43AC255FD523009FFF68 /* ConfigurationView.swift in Sources */,
 				4CC92F4B25458A8600DAC4AB /* NewHighScoreView.swift in Sources */,
-				4CAC43BB255FD76F009FFF68 /* HighScoresNavigationLink.swift in Sources */,
 				4CC92F6E2548BB2300DAC4AB /* ReversedScrollView.swift in Sources */,
 				4C8DF43F253C5B9900F2DE7C /* Symbol.swift in Sources */,
 				4CE02F44256ED6BC00A925F0 /* NewGameButton.swift in Sources */,

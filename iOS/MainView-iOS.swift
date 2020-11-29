@@ -1,6 +1,7 @@
 #if !os(macOS)
 import SwiftUI
 import ComposableArchitecture
+import RenaudJennyAboutView
 
 struct MainView: View {
     let store: Store<AppState, AppAction>
@@ -8,6 +9,8 @@ struct MainView: View {
     @Environment(\.verticalSizeClass) private var verticalSizeClass
     @State private var isNewGameAlertPresented = false
     @State private var isConfigurationNavigationActive = false
+    @State private var isAboutNavigationActive = false
+    @State private var isHighScoresNavigationActive = false
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -24,25 +27,7 @@ struct MainView: View {
                     }
                     .padding()
                 }
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        Text("MemoArt")
-                    }
-                    ToolbarItemGroup(placement: .navigationBarLeading) {
-                        // TODO: AboutNavigationLink Should have the same behaviour as ConfigurationView
-                        AboutNavigationLink()
-                        Button {
-                            isConfigurationNavigationActive = true
-                        } label: {
-                            Image(systemName: "gearshape")
-                        }
-                    }
-                    ToolbarItemGroup(placement: .navigationBarTrailing) {
-                        NewGameButton(store: store.gameStore, isNewGameAlertPresented: $isNewGameAlertPresented)
-                        // TODO: HighScoresNavigationLink Should have the same behaviour as ConfigurationView
-                        HighScoresNavigationLink(store: store.highScoresStore)
-                    }
-                }
+                .toolbar(content: toolbar)
                 .background(navigation)
             }
             .sheet(
@@ -82,6 +67,38 @@ struct MainView: View {
         }
     }
 
+    private func toolbar() -> some ToolbarContent {
+        Group {
+            ToolbarItem(placement: .principal) {
+                Text("MemoArt")
+            }
+            ToolbarItemGroup(placement: .navigationBarLeading) {
+                Button {
+                    isAboutNavigationActive = true
+                } label: {
+                    Image(systemName: "questionmark.circle")
+                }
+                .accessibility(label: Text("About"))
+
+                Button {
+                    isConfigurationNavigationActive = true
+                } label: {
+                    Image(systemName: "gearshape")
+                }
+                .accessibility(label: Text("Configuration"))
+            }
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                NewGameButton(store: store.gameStore, isNewGameAlertPresented: $isNewGameAlertPresented)
+                Button {
+                    isHighScoresNavigationActive = true
+                } label: {
+                    Text("🏆")
+                }
+                .accessibility(label: Text("High Scores"))
+            }
+        }
+    }
+
     private var navigation: some View {
         VStack {
             NavigationLink(
@@ -89,7 +106,30 @@ struct MainView: View {
                 isActive: $isConfigurationNavigationActive,
                 label: EmptyView.init
             )
+            NavigationLink(
+                destination: aboutView,
+                isActive: $isAboutNavigationActive,
+                label: EmptyView.init
+            )
+            NavigationLink(
+                destination: HighScoresView(store: store.highScoresStore),
+                isActive: $isHighScoresNavigationActive,
+                label: EmptyView.init
+            )
         }
+    }
+
+    private var aboutView: some View {
+        AboutView(
+            appId: "id1536330844",
+            logo: {
+                Image("Pixel Art")
+                    .resizable()
+                    .modifier(AddCardStyle())
+                    .frame(width: 120, height: 120)
+
+            }
+        )
     }
 }
 
