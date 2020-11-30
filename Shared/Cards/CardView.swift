@@ -3,16 +3,13 @@ import ComposableArchitecture
 
 struct CardView: View {
     let store: Store<GameState, GameAction>
-    // FIXME: This should use a Card directly instead of an id
-    let id: Int
+    let card: Card
     private static let turnCardAnimationDuration: Double = 2/5
 
     var body: some View {
         WithViewStore(store) { viewStore in
             ZStack {
-                if !viewStore.state.isCardValid(id: id) {
-                    EmptyView()
-                } else if !viewStore.cards[id].isFaceUp {
+                if !card.isFaceUp {
                     Button {
                         returnCard(store: viewStore)
                     } label: {
@@ -26,7 +23,7 @@ struct CardView: View {
             }
             .modifier(AddCardStyle())
             .rotation3DEffect(
-                viewStore.state.isCardValid(id: id) && viewStore.cards[id].isFaceUp
+                card.isFaceUp
                     ? .radians(.pi)
                     : .zero,
                 axis: (x: 0.0, y: 1.0, z: 0.0),
@@ -38,12 +35,10 @@ struct CardView: View {
     }
 
     private var image: some View {
-        WithViewStore(store) { viewStore in
-            viewStore.cards[id].art.image
-                .renderingMode(.original)
-                .resizable()
-                .font(.largeTitle)
-        }
+        card.art.image
+            .renderingMode(.original)
+            .resizable()
+            .font(.largeTitle)
     }
 
     private var turnTransition: AnyTransition {
@@ -55,7 +50,7 @@ struct CardView: View {
     }
 
     private func returnCard(store: ViewStore<GameState, GameAction>) {
-        withAnimation(.spring()) { store.send(.cardReturned(id)) }
+        withAnimation(.spring()) { store.send(.cardReturned(card.id)) }
     }
 }
 
@@ -83,16 +78,16 @@ struct CardView_Previews: PreviewProvider {
                     Spacer()
                     VStack {
                         HStack {
-                            CardView(store: store, id: 0)
-                            CardView(store: store, id: 1)
+                            CardView(store: store, card: card(store: viewStore, id: 0))
+                            CardView(store: store, card: card(store: viewStore, id: 1))
                         }
                         HStack {
-                            CardView(store: store, id: 2)
-                            CardView(store: store, id: 3)
+                            CardView(store: store, card: card(store: viewStore, id: 2))
+                            CardView(store: store, card: card(store: viewStore, id: 3))
                         }
                         HStack {
-                            CardView(store: store, id: 4)
-                            CardView(store: store, id: 5)
+                            CardView(store: store, card: card(store: viewStore, id: 4))
+                            CardView(store: store, card: card(store: viewStore, id: 5))
                         }
                     }
                     Spacer()
@@ -102,6 +97,10 @@ struct CardView_Previews: PreviewProvider {
                     .padding()
                 }.padding()
             }
+        }
+
+        private func card(store: ViewStore<GameState, GameAction>, id: Int) -> Card {
+            store.cards[id]
         }
     }
 }

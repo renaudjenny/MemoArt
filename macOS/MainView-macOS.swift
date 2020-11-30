@@ -19,8 +19,8 @@ struct MainView: View {
                     .animation(nil)
                 GameOverView(store: store.gameStore)
                 LazyVGrid(columns: columns) {
-                    ForEach(0..<20) {
-                        CardView(store: store.gameStore, id: $0)
+                    ForEach(viewStore.game.cards) {
+                        CardView(store: store.gameStore, card: $0)
                     }
                 }
                 .padding()
