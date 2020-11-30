@@ -10,6 +10,7 @@ struct GameState: Equatable, Codable {
 
     var hasCardsFacedUp: Bool { cards.filter { $0.isFaceUp }.count > 0 }
     var isGameInProgress: Bool { moves > 0 || hasCardsFacedUp }
+    func isCardValid(id: Int) -> Bool { cards.count > id }
 }
 
 enum GameAction: Equatable {

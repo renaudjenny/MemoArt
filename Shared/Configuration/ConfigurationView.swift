@@ -6,7 +6,13 @@ struct ConfigurationView: View {
 
     var body: some View {
         ScrollView {
+            Text("Choose a difficulty level")
+                .font(.title2)
+                .multilineTextAlignment(.center)
+                .padding()
+            DifficultyLevelConfigurationView(store: store)
             Divider()
+
             Text("Choose the cards you want to play with")
                 .font(.title2)
                 .multilineTextAlignment(.center)

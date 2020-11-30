@@ -12,7 +12,7 @@ struct MemoArtApp: App {
         initialState: AppState(
             game: GameState(cards: .newGame(
                 from: loadConfiguration().selectedArts,
-                level: loadConfiguration().difficultyLevel
+                level: loadGame().level
             )),
             configuration: loadConfiguration()
         ),

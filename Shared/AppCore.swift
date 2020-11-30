@@ -73,9 +73,10 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
             }
             return .none
         case .game(.shuffleCards):
+            state.game.level = state.configuration.difficultyLevel
             state.game.cards = environment.generateRandomCards(
                 state.configuration.selectedArts,
-                state.configuration.difficultyLevel
+                state.game.level
             )
             return .none
         case .presentNewHighScoreView:

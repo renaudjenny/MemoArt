@@ -275,6 +275,31 @@ class AppCoreTests: XCTestCase {
         )
         wait(for: [expectingLoadConfigurationToBeCalled], timeout: 0.1)
     }
+
+    func testShuffleCardWithNewDifficultyLevelConfigured() {
+        let store = TestStore(
+            initialState: AppState(),
+            reducer: appReducer,
+            environment: .mocked(scheduler: scheduler)
+        )
+        store.assert(
+            .send(.game(.new)),
+            .do { self.scheduler.advance(by: .seconds(0.5)) },
+            .receive(.game(.shuffleCards)) {
+                $0.game.cards = .predicted(level: .normal)
+            },
+            .send(.configuration(.changeDifficultyLevel(.easy))) {
+                $0.configuration.difficultyLevel = .easy
+            },
+            .receive(.configuration(.save)),
+            .send(.game(.new)),
+            .do { self.scheduler.advance(by: .seconds(0.5)) },
+            .receive(.game(.shuffleCards)) {
+                $0.game.level = .easy
+                $0.game.cards = .predicted(level: .easy)
+            }
+        )
+    }
 }
 
 extension AppEnvironment {
@@ -289,7 +314,7 @@ extension AppEnvironment {
             clearGameBackup: { },
             loadHighScores: { [] },
             saveHighScores: { _ in },
-            generateRandomCards: { _, _ in .predicted },
+            generateRandomCards: { _, level in .predicted(level: level) },
             saveConfiguration: { _ in },
             loadConfiguration: { ConfigurationState() }
         )

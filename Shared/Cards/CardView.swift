@@ -3,13 +3,16 @@ import ComposableArchitecture
 
 struct CardView: View {
     let store: Store<GameState, GameAction>
+    // FIXME: This should use a Card directly instead of an id
     let id: Int
     private static let turnCardAnimationDuration: Double = 2/5
 
     var body: some View {
         WithViewStore(store) { viewStore in
             ZStack {
-                if !viewStore.cards[id].isFaceUp {
+                if !viewStore.state.isCardValid(id: id) {
+                    EmptyView()
+                } else if !viewStore.cards[id].isFaceUp {
                     Button {
                         returnCard(store: viewStore)
                     } label: {
@@ -23,7 +26,7 @@ struct CardView: View {
             }
             .modifier(AddCardStyle())
             .rotation3DEffect(
-                viewStore.cards[id].isFaceUp
+                viewStore.state.isCardValid(id: id) && viewStore.cards[id].isFaceUp
                     ? .radians(.pi)
                     : .zero,
                 axis: (x: 0.0, y: 1.0, z: 0.0),

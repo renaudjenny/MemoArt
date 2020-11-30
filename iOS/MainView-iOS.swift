@@ -21,7 +21,7 @@ struct MainView: View {
                         .animation(nil)
                     GameOverView(store: store.gameStore)
                     LazyVGrid(columns: columns) {
-                        ForEach(0..<20) {
+                        ForEach(0..<viewStore.game.cards.count, id: \.self) {
                             CardView(store: store.gameStore, id: $0)
                         }
                     }

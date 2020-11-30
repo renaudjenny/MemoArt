@@ -10,6 +10,7 @@ enum ConfigurationAction: Equatable {
     case selectArt(Art)
     case save
     case load
+    case changeDifficultyLevel(DifficultyLevel)
 }
 
 struct ConfigurationEnvironment {
@@ -44,5 +45,8 @@ let configurationReducer = Reducer<
     case .load:
         state = environment.load()
         return .none
+    case let .changeDifficultyLevel(difficultyLevel):
+        state.difficultyLevel = difficultyLevel
+        return Effect(value: .save)
     }
 }
