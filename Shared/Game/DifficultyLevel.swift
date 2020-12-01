@@ -5,9 +5,9 @@ enum DifficultyLevel: String, Codable {
 
     var cardsCount: Int {
         switch self {
-        case .easy: return 18
+        case .easy: return 16
         case .normal: return 20
-        case .hard: return 22
+        case .hard: return 24
         }
     }
 }

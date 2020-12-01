@@ -8,7 +8,7 @@ struct ArtsSelectionConfigurationView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
-                Text("A new game will randomly display 10 cards among the ones you chose")
+                Text("A new game will randomly display \(viewStore.cardsCount) cards among the ones you chose")
                     .font(.subheadline)
                     .multilineTextAlignment(.center)
                     .padding()
@@ -17,18 +17,19 @@ struct ArtsSelectionConfigurationView: View {
                     Text("\(viewStore.selectedArts.count)")
                         .bold()
                         .foregroundColor(
-                            viewStore.selectedArts.count > 10
+                            viewStore.selectedArts.count > viewStore.cardsCount/2
                                 ? .green
                                 : .orange
                         )
-                        + Text("/10")
+                        + Text("/\(viewStore.cardsCount/2)")
                 }
                 .animation(nil)
 
                 VStack {
-                    if viewStore.selectedArts.count <= 10 {
-                        Text("Attention! You have to use 10 cards or more to play.")
+                    if viewStore.selectedArts.count <= viewStore.cardsCount/2 {
+                        Text("You've reached the limit.\nYou need \(viewStore.cardsCount/2) cards or more to play.")
                             .font(.callout)
+                            .multilineTextAlignment(.center)
                             .padding()
                             .background(
                                 RoundedRectangle(cornerRadius: 8)

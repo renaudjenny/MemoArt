@@ -8,7 +8,7 @@ struct DifficultyLevelConfigurationView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
-                Text("A new game will use \(viewStore.difficultyLevel.cardsCount) cards")
+                Text("A new game will use \(viewStore.difficultyLevel.cardsCount/2) pairs of cards")
                     .font(.subheadline)
                     .multilineTextAlignment(.center)
                     .padding()
@@ -17,6 +17,7 @@ struct DifficultyLevelConfigurationView: View {
                     Text("Normal").tag(DifficultyLevel.normal)
                     Text("Hard").tag(DifficultyLevel.hard)
                 }
+                .labelsHidden()
                 .pickerStyle(SegmentedPickerStyle())
                 .background(
                     LinearGradient(

@@ -7,7 +7,12 @@ struct ConfigurationSheetView: View {
 
     var body: some View {
         ScrollView {
-            GroupBox(label: artTypeSelectionLabel) {
+            GroupBox(label: Text("Choose a difficulty level")) {
+                DifficultyLevelConfigurationView(store: store)
+            }
+            .padding()
+
+            GroupBox(label: Text("Choose the cards you want to play with")) {
                 ArtsSelectionConfigurationView(store: store)
             }
             .padding()
@@ -21,9 +26,5 @@ struct ConfigurationSheetView: View {
             }
             .padding([.bottom, .trailing])
         }
-    }
-
-    private var artTypeSelectionLabel: some View {
-        Text("Choose the cards you want to play with")
     }
 }

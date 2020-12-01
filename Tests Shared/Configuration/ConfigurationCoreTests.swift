@@ -76,6 +76,27 @@ class ConfigurationCoreTests: XCTestCase {
             .receive(.save)
         )
     }
+
+    func testChangeDifficultyWhenUnselectedArtsCountReachedOverTheLimit() {
+        let store = TestStore(
+            initialState: .onlyTenSelectedArts,
+            reducer: configurationReducer,
+            environment: ConfigurationEnvironment(
+                mainQueue: scheduler.eraseToAnyScheduler(),
+                save: { _ in },
+                load: { ConfigurationState() }
+            )
+        )
+        store.assert(
+            // Hard level needs more selected arts than the limit of Normal level
+            // We need now to select some default arts to reach the correct limit
+            .send(.changeDifficultyLevel(.hard)) {
+                $0.difficultyLevel = .hard
+                $0.selectedArts = Set(Art.allCases.prefix(12))
+            },
+            .receive(.save)
+        )
+    }
 }
 
 extension ConfigurationState {

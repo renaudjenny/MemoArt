@@ -118,11 +118,11 @@ class GameCoreTests: XCTestCase {
                     let numberOfCardReturned = (cardId + 1) * 2
                     $0.discoveredArts = Art.allCases.prefix(numberOfCardReturned/2)
                     $0.moves = numberOfCardReturned/2
-                    if numberOfCardReturned == 20 {
+                    if numberOfCardReturned == $0.level.cardsCount {
                         $0.isGameOver = true
                     }
                 },
-                .receive(cardId + 11 < 20 ? .save : .clearBackup),
+                .receive(cardId + 11 < DifficultyLevel.normal.cardsCount ? .save : .clearBackup),
             ]
         }
 
