@@ -62,14 +62,9 @@ struct CardView_Previews: PreviewProvider {
 
     private struct Preview: View {
         let store = Store<GameState, GameAction>(
-            initialState: GameState(),
+            initialState: .preview,
             reducer: gameReducer,
-            environment: GameEnvironment(
-                mainQueue: .preview,
-                save: { _ in },
-                load: { GameState() },
-                clearBackup: { }
-            )
+            environment: .preview
         )
 
         var body: some View {

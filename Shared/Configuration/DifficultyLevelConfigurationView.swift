@@ -24,7 +24,7 @@ struct DifficultyLevelConfigurationView: View {
                         startPoint: .leading, endPoint: .trailing
                     )
                     .opacity(pickerBackgroundOpacity)
-                    .cornerRadius(4)
+                    .cornerRadius(8)
                 )
                 .padding([.horizontal, .bottom])
             }

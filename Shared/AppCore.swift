@@ -85,7 +85,9 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
         case .newHighScoreEntered:
             state.isNewHighScoreEntryPresented = false
             return .none
-        case .configuration(.selectArt), .configuration(.unselectArt):
+        case .configuration(.selectArt),
+             .configuration(.unselectArt),
+             .configuration(.changeDifficultyLevel):
             if state.game.moves <= 0 {
                 return Effect(value: .game(.new))
             }

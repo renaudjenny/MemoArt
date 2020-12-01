@@ -80,3 +80,15 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
         return .none
     }
 }
+
+#if DEBUG
+extension GameState {
+    static var preview: Self { GameState(moves: 42, cards: .predicted) }
+}
+
+extension GameEnvironment {
+    static var preview: Self {
+        GameEnvironment(mainQueue: .preview, save: { _ in }, load: { .preview }, clearBackup: { })
+    }
+}
+#endif
