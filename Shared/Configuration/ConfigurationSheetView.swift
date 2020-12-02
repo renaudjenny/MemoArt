@@ -2,18 +2,18 @@ import SwiftUI
 import ComposableArchitecture
 
 struct ConfigurationSheetView: View {
-    let store: Store<ConfigurationState, ConfigurationAction>
+    let store: Store<AppState, AppAction>
     @Binding var isPresented: Bool
 
     var body: some View {
         ScrollView {
             GroupBox(label: Text("Choose a difficulty level")) {
-                DifficultyLevelConfigurationView(store: store)
+                DifficultyLevelConfigurationView(store: store.configurationStore)
             }
             .padding()
 
             GroupBox(label: Text("Choose the cards you want to play with")) {
-                ArtsSelectionConfigurationView(store: store)
+                ArtsSelectionConfigurationView(store: store.configurationStore)
             }
             .padding()
         }
@@ -26,5 +26,6 @@ struct ConfigurationSheetView: View {
             }
             .padding([.bottom, .trailing])
         }
+        .modifier(SetupDifficultyLevelChangedAlert(store: store))
     }
 }

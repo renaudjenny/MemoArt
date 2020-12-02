@@ -46,6 +46,8 @@
 		4C90E1802573E465006568FB /* DifficultyLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90E17E2573E465006568FB /* DifficultyLevel.swift */; };
 		4C90E18A2573E92B006568FB /* DifficultyLevelConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90E1892573E92B006568FB /* DifficultyLevelConfigurationView.swift */; };
 		4C90E18B2573E92B006568FB /* DifficultyLevelConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90E1892573E92B006568FB /* DifficultyLevelConfigurationView.swift */; };
+		4C90E19525780B89006568FB /* SetupDifficultyLevelChangedAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90E19425780B89006568FB /* SetupDifficultyLevelChangedAlert.swift */; };
+		4C90E19625780B89006568FB /* SetupDifficultyLevelChangedAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90E19425780B89006568FB /* SetupDifficultyLevelChangedAlert.swift */; };
 		4CAC436A255F4BA2009FFF68 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC4369255F4BA2009FFF68 /* Color.swift */; };
 		4CAC436B255F4BA2009FFF68 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC4369255F4BA2009FFF68 /* Color.swift */; };
 		4CAC437F255FCCBE009FFF68 /* MainView-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC437E255FCCBE009FFF68 /* MainView-iOS.swift */; };
@@ -123,6 +125,7 @@
 		4C8DF43E253C5B9900F2DE7C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		4C90E17E2573E465006568FB /* DifficultyLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyLevel.swift; sourceTree = "<group>"; };
 		4C90E1892573E92B006568FB /* DifficultyLevelConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyLevelConfigurationView.swift; sourceTree = "<group>"; };
+		4C90E19425780B89006568FB /* SetupDifficultyLevelChangedAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupDifficultyLevelChangedAlert.swift; sourceTree = "<group>"; };
 		4CAC4369255F4BA2009FFF68 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		4CAC437E255FCCBE009FFF68 /* MainView-iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainView-iOS.swift"; sourceTree = "<group>"; };
 		4CAC4384255FCD15009FFF68 /* MainView-macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainView-macOS.swift"; sourceTree = "<group>"; };
@@ -248,6 +251,7 @@
 				4CAC43AB255FD523009FFF68 /* ConfigurationView.swift */,
 				4CD88EB82565B5570074EE39 /* ConfigurationSheetView.swift */,
 				4C90E1892573E92B006568FB /* DifficultyLevelConfigurationView.swift */,
+				4C90E19425780B89006568FB /* SetupDifficultyLevelChangedAlert.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -576,6 +580,7 @@
 				4C217AD2255F393200A631BB /* NewHighScoreView.swift in Sources */,
 				4C90E18B2573E92B006568FB /* DifficultyLevelConfigurationView.swift in Sources */,
 				4CD88EBA2565B5570074EE39 /* ConfigurationSheetView.swift in Sources */,
+				4C90E19625780B89006568FB /* SetupDifficultyLevelChangedAlert.swift in Sources */,
 				4C805D19256A838B003D8F25 /* AboutSheetView.swift in Sources */,
 				4CAC4386255FCD15009FFF68 /* MainView-macOS.swift in Sources */,
 				4C217AD6255F393800A631BB /* MemoArtApp.swift in Sources */,
@@ -609,6 +614,7 @@
 				4C8DF3FC253B30D700F2DE7C /* MemoArtApp.swift in Sources */,
 				4C90E18A2573E92B006568FB /* DifficultyLevelConfigurationView.swift in Sources */,
 				4CD88EB92565B5570074EE39 /* ConfigurationSheetView.swift in Sources */,
+				4C90E19525780B89006568FB /* SetupDifficultyLevelChangedAlert.swift in Sources */,
 				4C805D14256A82F4003D8F25 /* AboutSheetView.swift in Sources */,
 				4CAC4385255FCD15009FFF68 /* MainView-macOS.swift in Sources */,
 				4C8DF43A253C5B2900F2DE7C /* AppCore.swift in Sources */,

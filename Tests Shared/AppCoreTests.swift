@@ -348,8 +348,32 @@ class AppCoreTests: XCTestCase {
             .send(.configuration(.changeDifficultyLevel(.hard))) {
                 $0.configuration.difficultyLevel = .hard
             },
-            .receive(.configuration(.save))
+            .receive(.configuration(.save)),
             // As game has already started, we shouldn't receive a .game(.new) action anymore
+            // But instead we will receive the disclaimer about starting a new game
+            .receive(.presentDifficultyLevelHasChanged) {
+                $0.isDifficultyLevelHasChangedPresented = true
+            }
+        )
+    }
+
+    func testChangingLevelWillDisplayADisclaimerMessageAskingToSetANewGame() {
+        let store = TestStore(
+            initialState: .mocked {
+                $0.game.moves = 42
+            },
+            reducer: appReducer,
+            environment: .mocked(scheduler: scheduler)
+        )
+
+        store.assert(
+            .send(.configuration(.changeDifficultyLevel(.easy))) {
+                $0.configuration.difficultyLevel = .easy
+            },
+            .receive(.configuration(.save)),
+            .receive(.presentDifficultyLevelHasChanged) {
+                $0.isDifficultyLevelHasChangedPresented = true
+            }
         )
     }
 }

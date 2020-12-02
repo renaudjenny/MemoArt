@@ -8,6 +8,7 @@ struct MainView: View {
     @State private var isConfigurationPresented = false
     @State private var isHighScoresPresented = false
     @State private var isNewGameAlertPresented = false
+    @State private var isDifficultyLevelAlertPresented = false
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -50,7 +51,7 @@ struct MainView: View {
             }
             .background(EmptyView().sheet(isPresented: $isConfigurationPresented) {
                 ConfigurationSheetView(
-                    store: store.configurationStore,
+                    store: store,
                     isPresented: $isConfigurationPresented
                 )
             })
@@ -70,7 +71,10 @@ struct MainView: View {
                         .padding()
                 }
             ))
-            .modifier(SetupNewGameAlert(store: store.gameStore, isPresented: $isNewGameAlertPresented))
+            .modifier(SetupNewGameAlert(
+                store: store.gameStore,
+                isPresented: $isNewGameAlertPresented
+            ))
             .background(
                 Image("Motif")
                     .resizable(resizingMode: .tile)
