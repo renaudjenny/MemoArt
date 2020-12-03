@@ -54,7 +54,7 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
             if facedUpCards[0].art == facedUpCards[1].art {
                 state.discoveredArts.append(facedUpCards[0].art)
             }
-            guard state.discoveredArts.count < 10 else {
+            guard state.discoveredArts.count < state.level.cardsCount/2 else {
                 state.isGameOver = true
                 return Effect(value: .clearBackup)
             }
