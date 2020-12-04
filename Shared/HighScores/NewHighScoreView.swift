@@ -20,13 +20,15 @@ struct NewHighScoreView: View {
 
     private func submit(with viewStore: ViewStore<AppState, AppAction>) {
         if name == "" {
-            viewStore.send(.highScores(.addScore(HighScore(score: viewStore.game.moves, date: Date()))))
+            viewStore.send(.highScores(.addScore(
+                HighScore(score: viewStore.game.moves, date: Date()),
+                viewStore.game.level
+            )))
         } else {
-            viewStore.send(.highScores(.addScore(HighScore(
-                score: viewStore.game.moves,
-                name: name,
-                date: Date()
-            ))))
+            viewStore.send(.highScores(.addScore(
+                HighScore(score: viewStore.game.moves,name: name,date: Date()),
+                viewStore.game.level
+            )))
         }
         viewStore.send(.newHighScoreEntered)
     }
@@ -43,7 +45,7 @@ struct NewHighScoreView_Previews: PreviewProvider {
                     discoveredArts: [],
                     isGameOver: true
                 ),
-                highScores: HighScoresState(scores: .preview),
+                highScores: .preview,
                 isNewHighScoreEntryPresented: true
             ),
             reducer: appReducer,

@@ -3,25 +3,56 @@ import ComposableArchitecture
 
 struct HighScoresView: View {
     let store: Store<HighScoresState, HighScoresAction>
+    @State private var level: DifficultyLevel = .normal
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            ScrollView {
-                if viewStore.scores.count <= 0 {
-                    Text("Go win some game to see your best scores here ⭐️")
-                        .bold()
-                        .padding(.top, 64)
-                        .padding()
-                } else {
-                    VStack(spacing: 0) {
-                        ForEach(Array(viewStore.scores.enumerated()), id: \.0) { position, score in
-                            HighScoreView(position: position, highScore: score)
+            VStack {
+                // TODO: refactor this element with the one in DifficultyLevelConfigurationView
+                Picker("Difficulty Level", selection: $level) {
+                    Text("Easy").tag(DifficultyLevel.easy)
+                    Text("Normal").tag(DifficultyLevel.normal)
+                    Text("Hard").tag(DifficultyLevel.hard)
+                }
+                .labelsHidden()
+                .pickerStyle(SegmentedPickerStyle())
+                .background(
+                    LinearGradient(
+                        gradient: Gradient(colors: [Color.green, Color.blue, Color.red]),
+                        startPoint: .leading, endPoint: .trailing
+                    )
+                    .opacity(20/100)
+                    .cornerRadius(8)
+                )
+                .padding([.horizontal, .bottom])
+
+                ScrollView {
+                    if displayedHighScores(store: viewStore).count <= 0 {
+                        Text("Go win some game to see your best scores here ⭐️")
+                            .bold()
+                            .padding(.top, 64)
+                            .padding()
+                    } else {
+                        VStack(spacing: 0) {
+                            ForEach(enumeratedHighScores(store: viewStore), id: \.0) { position, score in
+                                HighScoreView(position: position, highScore: score)
+                            }
                         }
                     }
                 }
+                .navigationTitle("High Scores 🏆")
             }
-            .navigationTitle("High Scores 🏆")
         }
+    }
+
+    private func displayedHighScores(store: ViewStore<HighScoresState, HighScoresAction>) -> [HighScore] {
+        store.boards.highScores(level: level)
+    }
+
+    private func enumeratedHighScores(
+        store: ViewStore<HighScoresState, HighScoresAction>
+    ) -> [(offset: Int, element: HighScore)] {
+        Array(displayedHighScores(store: store).enumerated())
     }
 }
 
@@ -85,12 +116,9 @@ struct HighScoresView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             HighScoresView(store: .init(
-                initialState: HighScoresState(scores: .preview),
+                initialState: .preview,
                 reducer: highScoresReducer,
-                environment: HighScoresEnvironment(
-                    load: { .preview },
-                    save: { _ in }
-                )
+                environment: .preview
             ))
         }
     }
@@ -102,10 +130,7 @@ struct HighScoresViewEmptyScores_Previews: PreviewProvider {
             HighScoresView(store: .init(
                 initialState: HighScoresState(),
                 reducer: highScoresReducer,
-                environment: HighScoresEnvironment(
-                    load: { [] },
-                    save: { _ in }
-                )
+                environment: .preview
             ))
         }
     }
@@ -113,11 +138,5 @@ struct HighScoresViewEmptyScores_Previews: PreviewProvider {
 
 extension Date {
     static let preview = Date(timeIntervalSince1970: 12345)
-}
-
-extension Array where Element == HighScore {
-    static let preview: Self = (1...10).map {
-        HighScore(score: 10 * $0, name: "Preview player \($0)", date: .preview)
-    }
 }
 #endif

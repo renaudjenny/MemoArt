@@ -83,7 +83,26 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
 
 #if DEBUG
 extension GameState {
-    static var preview: Self { GameState(moves: 42, cards: .predicted) }
+    static func mocked(modifier: (inout Self) -> Void) -> Self {
+        var state = GameState()
+        modifier(&state)
+        return state
+    }
+    static var preview: Self = .mocked {
+        $0.moves = 42
+        $0.cards = .predicted
+    }
+    static let almostFinishedGame: Self = .mocked {
+        $0.isGameOver = false
+        $0.discoveredArts = Art.allCases.filter({ $0 != .cave })
+        $0.moves = 142
+        $0.cards = [Card].predicted(isFaceUp: true).map {
+            if $0.art == .cave {
+                return Card(id: $0.id, art: $0.art, isFaceUp: false)
+            }
+            return $0
+        }
+    }
 }
 
 extension GameEnvironment {

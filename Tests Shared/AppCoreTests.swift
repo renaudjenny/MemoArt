@@ -68,7 +68,7 @@ class AppCoreTests: XCTestCase {
             initialState: AppState.mocked {
                 $0.game = AppState.almostFinishedGame.game
                 $0.game.moves = 10
-                $0.highScores = HighScoresState(scores: .test)
+                $0.highScores = .test
             },
             reducer: appReducer,
             environment: .mocked(scheduler: scheduler)
@@ -107,7 +107,7 @@ class AppCoreTests: XCTestCase {
         let store = TestStore(
             initialState: AppState.mocked {
                 $0.game = AppState.almostFinishedGame.game
-                $0.highScores = HighScoresState(scores: .test)
+                $0.highScores = .test
             },
             reducer: appReducer,
             environment: .mocked(scheduler: scheduler)
@@ -388,7 +388,7 @@ extension AppEnvironment {
             saveGame: { _ in },
             loadGame: { GameState() },
             clearGameBackup: { },
-            loadHighScores: { [] },
+            loadHighScores: { .test },
             saveHighScores: { _ in },
             generateRandomCards: { _, level in .predicted(level: level) },
             saveConfiguration: { _ in },

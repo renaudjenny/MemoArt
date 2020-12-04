@@ -1,18 +1,18 @@
 import ComposableArchitecture
 
-struct HighScoresState: Equatable {
-    var scores: [HighScore] = []
+struct HighScoresState: Equatable, Codable {
+    var boards = Boards(easy: [], normal: [], hard: [])
 }
 
 enum HighScoresAction: Equatable {
-    case addScore(HighScore)
+    case addScore(HighScore, DifficultyLevel)
     case load
     case save
 }
 
 struct HighScoresEnvironment {
-    let load: () -> [HighScore]
-    let save: ([HighScore]) -> Void
+    let load: () -> HighScoresState
+    let save: (HighScoresState) -> Void
 }
 
 let highScoresReducer = Reducer<
@@ -21,26 +21,28 @@ let highScoresReducer = Reducer<
     HighScoresEnvironment
 > { state, action, environment in
     switch action {
-    case let .addScore(newHighScore):
-        guard !state.scores.isEmpty else {
-            state.scores = [newHighScore]
-            return .init(value: .save)
+    case let .addScore(newHighScore, level):
+        let currentLevelHighScores = state.boards.highScores(level: level)
+        guard !currentLevelHighScores.isEmpty else {
+            state.boards.setHighScores(highScores: [newHighScore], level: level)
+            return Effect(value: .save)
         }
 
-        state.scores = (state.scores + [newHighScore])
+        let newHighScores = (currentLevelHighScores + [newHighScore])
             .sorted(by: {
                 $0.score == $1.score
                     ? $0.date > $1.date
                     : $0.score <= $1.score
             })
             .prefix(10)
+        state.boards.setHighScores(highScores: newHighScores, level: level)
 
-        return .init(value: .save)
+        return Effect(value: .save)
     case .load:
-        state.scores = environment.load()
+        state = environment.load()
         return .none
     case .save:
-        environment.save(state.scores)
+        environment.save(state)
         return .none
     }
 }
@@ -51,3 +53,39 @@ extension Array {
         return Array(slicedArray)
     }
 }
+
+#if DEBUG
+extension HighScoresState {
+    static var preview: Self {
+        let highScores = (1...10).map {
+            HighScore(score: 10 * $0, name: "Preview player \($0)", date: .preview)
+        }
+        return HighScoresState(boards: Boards(
+            easy: highScores,
+            normal: highScores,
+            hard: highScores
+        ))
+    }
+
+    static var miscellaneous: Self {
+        let easyHighScores = (1...10).map {
+            HighScore(score: 10 * $0, name: "Preview player \($0)", date: .preview)
+        }
+        let normalHighScores = (1...9).map {
+            HighScore(score: 10 * $0, name: "Preview player \($0)", date: .preview)
+        }
+        let hardHighScores = (1...3).map {
+            HighScore(score: 10 * $0, name: "Preview player \($0)", date: .preview)
+        }
+        return HighScoresState(boards: Boards(
+            easy: easyHighScores,
+            normal: normalHighScores,
+            hard: hardHighScores
+        ))
+    }
+}
+
+extension HighScoresEnvironment {
+    static var preview: Self { HighScoresEnvironment(load: { .preview }, save: { _ in }) }
+}
+#endif

@@ -24,8 +24,8 @@ struct AppEnvironment {
     var saveGame: (GameState) -> Void
     var loadGame: () -> GameState
     var clearGameBackup: () -> Void
-    var loadHighScores: () -> [HighScore]
-    var saveHighScores: ([HighScore]) -> Void
+    var loadHighScores: () -> HighScoresState
+    var saveHighScores: (HighScoresState) -> Void
     var generateRandomCards: (Set<Art>, DifficultyLevel) -> [Card]
     var saveConfiguration: (ConfigurationState) -> Void
     var loadConfiguration: () -> ConfigurationState
@@ -64,12 +64,13 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
                     .delay(for: .seconds(0.8), scheduler: environment.mainQueue)
                     .eraseToEffect()
 
-                if state.highScores.scores.count < 10 {
+                let currentLevelHighScores = state.highScores.boards.highScores(level: state.game.level)
+                if currentLevelHighScores.count < 10 {
                     return presentNewHighScoreEffect
                 }
 
                 let moves = state.game.moves
-                let worstHighScoreMoves: Int = state.highScores.scores.last?.score ?? .max
+                let worstHighScoreMoves: Int = currentLevelHighScores.last?.score ?? .max
                 if moves <= worstHighScoreMoves {
                     return presentNewHighScoreEffect
                 }
@@ -165,5 +166,27 @@ extension AppEnvironment {
         saveConfiguration: { _ in },
         loadConfiguration: { ConfigurationState() }
     )
+
+    static let almostFinishedGame: Self = AppEnvironment(
+        mainQueue: .preview,
+        saveGame: { _ in },
+        loadGame: { .almostFinishedGame },
+        clearGameBackup: { },
+        loadHighScores: { .miscellaneous },
+        saveHighScores: { _ in },
+        generateRandomCards: { _, _ in .predicted },
+        saveConfiguration: { _ in },
+        loadConfiguration: { ConfigurationState() }
+    )
+}
+
+extension Store where State == AppState, Action == AppAction {
+    static var almostFinishedGame: Self {
+        Self(
+            initialState: .almostFinishedGame,
+            reducer: appReducer,
+            environment: .almostFinishedGame
+        )
+    }
 }
 #endif
