@@ -69,7 +69,7 @@ struct HighScoreView: View {
     var body: some View {
         HStack {
             positionView
-                .modifier(AddCardStyle())
+                .modifier(AddCardStyle(foregroundColor: .red))
                 .frame(width: 50)
             Text("\(highScore.score)")
                 .font(.title3)

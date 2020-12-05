@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct AddCardStyle: ViewModifier {
-    var foregroundColor: Color = .red
+    var foregroundColor: Color
 
     func body(content: Content) -> some View {
         RoundedRectangle(cornerRadius: 8.0)
@@ -21,11 +21,11 @@ struct AddCardStyle_Previews: PreviewProvider {
             Text("Hello, World!")
                 .bold()
                 .foregroundColor(.yellow)
-                .modifier(AddCardStyle())
+                .modifier(AddCardStyle(foregroundColor: .red))
                 .frame(width: 150)
             Image("Pop Art")
                 .resizable()
-                .modifier(AddCardStyle())
+                .modifier(AddCardStyle(foregroundColor: .red))
                 .frame(width: 150)
             Image("Shadow")
                 .resizable()

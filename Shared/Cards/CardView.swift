@@ -13,7 +13,7 @@ struct CardView: View {
                     Button {
                         returnCard(store: viewStore)
                     } label: {
-                        Color.red
+                        backgroundColor(level: viewStore.level)
                     }
                     .buttonStyle(PlainButtonStyle())
                     .transition(turnTransition)
@@ -21,7 +21,7 @@ struct CardView: View {
                     image.transition(turnTransition)
                 }
             }
-            .modifier(AddCardStyle())
+            .modifier(AddCardStyle(foregroundColor: backgroundColor(level: viewStore.level)))
             .rotation3DEffect(
                 card.isFaceUp
                     ? .radians(.pi)
@@ -51,6 +51,14 @@ struct CardView: View {
 
     private func returnCard(store: ViewStore<GameState, GameAction>) {
         withAnimation(.spring()) { store.send(.cardReturned(card.id)) }
+    }
+
+    private func backgroundColor(level: DifficultyLevel) -> Color {
+        switch level {
+        case .easy: return .green
+        case .normal: return .blue
+        case .hard: return .red
+        }
     }
 }
 

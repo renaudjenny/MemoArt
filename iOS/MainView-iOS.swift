@@ -126,7 +126,7 @@ struct MainView: View {
             logo: {
                 Image("Pixel Art")
                     .resizable()
-                    .modifier(AddCardStyle())
+                    .modifier(AddCardStyle(foregroundColor: .red))
                     .frame(width: 120, height: 120)
 
             }

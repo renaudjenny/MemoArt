@@ -26,7 +26,7 @@ struct NewHighScoreView: View {
             )))
         } else {
             viewStore.send(.highScores(.addScore(
-                HighScore(score: viewStore.game.moves,name: name,date: Date()),
+                HighScore(score: viewStore.game.moves, name: name,date: Date()),
                 viewStore.game.level
             )))
         }
