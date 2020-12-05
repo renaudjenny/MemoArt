@@ -19,11 +19,12 @@ struct MainView: View {
                     .padding(.top)
                     .animation(nil)
                 GameOverView(store: store.gameStore)
-                LazyVGrid(columns: columns) {
+                LazyHGrid(rows: gridItems) {
                     ForEach(viewStore.game.cards) {
                         CardView(store: store.gameStore, card: $0)
                     }
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding()
                 .padding(.bottom)
             }
@@ -85,7 +86,7 @@ struct MainView: View {
         }
     }
 
-    private let columns = Array(repeating: GridItem(.flexible(minimum: 50, maximum: 125)), count: 5)
+    private let gridItems = Array(repeating: GridItem(.flexible(minimum: 50, maximum: 150)), count: 4)
 }
 
 #if DEBUG
