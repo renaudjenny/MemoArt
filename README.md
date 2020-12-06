@@ -10,8 +10,10 @@
 ## Features
 
 * 🀄️ 20 tiles to return one after another to find the pair
+  * 🧒 Easy level with 16 tiles to return
+  * 🧓 Hard level with 24 tiles to return
 * 👩🏻‍🎨 Every pair of tiles represent a different art style. Currently 17 different art style are available for free.
-* 🏆 There is a counter of moves, so you can track your progress to decrease the number of moves you have made in the next game. You can even visualise your top 10 in High Scores.
+* 🏆 There is a counter of moves, so you can track your progress to decrease the number of moves you have made in the next game. You can even visualise your top 10 in High Scores for each level.
 * 💸 This application is available for iOS (iPhone and iPad) for **free** and **no ads**.
 
 ## Icons and illustrations
