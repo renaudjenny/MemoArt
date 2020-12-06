@@ -85,46 +85,57 @@ class GameCoreTests: XCTestCase {
         )
     }
 
+    func returnAllCardsSteps(level: DifficultyLevel) -> [Step] {
+        let halfCardsCount = level.cardsCount/2
+        return (0..<halfCardsCount).flatMap { cardId -> [Step] in
+            let firstCardId = cardId
+            // The second card to for a pair is `halfCardsCount` away from the first card
+            // For instance, for normal, half count is 10, if the first card id is 1, the second id is 11
+            let secondCardId = cardId + halfCardsCount
+
+            let fromFirstCardToCardId = 0..<firstCardId
+            let fromHalfToSecondCardId = halfCardsCount..<secondCardId
+
+            return [
+                .send(.cardReturned(firstCardId)) {
+                    $0.cards = $0.cards.map { card in
+                        switch card.id {
+                        case firstCardId: return Card(id: cardId, art: card.art, isFaceUp: true)
+                        case fromFirstCardToCardId: return Card(id: card.id, art: card.art, isFaceUp: true)
+                        case fromHalfToSecondCardId: return Card(id: card.id, art: card.art, isFaceUp: true)
+                        default: return Card(id: card.id, art: card.art, isFaceUp: false)
+                        }
+                    }
+                },
+                .receive(.save),
+                .send(.cardReturned(secondCardId)) {
+                    $0.cards = $0.cards.map { card in
+                        switch card.id {
+                        case firstCardId: return Card(id: cardId, art: card.art, isFaceUp: true)
+                        case secondCardId: return Card(id: cardId + halfCardsCount, art: card.art, isFaceUp: true)
+                        case fromFirstCardToCardId: return Card(id: card.id, art: card.art, isFaceUp: true)
+                        case fromHalfToSecondCardId: return Card(id: card.id, art: card.art, isFaceUp: true)
+                        default: return Card(id: card.id, art: card.art, isFaceUp: false)
+                        }
+                    }
+                    let numberOfCardReturned = (firstCardId + 1) * 2
+                    $0.discoveredArts = Art.allCases.prefix(numberOfCardReturned/2)
+                    $0.moves = numberOfCardReturned/2
+                    if numberOfCardReturned == $0.level.cardsCount {
+                        $0.isGameOver = true
+                    }
+                },
+                .receive(secondCardId + 1 < level.cardsCount ? .save : .clearBackup),
+            ]
+        }
+    }
+
     func testFinishingAGame() {
         let store = TestStore(
             initialState: GameState(cards: .predicted),
             reducer: gameReducer,
             environment: .mocked(scheduler: scheduler)
         )
-
-        let returnAllCardsSteps: [Step] = (0..<10).flatMap { cardId in
-            [
-                .send(.cardReturned(cardId)) {
-                    $0.cards = $0.cards.map { card in
-                        switch card.id {
-                        case cardId: return Card(id: cardId, art: card.art, isFaceUp: true)
-                        case 0..<cardId: return Card(id: card.id, art: card.art, isFaceUp: true)
-                        case 10..<(cardId + 10): return Card(id: card.id, art: card.art, isFaceUp: true)
-                        default: return Card(id: card.id, art: card.art, isFaceUp: false)
-                        }
-                    }
-                },
-                .receive(.save),
-                .send(.cardReturned(cardId + 10)) {
-                    $0.cards = $0.cards.map { card in
-                        switch card.id {
-                        case cardId: return Card(id: cardId, art: card.art, isFaceUp: true)
-                        case cardId + 10: return Card(id: cardId + 10, art: card.art, isFaceUp: true)
-                        case 0..<cardId: return Card(id: card.id, art: card.art, isFaceUp: true)
-                        case 10..<(cardId + 10): return Card(id: card.id, art: card.art, isFaceUp: true)
-                        default: return Card(id: card.id, art: card.art, isFaceUp: false)
-                        }
-                    }
-                    let numberOfCardReturned = (cardId + 1) * 2
-                    $0.discoveredArts = Art.allCases.prefix(numberOfCardReturned/2)
-                    $0.moves = numberOfCardReturned/2
-                    if numberOfCardReturned == 20 {
-                        $0.isGameOver = true
-                    }
-                },
-                .receive(cardId + 11 < 20 ? .save : .clearBackup),
-            ]
-        }
 
         store.assert(
             [
@@ -133,7 +144,49 @@ class GameCoreTests: XCTestCase {
                 },
             ]
             +
-            returnAllCardsSteps
+            returnAllCardsSteps(level: .normal)
+        )
+    }
+
+    func testFinishingAGameInEasy() {
+        let store = TestStore(
+            initialState: GameState(
+                cards: .predicted(level: .easy),
+                level: .easy
+            ),
+            reducer: gameReducer,
+            environment: .mocked(scheduler: scheduler)
+        )
+
+        store.assert(
+            [
+                .send(.shuffleCards) {
+                    $0.cards = .predicted(level: .easy)
+                },
+            ]
+            +
+            returnAllCardsSteps(level: .easy)
+        )
+    }
+
+    func testFinishingAGameInHard() {
+        let store = TestStore(
+            initialState: GameState(
+                cards: .predicted(level: .hard),
+                level: .hard
+            ),
+            reducer: gameReducer,
+            environment: .mocked(scheduler: scheduler)
+        )
+
+        store.assert(
+            [
+                .send(.shuffleCards) {
+                    $0.cards = .predicted(level: .hard)
+                },
+            ]
+            +
+            returnAllCardsSteps(level: .hard)
         )
     }
 
@@ -198,6 +251,46 @@ class GameCoreTests: XCTestCase {
             .send(.game(.clearBackup))
         )
         wait(for: [expectingClearGameBackupToBeCalled], timeout: 0.1)
+    }
+
+    func testNewGameWithHardDifficultyLevel() {
+        let store = TestStore(
+            initialState: GameState(cards: .predicted(level: .hard)),
+            reducer: gameReducer,
+            environment: .mocked(scheduler: scheduler)
+        )
+        store.assert(
+            .send(.new) {
+                $0.isGameOver = false
+                $0.discoveredArts = []
+                $0.moves = 0
+                $0.cards = $0.cards.map { Card(id: $0.id, art: $0.art, isFaceUp: false) }
+            },
+            .do { self.scheduler.advance(by: .seconds(0.5)) },
+            .receive(.shuffleCards) {
+                $0.cards = .predicted(level: .hard)
+            }
+        )
+    }
+
+    func testNewGameWithEasyDifficultyLevel() {
+        let store = TestStore(
+            initialState: GameState(cards: .predicted(level: .easy)),
+            reducer: gameReducer,
+            environment: .mocked(scheduler: scheduler)
+        )
+        store.assert(
+            .send(.new) {
+                $0.isGameOver = false
+                $0.discoveredArts = []
+                $0.moves = 0
+                $0.cards = $0.cards.map { Card(id: $0.id, art: $0.art, isFaceUp: false) }
+            },
+            .do { self.scheduler.advance(by: .seconds(0.5)) },
+            .receive(.shuffleCards) {
+                $0.cards = .predicted(level: .easy)
+            }
+        )
     }
 }
 

@@ -6,9 +6,11 @@ struct GameState: Equatable, Codable {
     var cards: [Card] = .newGame
     var discoveredArts: [Art] = []
     var isGameOver = false
+    var level: DifficultyLevel = .normal
 
     var hasCardsFacedUp: Bool { cards.filter { $0.isFaceUp }.count > 0 }
     var isGameInProgress: Bool { moves > 0 || hasCardsFacedUp }
+    func isCardValid(id: Int) -> Bool { cards.count > id }
 }
 
 enum GameAction: Equatable {
@@ -52,7 +54,7 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
             if facedUpCards[0].art == facedUpCards[1].art {
                 state.discoveredArts.append(facedUpCards[0].art)
             }
-            guard state.discoveredArts.count < 10 else {
+            guard state.discoveredArts.count < state.level.cardsCount/2 else {
                 state.isGameOver = true
                 return Effect(value: .clearBackup)
             }
@@ -78,3 +80,34 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
         return .none
     }
 }
+
+#if DEBUG
+extension GameState {
+    static func mocked(modifier: (inout Self) -> Void) -> Self {
+        var state = GameState()
+        modifier(&state)
+        return state
+    }
+    static var preview: Self = .mocked {
+        $0.moves = 42
+        $0.cards = .predicted
+    }
+    static let almostFinishedGame: Self = .mocked {
+        $0.isGameOver = false
+        $0.discoveredArts = Art.allCases.filter({ $0 != .cave })
+        $0.moves = 142
+        $0.cards = [Card].predicted(isFaceUp: true).map {
+            if $0.art == .cave {
+                return Card(id: $0.id, art: $0.art, isFaceUp: false)
+            }
+            return $0
+        }
+    }
+}
+
+extension GameEnvironment {
+    static var preview: Self {
+        GameEnvironment(mainQueue: .preview, save: { _ in }, load: { .preview }, clearBackup: { })
+    }
+}
+#endif

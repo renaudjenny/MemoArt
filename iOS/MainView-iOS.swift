@@ -20,15 +20,15 @@ struct MainView: View {
                         .font(.title)
                         .animation(nil)
                     GameOverView(store: store.gameStore)
-                    LazyVGrid(columns: columns) {
-                        ForEach(0..<20) {
-                            CardView(store: store.gameStore, id: $0)
+                    adaptiveGrid(level: viewStore.game.level) {
+                        ForEach(viewStore.game.cards) {
+                            CardView(store: store.gameStore, card: $0)
                         }
                     }
                     .padding()
                 }
                 .toolbar(content: toolbar)
-                .background(navigation)
+                .background(navigation(highScorePreselectedLevel: viewStore.game.level))
             }
             .sheet(
                 isPresented: viewStore.binding(
@@ -38,24 +38,39 @@ struct MainView: View {
                 content: { NewHighScoreView(store: store) }
             )
             .modifier(SetupNewGameAlert(store: store.gameStore, isPresented: $isNewGameAlertPresented))
+            .modifier(SetupDifficultyLevelChangedAlert(store: store))
             .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 
-    var columns: [GridItem] {
-        let gridItemPattern = GridItem(.flexible(minimum: 50, maximum: 125))
-        switch (horizontalSizeClass, verticalSizeClass) {
-        case (.compact, .regular):
-            // 4x5 Grid
+    private func gridItems(level: DifficultyLevel) -> [GridItem] {
+        let gridItemPattern = GridItem(.flexible(minimum: 50, maximum: 150))
+        switch (horizontalSizeClass, verticalSizeClass, level) {
+        case (.compact, .regular, _):
+            // 4x4, 4x5, 4x6 Grid
             return Array(repeating: gridItemPattern, count: 4)
-        case (.compact, .compact):
-            // 7x3 Grid
-            return Array(repeating: gridItemPattern, count: 7)
-        case (.regular, .regular):
-            // 5x4 Grid, bigger images
+        case (_, .compact, .easy):
+            // 4x4 Grid
+            return Array(repeating: gridItemPattern, count: 4)
+        case (_, .compact, .normal):
+            // 5x4 Grid
             return Array(repeating: gridItemPattern, count: 5)
+        case (_, .compact, .hard):
+            // 6x4 Grid
+            return Array(repeating: gridItemPattern, count: 6)
+        case (.regular, .regular, _):
+            // 4x4, 4x5, 4x6 Grid, bigger images
+            return Array(repeating: gridItemPattern, count: 4)
         default:
             return [GridItem(.adaptive(minimum: 100))]
+        }
+    }
+
+    @ViewBuilder
+    private func adaptiveGrid<Content: View>(level: DifficultyLevel, @ViewBuilder content: () -> Content) -> some View {
+        switch (horizontalSizeClass, verticalSizeClass) {
+        case (.regular, .regular): LazyHGrid(rows: gridItems(level: level)) { content() }
+        default: LazyVGrid(columns: gridItems(level: level)) { content() }
         }
     }
 
@@ -99,7 +114,7 @@ struct MainView: View {
         }
     }
 
-    private var navigation: some View {
+    private func navigation(highScorePreselectedLevel: DifficultyLevel) -> some View {
         VStack {
             NavigationLink(
                 destination: ConfigurationView(store: store.configurationStore),
@@ -112,7 +127,7 @@ struct MainView: View {
                 label: EmptyView.init
             )
             NavigationLink(
-                destination: HighScoresView(store: store.highScoresStore),
+                destination: HighScoresView(store: store.highScoresStore, preselectedLevel: highScorePreselectedLevel),
                 isActive: $isHighScoresNavigationActive,
                 label: EmptyView.init
             )
@@ -125,7 +140,7 @@ struct MainView: View {
             logo: {
                 Image("Pixel Art")
                     .resizable()
-                    .modifier(AddCardStyle())
+                    .modifier(AddCardStyle(foregroundColor: .red))
                     .frame(width: 120, height: 120)
 
             }

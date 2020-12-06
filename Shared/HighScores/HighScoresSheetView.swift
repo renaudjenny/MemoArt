@@ -3,6 +3,7 @@ import ComposableArchitecture
 
 struct HighScoresSheetView: View {
     let store: Store<HighScoresState, HighScoresAction>
+    let preselectedLevel: DifficultyLevel
     @Binding var isPresented: Bool
 
     var body: some View {
@@ -10,7 +11,7 @@ struct HighScoresSheetView: View {
             Text("High Scores 🏆")
                 .font(.largeTitle)
                 .padding()
-            HighScoresView(store: store)
+            HighScoresView(store: store, preselectedLevel: preselectedLevel)
             HStack {
                 Spacer()
                 Button {

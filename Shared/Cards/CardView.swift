@@ -3,17 +3,17 @@ import ComposableArchitecture
 
 struct CardView: View {
     let store: Store<GameState, GameAction>
-    let id: Int
+    let card: Card
     private static let turnCardAnimationDuration: Double = 2/5
 
     var body: some View {
         WithViewStore(store) { viewStore in
             ZStack {
-                if !viewStore.cards[id].isFaceUp {
+                if !card.isFaceUp {
                     Button {
                         returnCard(store: viewStore)
                     } label: {
-                        Color.red
+                        backgroundColor(level: viewStore.level)
                     }
                     .buttonStyle(PlainButtonStyle())
                     .transition(turnTransition)
@@ -21,9 +21,9 @@ struct CardView: View {
                     image.transition(turnTransition)
                 }
             }
-            .modifier(AddCardStyle())
+            .modifier(AddCardStyle(foregroundColor: backgroundColor(level: viewStore.level)))
             .rotation3DEffect(
-                viewStore.cards[id].isFaceUp
+                card.isFaceUp
                     ? .radians(.pi)
                     : .zero,
                 axis: (x: 0.0, y: 1.0, z: 0.0),
@@ -35,12 +35,10 @@ struct CardView: View {
     }
 
     private var image: some View {
-        WithViewStore(store) { viewStore in
-            viewStore.cards[id].art.image
-                .renderingMode(.original)
-                .resizable()
-                .font(.largeTitle)
-        }
+        card.art.image
+            .renderingMode(.original)
+            .resizable()
+            .font(.largeTitle)
     }
 
     private var turnTransition: AnyTransition {
@@ -52,7 +50,15 @@ struct CardView: View {
     }
 
     private func returnCard(store: ViewStore<GameState, GameAction>) {
-        withAnimation(.spring()) { store.send(.cardReturned(id)) }
+        withAnimation(.spring()) { store.send(.cardReturned(card.id)) }
+    }
+
+    private func backgroundColor(level: DifficultyLevel) -> Color {
+        switch level {
+        case .easy: return .green
+        case .normal: return .blue
+        case .hard: return .red
+        }
     }
 }
 
@@ -64,14 +70,9 @@ struct CardView_Previews: PreviewProvider {
 
     private struct Preview: View {
         let store = Store<GameState, GameAction>(
-            initialState: GameState(),
+            initialState: .preview,
             reducer: gameReducer,
-            environment: GameEnvironment(
-                mainQueue: .preview,
-                save: { _ in },
-                load: { GameState() },
-                clearBackup: { }
-            )
+            environment: .preview
         )
 
         var body: some View {
@@ -80,16 +81,16 @@ struct CardView_Previews: PreviewProvider {
                     Spacer()
                     VStack {
                         HStack {
-                            CardView(store: store, id: 0)
-                            CardView(store: store, id: 1)
+                            CardView(store: store, card: card(store: viewStore, id: 0))
+                            CardView(store: store, card: card(store: viewStore, id: 1))
                         }
                         HStack {
-                            CardView(store: store, id: 2)
-                            CardView(store: store, id: 3)
+                            CardView(store: store, card: card(store: viewStore, id: 2))
+                            CardView(store: store, card: card(store: viewStore, id: 3))
                         }
                         HStack {
-                            CardView(store: store, id: 4)
-                            CardView(store: store, id: 5)
+                            CardView(store: store, card: card(store: viewStore, id: 4))
+                            CardView(store: store, card: card(store: viewStore, id: 5))
                         }
                     }
                     Spacer()
@@ -99,6 +100,10 @@ struct CardView_Previews: PreviewProvider {
                     .padding()
                 }.padding()
             }
+        }
+
+        private func card(store: ViewStore<GameState, GameAction>, id: Int) -> Card {
+            store.cards[id]
         }
     }
 }

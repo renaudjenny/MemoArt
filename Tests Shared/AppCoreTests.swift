@@ -68,7 +68,7 @@ class AppCoreTests: XCTestCase {
             initialState: AppState.mocked {
                 $0.game = AppState.almostFinishedGame.game
                 $0.game.moves = 10
-                $0.highScores = HighScoresState(scores: .test)
+                $0.highScores = .test
             },
             reducer: appReducer,
             environment: .mocked(scheduler: scheduler)
@@ -107,7 +107,7 @@ class AppCoreTests: XCTestCase {
         let store = TestStore(
             initialState: AppState.mocked {
                 $0.game = AppState.almostFinishedGame.game
-                $0.highScores = HighScoresState(scores: .test)
+                $0.highScores = .test
             },
             reducer: appReducer,
             environment: .mocked(scheduler: scheduler)
@@ -164,7 +164,7 @@ class AppCoreTests: XCTestCase {
             initialState: AppState(),
             reducer: appReducer,
             environment: .mocked(scheduler: scheduler) {
-                $0.generateRandomCards = { _ in .predicted(from: selectedArts) }
+                $0.generateRandomCards = { _, _ in .predicted(from: selectedArts) }
             }
         )
         store.assert(
@@ -275,6 +275,107 @@ class AppCoreTests: XCTestCase {
         )
         wait(for: [expectingLoadConfigurationToBeCalled], timeout: 0.1)
     }
+
+    func testShuffleCardWithNewDifficultyLevelConfigured() {
+        let store = TestStore(
+            initialState: AppState(),
+            reducer: appReducer,
+            environment: .mocked(scheduler: scheduler)
+        )
+        store.assert(
+            .send(.game(.new)),
+            .do { self.scheduler.advance(by: .seconds(0.5)) },
+            .receive(.game(.shuffleCards)) {
+                $0.game.cards = .predicted(level: .normal)
+            },
+            .send(.configuration(.changeDifficultyLevel(.easy))) {
+                $0.configuration.difficultyLevel = .easy
+            },
+            .receive(.configuration(.save)),
+            .receive(.game(.new)),
+            .do { self.scheduler.advance(by: .seconds(0.5)) },
+            .receive(.game(.shuffleCards)) {
+                $0.game.level = .easy
+                $0.game.cards = .predicted(level: .easy)
+            }
+        )
+    }
+
+    func testConfiguringDifficultyLevelStartNewGameWhenGameHasNotStartedYet() {
+        let store = TestStore(
+            initialState: AppState(),
+            reducer: appReducer,
+            environment: .mocked(scheduler: scheduler)
+        )
+        store.assert(
+            .send(.configuration(.changeDifficultyLevel(.easy))) {
+                $0.configuration.difficultyLevel = .easy
+            },
+            .receive(.configuration(.save)),
+            .receive(.game(.new)),
+            .do { self.scheduler.advance(by: .seconds(0.5)) },
+            .receive(.game(.shuffleCards)) {
+                $0.game.cards = .predicted(level: .easy)
+                $0.game.level = .easy
+            },
+
+            .send(.game(.cardReturned(0))) {
+                $0.game.cards = $0.game.cards.map { $0.id == 0 ? Card(id: 0, art: $0.art, isFaceUp: true) : $0 }
+            },
+            .receive(.game(.save)),
+            .send(.configuration(.changeDifficultyLevel(.normal))) {
+                $0.configuration.difficultyLevel = .normal
+            },
+            .receive(.configuration(.save)),
+            .receive(.game(.new)) {
+                $0.game.cards = $0.game.cards.map { Card(id: $0.id, art: $0.art, isFaceUp: false) }
+            },
+            .do { self.scheduler.advance(by: .seconds(0.5)) },
+            .receive(.game(.shuffleCards)) {
+                $0.game.cards = .predicted(level: .normal)
+                $0.game.level = .normal
+            },
+
+            .send(.game(.cardReturned(0))) {
+                $0.game.cards = $0.game.cards.map { $0.id == 0 ? Card(id: 0, art: $0.art, isFaceUp: true) : $0 }
+            },
+            .receive(.game(.save)),
+            .send(.game(.cardReturned(1))) {
+                $0.game.cards = $0.game.cards.map { $0.id == 1 ? Card(id: 1, art: $0.art, isFaceUp: true) : $0 }
+                $0.game.moves = 1
+            },
+            .receive(.game(.save)),
+            .send(.configuration(.changeDifficultyLevel(.hard))) {
+                $0.configuration.difficultyLevel = .hard
+            },
+            .receive(.configuration(.save)),
+            // As game has already started, we shouldn't receive a .game(.new) action anymore
+            // But instead we will receive the disclaimer about starting a new game
+            .receive(.presentDifficultyLevelHasChanged) {
+                $0.isDifficultyLevelHasChangedPresented = true
+            }
+        )
+    }
+
+    func testChangingLevelWillDisplayADisclaimerMessageAskingToSetANewGame() {
+        let store = TestStore(
+            initialState: .mocked {
+                $0.game.moves = 42
+            },
+            reducer: appReducer,
+            environment: .mocked(scheduler: scheduler)
+        )
+
+        store.assert(
+            .send(.configuration(.changeDifficultyLevel(.easy))) {
+                $0.configuration.difficultyLevel = .easy
+            },
+            .receive(.configuration(.save)),
+            .receive(.presentDifficultyLevelHasChanged) {
+                $0.isDifficultyLevelHasChangedPresented = true
+            }
+        )
+    }
 }
 
 extension AppEnvironment {
@@ -287,9 +388,9 @@ extension AppEnvironment {
             saveGame: { _ in },
             loadGame: { GameState() },
             clearGameBackup: { },
-            loadHighScores: { [] },
+            loadHighScores: { .test },
             saveHighScores: { _ in },
-            generateRandomCards: { _ in .predicted },
+            generateRandomCards: { _, level in .predicted(level: level) },
             saveConfiguration: { _ in },
             loadConfiguration: { ConfigurationState() }
         )

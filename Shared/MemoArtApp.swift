@@ -10,7 +10,10 @@ struct MemoArtApp: App {
 
     let store = Store(
         initialState: AppState(
-            game: GameState(cards: .newGame(from: loadConfiguration().selectedArts)),
+            game: GameState(cards: .newGame(
+                from: loadConfiguration().selectedArts,
+                level: loadGame().level
+            )),
             configuration: loadConfiguration()
         ),
         reducer: appReducer,
@@ -21,7 +24,7 @@ struct MemoArtApp: App {
             clearGameBackup: clearGameBackup,
             loadHighScores: loadHighScores,
             saveHighScores: saveHighScores,
-            generateRandomCards: { .newGame(from: $0) },
+            generateRandomCards: { .newGame(from: $0, level: $1) },
             saveConfiguration: saveConfiguration,
             loadConfiguration: loadConfiguration
         )
@@ -106,17 +109,40 @@ extension MemoArtApp {
 extension MemoArtApp {
     private static let highScoresKey = "MemoArtHighScores"
 
-    private static func loadHighScores() -> [HighScore] {
+    private static func loadHighScores() -> HighScoresState {
+        migrateHighScoresIfNeeded()
         guard
             let data = UserDefaults.standard.data(forKey: highScoresKey),
-            let highScores = try? JSONDecoder().decode([HighScore].self, from: data)
-        else { return [] }
+            let highScores = try? JSONDecoder().decode(HighScoresState.self, from: data)
+        else { return HighScoresState(boards: Boards(easy: [], normal: [], hard: [])) }
 
         return highScores
     }
 
-    private static func saveHighScores(highScores: [HighScore]) {
+    private static func saveHighScores(highScores: HighScoresState) {
         UserDefaults.standard.setValue(try? JSONEncoder().encode(highScores), forKey: highScoresKey)
+    }
+
+    // This method should be removed when the version 1.9.0 is out.
+    private static func migrateHighScoresIfNeeded() {
+        guard let data = UserDefaults.standard.data(forKey: highScoresKey) else { return }
+        do {
+            _ = try JSONDecoder().decode(HighScoresState.self, from: data)
+            // If we are able to decode the new HighScoresState, it means the migration already occurred
+            // or no migrations are needed (new install).
+            return
+        } catch {
+            // If we are not able to decode the new HighScoresState, we should migrate old data
+        }
+
+        guard let highScores = try? JSONDecoder().decode([HighScore].self, from: data) else { return }
+
+        let newHighScores = HighScoresState(boards: Boards(
+            easy: [],
+            normal: highScores,
+            hard: []
+        ))
+        UserDefaults.standard.setValue(try? JSONEncoder().encode(newHighScores), forKey: highScoresKey)
     }
 }
 

@@ -8,6 +8,7 @@ struct MainView: View {
     @State private var isConfigurationPresented = false
     @State private var isHighScoresPresented = false
     @State private var isNewGameAlertPresented = false
+    @State private var isDifficultyLevelAlertPresented = false
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -18,11 +19,12 @@ struct MainView: View {
                     .padding(.top)
                     .animation(nil)
                 GameOverView(store: store.gameStore)
-                LazyVGrid(columns: columns) {
-                    ForEach(0..<20) {
-                        CardView(store: store.gameStore, id: $0)
+                LazyHGrid(rows: gridItems) {
+                    ForEach(viewStore.game.cards) {
+                        CardView(store: store.gameStore, card: $0)
                     }
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding()
                 .padding(.bottom)
             }
@@ -50,13 +52,14 @@ struct MainView: View {
             }
             .background(EmptyView().sheet(isPresented: $isConfigurationPresented) {
                 ConfigurationSheetView(
-                    store: store.configurationStore,
+                    store: store,
                     isPresented: $isConfigurationPresented
                 )
             })
             .background(EmptyView().sheet(isPresented: $isHighScoresPresented) {
                 HighScoresSheetView(
                     store: store.highScoresStore,
+                    preselectedLevel: viewStore.game.level,
                     isPresented: $isHighScoresPresented
                 )
             })
@@ -70,7 +73,10 @@ struct MainView: View {
                         .padding()
                 }
             ))
-            .modifier(SetupNewGameAlert(store: store.gameStore, isPresented: $isNewGameAlertPresented))
+            .modifier(SetupNewGameAlert(
+                store: store.gameStore,
+                isPresented: $isNewGameAlertPresented
+            ))
             .background(
                 Image("Motif")
                     .resizable(resizingMode: .tile)
@@ -81,7 +87,7 @@ struct MainView: View {
         }
     }
 
-    private let columns = Array(repeating: GridItem(.flexible(minimum: 50, maximum: 125)), count: 5)
+    private let gridItems = Array(repeating: GridItem(.flexible(minimum: 50, maximum: 150)), count: 4)
 }
 
 #if DEBUG

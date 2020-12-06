@@ -3,25 +3,45 @@ import ComposableArchitecture
 
 struct HighScoresView: View {
     let store: Store<HighScoresState, HighScoresAction>
+    @State private var level: DifficultyLevel
+
+    init(store: Store<HighScoresState, HighScoresAction>, preselectedLevel: DifficultyLevel) {
+        self.store = store
+        self._level = State(initialValue: preselectedLevel)
+    }
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            ScrollView {
-                if viewStore.scores.count <= 0 {
-                    Text("Go win some game to see your best scores here ⭐️")
-                        .bold()
-                        .padding(.top, 64)
-                        .padding()
-                } else {
-                    VStack(spacing: 0) {
-                        ForEach(Array(viewStore.scores.enumerated()), id: \.0) { position, score in
-                            HighScoreView(position: position, highScore: score)
+            VStack {
+                DifficultyLevelPicker(level: $level).padding([.horizontal, .bottom])
+
+                ScrollView {
+                    if displayedHighScores(store: viewStore).count <= 0 {
+                        Text("Go win some game to see your best scores here ⭐️")
+                            .bold()
+                            .padding(.top, 64)
+                            .padding()
+                    } else {
+                        VStack(spacing: 0) {
+                            ForEach(enumeratedHighScores(store: viewStore), id: \.0) { position, score in
+                                HighScoreView(position: position, highScore: score)
+                            }
                         }
                     }
                 }
+                .navigationTitle("High Scores 🏆")
             }
-            .navigationTitle("High Scores 🏆")
         }
+    }
+
+    private func displayedHighScores(store: ViewStore<HighScoresState, HighScoresAction>) -> [HighScore] {
+        store.boards.highScores(level: level)
+    }
+
+    private func enumeratedHighScores(
+        store: ViewStore<HighScoresState, HighScoresAction>
+    ) -> [(offset: Int, element: HighScore)] {
+        Array(displayedHighScores(store: store).enumerated())
     }
 }
 
@@ -38,7 +58,7 @@ struct HighScoreView: View {
     var body: some View {
         HStack {
             positionView
-                .modifier(AddCardStyle())
+                .modifier(AddCardStyle(foregroundColor: .red))
                 .frame(width: 50)
             Text("\(highScore.score)")
                 .font(.title3)
@@ -84,14 +104,14 @@ struct HighScoreView: View {
 struct HighScoresView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            HighScoresView(store: .init(
-                initialState: HighScoresState(scores: .preview),
-                reducer: highScoresReducer,
-                environment: HighScoresEnvironment(
-                    load: { .preview },
-                    save: { _ in }
-                )
-            ))
+            HighScoresView(
+                store: .init(
+                    initialState: .preview,
+                    reducer: highScoresReducer,
+                    environment: .preview
+                ),
+                preselectedLevel: .normal
+            )
         }
     }
 }
@@ -99,25 +119,19 @@ struct HighScoresView_Previews: PreviewProvider {
 struct HighScoresViewEmptyScores_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            HighScoresView(store: .init(
-                initialState: HighScoresState(),
-                reducer: highScoresReducer,
-                environment: HighScoresEnvironment(
-                    load: { [] },
-                    save: { _ in }
-                )
-            ))
+            HighScoresView(
+                store: .init(
+                    initialState: HighScoresState(),
+                    reducer: highScoresReducer,
+                    environment: .preview
+                ),
+                preselectedLevel: .normal
+            )
         }
     }
 }
 
 extension Date {
     static let preview = Date(timeIntervalSince1970: 12345)
-}
-
-extension Array where Element == HighScore {
-    static let preview: Self = (1...10).map {
-        HighScore(score: 10 * $0, name: "Preview player \($0)", date: .preview)
-    }
 }
 #endif
