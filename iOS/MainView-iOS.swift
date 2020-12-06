@@ -28,7 +28,7 @@ struct MainView: View {
                     .padding()
                 }
                 .toolbar(content: toolbar)
-                .background(navigation)
+                .background(navigation(highScorePreselectedLevel: viewStore.game.level))
             }
             .sheet(
                 isPresented: viewStore.binding(
@@ -114,7 +114,7 @@ struct MainView: View {
         }
     }
 
-    private var navigation: some View {
+    private func navigation(highScorePreselectedLevel: DifficultyLevel) -> some View {
         VStack {
             NavigationLink(
                 destination: ConfigurationView(store: store.configurationStore),
@@ -127,7 +127,7 @@ struct MainView: View {
                 label: EmptyView.init
             )
             NavigationLink(
-                destination: HighScoresView(store: store.highScoresStore),
+                destination: HighScoresView(store: store.highScoresStore, preselectedLevel: highScorePreselectedLevel),
                 isActive: $isHighScoresNavigationActive,
                 label: EmptyView.init
             )

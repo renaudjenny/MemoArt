@@ -59,6 +59,7 @@ struct MainView: View {
             .background(EmptyView().sheet(isPresented: $isHighScoresPresented) {
                 HighScoresSheetView(
                     store: store.highScoresStore,
+                    preselectedLevel: viewStore.game.level,
                     isPresented: $isHighScoresPresented
                 )
             })

@@ -3,7 +3,12 @@ import ComposableArchitecture
 
 struct HighScoresView: View {
     let store: Store<HighScoresState, HighScoresAction>
-    @State private var level: DifficultyLevel = .normal
+    @State private var level: DifficultyLevel
+
+    init(store: Store<HighScoresState, HighScoresAction>, preselectedLevel: DifficultyLevel) {
+        self.store = store
+        self._level = State(initialValue: preselectedLevel)
+    }
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -99,11 +104,14 @@ struct HighScoreView: View {
 struct HighScoresView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            HighScoresView(store: .init(
-                initialState: .preview,
-                reducer: highScoresReducer,
-                environment: .preview
-            ))
+            HighScoresView(
+                store: .init(
+                    initialState: .preview,
+                    reducer: highScoresReducer,
+                    environment: .preview
+                ),
+                preselectedLevel: .normal
+            )
         }
     }
 }
@@ -111,11 +119,14 @@ struct HighScoresView_Previews: PreviewProvider {
 struct HighScoresViewEmptyScores_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            HighScoresView(store: .init(
-                initialState: HighScoresState(),
-                reducer: highScoresReducer,
-                environment: .preview
-            ))
+            HighScoresView(
+                store: .init(
+                    initialState: HighScoresState(),
+                    reducer: highScoresReducer,
+                    environment: .preview
+                ),
+                preselectedLevel: .normal
+            )
         }
     }
 }
