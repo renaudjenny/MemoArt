@@ -10,7 +10,7 @@ struct SetupDifficultyLevelChangedAlert: ViewModifier {
                 Alert(
                     title: Text("Difficulty level changed"),
                     message: Text(
-                        "You just have changed the difficulty level, but there is a game currently in progress.\n"
+                        "You have just changed the difficulty level, but there is a game currently in progress.\n"
                             + "Do you want to start a new game? You will loose your current progress then!"
                     ),
                     primaryButton: .cancel(),

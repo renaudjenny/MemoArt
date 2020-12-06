@@ -123,6 +123,7 @@ extension MemoArtApp {
         UserDefaults.standard.setValue(try? JSONEncoder().encode(highScores), forKey: highScoresKey)
     }
 
+    // This method should be removed when the version 1.9.0 is out.
     private static func migrateHighScoresIfNeeded() {
         guard let data = UserDefaults.standard.data(forKey: highScoresKey) else { return }
         do {

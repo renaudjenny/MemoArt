@@ -12,22 +12,8 @@ struct DifficultyLevelConfigurationView: View {
                     .font(.subheadline)
                     .multilineTextAlignment(.center)
                     .padding()
-                Picker("Difficulty Level", selection: difficultyLevelBinding(store: viewStore)) {
-                    Text("Easy").tag(DifficultyLevel.easy)
-                    Text("Normal").tag(DifficultyLevel.normal)
-                    Text("Hard").tag(DifficultyLevel.hard)
-                }
-                .labelsHidden()
-                .pickerStyle(SegmentedPickerStyle())
-                .background(
-                    LinearGradient(
-                        gradient: Gradient(colors: [Color.green, Color.blue, Color.red]),
-                        startPoint: .leading, endPoint: .trailing
-                    )
-                    .opacity(pickerBackgroundOpacity)
-                    .cornerRadius(8)
-                )
-                .padding([.horizontal, .bottom])
+                DifficultyLevelPicker(level: difficultyLevelBinding(store: viewStore))
+                    .padding([.horizontal, .bottom])
             }
         }
     }

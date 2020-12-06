@@ -58,6 +58,8 @@
 		4CAC43A7255FD0CE009FFF68 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43A5255FD0CE009FFF68 /* GameOverView.swift */; };
 		4CAC43AC255FD523009FFF68 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43AB255FD523009FFF68 /* ConfigurationView.swift */; };
 		4CAC43AD255FD523009FFF68 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC43AB255FD523009FFF68 /* ConfigurationView.swift */; };
+		4CB482B3257C059F0058D122 /* DifficultyLevelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB482B2257C059F0058D122 /* DifficultyLevelPicker.swift */; };
+		4CB482B4257C059F0058D122 /* DifficultyLevelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB482B2257C059F0058D122 /* DifficultyLevelPicker.swift */; };
 		4CC92F4B25458A8600DAC4AB /* NewHighScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F4A25458A8600DAC4AB /* NewHighScoreView.swift */; };
 		4CC92F5A2545E5C600DAC4AB /* AddCardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F592545E5C600DAC4AB /* AddCardStyle.swift */; };
 		4CC92F6E2548BB2300DAC4AB /* ReversedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F6D2548BB2300DAC4AB /* ReversedScrollView.swift */; };
@@ -131,6 +133,7 @@
 		4CAC4384255FCD15009FFF68 /* MainView-macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainView-macOS.swift"; sourceTree = "<group>"; };
 		4CAC43A5255FD0CE009FFF68 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		4CAC43AB255FD523009FFF68 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
+		4CB482B2257C059F0058D122 /* DifficultyLevelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyLevelPicker.swift; sourceTree = "<group>"; };
 		4CC92F4A25458A8600DAC4AB /* NewHighScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHighScoreView.swift; sourceTree = "<group>"; };
 		4CC92F592545E5C600DAC4AB /* AddCardStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardStyle.swift; sourceTree = "<group>"; };
 		4CC92F6D2548BB2300DAC4AB /* ReversedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversedScrollView.swift; sourceTree = "<group>"; };
@@ -316,6 +319,7 @@
 				4CC92F6D2548BB2300DAC4AB /* ReversedScrollView.swift */,
 				4CAC4369255F4BA2009FFF68 /* Color.swift */,
 				4C805D13256A82F4003D8F25 /* AboutSheetView.swift */,
+				4CB482B2257C059F0058D122 /* DifficultyLevelPicker.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -592,6 +596,7 @@
 				4C217AC2255F392400A631BB /* GameCore.swift in Sources */,
 				4C805D0E256A6F4D003D8F25 /* AppDelegate.swift in Sources */,
 				4C805D28256C4BD0003D8F25 /* SetupNewGameAlert.swift in Sources */,
+				4CB482B4257C059F0058D122 /* DifficultyLevelPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,6 +631,7 @@
 				4CC92F5A2545E5C600DAC4AB /* AddCardStyle.swift in Sources */,
 				4C805D09256A6EF6003D8F25 /* AppDelegate.swift in Sources */,
 				4C805D23256C4A79003D8F25 /* SetupNewGameAlert.swift in Sources */,
+				4CB482B3257C059F0058D122 /* DifficultyLevelPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

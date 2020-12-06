@@ -8,23 +8,7 @@ struct HighScoresView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
-                // TODO: refactor this element with the one in DifficultyLevelConfigurationView
-                Picker("Difficulty Level", selection: $level) {
-                    Text("Easy").tag(DifficultyLevel.easy)
-                    Text("Normal").tag(DifficultyLevel.normal)
-                    Text("Hard").tag(DifficultyLevel.hard)
-                }
-                .labelsHidden()
-                .pickerStyle(SegmentedPickerStyle())
-                .background(
-                    LinearGradient(
-                        gradient: Gradient(colors: [Color.green, Color.blue, Color.red]),
-                        startPoint: .leading, endPoint: .trailing
-                    )
-                    .opacity(20/100)
-                    .cornerRadius(8)
-                )
-                .padding([.horizontal, .bottom])
+                DifficultyLevelPicker(level: $level).padding([.horizontal, .bottom])
 
                 ScrollView {
                     if displayedHighScores(store: viewStore).count <= 0 {

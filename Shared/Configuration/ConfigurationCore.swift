@@ -3,7 +3,6 @@ import ComposableArchitecture
 struct ConfigurationState: Equatable, Codable {
     var selectedArts: Set<Art> = Set(Art.allCases)
     var difficultyLevel: DifficultyLevel = .normal
-
     var cardsCount: Int { difficultyLevel.cardsCount }
 }
 
