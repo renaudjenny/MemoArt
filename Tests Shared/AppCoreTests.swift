@@ -156,7 +156,7 @@ class AppCoreTests: XCTestCase {
 
     func testShuffleCardWithRestrictedArts() {
         let selectedArts: [Art] = [
-            .artDeco, .cave, .arty, .chalk, .childish,
+            .artDeco, .cave, .arty, .charcoal, .childish,
             .destructured, .geometric, .gradient, .impressionism, .moderArt,
         ]
 

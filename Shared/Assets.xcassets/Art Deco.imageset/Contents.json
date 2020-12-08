@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Art Deco.png",
+      "filename" : "Art Deco@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Art Deco@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "Art Deco@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

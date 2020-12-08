@@ -21,8 +21,8 @@ enum Art: String, CaseIterable, Codable {
     case popArt
     case shadow
     case moderArt
-    case chalk
-    case symmetry
+    case charcoal
+    case pattern
     case fruitArt
 
     var image: Image {
@@ -37,12 +37,12 @@ enum Art: String, CaseIterable, Codable {
         case .impressionism: return Image("Impressionism")
         case .pixelArt: return Image("Pixel Art")
         case .watercolor: return Image("Watercolor")
-        case .stillLife: return Image("Nature morte")
+        case .stillLife: return Image("Nature Morte")
         case .popArt: return Image("Pop Art")
         case .shadow: return Image("Shadow")
         case .moderArt: return Image("Modern Art")
-        case .chalk: return Image("Chalk")
-        case .symmetry: return Image("Symmetry")
+        case .charcoal: return Image("Charcoal")
+        case .pattern: return Image("Pattern")
         case .fruitArt: return Image("Fruit Art")
         }
     }
@@ -63,8 +63,8 @@ enum Art: String, CaseIterable, Codable {
         case .popArt: return "Pop Art"
         case .shadow: return "Shadow"
         case .moderArt: return "Modern Art"
-        case .chalk: return "Chalk"
-        case .symmetry: return "Symmetry"
+        case .charcoal: return "Charcoal"
+        case .pattern: return "Pattern"
         case .fruitArt: return "Fruit Art"
         }
     }

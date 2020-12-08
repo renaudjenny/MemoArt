@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Modern Art@1x.png",
+      "filename" : "Charcoal@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Modern Art@2x.png",
+      "filename" : "Charcoal@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Modern Art@3x.png",
+      "filename" : "Charcoal@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
