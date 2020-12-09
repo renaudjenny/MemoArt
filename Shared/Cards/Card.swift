@@ -24,6 +24,7 @@ enum Art: String, CaseIterable, Codable {
     case charcoal
     case pattern
     case fruitArt
+    case painting
 
     var image: Image {
         switch self {
@@ -44,6 +45,7 @@ enum Art: String, CaseIterable, Codable {
         case .charcoal: return Image("Charcoal")
         case .pattern: return Image("Pattern")
         case .fruitArt: return Image("Fruit Art")
+        case .painting: return Image("Painting")
         }
     }
 
@@ -66,6 +68,7 @@ enum Art: String, CaseIterable, Codable {
         case .charcoal: return "Charcoal"
         case .pattern: return "Pattern"
         case .fruitArt: return "Fruit Art"
+        case .painting: return "Painting"
         }
     }
 }
