@@ -1,6 +1,6 @@
 # MemoArt
 
-**A simple brain training game to find pair in some very nice art tiles.**
+**This is a clean and smart brain training game. Find all the matching pairs with the fewest moves possible. Enjoy the diversity of card styles, inspired by major artistic movements and famous artists!**
 
 > This game has been developed in one week end, but many improvements has been done since then.
 
@@ -9,16 +9,19 @@
 
 ## Features
 
-* 🀄️ 20 tiles to return one after another to find the pair
-  * 🧒 Easy level with 16 tiles to return
-  * 🧓 Hard level with 24 tiles to return
-* 👩🏻‍🎨 Every pair of tiles represent a different art style. Currently 17 different art style are available for free.
-* 🏆 There is a counter of moves, so you can track your progress to decrease the number of moves you have made in the next game. You can even visualise your top 10 in High Scores for each level.
-* 💸 This application is available for iOS (iPhone and iPad) for **free** and **no ads**.
+* 🀄️ Return all the cards in order to find all the matching pairs:
+  * 👼🏽 Easy level: 8 pairs to find
+  * 🧑 Medium level : 10 pairs to find
+  * 🦸 Hard level: 12 pairs to find
+* 🎨 Each pair of cards represents a different artistic movement. There are currently 18 different designs, available for free.
+* 🃏 If you have some favourite designs, you can select them so as to play with them only!
+* 🧮 There is a move counter, allowing you to track your real-time progress, in order to improve your technique, game after game. Obviously, the less moves you make, the best you are!
+* 🏆 You can register and visualize your top 10 High Scores for each difficulty level.
+* 💸 This application is available for iOS (iPhone and iPad) and MacOS for free, and without ads.
 
 ## Icons and illustrations
 
-All artistic work has been made by [Mathilde Seyller](https://instagram.com/myobriel). Go follow her!
+The logo, the background of the MacOS app, and all the card designs were made by [Mathilde Seyller](https://instagram.com/myobriel). Go follow her on Instagram!
 
 ## Minimum required to build the project
 
