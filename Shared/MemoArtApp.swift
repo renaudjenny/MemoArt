@@ -9,13 +9,7 @@ struct MemoArtApp: App {
     #endif
 
     let store = Store(
-        initialState: AppState(
-            game: GameState(cards: .newGame(
-                from: loadConfiguration().selectedArts,
-                level: loadGame().level
-            )),
-            configuration: loadConfiguration()
-        ),
+        initialState: AppState(configuration: loadConfiguration()),
         reducer: appReducer,
         environment: AppEnvironment(
             mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
@@ -95,7 +89,7 @@ extension MemoArtApp {
         guard
             let data = UserDefaults.standard.data(forKey: gameKey),
             let game = try? JSONDecoder().decode(GameState.self, from: data)
-        else { return GameState() }
+        else { return GameState(level: loadConfiguration().difficultyLevel) }
 
         return game
     }
