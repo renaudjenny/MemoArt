@@ -8,13 +8,25 @@ struct NewHighScoreView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
-                TextField("Your name", text: $name)
-                    .padding()
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                Spacer()
+                VictoryCardsView()
+                TextField("Your name", text: $name, onCommit: {
+                    submit(with: viewStore)
+                })
+                .padding()
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+
                 Button(action: { submit(with: viewStore) }, label: {
                     Text("Add my new high score")
                 })
+                Spacer()
             }
+            .background(
+                Image("Motif")
+                    .resizable(resizingMode: .tile)
+                    .renderingMode(.template)
+                    .opacity(1/10)
+            )
         }
     }
 

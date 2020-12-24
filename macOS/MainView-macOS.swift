@@ -21,7 +21,7 @@ struct MainView: View {
                 GameOverView(store: store.gameStore)
                 LazyHGrid(rows: gridItems) {
                     ForEach(viewStore.game.cards) {
-                        CardView(store: store.gameStore, card: $0)
+                        GameCardView(store: store.gameStore, card: $0)
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

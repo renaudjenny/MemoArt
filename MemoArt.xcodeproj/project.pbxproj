@@ -48,6 +48,8 @@
 		4C90E18B2573E92B006568FB /* DifficultyLevelConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90E1892573E92B006568FB /* DifficultyLevelConfigurationView.swift */; };
 		4C90E19525780B89006568FB /* SetupDifficultyLevelChangedAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90E19425780B89006568FB /* SetupDifficultyLevelChangedAlert.swift */; };
 		4C90E19625780B89006568FB /* SetupDifficultyLevelChangedAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90E19425780B89006568FB /* SetupDifficultyLevelChangedAlert.swift */; };
+		4C972B252593E8E2000BA475 /* GameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C972B242593E8E2000BA475 /* GameCardView.swift */; };
+		4C972B262593E8E2000BA475 /* GameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C972B242593E8E2000BA475 /* GameCardView.swift */; };
 		4CAC436A255F4BA2009FFF68 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC4369255F4BA2009FFF68 /* Color.swift */; };
 		4CAC436B255F4BA2009FFF68 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC4369255F4BA2009FFF68 /* Color.swift */; };
 		4CAC437F255FCCBE009FFF68 /* MainView-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC437E255FCCBE009FFF68 /* MainView-iOS.swift */; };
@@ -77,6 +79,8 @@
 		4CD88F42256797270074EE39 /* GameCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4454CA254CBB2700AA5C87 /* GameCoreTests.swift */; };
 		4CE02F44256ED6BC00A925F0 /* NewGameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE02F43256ED6BB00A925F0 /* NewGameButton.swift */; };
 		4CE02F45256ED6BC00A925F0 /* NewGameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE02F43256ED6BB00A925F0 /* NewGameButton.swift */; };
+		4CE42C892592961300EA59AD /* VictoryCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42C882592961300EA59AD /* VictoryCardsView.swift */; };
+		4CE42C8A2592961300EA59AD /* VictoryCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42C882592961300EA59AD /* VictoryCardsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +132,7 @@
 		4C90E17E2573E465006568FB /* DifficultyLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyLevel.swift; sourceTree = "<group>"; };
 		4C90E1892573E92B006568FB /* DifficultyLevelConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyLevelConfigurationView.swift; sourceTree = "<group>"; };
 		4C90E19425780B89006568FB /* SetupDifficultyLevelChangedAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupDifficultyLevelChangedAlert.swift; sourceTree = "<group>"; };
+		4C972B242593E8E2000BA475 /* GameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCardView.swift; sourceTree = "<group>"; };
 		4CAC4369255F4BA2009FFF68 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		4CAC437E255FCCBE009FFF68 /* MainView-iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainView-iOS.swift"; sourceTree = "<group>"; };
 		4CAC4384255FCD15009FFF68 /* MainView-macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainView-macOS.swift"; sourceTree = "<group>"; };
@@ -146,6 +151,7 @@
 		4CD88F29256795E00074EE39 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CD88F2D256795E00074EE39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CE02F43256ED6BB00A925F0 /* NewGameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameButton.swift; sourceTree = "<group>"; };
+		4CE42C882592961300EA59AD /* VictoryCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryCardsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +248,7 @@
 				4C805D22256C4A79003D8F25 /* SetupNewGameAlert.swift */,
 				4CE02F43256ED6BB00A925F0 /* NewGameButton.swift */,
 				4C90E17E2573E465006568FB /* DifficultyLevel.swift */,
+				4C972B242593E8E2000BA475 /* GameCardView.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -309,6 +316,7 @@
 				4CC92F592545E5C600DAC4AB /* AddCardStyle.swift */,
 				4C8DF429253C520F00F2DE7C /* CardView.swift */,
 				4C8DF43E253C5B9900F2DE7C /* Card.swift */,
+				4CE42C882592961300EA59AD /* VictoryCardsView.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -585,6 +593,7 @@
 				4C90E18B2573E92B006568FB /* DifficultyLevelConfigurationView.swift in Sources */,
 				4CD88EBA2565B5570074EE39 /* ConfigurationSheetView.swift in Sources */,
 				4C90E19625780B89006568FB /* SetupDifficultyLevelChangedAlert.swift in Sources */,
+				4CE42C8A2592961300EA59AD /* VictoryCardsView.swift in Sources */,
 				4C805D19256A838B003D8F25 /* AboutSheetView.swift in Sources */,
 				4CAC4386255FCD15009FFF68 /* MainView-macOS.swift in Sources */,
 				4C217AD6255F393800A631BB /* MemoArtApp.swift in Sources */,
@@ -596,6 +605,7 @@
 				4C217AC2255F392400A631BB /* GameCore.swift in Sources */,
 				4C805D0E256A6F4D003D8F25 /* AppDelegate.swift in Sources */,
 				4C805D28256C4BD0003D8F25 /* SetupNewGameAlert.swift in Sources */,
+				4C972B262593E8E2000BA475 /* GameCardView.swift in Sources */,
 				4CB482B4257C059F0058D122 /* DifficultyLevelPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -620,6 +630,7 @@
 				4C90E18A2573E92B006568FB /* DifficultyLevelConfigurationView.swift in Sources */,
 				4CD88EB92565B5570074EE39 /* ConfigurationSheetView.swift in Sources */,
 				4C90E19525780B89006568FB /* SetupDifficultyLevelChangedAlert.swift in Sources */,
+				4CE42C892592961300EA59AD /* VictoryCardsView.swift in Sources */,
 				4C805D14256A82F4003D8F25 /* AboutSheetView.swift in Sources */,
 				4CAC4385255FCD15009FFF68 /* MainView-macOS.swift in Sources */,
 				4C8DF43A253C5B2900F2DE7C /* AppCore.swift in Sources */,
@@ -631,6 +642,7 @@
 				4CC92F5A2545E5C600DAC4AB /* AddCardStyle.swift in Sources */,
 				4C805D09256A6EF6003D8F25 /* AppDelegate.swift in Sources */,
 				4C805D23256C4A79003D8F25 /* SetupNewGameAlert.swift in Sources */,
+				4C972B252593E8E2000BA475 /* GameCardView.swift in Sources */,
 				4CB482B3257C059F0058D122 /* DifficultyLevelPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
