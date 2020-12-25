@@ -50,6 +50,12 @@
 		4C90E19625780B89006568FB /* SetupDifficultyLevelChangedAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C90E19425780B89006568FB /* SetupDifficultyLevelChangedAlert.swift */; };
 		4C972B252593E8E2000BA475 /* GameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C972B242593E8E2000BA475 /* GameCardView.swift */; };
 		4C972B262593E8E2000BA475 /* GameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C972B242593E8E2000BA475 /* GameCardView.swift */; };
+		4C972B3D25960724000BA475 /* Fireworks.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4C972B3B25960724000BA475 /* Fireworks.sks */; };
+		4C972B3E25960724000BA475 /* Fireworks.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4C972B3B25960724000BA475 /* Fireworks.sks */; };
+		4C972B3F25960724000BA475 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C972B3C25960724000BA475 /* Assets.xcassets */; };
+		4C972B4025960724000BA475 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C972B3C25960724000BA475 /* Assets.xcassets */; };
+		4C972B462596094B000BA475 /* FireworksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C972B452596094B000BA475 /* FireworksView.swift */; };
+		4C972B472596094B000BA475 /* FireworksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C972B452596094B000BA475 /* FireworksView.swift */; };
 		4CAC436A255F4BA2009FFF68 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC4369255F4BA2009FFF68 /* Color.swift */; };
 		4CAC436B255F4BA2009FFF68 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC4369255F4BA2009FFF68 /* Color.swift */; };
 		4CAC437F255FCCBE009FFF68 /* MainView-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC437E255FCCBE009FFF68 /* MainView-iOS.swift */; };
@@ -133,6 +139,9 @@
 		4C90E1892573E92B006568FB /* DifficultyLevelConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyLevelConfigurationView.swift; sourceTree = "<group>"; };
 		4C90E19425780B89006568FB /* SetupDifficultyLevelChangedAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupDifficultyLevelChangedAlert.swift; sourceTree = "<group>"; };
 		4C972B242593E8E2000BA475 /* GameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCardView.swift; sourceTree = "<group>"; };
+		4C972B3B25960724000BA475 /* Fireworks.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Fireworks.sks; sourceTree = "<group>"; };
+		4C972B3C25960724000BA475 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4C972B452596094B000BA475 /* FireworksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireworksView.swift; sourceTree = "<group>"; };
 		4CAC4369255F4BA2009FFF68 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		4CAC437E255FCCBE009FFF68 /* MainView-iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainView-iOS.swift"; sourceTree = "<group>"; };
 		4CAC4384255FCD15009FFF68 /* MainView-macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainView-macOS.swift"; sourceTree = "<group>"; };
@@ -249,6 +258,9 @@
 				4CE02F43256ED6BB00A925F0 /* NewGameButton.swift */,
 				4C90E17E2573E465006568FB /* DifficultyLevel.swift */,
 				4C972B242593E8E2000BA475 /* GameCardView.swift */,
+				4C972B3B25960724000BA475 /* Fireworks.sks */,
+				4C972B3C25960724000BA475 /* Assets.xcassets */,
+				4C972B452596094B000BA475 /* FireworksView.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -507,6 +519,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C972B3E25960724000BA475 /* Fireworks.sks in Resources */,
+				4C972B4025960724000BA475 /* Assets.xcassets in Resources */,
 				4C217AA5255F390300A631BB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,6 +529,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C972B3D25960724000BA475 /* Fireworks.sks in Resources */,
+				4C972B3F25960724000BA475 /* Assets.xcassets in Resources */,
 				4C8DF400253B30DB00F2DE7C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -579,6 +595,7 @@
 			files = (
 				4C217AB5255F391300A631BB /* ReversedScrollView.swift in Sources */,
 				4C90E1802573E465006568FB /* DifficultyLevel.swift in Sources */,
+				4C972B472596094B000BA475 /* FireworksView.swift in Sources */,
 				4C217ACE255F392F00A631BB /* HighScoresView.swift in Sources */,
 				4C217ABA255F391A00A631BB /* ArtsSelectionConfigurationView.swift in Sources */,
 				4CD88EC02565B6690074EE39 /* HighScoresSheetView.swift in Sources */,
@@ -616,6 +633,7 @@
 			files = (
 				4C8484A02555F35900FBDEC2 /* ConfigurationCore.swift in Sources */,
 				4C90E17F2573E465006568FB /* DifficultyLevel.swift in Sources */,
+				4C972B462596094B000BA475 /* FireworksView.swift in Sources */,
 				4CD0E1F62542A29900A1E0FD /* HighScoresCore.swift in Sources */,
 				4C8DF435253C5B0A00F2DE7C /* GameCore.swift in Sources */,
 				4CD88EBF2565B6690074EE39 /* HighScoresSheetView.swift in Sources */,

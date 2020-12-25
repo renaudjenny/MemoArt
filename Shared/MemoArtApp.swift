@@ -29,16 +29,21 @@ struct MemoArtApp: App {
     var body: some Scene {
         WindowGroup {
             WithViewStore(store) { viewStore in
-                MainView(store: store)
-                    .background(EmptyView().sheet(isPresented: $isAboutWindowOpened) {
-                        AboutSheetView(isOpen: $isAboutWindowOpened)
-                    })
-                    .modifier(SetupNewGameAlert(
-                        store: store.gameStore,
-                        isPresented: $isNewGameAlertPresented
-                    ))
-                    .onAppear { viewStore.send(.game(.load)) }
-                    .onAppear { viewStore.send(.highScores(.load)) }
+                ZStack {
+                    MainView(store: store)
+                    if viewStore.game.isGameOver {
+                        FireworksView(color: Color.fireworksColor(level: viewStore.game.level))
+                    }
+                }
+                .background(EmptyView().sheet(isPresented: $isAboutWindowOpened) {
+                    AboutSheetView(isOpen: $isAboutWindowOpened)
+                })
+                .modifier(SetupNewGameAlert(
+                    store: store.gameStore,
+                    isPresented: $isNewGameAlertPresented
+                ))
+                .onAppear { viewStore.send(.game(.load)) }
+                .onAppear { viewStore.send(.highScores(.load)) }
             }
         }
         .commands {
@@ -89,7 +94,13 @@ extension MemoArtApp {
         guard
             let data = UserDefaults.standard.data(forKey: gameKey),
             let game = try? JSONDecoder().decode(GameState.self, from: data)
-        else { return GameState(level: loadConfiguration().difficultyLevel) }
+        else {
+            let configuration = loadConfiguration()
+            return GameState(
+                cards: .newGame(from: configuration.selectedArts, level: configuration.difficultyLevel),
+                level: configuration.difficultyLevel
+            )
+        }
 
         return game
     }

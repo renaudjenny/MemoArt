@@ -19,6 +19,7 @@ class GameCoreTests: XCTestCase {
                 $0.moves = 0
                 $0.cards = $0.cards.map { Card(id: $0.id, art: $0.art, isFaceUp: false) }
             },
+            .receive(.clearBackup),
             .do { self.scheduler.advance(by: .seconds(0.5)) },
             .receive(.shuffleCards) {
                 $0.cards = .predicted
@@ -266,6 +267,7 @@ class GameCoreTests: XCTestCase {
                 $0.moves = 0
                 $0.cards = $0.cards.map { Card(id: $0.id, art: $0.art, isFaceUp: false) }
             },
+            .receive(.clearBackup),
             .do { self.scheduler.advance(by: .seconds(0.5)) },
             .receive(.shuffleCards) {
                 $0.cards = .predicted(level: .hard)
@@ -286,6 +288,7 @@ class GameCoreTests: XCTestCase {
                 $0.moves = 0
                 $0.cards = $0.cards.map { Card(id: $0.id, art: $0.art, isFaceUp: false) }
             },
+            .receive(.clearBackup),
             .do { self.scheduler.advance(by: .seconds(0.5)) },
             .receive(.shuffleCards) {
                 $0.cards = .predicted(level: .easy)

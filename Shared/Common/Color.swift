@@ -1,4 +1,5 @@
 import SwiftUI
+import SpriteKit
 
 extension Color {
     static let systemBackground: Self = {
@@ -16,4 +17,16 @@ extension Color {
         return Color(UIColor.systemGray5)
         #endif
     }()
+
+    static func forLevel(_ level: DifficultyLevel) -> Self {
+        switch level {
+        case .easy: return .green
+        case .normal: return .blue
+        case .hard: return .red
+        }
+    }
+
+    static func fireworksColor(level: DifficultyLevel) -> SKColor {
+        SKColor(forLevel(level))
+    }
 }

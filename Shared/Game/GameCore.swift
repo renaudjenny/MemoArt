@@ -36,9 +36,11 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
         state.moves = 0
         state.discoveredArts = []
         state.isGameOver = false
-        return Effect(value: .shuffleCards)
-            .delay(for: .seconds(0.5), scheduler: environment.mainQueue)
-            .eraseToEffect()
+        return Effect(value: .clearBackup).append(
+            Effect(value: .shuffleCards)
+                .delay(for: .seconds(0.5), scheduler: environment.mainQueue)
+        )
+        .eraseToEffect()
     case .shuffleCards:
         return .none
     case let .cardReturned(cardId):

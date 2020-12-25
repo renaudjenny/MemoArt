@@ -9,7 +9,7 @@ struct GameCardView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             CardView(
-                color: backgroundColor(level: viewStore.level),
+                color: .forLevel(viewStore.level),
                 image: card.art.image,
                 isFacedUp: card.isFaceUp,
                 action: { returnCard(store: viewStore) }
@@ -19,14 +19,6 @@ struct GameCardView: View {
 
     private func returnCard(store: ViewStore<GameState, GameAction>) {
         withAnimation(.spring()) { store.send(.cardReturned(card.id)) }
-    }
-
-    private func backgroundColor(level: DifficultyLevel) -> Color {
-        switch level {
-        case .easy: return .green
-        case .normal: return .blue
-        case .hard: return .red
-        }
     }
 }
 

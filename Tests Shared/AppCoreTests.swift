@@ -186,6 +186,7 @@ class AppCoreTests: XCTestCase {
                 $0.configuration.selectedArts = Set(Art.allCases.filter({ $0 != .cave }))
             },
             .receive(.game(.new)),
+            .receive(.game(.clearBackup)),
             .do { self.scheduler.advance(by: .seconds(0.5)) },
             .receive(.game(.shuffleCards)) {
                 $0.game.cards = .predicted
@@ -196,6 +197,7 @@ class AppCoreTests: XCTestCase {
                 $0.configuration.selectedArts = Set(Art.allCases)
             },
             .receive(.game(.new)),
+            .receive(.game(.clearBackup)),
             .do { self.scheduler.advance(by: .seconds(0.5)) },
             .receive(.game(.shuffleCards)) {
                 $0.game.cards = .predicted
@@ -212,6 +214,7 @@ class AppCoreTests: XCTestCase {
             .receive(.game(.new)) {
                 $0.game.cards = $0.game.cards.map { Card(id: $0.id, art: $0.art, isFaceUp: false) }
             },
+            .receive(.game(.clearBackup)),
             .do { self.scheduler.advance(by: .seconds(0.5)) },
             .receive(.game(.shuffleCards)) {
                 $0.game.cards = .predicted
@@ -284,6 +287,7 @@ class AppCoreTests: XCTestCase {
         )
         store.assert(
             .send(.game(.new)),
+            .receive(.game(.clearBackup)),
             .do { self.scheduler.advance(by: .seconds(0.5)) },
             .receive(.game(.shuffleCards)) {
                 $0.game.cards = .predicted(level: .normal)
@@ -293,6 +297,7 @@ class AppCoreTests: XCTestCase {
             },
             .receive(.configuration(.save)),
             .receive(.game(.new)),
+            .receive(.game(.clearBackup)),
             .do { self.scheduler.advance(by: .seconds(0.5)) },
             .receive(.game(.shuffleCards)) {
                 $0.game.level = .easy
@@ -313,6 +318,7 @@ class AppCoreTests: XCTestCase {
             },
             .receive(.configuration(.save)),
             .receive(.game(.new)),
+            .receive(.game(.clearBackup)),
             .do { self.scheduler.advance(by: .seconds(0.5)) },
             .receive(.game(.shuffleCards)) {
                 $0.game.cards = .predicted(level: .easy)
@@ -330,6 +336,7 @@ class AppCoreTests: XCTestCase {
             .receive(.game(.new)) {
                 $0.game.cards = $0.game.cards.map { Card(id: $0.id, art: $0.art, isFaceUp: false) }
             },
+            .receive(.game(.clearBackup)),
             .do { self.scheduler.advance(by: .seconds(0.5)) },
             .receive(.game(.shuffleCards)) {
                 $0.game.cards = .predicted(level: .normal)
