@@ -32,7 +32,7 @@ struct MemoArtApp: App {
                 ZStack {
                     MainView(store: store)
                     if viewStore.game.isGameOver {
-                        FireworksView(color: Color.fireworksColor(level: viewStore.game.level))
+                        FireworksView(level: viewStore.game.level)
                     }
                 }
                 .background(EmptyView().sheet(isPresented: $isAboutWindowOpened) {

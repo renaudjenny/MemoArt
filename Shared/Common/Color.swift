@@ -25,8 +25,4 @@ extension Color {
         case .hard: return .red
         }
     }
-
-    static func fireworksColor(level: DifficultyLevel) -> SKColor {
-        SKColor(forLevel(level))
-    }
 }
