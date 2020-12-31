@@ -8,7 +8,7 @@ struct NewGameButton: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             Button {
-                guard viewStore.moves > 0 else {
+                guard viewStore.moves > 0 && !viewStore.isGameOver else {
                     viewStore.send(.new)
                     return
                 }
