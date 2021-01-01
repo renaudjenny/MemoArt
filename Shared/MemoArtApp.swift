@@ -38,10 +38,7 @@ struct MemoArtApp: App {
                 .background(EmptyView().sheet(isPresented: $isAboutWindowOpened) {
                     AboutSheetView(isOpen: $isAboutWindowOpened)
                 })
-                .modifier(SetupNewGameAlert(
-                    store: store.gameStore,
-                    isPresented: $isNewGameAlertPresented
-                ))
+                .modifier(SetupNewGameAlert(store: store.gameStore))
                 .onAppear { viewStore.send(.game(.load)) }
                 .onAppear { viewStore.send(.highScores(.load)) }
             }

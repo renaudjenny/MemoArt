@@ -31,7 +31,7 @@ struct MainView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .toolbar {
                 ToolbarItem {
-                    NewGameButton(store: store.gameStore, isNewGameAlertPresented: $isNewGameAlertPresented)
+                    NewGameButton(store: store.gameStore)
                 }
                 ToolbarItem {
                     Button {
@@ -73,10 +73,7 @@ struct MainView: View {
                         .padding()
                 }
             ))
-            .modifier(SetupNewGameAlert(
-                store: store.gameStore,
-                isPresented: $isNewGameAlertPresented
-            ))
+            .modifier(SetupNewGameAlert(store: store.gameStore))
             .background(
                 Image("Motif")
                     .resizable(resizingMode: .tile)

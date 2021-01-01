@@ -7,7 +7,6 @@ struct MainView: View {
     let store: Store<AppState, AppAction>
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.verticalSizeClass) private var verticalSizeClass
-    @State private var isNewGameAlertPresented = false
     @State private var isConfigurationNavigationActive = false
     @State private var isAboutNavigationActive = false
     @State private var isHighScoresNavigationActive = false
@@ -37,7 +36,7 @@ struct MainView: View {
                 ),
                 content: { NewHighScoreView(store: store) }
             )
-            .modifier(SetupNewGameAlert(store: store.gameStore, isPresented: $isNewGameAlertPresented))
+            .modifier(SetupNewGameAlert(store: store.gameStore))
             .modifier(SetupDifficultyLevelChangedAlert(store: store))
             .navigationViewStyle(StackNavigationViewStyle())
         }
@@ -103,7 +102,7 @@ struct MainView: View {
                 .accessibility(label: Text("Configuration"))
             }
             ToolbarItemGroup(placement: .navigationBarTrailing) {
-                NewGameButton(store: store.gameStore, isNewGameAlertPresented: $isNewGameAlertPresented)
+                NewGameButton(store: store.gameStore)
                 Button {
                     isHighScoresNavigationActive = true
                 } label: {

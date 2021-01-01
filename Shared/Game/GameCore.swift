@@ -7,6 +7,7 @@ struct GameState: Equatable, Codable {
     var discoveredArts: [Art] = []
     var isGameOver = false
     var level: DifficultyLevel = .normal
+    var isNewGameAlertPresented = false
 
     var hasCardsFacedUp: Bool { cards.filter { $0.isFaceUp }.count > 0 }
     var isGameInProgress: Bool { moves > 0 || hasCardsFacedUp }
@@ -20,6 +21,9 @@ enum GameAction: Equatable {
     case save
     case load
     case clearBackup
+    case alertUserBeforeNewGame
+    case presentNewGameAlert
+    case hideNewGameAlert
 }
 
 struct GameEnvironment {
@@ -80,6 +84,18 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
     case .clearBackup:
         environment.clearBackup()
         return .none
+    case .presentNewGameAlert:
+        state.isNewGameAlertPresented = true
+        return .none
+    case .hideNewGameAlert:
+        state.isNewGameAlertPresented = false
+        return .none
+    case .alertUserBeforeNewGame:
+        guard state.moves > 0 && !state.isGameOver else {
+            // No need to present this alert, do a new game right now
+            return Effect(value: .new)
+        }
+        return Effect(value: .presentNewGameAlert)
     }
 }
 
