@@ -10,7 +10,7 @@ struct GameOverView: View {
                 VStack {
                     Text("⭐️ Bravo ⭐️").font(.largeTitle)
                     Button(action: { withAnimation(.spring()) { viewStore.send(.new) } }, label: {
-                        Text("New Game")
+                        Text("New game")
                     })
                 }
                 .padding(.top)

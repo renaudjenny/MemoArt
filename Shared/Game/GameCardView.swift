@@ -55,7 +55,7 @@ struct GameCardView_Previews: PreviewProvider {
                     }
                     Spacer()
                     Button(action: { viewStore.send(.new) }, label: {
-                        Text("New game!")
+                        Text("New game")
                     })
                     .padding()
                 }.padding()

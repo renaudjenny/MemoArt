@@ -24,6 +24,8 @@
 		4C217ADC255F39C400A631BB /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 4C217ADB255F39C400A631BB /* ComposableArchitecture */; };
 		4C217ADE255F39C400A631BB /* RenaudJennyAboutView in Frameworks */ = {isa = PBXBuildFile; productRef = 4C217ADD255F39C400A631BB /* RenaudJennyAboutView */; };
 		4C4454CB254CBB2700AA5C87 /* GameCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4454CA254CBB2700AA5C87 /* GameCoreTests.swift */; };
+		4C5089BB25A2248300BC5E11 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C5089B925A2248300BC5E11 /* Localizable.strings */; };
+		4C5089C525A2392E00BC5E11 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C5089B925A2248300BC5E11 /* Localizable.strings */; };
 		4C805D09256A6EF6003D8F25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C805D08256A6EF6003D8F25 /* AppDelegate.swift */; };
 		4C805D0E256A6F4D003D8F25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C805D08256A6EF6003D8F25 /* AppDelegate.swift */; };
 		4C805D14256A82F4003D8F25 /* AboutSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C805D13256A82F4003D8F25 /* AboutSheetView.swift */; };
@@ -118,6 +120,8 @@
 		4C217A48255F2CE600A631BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C217A49255F2CE600A631BB /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		4C4454CA254CBB2700AA5C87 /* GameCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoreTests.swift; sourceTree = "<group>"; };
+		4C5089BA25A2248300BC5E11 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4C5089C025A2390500BC5E11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4C805D08256A6EF6003D8F25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C805D13256A82F4003D8F25 /* AboutSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSheetView.swift; sourceTree = "<group>"; };
 		4C805D22256C4A79003D8F25 /* SetupNewGameAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupNewGameAlert.swift; sourceTree = "<group>"; };
@@ -202,6 +206,7 @@
 		4C217A83255F2E7B00A631BB /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				4C5089B925A2248300BC5E11 /* Localizable.strings */,
 				4C8DF439253C5B2900F2DE7C /* AppCore.swift */,
 				4C8DF3FF253B30DB00F2DE7C /* Assets.xcassets */,
 				4CC92F552545E54300DAC4AB /* Cards */,
@@ -496,6 +501,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 4C8DF3EF253B30D700F2DE7C;
 			packageReferences = (
@@ -520,6 +526,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C972B3E25960724000BA475 /* Fireworks.sks in Resources */,
+				4C5089BB25A2248300BC5E11 /* Localizable.strings in Resources */,
 				4C972B4025960724000BA475 /* Assets.xcassets in Resources */,
 				4C217AA5255F390300A631BB /* Assets.xcassets in Resources */,
 			);
@@ -530,6 +537,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C972B3D25960724000BA475 /* Fireworks.sks in Resources */,
+				4C5089C525A2392E00BC5E11 /* Localizable.strings in Resources */,
 				4C972B3F25960724000BA475 /* Assets.xcassets in Resources */,
 				4C8DF400253B30DB00F2DE7C /* Assets.xcassets in Resources */,
 			);
@@ -706,6 +714,18 @@
 			targetProxy = 4CD88F2E256795E00074EE39 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4C5089B925A2248300BC5E11 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C5089BA25A2248300BC5E11 /* fr */,
+				4C5089C025A2390500BC5E11 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		4C217A4A255F2CE600A631BB /* Debug */ = {

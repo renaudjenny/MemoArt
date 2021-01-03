@@ -53,7 +53,7 @@ struct MemoArtApp: App {
                         }
                         isNewGameAlertPresented = true
                     } label: {
-                        Text("New Game")
+                        Text("New game")
                     }
                     .disabled(!viewStore.game.isGameInProgress)
                 }

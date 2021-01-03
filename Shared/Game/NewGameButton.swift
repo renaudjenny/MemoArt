@@ -9,7 +9,7 @@ struct NewGameButton: View {
             Button { viewStore.send(.alertUserBeforeNewGame) } label: {
                 Image(systemName: "arrow.triangle.2.circlepath")
             }
-            .accessibility(label: Text("New Game"))
+            .accessibility(label: Text("New game"))
             .disabled(!viewStore.isGameInProgress)
         }
     }

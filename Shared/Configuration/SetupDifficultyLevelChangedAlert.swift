@@ -9,10 +9,10 @@ struct SetupDifficultyLevelChangedAlert: ViewModifier {
             content.background(EmptyView().alert(isPresented: isPresented(store: viewStore)) {
                 Alert(
                     title: Text("Difficulty level changed"),
-                    message: Text(
-                        "You have just changed the difficulty level, but there is a game currently in progress.\n"
-                            + "Do you want to start a new game? You will loose your current progress then!"
-                    ),
+                    message:
+                        Text("You have just changed the difficulty level, but there is a game currently in progress")
+                        + Text("\n")
+                        + Text("Do you want to start a new game? You will loose your current progress then!"),
                     primaryButton: .cancel(),
                     secondaryButton: .destructive(
                         Text("New game"),
