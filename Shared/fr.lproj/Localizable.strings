@@ -1,11 +1,35 @@
 /* No comment provided by engineer. */
-"%@" = "%@";
-
-/* No comment provided by engineer. */
 "/%@" = "/%@";
 
 /* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"❌" = "❌";
+
+/* No comment provided by engineer. */
+"⭐️ Bravo ⭐️" = "⭐️ Bravo ⭐️";
+
+/* No comment provided by engineer. */
+"🏆" = "🏆";
+
+/* No comment provided by engineer. */
+"🥇" = "🥇";
+
+/* No comment provided by engineer. */
+"🥈" = "🥈";
+
+/* No comment provided by engineer. */
+"🥉" = "🥉";
+
+/* No comment provided by engineer. */
+"A new game will randomly display %@ cards among the ones you chose" = "Une nouvelle partie affichera %@ cartes parmi celles que vous avez choisies";
+
+/* No comment provided by engineer. */
 "A new game will randomly display %lld cards among the ones you chose" = "Une nouvelle partie va afficher %lld cartes parmi celles que vous avez choisies";
+
+/* No comment provided by engineer. */
+"A new game will use %@ pairs of cards" = "Une nouvelle partie utilisera %@ paires de cartes";
 
 /* No comment provided by engineer. */
 "A new game will use %lld pairs of cards" = "Une nouvelle partie utilisera %lld paires de cartes";
@@ -30,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Difficulty level changed" = "Niveau de difficulté modifié";
+
+/* No comment provided by engineer. */
+"Do you want to start a new game? You will loose your current progress then!" = "Voulez-vous commencer une nouvelle partie ? Vous allez perdre votre progression !";
 
 /* No comment provided by engineer. */
 "Done" = "Terminer";
@@ -57,6 +84,9 @@
 
 /* No comment provided by engineer. */
 "MemoArt" = "MemoArt";
+
+/* No comment provided by engineer. */
+"Moves: %@" = "Coups: %@";
 
 /* No comment provided by engineer. */
 "Moves: %lld" = "Coups : %lld";
@@ -89,29 +119,8 @@
 "You have just changed the difficulty level, but there is a game currently in progress" = "Vous venez de changer le niveau de difficulté alors qu'il y a une partie en cours";
 
 /* No comment provided by engineer. */
-"Do you want to start a new game? You will loose your current progress then!" = "Voulez-vous commencer une nouvelle partie ? Vous allez perdre votre progression !";
-
-/* No comment provided by engineer. */
-"You've reached the limit.\nYou need %lld cards or more to play." = "Vous avez atteint la limite.\nVous devez utiliser %lld cartes ou plus pour jouer.";
+"You've reached the limit.\nYou need %@ cards or more to play." = "Vous avez atteint la limite.\nVous avez besoin d’au moins %@ cartes pour jouer.";
 
 /* No comment provided by engineer. */
 "Your name" = "Votre prénom";
-
-/* No comment provided by engineer. */
-"❌" = "❌";
-
-/* No comment provided by engineer. */
-"⭐️ Bravo ⭐️" = "⭐️ Bravo ⭐️";
-
-/* No comment provided by engineer. */
-"🏆" = "🏆";
-
-/* No comment provided by engineer. */
-"🥇" = "🥇";
-
-/* No comment provided by engineer. */
-"🥈" = "🥈";
-
-/* No comment provided by engineer. */
-"🥉" = "🥉";
 
