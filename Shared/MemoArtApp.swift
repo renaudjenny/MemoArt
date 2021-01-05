@@ -8,7 +8,7 @@ struct MemoArtApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     #endif
 
-    let store = Store(
+    var store = Store(
         initialState: AppState(configuration: loadConfiguration()),
         reducer: appReducer,
         environment: AppEnvironment(
@@ -25,6 +25,12 @@ struct MemoArtApp: App {
     )
     @State private var isAboutWindowOpened = false
     @State private var isNewGameAlertPresented = false
+
+    init() {
+        #if DEBUG
+        handleLaunchArguments()
+        #endif
+    }
 
     var body: some Scene {
         WindowGroup {
@@ -165,3 +171,31 @@ extension MemoArtApp {
         return configuration
     }
 }
+
+#if DEBUG
+// MARK: Handle Launch Arguments
+extension MemoArtApp {
+    private mutating func handleLaunchArguments() {
+        if CommandLine.arguments.contains("--reset-game-backup") {
+            Self.clearGameBackup()
+        }
+        if CommandLine.arguments.contains("--use-predicted-arts") {
+            store = Store(
+                initialState: AppState(),
+                reducer: appReducer,
+                environment: AppEnvironment(
+                    mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
+                    saveGame: Self.saveGame,
+                    loadGame: { GameState(cards: .predicted) },
+                    clearGameBackup: Self.clearGameBackup,
+                    loadHighScores: Self.loadHighScores,
+                    saveHighScores: Self.saveHighScores,
+                    generateRandomCards: { _, _ in .predicted },
+                    saveConfiguration: Self.saveConfiguration,
+                    loadConfiguration: Self.loadConfiguration
+                )
+            )
+        }
+    }
+}
+#endif
