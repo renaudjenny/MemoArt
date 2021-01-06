@@ -86,21 +86,25 @@ struct MainView: View {
             ToolbarItem(placement: .principal) {
                 Text("MemoArt")
             }
+
             ToolbarItemGroup(placement: .navigationBarLeading) {
                 Button {
                     isAboutNavigationActive = true
                 } label: {
                     Image(systemName: "questionmark.circle")
                 }
-                .accessibility(label: Text("About"))
+                .accessibilityLabel(Text("About"))
+                .accessibilityIdentifier("about")
 
                 Button {
                     isConfigurationNavigationActive = true
                 } label: {
                     Image(systemName: "gearshape")
                 }
-                .accessibility(label: Text("Configuration"))
+                .accessibilityLabel(Text("Configuration"))
+                .accessibilityIdentifier("configuration")
             }
+
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 NewGameButton(store: store.gameStore)
                 Button {
@@ -109,6 +113,7 @@ struct MainView: View {
                     Text("🏆")
                 }
                 .accessibility(label: Text("High Scores"))
+                .accessibility(identifier: "high_scores")
             }
         }
     }

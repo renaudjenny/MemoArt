@@ -10,6 +10,7 @@ struct NewGameButton: View {
                 Image(systemName: "arrow.triangle.2.circlepath")
             }
             .accessibility(label: Text("New game"))
+            .accessibility(identifier: "new_game")
             .disabled(!viewStore.isGameInProgress)
         }
     }

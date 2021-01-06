@@ -32,4 +32,12 @@ class Marketing: XCTestCase {
         attachment.lifetime = .keepAlways
         add(attachment)
     }
+
+    func testConfigurationScreenshot() throws {
+        app.buttons["configuration"].tap()
+        let screenshot = app.screenshot()
+        let attachment = XCTAttachment(screenshot: screenshot)
+        attachment.lifetime = .keepAlways
+        add(attachment)
+    }
 }
