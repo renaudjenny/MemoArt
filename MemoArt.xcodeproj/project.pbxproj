@@ -937,6 +937,7 @@
 		4C5089E825A3B1BD00BC5E11 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBQ98GC8JT;
 				INFOPLIST_FILE = "UITests iOS/Info.plist";
@@ -957,6 +958,7 @@
 		4C5089E925A3B1BD00BC5E11 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBQ98GC8JT;
 				INFOPLIST_FILE = "UITests iOS/Info.plist";

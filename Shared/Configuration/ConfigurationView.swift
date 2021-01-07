@@ -21,5 +21,6 @@ struct ConfigurationView: View {
             Divider()
         }
         .navigationTitle("Configuration")
+        .accessibility(identifier: "configuration")
     }
 }

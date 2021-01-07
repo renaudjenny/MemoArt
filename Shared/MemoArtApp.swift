@@ -179,6 +179,9 @@ extension MemoArtApp {
         if CommandLine.arguments.contains("--reset-game-backup") {
             Self.clearGameBackup()
         }
+        if CommandLine.arguments.contains("--reset-configuration") {
+            Self.saveConfiguration(configuration: ConfigurationState())
+        }
         if CommandLine.arguments.contains("--use-predicted-arts") {
             store = Store(
                 initialState: AppState(),
@@ -186,11 +189,14 @@ extension MemoArtApp {
                 environment: AppEnvironment(
                     mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
                     saveGame: Self.saveGame,
-                    loadGame: { GameState(cards: .predicted) },
+                    loadGame: { GameState(
+                        cards: .predicted(level: Self.loadConfiguration().difficultyLevel),
+                        level: Self.loadConfiguration().difficultyLevel
+                    ) },
                     clearGameBackup: Self.clearGameBackup,
                     loadHighScores: Self.loadHighScores,
                     saveHighScores: Self.saveHighScores,
-                    generateRandomCards: { _, _ in .predicted },
+                    generateRandomCards: { _, _ in .predicted(level: Self.loadConfiguration().difficultyLevel) },
                     saveConfiguration: Self.saveConfiguration,
                     loadConfiguration: Self.loadConfiguration
                 )
