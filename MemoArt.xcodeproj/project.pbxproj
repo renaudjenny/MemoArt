@@ -115,13 +115,6 @@
 			remoteGlobalIDString = 4C8DF3F7253B30D700F2DE7C;
 			remoteInfo = Memoiry;
 		};
-		4CD88ECA256712670074EE39 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4C8DF3F0253B30D700F2DE7C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4C217A3C255F2CE000A631BB;
-			remoteInfo = "MemoArt (macOS)";
-		};
 		4CD88F2E256795E00074EE39 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4C8DF3F0253B30D700F2DE7C /* Project object */;
@@ -546,7 +539,6 @@
 			);
 			dependencies = (
 				4C8DF40B253B30DC00F2DE7C /* PBXTargetDependency */,
-				4CD88ECB256712670074EE39 /* PBXTargetDependency */,
 			);
 			name = "Tests iOS";
 			productName = MemoiryTests;
@@ -842,6 +834,7 @@
 /* Begin PBXTargetDependency section */
 		4C5089E625A3B1BD00BC5E11 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 4C8DF3F7253B30D700F2DE7C /* MemoArt (iOS) */;
 			targetProxy = 4C5089E525A3B1BD00BC5E11 /* PBXContainerItemProxy */;
 		};
@@ -852,13 +845,9 @@
 		};
 		4C8DF40B253B30DC00F2DE7C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 4C8DF3F7253B30D700F2DE7C /* MemoArt (iOS) */;
 			targetProxy = 4C8DF40A253B30DC00F2DE7C /* PBXContainerItemProxy */;
-		};
-		4CD88ECB256712670074EE39 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4C217A3C255F2CE000A631BB /* MemoArt (macOS) */;
-			targetProxy = 4CD88ECA256712670074EE39 /* PBXContainerItemProxy */;
 		};
 		4CD88F2F256795E00074EE39 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -937,6 +926,7 @@
 		4C5089E825A3B1BD00BC5E11 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBQ98GC8JT;
 				INFOPLIST_FILE = "UITests iOS/Info.plist";
@@ -948,6 +938,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "renaud.jenny.UITests-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "MemoArt (iOS)";
@@ -957,6 +949,7 @@
 		4C5089E925A3B1BD00BC5E11 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MBQ98GC8JT;
 				INFOPLIST_FILE = "UITests iOS/Info.plist";
@@ -968,6 +961,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "renaud.jenny.UITests-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "MemoArt (iOS)";
@@ -1197,6 +1192,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = renaud.jenny.MemoiryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MemoArt.app/MemoArt";
@@ -1220,6 +1217,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = renaud.jenny.MemoiryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MemoArt.app/MemoArt";
