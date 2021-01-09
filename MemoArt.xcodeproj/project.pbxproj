@@ -174,6 +174,7 @@
 		4CC92F6D2548BB2300DAC4AB /* ReversedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversedScrollView.swift; sourceTree = "<group>"; };
 		4CCC950925A9C87100AFF6D7 /* Marketing+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Marketing+Utils.swift"; sourceTree = "<group>"; };
 		4CCC951D25A9CEEC00AFF6D7 /* Marketing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marketing.swift; sourceTree = "<group>"; };
+		4CCC95C425AA314200AFF6D7 /* Marketing.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Marketing.xctestplan; sourceTree = "<group>"; };
 		4CD0E1EB2542A0B400A1E0FD /* HighScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScore.swift; sourceTree = "<group>"; };
 		4CD0E1F02542A1D200A1E0FD /* HighScoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresView.swift; sourceTree = "<group>"; };
 		4CD0E1F52542A29900A1E0FD /* HighScoresCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresCore.swift; sourceTree = "<group>"; };
@@ -361,6 +362,7 @@
 				4C8DF40C253B30DC00F2DE7C /* Tests Shared */,
 				4C5089E125A3B1BD00BC5E11 /* UITests iOS */,
 				4C5089F425A3B1D300BC5E11 /* UITests macOS */,
+				4CCC95EF25AA351900AFF6D7 /* UITests Shared */,
 			);
 			sourceTree = "<group>";
 		};
@@ -380,7 +382,6 @@
 		4C8DF40C253B30DC00F2DE7C /* Tests Shared */ = {
 			isa = PBXGroup;
 			children = (
-				4CCC952C25A9CEF200AFF6D7 /* UI */,
 				4C8DF40D253B30DC00F2DE7C /* AppCoreTests.swift */,
 				4C8484A32555F3D700FBDEC2 /* Configuration */,
 				4C4454C9254CBA8200AA5C87 /* Game */,
@@ -420,12 +421,13 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
-		4CCC952C25A9CEF200AFF6D7 /* UI */ = {
+		4CCC95EF25AA351900AFF6D7 /* UITests Shared */ = {
 			isa = PBXGroup;
 			children = (
+				4CCC95C425AA314200AFF6D7 /* Marketing.xctestplan */,
 				4CCC951D25A9CEEC00AFF6D7 /* Marketing.swift */,
 			);
-			path = UI;
+			path = "UITests Shared";
 			sourceTree = "<group>";
 		};
 		4CD0E1EA2542A09000A1E0FD /* HighScores */ = {

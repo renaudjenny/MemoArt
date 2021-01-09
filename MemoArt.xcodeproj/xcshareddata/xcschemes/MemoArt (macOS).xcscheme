@@ -32,6 +32,9 @@
             reference = "container:Tests Shared/TestPlan.xctestplan"
             default = "YES">
          </TestPlanReference>
+         <TestPlanReference
+            reference = "container:UITests Shared/Marketing.xctestplan">
+         </TestPlanReference>
       </TestPlans>
       <Testables>
          <TestableReference
