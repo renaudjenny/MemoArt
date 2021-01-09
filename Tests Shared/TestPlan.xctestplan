@@ -22,6 +22,7 @@
   },
   "testTargets" : [
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:MemoArt.xcodeproj",
         "identifier" : "4C5089DF25A3B1BD00BC5E11",
@@ -29,6 +30,7 @@
       }
     },
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:MemoArt.xcodeproj",
         "identifier" : "4C5089F225A3B1D300BC5E11",
@@ -36,6 +38,10 @@
       }
     },
     {
+      "parallelizable" : true,
+      "skippedTests" : [
+        "Marketing"
+      ],
       "target" : {
         "containerPath" : "container:MemoArt.xcodeproj",
         "identifier" : "4C8DF408253B30DC00F2DE7C",
@@ -43,6 +49,10 @@
       }
     },
     {
+      "parallelizable" : true,
+      "skippedTests" : [
+        "Marketing"
+      ],
       "target" : {
         "containerPath" : "container:MemoArt.xcodeproj",
         "identifier" : "4CD88F28256795E00074EE39",

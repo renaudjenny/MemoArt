@@ -25,6 +25,7 @@ struct ConfigurationSheetView: View {
                 Text("Done")
             }
             .padding([.bottom, .trailing])
+            .accessibilityIdentifier("done")
         }
         .modifier(SetupDifficultyLevelChangedAlert(store: store))
     }
