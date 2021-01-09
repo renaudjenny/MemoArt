@@ -55,4 +55,4 @@ jobs:
         p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
 
     - name: Xcode test on Mac
-      run: xcodebuild clean test -scheme "MemoArt (macOS)"
+      run: xcodebuild clean test -scheme "MemoArt (macOS)" CODE_SIGNING_ALLOWED=NO
