@@ -4,6 +4,9 @@ struct CardView: View {
     let color: Color
     let image: Image
     let isFacedUp: Bool
+    let accessibilityIdentifier: String
+    let accessibilityFaceDownText: Text
+    let accessibilityFaceUpText: Text
     var action: () -> Void = { }
     private static let turnCardAnimationDuration: Double = 2/5
 
@@ -14,12 +17,15 @@ struct CardView: View {
                     color.transition(turnTransition)
                 }
                 .buttonStyle(PlainButtonStyle())
+                .accessibility(label: accessibilityFaceDownText)
+                .accessibility(identifier: accessibilityIdentifier)
             } else {
                 image
                     .renderingMode(.original)
                     .resizable()
                     .font(.largeTitle)
                     .transition(turnTransition)
+                    .accessibility(label: accessibilityFaceUpText)
             }
         }
         .modifier(AddCardStyle(foregroundColor: color))

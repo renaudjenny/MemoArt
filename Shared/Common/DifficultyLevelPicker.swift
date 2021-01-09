@@ -5,11 +5,18 @@ struct DifficultyLevelPicker: View {
 
     var body: some View {
         Picker("Difficulty Level", selection: $level) {
-            Text("Easy").tag(DifficultyLevel.easy)
-            Text("Normal").tag(DifficultyLevel.normal)
-            Text("Hard").tag(DifficultyLevel.hard)
+            Text("Easy")
+                .tag(DifficultyLevel.easy)
+                .accessibilityIdentifier(DifficultyLevel.easy.rawValue)
+            Text("Normal")
+                .tag(DifficultyLevel.normal)
+                .accessibilityIdentifier(DifficultyLevel.normal.rawValue)
+            Text("Hard")
+                .tag(DifficultyLevel.hard)
+                .accessibilityIdentifier(DifficultyLevel.hard.rawValue)
         }
         .labelsHidden()
+        .accessibilityIdentifier("difficulty_level")
         .pickerStyle(SegmentedPickerStyle())
         .background(
             LinearGradient(

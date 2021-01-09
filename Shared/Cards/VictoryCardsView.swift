@@ -15,7 +15,10 @@ struct VictoryCardsView: View {
                     CardView(
                         color: colors[cardNumber],
                         image: images[cardNumber],
-                        isFacedUp: isCardsFacedUp[cardNumber]
+                        isFacedUp: isCardsFacedUp[cardNumber],
+                        accessibilityIdentifier: "card number \(cardNumber)",
+                        accessibilityFaceDownText: Text("Card in animation faced down", comment: "Card for Victory animation description (for screen reader)"),
+                        accessibilityFaceUpText: Text("Card in animation faced up", comment: "Card for Victory animation description (for screen reader)")
                     )
                     .frame(width: 80, height: 80)
                     .rotationEffect(angle(cardNumber: cardNumber))

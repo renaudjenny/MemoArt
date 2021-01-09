@@ -51,24 +51,24 @@ enum Art: String, CaseIterable, Codable {
 
     var description: String {
         switch self {
-        case .artDeco: return "Art Deco"
-        case .arty: return "Arty"
-        case .cave: return "Cave"
-        case .childish: return "Childish"
-        case .destructured: return "Destructured"
-        case .geometric: return "Geometric"
-        case .gradient: return "Gradient"
-        case .impressionism: return "Impressionism"
-        case .pixelArt: return "Pixel Art"
-        case .watercolor: return "Watercolor"
-        case .stillLife: return "Still Life"
-        case .popArt: return "Pop Art"
-        case .shadow: return "Shadow"
-        case .moderArt: return "Modern Art"
-        case .charcoal: return "Charcoal"
-        case .pattern: return "Pattern"
-        case .fruitArt: return "Fruit Art"
-        case .painting: return "Painting"
+        case .artDeco: return NSLocalizedString("Art Deco", comment: "Art Deco style")
+        case .arty: return NSLocalizedString("Arty", comment: "Arty art style")
+        case .cave: return NSLocalizedString("Cave", comment: "Cave art style")
+        case .childish: return NSLocalizedString("Childish", comment: "Childish art style")
+        case .destructured: return NSLocalizedString("Destructured", comment: "Destructured art style")
+        case .geometric: return NSLocalizedString("Geometric", comment: "Geometric art style")
+        case .gradient: return NSLocalizedString("Gradient", comment: "Gradient art style")
+        case .impressionism: return NSLocalizedString("Impressionism", comment: "Impressionism art style")
+        case .pixelArt: return NSLocalizedString("Pixel Art", comment: "Pixel Art style")
+        case .watercolor: return NSLocalizedString("Watercolor", comment: "Watercolor art style")
+        case .stillLife: return NSLocalizedString("Still Life", comment: "Still Life art style")
+        case .popArt: return NSLocalizedString("Pop Art", comment: "Pop Art style")
+        case .shadow: return NSLocalizedString("Shadow", comment: "Shadow art style")
+        case .moderArt: return NSLocalizedString("Modern Art", comment: "Modern Art style")
+        case .charcoal: return NSLocalizedString("Charcoal", comment: "Charcoal art style")
+        case .pattern: return NSLocalizedString("Pattern", comment: "Pattern art style")
+        case .fruitArt: return NSLocalizedString("Fruit Art", comment: "Fruit Art style")
+        case .painting: return NSLocalizedString("Painting", comment: "Painting art style")
         }
     }
 }

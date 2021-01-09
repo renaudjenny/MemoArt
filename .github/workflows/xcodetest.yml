@@ -28,6 +28,12 @@ jobs:
     - name: Create iPhone SE Simulator
       run: xcrun simctl create "iPhone SE (1st generation)" "iPhone SE (1st generation)"
 
+    - name: Import Code-Signing Certificates
+      uses: Apple-Actions/import-codesign-certs@v1
+      with:
+        p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
+        p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
+
     - name: Xcode test on iPhone SE
       run: xcodebuild clean test -scheme "MemoArt (iOS)" -destination 'platform=iOS Simulator,name=iPhone SE (1st generation)'
   build-macos:
@@ -41,6 +47,12 @@ jobs:
 
     - name: Xcode version
       run: /usr/bin/xcodebuild -version
+
+    - name: Import Code-Signing Certificates
+      uses: Apple-Actions/import-codesign-certs@v1
+      with:
+        p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
+        p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
 
     - name: Xcode test on Mac
       run: xcodebuild clean test -scheme "MemoArt (macOS)" CODE_SIGNING_ALLOWED=NO

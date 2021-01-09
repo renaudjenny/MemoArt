@@ -40,6 +40,7 @@ struct MainView: View {
                         Image(systemName: "gearshape")
                     }
                     .accessibility(label: Text("Configuration"))
+                    .accessibilityIdentifier("configuration")
                 }
                 ToolbarItem {
                     Button {
@@ -48,6 +49,7 @@ struct MainView: View {
                         Image(systemName: "list.number")
                     }
                     .accessibility(label: Text("High Scores"))
+                    .accessibility(identifier: "high_scores")
                 }
             }
             .background(EmptyView().sheet(isPresented: $isConfigurationPresented) {

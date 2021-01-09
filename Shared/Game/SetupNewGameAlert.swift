@@ -8,7 +8,7 @@ struct SetupNewGameAlert: ViewModifier {
         WithViewStore(store) { viewStore in
             content.background(EmptyView().alert(isPresented: isPresented(viewStore: viewStore)) {
                 Alert(
-                    title: Text("New Game"),
+                    title: Text("New game"),
                     message: Text("This will reset the current game, you will loose your progress!"),
                     primaryButton: .cancel(),
                     secondaryButton: .destructive(
