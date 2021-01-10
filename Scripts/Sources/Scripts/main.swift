@@ -1,6 +1,6 @@
 // Set the list of devices you want screenshot to be taken on
 let devicesName = [
-    "iPhone 12 Pro Max"
+    "iPhone 12 Pro Max",
 ]
 
 // Help you generate & find generated screenshots
@@ -19,11 +19,9 @@ for deviceName in devicesName {
         "-testPlan", "Marketing",
     ])
 
-    // LATEST_XCRESULTS=`plutil -extract logs xml1 -o - ${DERIVED_DATA_PATH}/Logs/Test/LogStoreManifest.plist | xmllint --xpath 'string(//dict[1]/string[contains(text(),"xcresult")])' -`
-
     let plutilExtractLogs = shell(command: .plutil, arguments: [
         "-extract", "logs", "xml1",
-        "-o", "-", "\(derivedDataPath)/Logs/Test/LogStoreManifest.plist"
+        "-o", "-", "\(derivedDataPath)/Logs/Test/LogStoreManifest.plist",
     ])
 
     guard
@@ -38,7 +36,7 @@ for deviceName in devicesName {
     let xmllint = shell(command: .xmllint, arguments: [
         "--xpath",
         "string(//dict[1]/string[contains(text(),\"xcresult\")])",
-        plutilExtractLogsOutput
+        plutilExtractLogsOutput,
     ])
 
     guard
