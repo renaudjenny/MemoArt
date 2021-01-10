@@ -45,7 +45,6 @@ class Marketing: XCTestCase {
     func testEasyDifficultyScreenshot() throws {
         navigateToConfiguration()
 
-
         selectDifficulty(levelIdentifier: "easy")
 
         let screenshot = app.screenshot()
