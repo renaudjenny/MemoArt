@@ -6,28 +6,6 @@ class GameCoreTests: XCTestCase {
     let scheduler = DispatchQueue.testScheduler
     typealias Step = TestStore<GameState, GameState, GameAction, GameAction, GameEnvironment>.Step
 
-    func testNewGame() {
-        let store = TestStore(
-            initialState: GameState(cards: .predicted),
-            reducer: gameReducer,
-            environment: .mocked(scheduler: scheduler)
-        )
-        store.assert(
-            .send(.new) {
-                $0.isGameOver = false
-                $0.discoveredArts = []
-                $0.moves = 0
-                $0.cards = $0.cards.map { Card(id: $0.id, art: $0.art, isFaceUp: false) }
-            },
-            .receive(.clearBackup),
-            .do { self.scheduler.advance(by: .seconds(0.5)) },
-            .receive(.shuffleCards) {
-                $0.cards = .predicted
-            }
-        )
-    }
-
-    // swiftlint:disable:next cyclomatic_complexity
     func testReturningCards() {
         let store = TestStore(
             initialState: GameState(cards: .predicted),
@@ -40,50 +18,40 @@ class GameCoreTests: XCTestCase {
                 $0.cards = .predicted
             },
             .send(.cardReturned(0)) {
-                $0.cards = $0.cards.map {
-                    switch $0.id {
-                    case 0: return Card(id: 0, art: .artDeco, isFaceUp: true)
-                    default: return $0
-                    }
-                }
+                $0.cards = self.newCards(cardsFacedUpIds: [0], cardsFacedDownIds: [], cards: $0.cards)
                 $0.moves = 0
             },
             .receive(.save),
             .send(.cardReturned(1)) {
-                $0.cards = $0.cards.map {
-                    switch $0.id {
-                    case 0: return Card(id: $0.id, art: $0.art, isFaceUp: true)
-                    case 1: return Card(id: 1, art: .arty, isFaceUp: true)
-                    default: return $0
-                    }
-                }
+                $0.cards = self.newCards(cardsFacedUpIds: [0, 1], cardsFacedDownIds: [], cards: $0.cards)
                 $0.moves = 1
             },
             .receive(.save),
             .send(.cardReturned(2)) {
-                $0.cards = $0.cards.map {
-                    switch $0.id {
-                    case 0, 1: return Card(id: $0.id, art: $0.art, isFaceUp: false)
-                    case 2: return Card(id: 2, art: .cave, isFaceUp: true)
-                    default: return $0
-                    }
-                }
+                // Returning on third card will turn back the two firsts
+                $0.cards = self.newCards(cardsFacedUpIds: [2], cardsFacedDownIds: [0, 1], cards: $0.cards)
                 $0.moves = 1
             },
             .receive(.save),
             .send(.cardReturned(12)) {
-                $0.cards = $0.cards.map {
-                    switch $0.id {
-                    case 2: return Card(id: 2, art: .cave, isFaceUp: true)
-                    case 12: return Card(id: 12, art: .cave, isFaceUp: true)
-                    default: return $0
-                    }
-                }
+                $0.cards = self.newCards(cardsFacedUpIds: [2, 12], cardsFacedDownIds: [], cards: $0.cards)
                 $0.moves = 2
                 $0.discoveredArts = [.cave]
             },
             .receive(.save)
         )
+    }
+
+    private func newCards(cardsFacedUpIds: [Int], cardsFacedDownIds: [Int], cards: [Card]) -> [Card] {
+        cards.map { card in
+            switch card.id {
+            case let cardId where cardsFacedUpIds.contains(cardId):
+                return Card(id: cardId, art: card.art, isFaceUp: true)
+            case let cardId where cardsFacedDownIds.contains(cardId):
+                return Card(id: cardId, art: card.art, isFaceUp: false)
+            default: return card
+            }
+        }
     }
 
     func returnAllCardsSteps(level: DifficultyLevel) -> [Step] {
@@ -129,245 +97,6 @@ class GameCoreTests: XCTestCase {
                 .receive(secondCardId + 1 < level.cardsCount ? .save : .clearBackup),
             ]
         }
-    }
-
-    func testFinishingAGame() {
-        let store = TestStore(
-            initialState: GameState(cards: .predicted),
-            reducer: gameReducer,
-            environment: .mocked(scheduler: scheduler)
-        )
-
-        store.assert(
-            [
-                .send(.shuffleCards) {
-                    $0.cards = .predicted
-                },
-            ]
-            +
-            returnAllCardsSteps(level: .normal)
-        )
-    }
-
-    func testFinishingAGameInEasy() {
-        let store = TestStore(
-            initialState: GameState(
-                cards: .predicted(level: .easy),
-                level: .easy
-            ),
-            reducer: gameReducer,
-            environment: .mocked(scheduler: scheduler)
-        )
-
-        store.assert(
-            [
-                .send(.shuffleCards) {
-                    $0.cards = .predicted(level: .easy)
-                },
-            ]
-            +
-            returnAllCardsSteps(level: .easy)
-        )
-    }
-
-    func testFinishingAGameInHard() {
-        let store = TestStore(
-            initialState: GameState(
-                cards: .predicted(level: .hard),
-                level: .hard
-            ),
-            reducer: gameReducer,
-            environment: .mocked(scheduler: scheduler)
-        )
-
-        store.assert(
-            [
-                .send(.shuffleCards) {
-                    $0.cards = .predicted(level: .hard)
-                },
-            ]
-            +
-            returnAllCardsSteps(level: .hard)
-        )
-    }
-
-    func testSavingGame() {
-        let expectingSaveGameToBeCalled = expectation(description: "Expect save game to be called")
-        let mockedSaveGame: (GameState) -> Void = { _ in
-            expectingSaveGameToBeCalled.fulfill()
-        }
-        let store = TestStore(
-            initialState: AppState(),
-            reducer: appReducer,
-            environment: .mocked(scheduler: scheduler) {
-                $0.saveGame = mockedSaveGame
-            }
-        )
-        store.assert(
-            .send(.game(.save))
-        )
-        wait(for: [expectingSaveGameToBeCalled], timeout: 0.1)
-    }
-
-    func testLoadGame() {
-        let expectingLoadGameToBeCalled = expectation(description: "Expect load game to be called")
-        let mockedGameState = GameState(
-            moves: 42,
-            cards: .predicted,
-            discoveredArts: [.cave, .popArt],
-            isGameOver: false
-        )
-        let mockedLoadGame: () -> GameState = {
-            expectingLoadGameToBeCalled.fulfill()
-            return mockedGameState
-        }
-        let store = TestStore(
-            initialState: AppState(),
-            reducer: appReducer,
-            environment: .mocked(scheduler: scheduler) {
-                $0.loadGame = mockedLoadGame
-            }
-        )
-        store.assert(
-            .send(.game(.load)) {
-                $0.game = mockedGameState
-            }
-        )
-        wait(for: [expectingLoadGameToBeCalled], timeout: 0.1)
-    }
-
-    func testClearBackup() {
-        let expectingClearGameBackupToBeCalled = expectation(description: "Expect clear game backup to be called")
-        let mockedClearGameBackup: () -> Void = {
-            expectingClearGameBackupToBeCalled.fulfill()
-        }
-        let store = TestStore(
-            initialState: AppState(),
-            reducer: appReducer,
-            environment: .mocked(scheduler: scheduler) {
-                $0.clearGameBackup = mockedClearGameBackup
-            }
-        )
-        store.assert(
-            .send(.game(.clearBackup))
-        )
-        wait(for: [expectingClearGameBackupToBeCalled], timeout: 0.1)
-    }
-
-    func testNewGameWithHardDifficultyLevel() {
-        let store = TestStore(
-            initialState: GameState(cards: .predicted(level: .hard)),
-            reducer: gameReducer,
-            environment: .mocked(scheduler: scheduler)
-        )
-        store.assert(
-            .send(.new) {
-                $0.isGameOver = false
-                $0.discoveredArts = []
-                $0.moves = 0
-                $0.cards = $0.cards.map { Card(id: $0.id, art: $0.art, isFaceUp: false) }
-            },
-            .receive(.clearBackup),
-            .do { self.scheduler.advance(by: .seconds(0.5)) },
-            .receive(.shuffleCards) {
-                $0.cards = .predicted(level: .hard)
-            }
-        )
-    }
-
-    func testNewGameWithEasyDifficultyLevel() {
-        let store = TestStore(
-            initialState: GameState(cards: .predicted(level: .easy)),
-            reducer: gameReducer,
-            environment: .mocked(scheduler: scheduler)
-        )
-        store.assert(
-            .send(.new) {
-                $0.isGameOver = false
-                $0.discoveredArts = []
-                $0.moves = 0
-                $0.cards = $0.cards.map { Card(id: $0.id, art: $0.art, isFaceUp: false) }
-            },
-            .receive(.clearBackup),
-            .do { self.scheduler.advance(by: .seconds(0.5)) },
-            .receive(.shuffleCards) {
-                $0.cards = .predicted(level: .easy)
-            }
-        )
-    }
-
-    func testPresentAndHideNewGameAlert() {
-        let store = TestStore(
-            initialState: GameState(),
-            reducer: gameReducer,
-            environment: .mocked(scheduler: scheduler)
-        )
-        store.assert(
-            .send(.presentNewGameAlert) {
-                $0.isNewGameAlertPresented = true
-            },
-            .send(.hideNewGameAlert) {
-                $0.isNewGameAlertPresented = false
-            }
-        )
-    }
-
-    func testAlertUserBeforeNewGameAlertWhenAGameAlreadyStarted() {
-        let store = TestStore(
-            initialState: GameState(moves: 1),
-            reducer: gameReducer,
-            environment: .mocked(scheduler: scheduler)
-        )
-        store.assert(
-            .send(.alertUserBeforeNewGame),
-            .receive(.presentNewGameAlert) {
-                $0.isNewGameAlertPresented = true
-            }
-        )
-    }
-
-    func testAlertUserBeforeNewGameAlertWhenAGameIsOver() {
-        let store = TestStore(
-            initialState: GameState(moves: 42, cards: .predicted, isGameOver: true),
-            reducer: gameReducer,
-            environment: .mocked(scheduler: scheduler)
-        )
-        store.assert(
-            .send(.alertUserBeforeNewGame),
-            .receive(.new) {
-                $0.isGameOver = false
-                $0.discoveredArts = []
-                $0.moves = 0
-                $0.cards = $0.cards.map { Card(id: $0.id, art: $0.art, isFaceUp: false) }
-            },
-            .receive(.clearBackup),
-            .do { self.scheduler.advance(by: .seconds(0.5)) },
-            .receive(.shuffleCards) {
-                $0.cards = .predicted
-            }
-        )
-    }
-
-    func testAlertUserBeforeNewGameAlertWhenHaveNotStarted() {
-        let store = TestStore(
-            initialState: GameState(moves: 0, cards: .predicted),
-            reducer: gameReducer,
-            environment: .mocked(scheduler: scheduler)
-        )
-        store.assert(
-            .send(.alertUserBeforeNewGame),
-            .receive(.new) {
-                $0.isGameOver = false
-                $0.discoveredArts = []
-                $0.moves = 0
-                $0.cards = $0.cards.map { Card(id: $0.id, art: $0.art, isFaceUp: false) }
-            },
-            .receive(.clearBackup),
-            .do { self.scheduler.advance(by: .seconds(0.5)) },
-            .receive(.shuffleCards) {
-                $0.cards = .predicted
-            }
-        )
     }
 }
 
