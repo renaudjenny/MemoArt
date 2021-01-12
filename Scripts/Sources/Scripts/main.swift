@@ -3,12 +3,10 @@ import XCResultKit
 
 // Set the list of devices you want screenshot to be taken on
 let devicesName = [
-    "iPhone 12 Pro Max",
+//    "iPhone 12 Pro Max",
     "iPhone 8 Plus",
 ]
 
-// Help you generate & find generated screenshots
-// See https://rderik.com/blog/understanding-xcuitest-screenshots-and-how-to-access-them/
 let derivedDataPath = "/tmp/DerivedDataMarketing"
 let exportFolder = "/tmp/ExportedScreenshots"
 
@@ -17,9 +15,11 @@ else {
     throw ScriptError.commandFailed("mkdir failed to create the folder \(exportFolder)")
 }
 
-print("Run Marketing screenshots generation...")
+print("📺 Starting generating Marketing screenshots...")
 for deviceName in devicesName {
-    print("Currently running on Simulator named: \(deviceName)")
+    print("📱 Currently running on Simulator named: \(deviceName)")
+    print("     👷‍♀️ Generation of screenshots for \(deviceName) via test plan in progress")
+    print("     🐢 This usually takes some time...")
 
     let iOSMarketingTestPlan = shell(command: .xcodebuild, arguments: [
         "test",
@@ -31,9 +31,12 @@ for deviceName in devicesName {
 
     guard iOSMarketingTestPlan.status == 0 else {
         print("Marketing UITests failed with errors")
-        print(iOSMarketingTestPlan.output ?? "Cannot print xcodebuild errors errors...")
+        print(iOSMarketingTestPlan.output ?? "Cannot print xcodebuild errors...")
         continue
     }
+    print("     ✅ Generation of screenshots for \(deviceName) via test plan done")
+
+    print("     👷‍♀️ Extraction and renaming of screenshots for \(deviceName) in progress")
 
     let path = "\(derivedDataPath)/Logs/Test/LogStoreManifest.plist"
 
@@ -76,9 +79,13 @@ for deviceName in devicesName {
         continue
     }
     for summary in result.getTestPlanRunSummaries(id: testPlanRunSummariesId)?.summaries ?? [] {
-        print(summary.name)
+        print("         ⛏ extraction for the configuration \(summary.name) in progress")
         for test in summary.testableSummaries.first?.tests.first?.subtestGroups.first?.subtestGroups.first?.subtests ?? [] {
-            print(test.name)
+            let normalizedTestName = test.name
+                .replacingOccurrences(of: "test", with: "")
+                .replacingOccurrences(of: "Screenshot()", with: "")
+            print("             👉 extraction of \(normalizedTestName) in progress")
+
             guard let summaryId = test.summaryRef?.id
             else {
                 print("Error, cannot get summary id from \(summary.name) for \(test.name)")
@@ -100,14 +107,11 @@ for deviceName in devicesName {
             }
 
             do {
-                let testName = test.name
-                    .replacingOccurrences(of: "test", with: "")
-                    .replacingOccurrences(of: "Screenshot()", with: "")
-                let path = "\(exportFolder)/Screenshot \(deviceName) \(summary.name) \(testName).png"
-
+                let path = "\(exportFolder)/Screenshot \(deviceName) \(summary.name) \(normalizedTestName).png"
                 try screenshotData.write(to: URL(fileURLWithPath: path))
+                print("              📸 \(normalizedTestName) is available here: \(path)")
             } catch {
-                print(error)
+                print("Error, can't export the file correctly: \(error)")
             }
         }
     }
@@ -115,5 +119,5 @@ for deviceName in devicesName {
 
 guard shell(command: .open, arguments: [exportFolder]).status == 0
 else {
-    throw ScriptError.commandFailed("open cannot open the folder \(exportFolder)")
+    throw ScriptError.commandFailed("Error, cannot open the folder \(exportFolder) automatically")
 }
