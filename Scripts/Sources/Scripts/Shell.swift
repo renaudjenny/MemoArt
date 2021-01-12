@@ -5,6 +5,8 @@ enum ShellCommand: String {
     case xcodebuild = "/usr/bin/xcodebuild"
     case plutil = "/usr/bin/plutil"
     case xmllint = "/usr/bin/xmllint"
+    case open = "/usr/bin/open"
+    case mkdir = "/bin/mkdir"
 }
 
 // See https://stackoverflow.com/questions/26971240/how-do-i-run-a-terminal-command-in-a-swift-script-e-g-xcodebuild
