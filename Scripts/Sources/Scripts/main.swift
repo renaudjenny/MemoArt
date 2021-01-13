@@ -3,8 +3,16 @@ import XCResultKit
 
 // Set the list of devices you want screenshot to be taken on
 let devicesName = [
-//    "iPhone 12 Pro Max",
+    "iPhone 12 Pro Max",
+    "iPhone 12 Pro",
     "iPhone 8 Plus",
+    "iPhone SE (2nd generation)",
+    "iPhone SE (1st generation)",
+    "iPad Pro (12.9-inch) (4th generation)",
+    "iPad Pro (11-inch) (2nd generation)",
+    "iPad Pro (9.7-inch)",
+    "iPad Air (4th generation)",
+    "iPad (8th generation)",
 ]
 
 let derivedDataPath = "/tmp/DerivedDataMarketing"
@@ -13,6 +21,25 @@ let exportFolder = "/tmp/ExportedScreenshots"
 guard shell(command: .mkdir, arguments: ["-p", exportFolder]).status == 0
 else {
     throw ScriptError.commandFailed("mkdir failed to create the folder \(exportFolder)")
+}
+
+for deviceName in devicesName {
+    print("🤖 Check if simulator \(deviceName) is available and ready to be used for screenshots")
+    guard let deviceList = shell(command: .xcrun, arguments: ["simctl", "list", deviceName, deviceName]).output
+    else {
+        throw ScriptError.commandFailed("xcrun simctl list failed to found the device \(deviceName)")
+    }
+
+    if deviceList.contains(deviceName) {
+        continue
+    }
+
+    print("     📲 \(deviceName) simulator is not available create it now")
+
+    guard shell(command: .xcrun, arguments: ["simctl", "create", deviceName, deviceName]).status == 0
+    else {
+        throw ScriptError.commandFailed("xcrun simctl create failed for the device \(deviceName)")
+    }
 }
 
 print("📺 Starting generating Marketing screenshots...")
