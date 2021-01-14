@@ -23,14 +23,19 @@ else {
     throw ScriptError.commandFailed("mkdir failed to create the folder \(exportFolder)")
 }
 
-for deviceName in devicesName {
-    print("🤖 Check if simulator \(deviceName) is available and ready to be used for screenshots")
-    guard let deviceList = shell(command: .xcrun, arguments: ["simctl", "list", deviceName, deviceName]).output
-    else {
-        throw ScriptError.commandFailed("xcrun simctl list failed to found the device \(deviceName)")
-    }
+print("🤖 Check simulators available and if they are ready to be used for screenshots")
+guard let deviceListJSON = shell(command: .xcrun, arguments: ["simctl", "list", "-j", "devices", "available"]).output,
+      let deviceListData = deviceListJSON.data(using: .utf8)
+else {
+    throw ScriptError.commandFailed("xcrun simctl list failed to found the devices list")
+}
 
-    if deviceList.contains(deviceName) {
+let deviceList = try JSONDecoder().decode(SimulatorList.self, from: deviceListData)
+
+let availableDevices = deviceList.devices.flatMap { $0.value.map { $0.name } }
+
+for deviceName in devicesName {
+    if availableDevices.contains(deviceName) {
         continue
     }
 
