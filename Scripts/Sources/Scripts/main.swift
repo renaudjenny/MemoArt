@@ -105,14 +105,14 @@ for deviceName in devicesName {
     let lastXCResultFileNameURL = URL(fileURLWithPath: "\(derivedDataPath)/Logs/Test/\(lastXCResultFileName)")
     let result = XCResultFile(url: lastXCResultFileNameURL)
 
-    guard let testPlanRunSummariesId = result.getInvocationRecord()?.actions.first?.actionResult.testsRef?.id
+    guard let testPlanRunSummariesId = result.testPlanSummariesId
     else {
         print("Error, no TestPlan found!")
         continue
     }
     for summary in result.getTestPlanRunSummaries(id: testPlanRunSummariesId)?.summaries ?? [] {
         print("         ⛏ extraction for the configuration \(summary.name) in progress")
-        for test in summary.testableSummaries.first?.tests.first?.subtestGroups.first?.subtestGroups.first?.subtests ?? [] {
+        for test in summary.screenshotTests ?? [] {
             let normalizedTestName = test.name
                 .replacingOccurrences(of: "test", with: "")
                 .replacingOccurrences(of: "Screenshot()", with: "")
@@ -124,9 +124,7 @@ for deviceName in devicesName {
                 continue
             }
 
-            guard let payloadId = result.getActionTestSummary(id: summaryId)?
-                    .activitySummaries.first(where: { $0.activityType == "com.apple.dt.xctest.activity-type.attachmentContainer" })?
-                    .attachments.first?.payloadRef?.id
+            guard let payloadId = result.screenshotAttachmentPayloadId(summaryId: summaryId)
             else {
                 print("Error, cannot get payload id from \(summary.name) for \(test.name)")
                 continue
