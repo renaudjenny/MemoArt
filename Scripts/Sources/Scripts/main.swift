@@ -2,17 +2,23 @@ import Foundation
 import XCResultKit
 
 // Set the list of devices you want screenshot to be taken on
-let devicesName = [
-    "iPhone 12 Pro Max",
-    "iPhone 12 Pro",
-    "iPhone 8 Plus",
-    "iPhone SE (2nd generation)",
-    "iPhone SE (1st generation)",
-    "iPad Pro (12.9-inch) (4th generation)",
-    "iPad Pro (11-inch) (2nd generation)",
-    "iPad Pro (9.7-inch)",
-    "iPad Air (4th generation)",
-    "iPad (8th generation)",
+// See https://help.apple.com/app-store-connect/#/devd274dd925
+let devices = [
+    "iPhone 12 Pro Max": "6.5 inch",
+    "iPhone 12 Pro": "5.8 inch",
+    "iPhone 8 Plus": "5.5 inch",
+    "iPhone SE (2nd generation)": "4.7 inch",
+    "iPhone SE (1st generation)": "4 inch",
+
+    "iPad Pro (12.9-inch) (4th generation)": "12.9 inch borderless",
+    "iPad Pro (12.9-inch) (2nd generation)": "12.9 inch",
+    "iPad Pro (11-inch) (1st generation)": "11 inch",
+    // For some reasons 10.5" isn't working properly,
+    // the generated dimensions are 1620 × 2160 pixels,
+    // but the ones Apple need is 1668 x 2224 pixels.
+    // Then we just ignore this one, the fallback is the screenshots from 12.9"
+    // "iPad (8th generation)": "10.5 inch",
+    "iPad Pro (9.7-inch)": "9.7 inch",
 ]
 
 print("🗂 Working directory: \(currentDirectoryPath)")
@@ -36,7 +42,7 @@ let deviceList = try JSONDecoder().decode(SimulatorList.self, from: deviceListDa
 
 let availableDevices = deviceList.devices.flatMap { $0.value.map { $0.name } }
 
-for deviceName in devicesName {
+for (deviceName, _) in devices {
     if availableDevices.contains(deviceName) {
         continue
     }
@@ -50,8 +56,8 @@ for deviceName in devicesName {
 }
 
 print("📺 Starting generating Marketing screenshots...")
-for deviceName in devicesName {
-    print("📱 Currently running on Simulator named: \(deviceName)")
+for (deviceName, deviceSize) in devices {
+    print("📱 Currently running on Simulator named: \(deviceName) for screenshot size \(deviceSize)")
     print("     👷‍♀️ Generation of screenshots for \(deviceName) via test plan in progress")
     print("     🐢 This usually takes some time...")
 
@@ -99,7 +105,7 @@ for deviceName in devicesName {
         }
     }
 
-    guard let lastXCResultFileName = xcresultFileNames.last
+    guard let lastXCResultFileName = xcresultFileNames.sorted().last
     else {
         print("Error, no XCResult file found!")
         continue
@@ -139,7 +145,7 @@ for deviceName in devicesName {
             }
 
             do {
-                let path = "\(exportFolder)/Screenshot \(deviceName) \(summary.name) \(normalizedTestName).png"
+                let path = "\(exportFolder)/Screenshot - \(deviceSize) - \(summary.name) - \(normalizedTestName) - \(deviceName).png"
                 try screenshotData.write(to: URL(fileURLWithPath: path))
                 print("              📸 \(normalizedTestName) is available here: \(path)")
             } catch {
