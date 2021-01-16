@@ -16,7 +16,6 @@ extension XCResultFile {
 }
 
 extension ActionTestPlanRunSummary {
-    /// Return the metadata
     var screenshotTests: [ActionTestMetadata]? {
         testableSummaries.first?
             .tests.first?
