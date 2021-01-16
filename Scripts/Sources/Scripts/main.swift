@@ -15,17 +15,10 @@ let devicesName = [
     "iPad (8th generation)",
 ]
 
-let pwd = shell(command: .pwd)
+print("🗂 Working directory: \(currentDirectoryPath)")
 
-guard pwd.status == 0,
-      let workingDirectory = pwd.output?.trimmingCharacters(in: .whitespacesAndNewlines)
-else {
-    throw ScriptError.commandFailed("pwd command not available: \(pwd.output ?? "No error provided")")
-}
-print("🗂 Working directory: \(workingDirectory)")
-
-let derivedDataPath = "\(workingDirectory)/.DerivedDataMarketing"
-let exportFolder = "\(workingDirectory)/.ExportedScreenshots"
+let derivedDataPath = "\(currentDirectoryPath)/.DerivedDataMarketing"
+let exportFolder = "\(currentDirectoryPath)/.ExportedScreenshots"
 
 guard shell(command: .mkdir, arguments: ["-p", exportFolder]).status == 0
 else {

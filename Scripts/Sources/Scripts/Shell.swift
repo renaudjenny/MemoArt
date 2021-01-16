@@ -1,6 +1,7 @@
 import Foundation
 
-let projectDirectoryPath = "~/Sources/MemoArt"
+let currentDirectoryPath = FileManager.default.currentDirectoryPath
+
 enum ShellCommand: String {
     case xcodebuild = "/usr/bin/xcodebuild"
     case plutil = "/usr/bin/plutil"
@@ -8,14 +9,13 @@ enum ShellCommand: String {
     case open = "/usr/bin/open"
     case mkdir = "/bin/mkdir"
     case xcrun = "/usr/bin/xcrun"
-    case pwd = "/bin/pwd"
 }
 
 // See https://stackoverflow.com/questions/26971240/how-do-i-run-a-terminal-command-in-a-swift-script-e-g-xcodebuild
 func shell(command: ShellCommand, arguments: [String] = []) -> (output: String?, status: Int32) {
     let task = Process()
     task.launchPath = command.rawValue
-    task.currentDirectoryPath = projectDirectoryPath
+    task.currentDirectoryPath = currentDirectoryPath
     task.arguments = arguments
 
     let pipe = Pipe()
