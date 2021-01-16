@@ -8,6 +8,7 @@ enum ShellCommand: String {
     case open = "/usr/bin/open"
     case mkdir = "/bin/mkdir"
     case xcrun = "/usr/bin/xcrun"
+    case pwd = "/bin/pwd"
 }
 
 // See https://stackoverflow.com/questions/26971240/how-do-i-run-a-terminal-command-in-a-swift-script-e-g-xcodebuild

@@ -9,3 +9,7 @@ opt_in_rules:
   - implicit_return
   - unused_import
   - indentation_width
+excluded:
+  - Scripts/.build
+  - .DerivedDataMarketing
+  - .ExportedScreenshots

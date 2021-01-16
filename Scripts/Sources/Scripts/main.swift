@@ -15,8 +15,17 @@ let devicesName = [
     "iPad (8th generation)",
 ]
 
-let derivedDataPath = "/tmp/DerivedDataMarketing"
-let exportFolder = "/tmp/ExportedScreenshots"
+let pwd = shell(command: .pwd)
+
+guard pwd.status == 0,
+      let workingDirectory = pwd.output?.trimmingCharacters(in: .whitespacesAndNewlines)
+else {
+    throw ScriptError.commandFailed("pwd command not available: \(pwd.output ?? "No error provided")")
+}
+print("🗂 Working directory: \(workingDirectory)")
+
+let derivedDataPath = "\(workingDirectory)/.DerivedDataMarketing"
+let exportFolder = "\(workingDirectory)/.ExportedScreenshots"
 
 guard shell(command: .mkdir, arguments: ["-p", exportFolder]).status == 0
 else {
@@ -27,7 +36,7 @@ print("🤖 Check simulators available and if they are ready to be used for scre
 guard let deviceListJSON = shell(command: .xcrun, arguments: ["simctl", "list", "-j", "devices", "available"]).output,
       let deviceListData = deviceListJSON.data(using: .utf8)
 else {
-    throw ScriptError.commandFailed("xcrun simctl list failed to found the devices list")
+    throw ScriptError.commandFailed("xcrun simctl list -j devices available failed to found the devices list")
 }
 
 let deviceList = try JSONDecoder().decode(SimulatorList.self, from: deviceListData)
