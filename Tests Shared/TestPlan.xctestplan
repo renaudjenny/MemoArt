@@ -1,19 +1,10 @@
 {
   "configurations" : [
     {
-      "id" : "303C0D21-0F2A-48E5-946C-A847809903F2",
-      "name" : "English (United States)",
+      "id" : "13B513DB-A0F7-42BB-936B-BE5D87D1B294",
+      "name" : "System",
       "options" : {
-        "language" : "en",
-        "region" : "US"
-      }
-    },
-    {
-      "id" : "7FC824DB-5164-4633-91FD-F3F0E7248F63",
-      "name" : "French (France)",
-      "options" : {
-        "language" : "fr",
-        "region" : "FR"
+
       }
     }
   ],
@@ -25,34 +16,12 @@
       "parallelizable" : true,
       "target" : {
         "containerPath" : "container:MemoArt.xcodeproj",
-        "identifier" : "4C5089DF25A3B1BD00BC5E11",
-        "name" : "UITests iOS"
-      }
-    },
-    {
-      "parallelizable" : true,
-      "target" : {
-        "containerPath" : "container:MemoArt.xcodeproj",
-        "identifier" : "4C5089F225A3B1D300BC5E11",
-        "name" : "UITests macOS"
-      }
-    },
-    {
-      "parallelizable" : true,
-      "skippedTests" : [
-        "Marketing"
-      ],
-      "target" : {
-        "containerPath" : "container:MemoArt.xcodeproj",
         "identifier" : "4C8DF408253B30DC00F2DE7C",
         "name" : "Tests iOS"
       }
     },
     {
       "parallelizable" : true,
-      "skippedTests" : [
-        "Marketing"
-      ],
       "target" : {
         "containerPath" : "container:MemoArt.xcodeproj",
         "identifier" : "4CD88F28256795E00074EE39",

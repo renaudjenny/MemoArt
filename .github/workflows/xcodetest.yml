@@ -13,9 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install SwiftLint
-      run: brew install swiftlint
-
     - name: Linter
       run: swiftlint
 
