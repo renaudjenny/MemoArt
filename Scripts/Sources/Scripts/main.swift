@@ -1,6 +1,7 @@
 import Foundation
 import XCResultKit
 
+let mac = "mac"
 // Set the list of devices you want screenshot to be taken on
 // See https://help.apple.com/app-store-connect/#/devd274dd925
 let devices = [
@@ -19,6 +20,8 @@ let devices = [
     // Then we just ignore this one, the fallback is the screenshots from 12.9"
     // "iPad (8th generation)": "10.5 inch",
     "iPad Pro (9.7-inch)": "9.7 inch",
+
+    mac: "screen of the mac",
 ]
 
 print("🗂 Working directory: \(currentDirectoryPath)")
@@ -43,7 +46,7 @@ let deviceList = try JSONDecoder().decode(SimulatorList.self, from: deviceListDa
 let availableDevices = deviceList.devices.flatMap { $0.value.map { $0.name } }
 
 for (deviceName, _) in devices {
-    if availableDevices.contains(deviceName) {
+    if availableDevices.contains(deviceName) || deviceName == mac {
         continue
     }
 
@@ -57,21 +60,36 @@ for (deviceName, _) in devices {
 
 print("📺 Starting generating Marketing screenshots...")
 for (deviceName, deviceSize) in devices {
-    print("📱 Currently running on Simulator named: \(deviceName) for screenshot size \(deviceSize)")
+    if deviceName != mac {
+        print("📱 Currently running on Simulator named: \(deviceName) for screenshot size \(deviceSize)")
+    } else {
+        print("💻 Currently running on this mac")
+    }
     print("     👷‍♀️ Generation of screenshots for \(deviceName) via test plan in progress")
     print("     🐢 This usually takes some time...")
 
-    let iOSMarketingTestPlan = shell(command: .xcodebuild, arguments: [
-        "test",
-        "-scheme", "MemoArt (iOS)",
-        "-destination", "platform=iOS Simulator,name=\(deviceName)",
-        "-derivedDataPath", derivedDataPath,
-        "-testPlan", "Marketing",
-    ])
+    let marketingTestPlan: (output: String?, status: Int32)
+    if deviceName == mac {
+        marketingTestPlan = shell(command: .xcodebuild, arguments: [
+            "test",
+            "-scheme", "MemoArt (macOS)",
+            "-derivedDataPath", derivedDataPath,
+            "-testPlan", "Marketing",
+            "CODE_SIGNING_ALLOWED=NO",
+        ])
+    } else {
+        marketingTestPlan = shell(command: .xcodebuild, arguments: [
+            "test",
+            "-scheme", "MemoArt (iOS)",
+            "-destination", "platform=iOS Simulator,name=\(deviceName)",
+            "-derivedDataPath", derivedDataPath,
+            "-testPlan", "Marketing",
+        ])
+    }
 
-    guard iOSMarketingTestPlan.status == 0 else {
+    guard marketingTestPlan.status == 0 else {
         print("Marketing UITests failed with errors")
-        print(iOSMarketingTestPlan.output ?? "Cannot print xcodebuild errors...")
+        print(marketingTestPlan.output ?? "Cannot print xcodebuild errors...")
         continue
     }
     print("     ✅ Generation of screenshots for \(deviceName) via test plan done")

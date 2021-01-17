@@ -362,17 +362,10 @@
 			path = Game;
 			sourceTree = "<group>";
 		};
-		4C5089D025A3AF4600BC5E11 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				4C5089D125A3AF8000BC5E11 /* Marketing+Utils.swift */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
 		4C5089E125A3B1BD00BC5E11 /* UITests iOS */ = {
 			isa = PBXGroup;
 			children = (
+				4C5089D125A3AF8000BC5E11 /* Marketing+Utils.swift */,
 				4C5089E425A3B1BD00BC5E11 /* Info.plist */,
 			);
 			path = "UITests iOS";
@@ -381,6 +374,7 @@
 		4C5089F425A3B1D300BC5E11 /* UITests macOS */ = {
 			isa = PBXGroup;
 			children = (
+				4CCC950925A9C87100AFF6D7 /* Marketing+Utils.swift */,
 				4C5089F725A3B1D300BC5E11 /* Info.plist */,
 			);
 			path = "UITests macOS";
@@ -451,14 +445,6 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		4CCC950825A9C87100AFF6D7 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				4CCC950925A9C87100AFF6D7 /* Marketing+Utils.swift */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
 		4CCC95EF25AA351900AFF6D7 /* UITests Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -483,7 +469,6 @@
 		4CD88F2A256795E00074EE39 /* Tests macOS */ = {
 			isa = PBXGroup;
 			children = (
-				4CCC950825A9C87100AFF6D7 /* UI */,
 				4CD88F2D256795E00074EE39 /* Info.plist */,
 			);
 			path = "Tests macOS";
@@ -492,7 +477,6 @@
 		4CD88F47256797C50074EE39 /* Tests iOS */ = {
 			isa = PBXGroup;
 			children = (
-				4C5089D025A3AF4600BC5E11 /* UI */,
 				4C8DF40F253B30DC00F2DE7C /* Info.plist */,
 			);
 			path = "Tests iOS";

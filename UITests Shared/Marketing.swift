@@ -7,6 +7,10 @@ class Marketing: XCTestCase {
         continueAfterFailure = false
         app.launchArguments = ["--reset-game-backup", "--use-predicted-arts", "--reset-configuration"]
         app.launch()
+
+        if app.buttons[XCUIIdentifierFullScreenWindow].exists {
+            app.buttons[XCUIIdentifierFullScreenWindow].tap()
+        }
     }
 
     func testGameScreenshot() throws {
