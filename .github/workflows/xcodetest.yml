@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-test-ios:
+  test-ios:
     runs-on: macos-11.0
 
     steps:
@@ -33,7 +33,7 @@ jobs:
 
     - name: Xcode test on iPhone SE
       run: xcodebuild clean test -scheme "MemoArt (iOS)" -destination 'platform=iOS Simulator,name=iPhone SE (1st generation)'
-  build-macos:
+  test-macos:
     runs-on: macos-11.0
 
     steps:
