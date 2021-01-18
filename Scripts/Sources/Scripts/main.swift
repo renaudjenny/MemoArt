@@ -35,8 +35,9 @@ else {
 }
 
 print("🤖 Check simulators available and if they are ready to be used for screenshots")
-guard let deviceListJSON = shell(command: .xcrun, arguments: ["simctl", "list", "-j", "devices", "available"]).output,
-      let deviceListData = deviceListJSON.data(using: .utf8)
+guard
+    let deviceListJSON = shell(command: .xcrun, arguments: ["simctl", "list", "-j", "devices", "available"]).output,
+    let deviceListData = deviceListJSON.data(using: .utf8)
 else {
     throw ScriptError.commandFailed("xcrun simctl list -j devices available failed to found the devices list")
 }
@@ -114,14 +115,15 @@ for (deviceName, deviceSize) in devices {
     }
 
     let range = NSRange(location: 0, length: manifestPlist.utf16.count)
-    let xcresultFileNames: [String] = extractXCResultFileRegExp.matches(in: manifestPlist, options: [], range: range).flatMap { match in
-        (1..<match.numberOfRanges).map { rangeIndex in
-            let captureRange = match.range(at: rangeIndex)
-            let lowerIndex = manifestPlist.utf16.index(manifestPlist.startIndex, offsetBy: captureRange.lowerBound)
-            let upperIndex = manifestPlist.utf16.index(manifestPlist.startIndex, offsetBy: captureRange.upperBound)
-            return String(manifestPlist.utf16[lowerIndex..<upperIndex]) ?? "Error"
+    let xcresultFileNames: [String] = extractXCResultFileRegExp.matches(in: manifestPlist, options: [], range: range)
+        .flatMap { match in
+            (1..<match.numberOfRanges).map { rangeIndex in
+                let captureRange = match.range(at: rangeIndex)
+                let lowerIndex = manifestPlist.utf16.index(manifestPlist.startIndex, offsetBy: captureRange.lowerBound)
+                let upperIndex = manifestPlist.utf16.index(manifestPlist.startIndex, offsetBy: captureRange.upperBound)
+                return String(manifestPlist.utf16[lowerIndex..<upperIndex]) ?? "Error"
+            }
         }
-    }
 
     guard let lastXCResultFileName = xcresultFileNames.sorted().last
     else {
@@ -163,7 +165,8 @@ for (deviceName, deviceSize) in devices {
             }
 
             do {
-                let path = "\(exportFolder)/Screenshot - \(deviceSize) - \(summary.name) - \(normalizedTestName) - \(deviceName).png"
+                let path = "\(exportFolder)/Screenshot - \(deviceSize) - \(summary.name)"
+                    + " - \(normalizedTestName) - \(deviceName).png"
                 try screenshotData.write(to: URL(fileURLWithPath: path))
                 print("              📸 \(normalizedTestName) is available here: \(path)")
             } catch {
