@@ -33,8 +33,8 @@ struct MemoArtApp: App {
     }
 
     var body: some Scene {
-        WindowGroup {
-            WithViewStore(store) { viewStore in
+        WithViewStore(store) { viewStore in
+            WindowGroup {
                 ZStack {
                     MainView(store: store)
                     if viewStore.game.isGameOver {
@@ -48,21 +48,23 @@ struct MemoArtApp: App {
                 .onAppear { viewStore.send(.game(.load)) }
                 .onAppear { viewStore.send(.highScores(.load)) }
             }
+            .commands { commands(viewStore: viewStore) }
         }
-        .commands {
+    }
+
+    private func commands(viewStore: ViewStore<AppState, AppAction>) -> some Commands {
+        Group {
             CommandGroup(replacing: CommandGroupPlacement.newItem) {
-                WithViewStore(store) { viewStore in
-                    Button {
-                        guard viewStore.game.moves > 0 else {
-                            viewStore.send(.game(.new))
-                            return
-                        }
-                        isNewGameAlertPresented = true
-                    } label: {
-                        Text("New game")
+                Button {
+                    guard viewStore.game.moves > 0 else {
+                        viewStore.send(.game(.new))
+                        return
                     }
-                    .disabled(!viewStore.game.isGameInProgress)
+                    isNewGameAlertPresented = true
+                } label: {
+                    Text("New game")
                 }
+                .disabled(!viewStore.game.isGameInProgress)
                 .keyboardShortcut("n", modifiers: .command)
             }
             CommandGroup(replacing: CommandGroupPlacement.pasteboard) {
