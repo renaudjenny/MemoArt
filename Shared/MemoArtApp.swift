@@ -3,6 +3,13 @@ import ComposableArchitecture
 
 @main
 struct MemoArtApp: App {
+    struct ViewState: Equatable {
+        var isFireworksDisplayed: Bool
+        var isNewGameButtonEnabled: Bool
+        var shouldPresentNewGameAlert: Bool
+        var gameLevel: DifficultyLevel
+    }
+
     #if os(macOS)
     // swiftlint:disable:next weak_delegate
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
@@ -40,12 +47,12 @@ struct MemoArtApp: App {
     #endif
 
     var body: some Scene {
-        WithViewStore(store) { viewStore in
+        WithViewStore(store.scope(state: { $0.view })) { viewStore in
             WindowGroup {
                 ZStack {
                     MainView(store: store)
-                    if viewStore.game.isGameOver {
-                        FireworksView(level: viewStore.game.level)
+                    if viewStore.isFireworksDisplayed {
+                        FireworksView(level: viewStore.gameLevel)
                     }
                 }
                 .background(EmptyView().sheet(isPresented: $isAboutWindowOpened) {
@@ -59,11 +66,11 @@ struct MemoArtApp: App {
         }
     }
 
-    private func commands(viewStore: ViewStore<AppState, AppAction>) -> some Commands {
+    private func commands(viewStore: ViewStore<ViewState, AppAction>) -> some Commands {
         Group {
             CommandGroup(replacing: CommandGroupPlacement.newItem) {
                 Button {
-                    guard viewStore.game.moves > 0 else {
+                    guard viewStore.shouldPresentNewGameAlert else {
                         viewStore.send(.game(.new))
                         return
                     }
@@ -71,7 +78,7 @@ struct MemoArtApp: App {
                 } label: {
                     Text("New game")
                 }
-                .disabled(!viewStore.game.isGameInProgress)
+                .disabled(!viewStore.isNewGameButtonEnabled)
                 .keyboardShortcut("n", modifiers: .command)
             }
             CommandGroup(replacing: CommandGroupPlacement.pasteboard) {
@@ -91,6 +98,17 @@ struct MemoArtApp: App {
                 }
             }
         }
+    }
+}
+
+extension AppState {
+    var view: MemoArtApp.ViewState {
+        MemoArtApp.ViewState(
+            isFireworksDisplayed: game.isGameOver,
+            isNewGameButtonEnabled: game.isGameInProgress,
+            shouldPresentNewGameAlert: game.moves > 0,
+            gameLevel: game.level
+        )
     }
 }
 
