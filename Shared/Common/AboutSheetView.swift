@@ -1,36 +1,37 @@
 import SwiftUI
+import ComposableArchitecture
 import RenaudJennyAboutView
 
 struct AboutSheetView: View {
-    @Binding var isOpen: Bool
+    let store: Store<AppState, AppAction>
 
     var body: some View {
-        ZStack {
-            AboutView(
-                appId: "id1536330844",
-                logo: {
-                    Image("Pixel Art")
-                        .resizable()
-                        .modifier(AddCardStyle(foregroundColor: .red))
-                        .frame(width: 120, height: 120)
+        WithViewStore(store) { viewStore in
+            ZStack {
+                AboutView(
+                    appId: "id1536330844",
+                    logo: {
+                        Image("Pixel Art")
+                            .resizable()
+                            .modifier(AddCardStyle(foregroundColor: .red))
+                            .frame(width: 120, height: 120)
+                    }
+                )
+                .buttonStyle(aboutBoutonStyle)
+                .padding(.bottom, 30)
+                .background(
+                    Image("Motif")
+                        .resizable(resizingMode: .tile)
+                        .renderingMode(.template)
+                        .opacity(1/16)
+                )
+                VStack {
+                    Spacer()
+                    Button { viewStore.send(.hideAbout) } label: {
+                        Text("Done")
+                    }
+                    .padding()
                 }
-            )
-            .buttonStyle(aboutBoutonStyle)
-            .padding(.bottom, 30)
-            .background(
-                Image("Motif")
-                    .resizable(resizingMode: .tile)
-                    .renderingMode(.template)
-                    .opacity(1/16)
-            )
-            VStack {
-                Spacer()
-                Button {
-                    isOpen = false
-                } label: {
-                    Text("Done")
-                }
-                .padding()
             }
         }
     }

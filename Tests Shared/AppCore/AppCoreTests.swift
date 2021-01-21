@@ -150,6 +150,23 @@ class AppCoreTests: XCTestCase {
             }
         )
     }
+
+    func testPresentAndHideAbout() {
+        let store = TestStore(
+            initialState: AppState(),
+            reducer: appReducer,
+            environment: .mocked(scheduler: scheduler)
+        )
+
+        store.assert(
+            .send(.presentAbout) {
+                $0.isAboutPresented = true
+            },
+            .send(.hideAbout) {
+                $0.isAboutPresented = false
+            }
+        )
+    }
 }
 
 extension AppEnvironment {

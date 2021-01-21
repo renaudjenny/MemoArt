@@ -7,6 +7,7 @@ struct AppState: Equatable {
     var configuration = ConfigurationState()
     var isNewHighScoreEntryPresented = false
     var isDifficultyLevelHasChangedPresented = false
+    var isAboutPresented = false
 }
 
 enum AppAction: Equatable {
@@ -17,6 +18,8 @@ enum AppAction: Equatable {
     case newHighScoreEntered
     case presentDifficultyLevelHasChanged
     case hideDifficultyLevelHasChanged
+    case presentAbout
+    case hideAbout
 }
 
 struct AppEnvironment {
@@ -106,6 +109,12 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
             return .none
         case .hideDifficultyLevelHasChanged:
             state.isDifficultyLevelHasChangedPresented = false
+            return .none
+        case .presentAbout:
+            state.isAboutPresented = true
+            return .none
+        case .hideAbout:
+            state.isAboutPresented = false
             return .none
         case .game: return .none
         case .highScores: return .none

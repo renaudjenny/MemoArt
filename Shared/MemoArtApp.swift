@@ -6,8 +6,8 @@ struct MemoArtApp: App {
     struct ViewState: Equatable {
         var isFireworksDisplayed: Bool
         var isNewGameButtonEnabled: Bool
-        var shouldPresentNewGameAlert: Bool
         var gameLevel: DifficultyLevel
+        var isAboutPresented: Bool
     }
 
     #if os(macOS)
@@ -39,8 +39,6 @@ struct MemoArtApp: App {
     )
 
     }()
-    @State private var isAboutWindowOpened = false
-    @State private var isNewGameAlertPresented = false
 
     #if DEBUG
     init() { handleLaunchArguments() }
@@ -55,8 +53,10 @@ struct MemoArtApp: App {
                         FireworksView(level: viewStore.gameLevel)
                     }
                 }
-                .background(EmptyView().sheet(isPresented: $isAboutWindowOpened) {
-                    AboutSheetView(isOpen: $isAboutWindowOpened)
+                .background(EmptyView().sheet(
+                    isPresented: viewStore.binding(get: { $0.isAboutPresented }, send: .hideAbout)
+                ) {
+                    AboutSheetView(store: store)
                 })
                 .modifier(SetupNewGameAlert(store: store.gameStore))
                 .onAppear { viewStore.send(.game(.load)) }
@@ -69,13 +69,7 @@ struct MemoArtApp: App {
     private func commands(viewStore: ViewStore<ViewState, AppAction>) -> some Commands {
         Group {
             CommandGroup(replacing: CommandGroupPlacement.newItem) {
-                Button {
-                    guard viewStore.shouldPresentNewGameAlert else {
-                        viewStore.send(.game(.new))
-                        return
-                    }
-                    isNewGameAlertPresented = true
-                } label: {
+                Button { viewStore.send(.game(.alertUserBeforeNewGame)) } label: {
                     Text("New game")
                 }
                 .disabled(!viewStore.isNewGameButtonEnabled)
@@ -91,9 +85,7 @@ struct MemoArtApp: App {
                 EmptyView()
             }
             CommandGroup(replacing: CommandGroupPlacement.appInfo) {
-                Button {
-                    isAboutWindowOpened = true
-                } label: {
+                Button { viewStore.send(.presentAbout) } label: {
                     Text("About MemoArt")
                 }
             }
@@ -106,8 +98,8 @@ extension AppState {
         MemoArtApp.ViewState(
             isFireworksDisplayed: game.isGameOver,
             isNewGameButtonEnabled: game.isGameInProgress,
-            shouldPresentNewGameAlert: game.moves > 0,
-            gameLevel: game.level
+            gameLevel: game.level,
+            isAboutPresented: isAboutPresented
         )
     }
 }
