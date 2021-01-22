@@ -27,7 +27,7 @@ struct SetupDifficultyLevelChangedAlert: ViewModifier {
         }
     }
 
-    func isPresented(store: ViewStore<AppState, AppAction>) -> Binding<Bool> {
+    private func isPresented(store: ViewStore<AppState, AppAction>) -> Binding<Bool> {
         store.binding(
             get: { $0.isDifficultyLevelHasChangedPresented },
             send: { _ in .hideDifficultyLevelHasChanged }

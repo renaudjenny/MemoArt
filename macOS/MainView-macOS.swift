@@ -5,10 +5,7 @@ import RenaudJennyAboutView
 
 struct MainView: View {
     let store: Store<AppState, AppAction>
-    @State private var isConfigurationPresented = false
     @State private var isHighScoresPresented = false
-    @State private var isNewGameAlertPresented = false
-    @State private var isDifficultyLevelAlertPresented = false
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -34,9 +31,7 @@ struct MainView: View {
                     NewGameButton(store: store.gameStore)
                 }
                 ToolbarItem {
-                    Button {
-                        isConfigurationPresented = true
-                    } label: {
+                    Button { viewStore.send(.configuration(.presentConfiguration)) } label: {
                         Image(systemName: "gearshape")
                     }
                     .accessibility(label: Text("Configuration"))
@@ -52,12 +47,7 @@ struct MainView: View {
                     .accessibility(identifier: "high_scores")
                 }
             }
-            .background(EmptyView().sheet(isPresented: $isConfigurationPresented) {
-                ConfigurationSheetView(
-                    store: store,
-                    isPresented: $isConfigurationPresented
-                )
-            })
+            .modifier(SetupConfigurationSheetView(store: store))
             .background(EmptyView().sheet(isPresented: $isHighScoresPresented) {
                 HighScoresSheetView(
                     store: store.highScoresStore,

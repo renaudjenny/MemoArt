@@ -97,8 +97,8 @@
 		4CD0E1EC2542A0B500A1E0FD /* HighScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1EB2542A0B400A1E0FD /* HighScore.swift */; };
 		4CD0E1F12542A1D200A1E0FD /* HighScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1F02542A1D200A1E0FD /* HighScoresView.swift */; };
 		4CD0E1F62542A29900A1E0FD /* HighScoresCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1F52542A29900A1E0FD /* HighScoresCore.swift */; };
-		4CD88EB92565B5570074EE39 /* ConfigurationSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD88EB82565B5570074EE39 /* ConfigurationSheetView.swift */; };
-		4CD88EBA2565B5570074EE39 /* ConfigurationSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD88EB82565B5570074EE39 /* ConfigurationSheetView.swift */; };
+		4CD88EB92565B5570074EE39 /* SetupConfigurationSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD88EB82565B5570074EE39 /* SetupConfigurationSheetView.swift */; };
+		4CD88EBA2565B5570074EE39 /* SetupConfigurationSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD88EB82565B5570074EE39 /* SetupConfigurationSheetView.swift */; };
 		4CD88EBF2565B6690074EE39 /* HighScoresSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD88EBE2565B6690074EE39 /* HighScoresSheetView.swift */; };
 		4CD88EC02565B6690074EE39 /* HighScoresSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD88EBE2565B6690074EE39 /* HighScoresSheetView.swift */; };
 		4CE02F44256ED6BC00A925F0 /* NewGameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE02F43256ED6BB00A925F0 /* NewGameButton.swift */; };
@@ -196,7 +196,7 @@
 		4CD0E1EB2542A0B400A1E0FD /* HighScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScore.swift; sourceTree = "<group>"; };
 		4CD0E1F02542A1D200A1E0FD /* HighScoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresView.swift; sourceTree = "<group>"; };
 		4CD0E1F52542A29900A1E0FD /* HighScoresCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresCore.swift; sourceTree = "<group>"; };
-		4CD88EB82565B5570074EE39 /* ConfigurationSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationSheetView.swift; sourceTree = "<group>"; };
+		4CD88EB82565B5570074EE39 /* SetupConfigurationSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupConfigurationSheetView.swift; sourceTree = "<group>"; };
 		4CD88EBE2565B6690074EE39 /* HighScoresSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresSheetView.swift; sourceTree = "<group>"; };
 		4CD88F29256795E00074EE39 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CD88F2D256795E00074EE39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -386,7 +386,7 @@
 				4C84849F2555F35900FBDEC2 /* ConfigurationCore.swift */,
 				4C8484AA2556DF1C00FBDEC2 /* ArtsSelectionConfigurationView.swift */,
 				4CAC43AB255FD523009FFF68 /* ConfigurationView.swift */,
-				4CD88EB82565B5570074EE39 /* ConfigurationSheetView.swift */,
+				4CD88EB82565B5570074EE39 /* SetupConfigurationSheetView.swift */,
 				4C90E1892573E92B006568FB /* DifficultyLevelConfigurationView.swift */,
 				4C90E19425780B89006568FB /* SetupDifficultyLevelChangedAlert.swift */,
 			);
@@ -774,7 +774,7 @@
 				4CAC4380255FCCBE009FFF68 /* MainView-iOS.swift in Sources */,
 				4C217AD2255F393200A631BB /* NewHighScoreView.swift in Sources */,
 				4C90E18B2573E92B006568FB /* DifficultyLevelConfigurationView.swift in Sources */,
-				4CD88EBA2565B5570074EE39 /* ConfigurationSheetView.swift in Sources */,
+				4CD88EBA2565B5570074EE39 /* SetupConfigurationSheetView.swift in Sources */,
 				4C90E19625780B89006568FB /* SetupDifficultyLevelChangedAlert.swift in Sources */,
 				4CE42C8A2592961300EA59AD /* VictoryCardsView.swift in Sources */,
 				4C805D19256A838B003D8F25 /* AboutSheetView.swift in Sources */,
@@ -830,7 +830,7 @@
 				4CAC437F255FCCBE009FFF68 /* MainView-iOS.swift in Sources */,
 				4C8DF3FC253B30D700F2DE7C /* MemoArtApp.swift in Sources */,
 				4C90E18A2573E92B006568FB /* DifficultyLevelConfigurationView.swift in Sources */,
-				4CD88EB92565B5570074EE39 /* ConfigurationSheetView.swift in Sources */,
+				4CD88EB92565B5570074EE39 /* SetupConfigurationSheetView.swift in Sources */,
 				4C90E19525780B89006568FB /* SetupDifficultyLevelChangedAlert.swift in Sources */,
 				4CE42C892592961300EA59AD /* VictoryCardsView.swift in Sources */,
 				4C805D14256A82F4003D8F25 /* AboutSheetView.swift in Sources */,

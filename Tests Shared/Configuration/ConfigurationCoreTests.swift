@@ -9,11 +9,7 @@ class ConfigurationCoreTests: XCTestCase {
         let store = TestStore(
             initialState: ConfigurationState(),
             reducer: configurationReducer,
-            environment: ConfigurationEnvironment(
-                mainQueue: scheduler.eraseToAnyScheduler(),
-                save: { _ in },
-                load: { ConfigurationState() }
-            )
+            environment: .mocked(scheduler: scheduler)
         )
         store.assert(
             .send(.unselectArt(.cave)) {
@@ -47,11 +43,7 @@ class ConfigurationCoreTests: XCTestCase {
         let store = TestStore(
             initialState: .onlyTenSelectedArts,
             reducer: configurationReducer,
-            environment: ConfigurationEnvironment(
-                mainQueue: scheduler.eraseToAnyScheduler(),
-                save: { _ in },
-                load: { ConfigurationState() }
-            )
+            environment: .mocked(scheduler: scheduler)
         )
         store.assert(
             .send(.unselectArt(.cave))
@@ -81,11 +73,7 @@ class ConfigurationCoreTests: XCTestCase {
         let store = TestStore(
             initialState: .onlyTenSelectedArts,
             reducer: configurationReducer,
-            environment: ConfigurationEnvironment(
-                mainQueue: scheduler.eraseToAnyScheduler(),
-                save: { _ in },
-                load: { ConfigurationState() }
-            )
+            environment: .mocked(scheduler: scheduler)
         )
         store.assert(
             // Hard level needs more selected arts than the limit of Normal level
@@ -95,6 +83,23 @@ class ConfigurationCoreTests: XCTestCase {
                 $0.selectedArts = Set(Art.allCases.prefix(12))
             },
             .receive(.save)
+        )
+    }
+
+    func testPresentAndHideConfiguration() {
+        let store = TestStore(
+            initialState: ConfigurationState(),
+            reducer: configurationReducer,
+            environment: .mocked(scheduler: scheduler)
+        )
+
+        store.assert(
+            .send(.presentConfiguration) {
+                $0.isConfigurationPresented = true
+            },
+            .send(.hideConfiguration) {
+                $0.isConfigurationPresented = false
+            }
         )
     }
 }
@@ -109,6 +114,16 @@ extension ConfigurationState {
     static var onlyTenSelectedArts: Self {
         ConfigurationState(
             selectedArts: Set(Art.allCases.prefix(10))
+        )
+    }
+}
+
+extension ConfigurationEnvironment {
+    static func mocked(scheduler: TestSchedulerOf<DispatchQueue>) -> Self {
+        ConfigurationEnvironment(
+            mainQueue: scheduler.eraseToAnyScheduler(),
+            save: { _ in },
+            load: { ConfigurationState() }
         )
     }
 }
