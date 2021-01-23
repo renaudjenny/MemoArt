@@ -2,12 +2,15 @@ import ComposableArchitecture
 
 struct HighScoresState: Equatable, Codable {
     var boards = Boards(easy: [], normal: [], hard: [])
+    var isPresented = false
 }
 
 enum HighScoresAction: Equatable {
     case addScore(HighScore, DifficultyLevel)
     case load
     case save
+    case present
+    case hide
 }
 
 struct HighScoresEnvironment {
@@ -43,6 +46,12 @@ let highScoresReducer = Reducer<
         return .none
     case .save:
         environment.save(state)
+        return .none
+    case .present:
+        state.isPresented = true
+        return .none
+    case .hide:
+        state.isPresented = false
         return .none
     }
 }

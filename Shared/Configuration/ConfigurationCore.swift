@@ -5,6 +5,10 @@ struct ConfigurationState: Equatable, Codable {
     var difficultyLevel: DifficultyLevel = .normal
     var cardsCount: Int { difficultyLevel.cardsCount }
     var isConfigurationPresented = false
+
+    var persist: Self {
+        ConfigurationState(selectedArts: selectedArts, difficultyLevel: difficultyLevel)
+    }
 }
 
 enum ConfigurationAction: Equatable {
@@ -44,7 +48,7 @@ let configurationReducer = Reducer<
             .debounce(id: saveDebounceId, for: .seconds(2), scheduler: environment.mainQueue)
             .eraseToEffect()
     case .save:
-        environment.save(state)
+        environment.save(state.persist)
         return .none
     case .load:
         state = environment.load()

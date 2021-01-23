@@ -239,6 +239,23 @@ class HighScoresCoreTests: XCTestCase {
             }
         )
     }
+
+    func testPresentAndHideHighScores() {
+        let store = TestStore(
+            initialState: .someHighScores,
+            reducer: highScoresReducer,
+            environment: .test
+        )
+
+        store.assert(
+            .send(.present) {
+                $0.isPresented = true
+            },
+            .send(.hide) {
+                $0.isPresented = false
+            }
+        )
+    }
 }
 
 extension Date {

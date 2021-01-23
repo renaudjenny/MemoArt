@@ -5,7 +5,6 @@ import RenaudJennyAboutView
 
 struct MainView: View {
     let store: Store<AppState, AppAction>
-    @State private var isHighScoresPresented = false
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -38,9 +37,7 @@ struct MainView: View {
                     .accessibilityIdentifier("configuration")
                 }
                 ToolbarItem {
-                    Button {
-                        isHighScoresPresented = true
-                    } label: {
+                    Button { viewStore.send(.highScores(.present)) } label: {
                         Image(systemName: "list.number")
                     }
                     .accessibility(label: Text("High Scores"))
@@ -48,13 +45,7 @@ struct MainView: View {
                 }
             }
             .modifier(SetupConfigurationSheetView(store: store))
-            .background(EmptyView().sheet(isPresented: $isHighScoresPresented) {
-                HighScoresSheetView(
-                    store: store.highScoresStore,
-                    preselectedLevel: viewStore.game.level,
-                    isPresented: $isHighScoresPresented
-                )
-            })
+            .modifier(SetupHighScoresSheetView(store: store))
             .background(EmptyView().sheet(
                 isPresented: viewStore.binding(
                     get: { $0.isNewHighScoreEntryPresented },
