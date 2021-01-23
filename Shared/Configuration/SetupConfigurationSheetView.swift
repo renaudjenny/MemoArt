@@ -2,17 +2,29 @@ import SwiftUI
 import ComposableArchitecture
 
 struct SetupConfigurationSheetView: ViewModifier {
+    struct ViewState: Equatable {
+        var isPresented: Bool
+    }
+    enum ViewAction {
+        case hide
+    }
+
     let store: Store<AppState, AppAction>
 
     func body(content: Content) -> some View {
-        WithViewStore(store) { viewStore in
-            content.background(EmptyView().sheet(isPresented: isPresented(viewStore: viewStore)) {
-                configurationSheet(viewStore: viewStore)
+        WithViewStore(store.scope(
+            state: { $0.configurationSheetViewState },
+            action: AppAction.configurationSheetViewAction
+        )) { viewStore in
+            content.background(EmptyView().sheet(
+                isPresented: viewStore.binding(get: { $0.isPresented }, send: .hide)
+            ) {
+                sheet(viewStore: viewStore)
             })
         }
     }
 
-    private func configurationSheet(viewStore: ViewStore<AppState, AppAction>) -> some View {
+    private func sheet(viewStore: ViewStore<ViewState, ViewAction>) -> some View {
         VStack {
             ScrollView {
                 GroupBox(label: Text("Choose a difficulty level")) {
@@ -27,7 +39,7 @@ struct SetupConfigurationSheetView: ViewModifier {
             }
             HStack {
                 Spacer()
-                Button { viewStore.send(.configuration(.hideConfiguration)) } label: {
+                Button { viewStore.send(.hide) } label: {
                     Text("Done")
                 }
                 .padding([.bottom, .trailing])
@@ -36,8 +48,18 @@ struct SetupConfigurationSheetView: ViewModifier {
             .modifier(SetupDifficultyLevelChangedAlert(store: store))
         }
     }
+}
 
-    private func isPresented(viewStore: ViewStore<AppState, AppAction>) -> Binding<Bool> {
-        viewStore.binding(get: { $0.configuration.isConfigurationPresented }, send: .configuration(.hideConfiguration))
+extension AppState {
+    var configurationSheetViewState: SetupConfigurationSheetView.ViewState {
+        .init(isPresented: configuration.isPresented)
+    }
+}
+
+extension AppAction {
+    static func configurationSheetViewAction(viewAction: SetupConfigurationSheetView.ViewAction) -> Self {
+        switch viewAction {
+        case .hide: return .configuration(.hide)
+        }
     }
 }

@@ -30,7 +30,7 @@ struct MainView: View {
                     NewGameButton(store: store.gameStore)
                 }
                 ToolbarItem {
-                    Button { viewStore.send(.configuration(.presentConfiguration)) } label: {
+                    Button { viewStore.send(.configuration(.present)) } label: {
                         Image(systemName: "gearshape")
                     }
                     .accessibility(label: Text("Configuration"))

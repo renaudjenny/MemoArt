@@ -94,11 +94,11 @@ class ConfigurationCoreTests: XCTestCase {
         )
 
         store.assert(
-            .send(.presentConfiguration) {
-                $0.isConfigurationPresented = true
+            .send(.present) {
+                $0.isPresented = true
             },
-            .send(.hideConfiguration) {
-                $0.isConfigurationPresented = false
+            .send(.hide) {
+                $0.isPresented = false
             }
         )
     }

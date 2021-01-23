@@ -4,7 +4,7 @@ struct ConfigurationState: Equatable, Codable {
     var selectedArts: Set<Art> = Set(Art.allCases)
     var difficultyLevel: DifficultyLevel = .normal
     var cardsCount: Int { difficultyLevel.cardsCount }
-    var isConfigurationPresented = false
+    var isPresented = false
 
     var persist: Self {
         ConfigurationState(selectedArts: selectedArts, difficultyLevel: difficultyLevel)
@@ -17,8 +17,8 @@ enum ConfigurationAction: Equatable {
     case save
     case load
     case changeDifficultyLevel(DifficultyLevel)
-    case presentConfiguration
-    case hideConfiguration
+    case present
+    case hide
 }
 
 struct ConfigurationEnvironment {
@@ -66,11 +66,11 @@ let configurationReducer = Reducer<
         }
 
         return Effect(value: .save)
-    case .presentConfiguration:
-        state.isConfigurationPresented = true
+    case .present:
+        state.isPresented = true
         return .none
-    case .hideConfiguration:
-        state.isConfigurationPresented = false
+    case .hide:
+        state.isPresented = false
         return .none
     }
 }
