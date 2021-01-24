@@ -6,6 +6,7 @@ struct SetupHighScoresSheetView: ViewModifier {
         var preselectedLevel: DifficultyLevel
         var isPresented: Bool
     }
+
     enum ViewAction {
         case hide
     }
@@ -13,10 +14,7 @@ struct SetupHighScoresSheetView: ViewModifier {
     let store: Store<AppState, AppAction>
 
     func body(content: Content) -> some View {
-        WithViewStore(store.scope(
-            state: { $0.highScoresSheetView },
-            action: AppAction.highScoresSheetView
-        )) { viewStore in
+        WithViewStore(store.scope(state: { $0.view }, action: AppAction.view)) { viewStore in
             content.background(EmptyView().sheet(
                 isPresented: viewStore.binding(get: { $0.isPresented }, send: .hide)
             ) {
@@ -45,13 +43,13 @@ struct SetupHighScoresSheetView: ViewModifier {
 }
 
 private extension AppState {
-    var highScoresSheetView: SetupHighScoresSheetView.ViewState {
+    var view: SetupHighScoresSheetView.ViewState {
         .init(preselectedLevel: game.level, isPresented: highScores.isPresented)
     }
 }
 private extension AppAction {
-    static func highScoresSheetView(viewAction: SetupHighScoresSheetView.ViewAction) -> Self {
-        switch viewAction {
+    static func view(localAction: SetupHighScoresSheetView.ViewAction) -> Self {
+        switch localAction {
         case .hide: return .highScores(.hide)
         }
     }

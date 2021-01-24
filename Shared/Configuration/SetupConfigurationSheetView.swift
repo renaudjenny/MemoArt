@@ -5,6 +5,7 @@ struct SetupConfigurationSheetView: ViewModifier {
     struct ViewState: Equatable {
         var isPresented: Bool
     }
+
     enum ViewAction {
         case hide
     }
@@ -12,10 +13,7 @@ struct SetupConfigurationSheetView: ViewModifier {
     let store: Store<AppState, AppAction>
 
     func body(content: Content) -> some View {
-        WithViewStore(store.scope(
-            state: { $0.configurationSheetViewState },
-            action: AppAction.configurationSheetViewAction
-        )) { viewStore in
+        WithViewStore(store.scope(state: { $0.view }, action: AppAction.view)) { viewStore in
             content.background(EmptyView().sheet(
                 isPresented: viewStore.binding(get: { $0.isPresented }, send: .hide)
             ) {
@@ -50,15 +48,15 @@ struct SetupConfigurationSheetView: ViewModifier {
     }
 }
 
-extension AppState {
-    var configurationSheetViewState: SetupConfigurationSheetView.ViewState {
+private extension AppState {
+    var view: SetupConfigurationSheetView.ViewState {
         .init(isPresented: configuration.isPresented)
     }
 }
 
-extension AppAction {
-    static func configurationSheetViewAction(viewAction: SetupConfigurationSheetView.ViewAction) -> Self {
-        switch viewAction {
+private extension AppAction {
+    static func view(localAction: SetupConfigurationSheetView.ViewAction) -> Self {
+        switch localAction {
         case .hide: return .configuration(.hide)
         }
     }

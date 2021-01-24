@@ -10,6 +10,14 @@ struct MemoArtApp: App {
         var isAboutPresented: Bool
     }
 
+    enum ViewAction {
+        case loadGame
+        case loadHighScores
+        case alertUserBeforeNewGame
+        case presentAbout
+        case hideAbout
+    }
+
     #if os(macOS)
     // swiftlint:disable:next weak_delegate
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
@@ -45,7 +53,7 @@ struct MemoArtApp: App {
     #endif
 
     var body: some Scene {
-        WithViewStore(store.scope(state: { $0.view })) { viewStore in
+        WithViewStore(store.scope(state: { $0.view }, action: AppAction.view)) { viewStore in
             WindowGroup {
                 ZStack {
                     MainView(store: store)
@@ -59,17 +67,17 @@ struct MemoArtApp: App {
                     AboutSheetView(store: store)
                 })
                 .modifier(SetupNewGameAlert(store: store.gameStore))
-                .onAppear { viewStore.send(.game(.load)) }
-                .onAppear { viewStore.send(.highScores(.load)) }
+                .onAppear { viewStore.send(.loadGame) }
+                .onAppear { viewStore.send(.loadHighScores) }
             }
             .commands { commands(viewStore: viewStore) }
         }
     }
 
-    private func commands(viewStore: ViewStore<ViewState, AppAction>) -> some Commands {
+    private func commands(viewStore: ViewStore<ViewState, ViewAction>) -> some Commands {
         Group {
             CommandGroup(replacing: CommandGroupPlacement.newItem) {
-                Button { viewStore.send(.game(.alertUserBeforeNewGame)) } label: {
+                Button { viewStore.send(.alertUserBeforeNewGame) } label: {
                     Text("New game")
                 }
                 .disabled(!viewStore.isNewGameButtonEnabled)
@@ -93,7 +101,7 @@ struct MemoArtApp: App {
     }
 }
 
-extension AppState {
+private extension AppState {
     var view: MemoArtApp.ViewState {
         MemoArtApp.ViewState(
             isFireworksDisplayed: game.isGameOver,
@@ -101,6 +109,18 @@ extension AppState {
             gameLevel: game.level,
             isAboutPresented: isAboutPresented
         )
+    }
+}
+
+private extension AppAction {
+    static func view(localAction: MemoArtApp.ViewAction) -> Self {
+        switch localAction {
+        case .loadGame: return .game(.load)
+        case .loadHighScores: return .highScores(.load)
+        case .alertUserBeforeNewGame: return .game(.alertUserBeforeNewGame)
+        case .presentAbout: return .presentAbout
+        case .hideAbout: return .hideAbout
+        }
     }
 }
 
