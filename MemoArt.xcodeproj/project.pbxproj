@@ -101,6 +101,8 @@
 		4CE02F45256ED6BC00A925F0 /* NewGameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE02F43256ED6BB00A925F0 /* NewGameButton.swift */; };
 		4CE42C892592961300EA59AD /* VictoryCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42C882592961300EA59AD /* VictoryCardsView.swift */; };
 		4CE42C8A2592961300EA59AD /* VictoryCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42C882592961300EA59AD /* VictoryCardsView.swift */; };
+		4CFF8EF225BF687C00E0A83B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4CFF8EF025BF687C00E0A83B /* InfoPlist.strings */; };
+		4CFF8EF525BF687C00E0A83B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4CFF8EF325BF687C00E0A83B /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,6 +198,8 @@
 		4CD88F2D256795E00074EE39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CE02F43256ED6BB00A925F0 /* NewGameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameButton.swift; sourceTree = "<group>"; };
 		4CE42C882592961300EA59AD /* VictoryCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryCardsView.swift; sourceTree = "<group>"; };
+		4CFF8EF125BF687C00E0A83B /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4CFF8EF425BF687C00E0A83B /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				4C8DF404253B30DB00F2DE7C /* Info.plist */,
+				4CFF8EF325BF687C00E0A83B /* InfoPlist.strings */,
 				4CAC437E255FCCBE009FFF68 /* MainView-iOS.swift */,
 			);
 			path = iOS;
@@ -277,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				4C217A48255F2CE600A631BB /* Info.plist */,
+				4CFF8EF025BF687C00E0A83B /* InfoPlist.strings */,
 				4C217A49255F2CE600A631BB /* macOS.entitlements */,
 				4CAC4384255FCD15009FFF68 /* MainView-macOS.swift */,
 				4C805D08256A6EF6003D8F25 /* AppDelegate.swift */,
@@ -663,6 +669,7 @@
 				4C5089BB25A2248300BC5E11 /* Localizable.strings in Resources */,
 				4C972B4025960724000BA475 /* Assets.xcassets in Resources */,
 				4C217AA5255F390300A631BB /* Assets.xcassets in Resources */,
+				4CFF8EF225BF687C00E0A83B /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,6 +695,7 @@
 				4C5089C525A2392E00BC5E11 /* Localizable.strings in Resources */,
 				4C972B3F25960724000BA475 /* Assets.xcassets in Resources */,
 				4C8DF400253B30DB00F2DE7C /* Assets.xcassets in Resources */,
+				4CFF8EF525BF687C00E0A83B /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -904,6 +912,22 @@
 				4C5089C025A2390500BC5E11 /* en */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		4CFF8EF025BF687C00E0A83B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4CFF8EF125BF687C00E0A83B /* fr */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4CFF8EF325BF687C00E0A83B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4CFF8EF425BF687C00E0A83B /* fr */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

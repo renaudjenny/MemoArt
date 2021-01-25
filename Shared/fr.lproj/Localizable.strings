@@ -43,6 +43,33 @@
 /* No comment provided by engineer. */
 "Add my new high score" = "Ajouter mon nouveau score";
 
+/* Art Deco style */
+"Art Deco" = "Art Deco";
+
+/* Arty art style */
+"Arty" = "Arty";
+
+/* Card for Victory animation description (for screen reader) */
+"Card in animation faced down" = "Carte face cachée";
+
+/* Card for Victory animation description (for screen reader) */
+"Card in animation faced up" = "Carte face montrée";
+
+/* The Card number when the card is faced down for the game (for screen reader) */
+"Card number %@" = "Carte numéro %@";
+
+/* The Card image description (for screen reader) */
+"Card with the style %@" = "Carte avec le style %@";
+
+/* Cave art style */
+"Cave" = "Peinture rupestre";
+
+/* Charcoal art style */
+"Charcoal" = "Fusain";
+
+/* Childish art style */
+"Childish" = "Enfantin";
+
 /* No comment provided by engineer. */
 "Choose a difficulty level" = "Choisir un niveau de difficulté";
 
@@ -51,6 +78,9 @@
 
 /* No comment provided by engineer. */
 "Configuration" = "Configuration";
+
+/* Destructured art style */
+"Destructured" = "Déstructuré";
 
 /* No comment provided by engineer. */
 "Difficulty level changed" = "Niveau de difficulté modifié";
@@ -67,8 +97,17 @@
 /* No comment provided by engineer. */
 "First" = "Première place";
 
+/* Fruit Art style */
+"Fruit Art" = "Street Art";
+
+/* Geometric art style */
+"Geometric" = "Géométrique";
+
 /* No comment provided by engineer. */
 "Go win some game to see your best scores here ⭐️" = "Allez finir quelques parties pour voir apparaître vos meilleurs scores ici ⭐️";
+
+/* Gradient art style */
+"Gradient" = "Dégradé";
 
 /* No comment provided by engineer. */
 "Hard" = "Difficile";
@@ -82,8 +121,14 @@
 /* No comment provided by engineer. */
 "High Scores 🏆" = "Meilleurs Scores 🏆";
 
+/* Impressionism art style */
+"Impressionism" = "Impressionnisme";
+
 /* No comment provided by engineer. */
 "MemoArt" = "MemoArt";
+
+/* Modern Art style */
+"Modern Art" = "Art moderne";
 
 /* No comment provided by engineer. */
 "Moves: %@" = "Coups: %@";
@@ -97,6 +142,18 @@
 /* No comment provided by engineer. */
 "Normal" = "Normal";
 
+/* Painting art style */
+"Painting" = "Peinture";
+
+/* Pattern art style */
+"Pattern" = "Motif";
+
+/* Pixel Art style */
+"Pixel Art" = "Pixel Art";
+
+/* Pop Art style */
+"Pop Art" = "Pop Art";
+
 /* No comment provided by engineer. */
 "Reset game" = "Commencer une autre partie";
 
@@ -106,6 +163,12 @@
 /* No comment provided by engineer. */
 "selected" = "sélectionné";
 
+/* Shadow art style */
+"Shadow" = "Silhouette";
+
+/* Still Life art style */
+"Still Life" = "Nature morte";
+
 /* No comment provided by engineer. */
 "Third" = "Troisième place";
 
@@ -114,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "unselected" = "désélectionné";
+
+/* Watercolor art style */
+"Watercolor" = "Aquarelle";
 
 /* No comment provided by engineer. */
 "You have just changed the difficulty level, but there is a game currently in progress" = "Vous venez de changer le niveau de difficulté alors qu'il y a une partie en cours";
