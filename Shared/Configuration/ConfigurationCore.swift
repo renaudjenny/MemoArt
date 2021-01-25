@@ -81,9 +81,9 @@ let configurationReducer = Reducer<
         state.changeLevelAlert = AlertState(
             title: "Difficulty level changed",
             message: """
-            You have just changed the difficulty level, but there is a game currently in progress
-            Do you want to start a new game? You will loose your current progress then!
-            """,
+You have just changed the difficulty level, but there is a game currently in progress
+Do you want to start a new game? You will loose your current progress then!
+""",
             primaryButton: .cancel(),
             secondaryButton: .destructive(
                 "New game",

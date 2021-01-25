@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"You have just changed the difficulty level, but there is a game currently in progress\nDo you want to start a new game? You will loose your current progress then!" = "Vous venez de changer le niveau de difficulté alors qu'il y a une partie en cours\nCela va lancer une nouvelle partie, vous allez perdre votre progression !";
+
+/* No comment provided by engineer. */
 "/%@" = "/%@";
 
 /* No comment provided by engineer. */
@@ -173,16 +176,10 @@
 "Third" = "Troisième place";
 
 /* No comment provided by engineer. */
-"This will reset the current game, you will loose your progress!" = "Cela va lancer une nouvelle partie, vous allez perdre votre progression !";
-
-/* No comment provided by engineer. */
 "unselected" = "désélectionné";
 
 /* Watercolor art style */
 "Watercolor" = "Aquarelle";
-
-/* No comment provided by engineer. */
-"You have just changed the difficulty level, but there is a game currently in progress" = "Vous venez de changer le niveau de difficulté alors qu'il y a une partie en cours";
 
 /* No comment provided by engineer. */
 "You've reached the limit.\nYou need %@ cards or more to play." = "Vous avez atteint la limite.\nVous avez besoin d’au moins %@ cartes pour jouer.";

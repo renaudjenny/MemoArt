@@ -80,19 +80,16 @@
 "Third" = "Third";
 
 /* No comment provided by engineer. */
-"This will reset the current game, you will loose your progress!" = "This will reset the current game, you will loose your progress!";
-
-/* No comment provided by engineer. */
 "unselected" = "unselected";
-
-/* No comment provided by engineer. */
-"You have just changed the difficulty level, but there is a game currently in progress" = "You have just changed the difficulty level, but there is a game currently in progress";
 
 /* No comment provided by engineer. */
 "Do you want to start a new game? You will loose your current progress then!" = "Do you want to start a new game? You will loose your current progress then!";
 
 /* No comment provided by engineer. */
 "You've reached the limit.\nYou need %@ cards or more to play." = "You've reached the limit.\nYou need %@ cards or more to play.";
+
+/* No comment provided by engineer. */
+"You have just changed the difficulty level, but there is a game currently in progress\nDo you want to start a new game? You will loose your current progress then!" = "You have just changed the difficulty level, but there is a game currently in progress\nDo you want to start a new game? You will loose your current progress then!";
 
 /* No comment provided by engineer. */
 "Your name" = "Your name";
