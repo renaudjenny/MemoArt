@@ -13,7 +13,7 @@ struct MemoArtApp: App {
     enum ViewAction {
         case loadGame
         case loadHighScores
-        case alertUserBeforeNewGame
+        case newGame
         case presentAbout
         case hideAbout
     }
@@ -66,7 +66,14 @@ struct MemoArtApp: App {
                 ) {
                     AboutSheetView(store: store)
                 })
-                .modifier(SetupNewGameAlert(store: store.gameStore))
+                .background(EmptyView().alert(
+                    store.gameStore.scope(state: \.newGameAlert),
+                    dismiss: .newGameAlertCancelTapped
+                ))
+                .background(EmptyView().alert(
+                    store.configurationStore.scope(state: \.changeLevelAlert),
+                    dismiss: .changeLevelAlertCancelTapped
+                ))
                 .onAppear { viewStore.send(.loadGame) }
                 .onAppear { viewStore.send(.loadHighScores) }
             }
@@ -77,7 +84,7 @@ struct MemoArtApp: App {
     private func commands(viewStore: ViewStore<ViewState, ViewAction>) -> some Commands {
         Group {
             CommandGroup(replacing: CommandGroupPlacement.newItem) {
-                Button { viewStore.send(.alertUserBeforeNewGame) } label: {
+                Button { viewStore.send(.newGame) } label: {
                     Text("New game")
                 }
                 .disabled(!viewStore.isNewGameButtonEnabled)
@@ -117,9 +124,9 @@ private extension AppAction {
         switch localAction {
         case .loadGame: return .game(.load)
         case .loadHighScores: return .highScores(.load)
-        case .alertUserBeforeNewGame: return .game(.alertUserBeforeNewGame)
         case .presentAbout: return .presentAbout
         case .hideAbout: return .hideAbout
+        case .newGame: return .game(.newGameButtonTapped)
         }
     }
 }

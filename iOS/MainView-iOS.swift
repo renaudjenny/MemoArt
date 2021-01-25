@@ -36,8 +36,6 @@ struct MainView: View {
                 ),
                 content: { NewHighScoreView(store: store) }
             )
-            .modifier(SetupNewGameAlert(store: store.gameStore))
-            .modifier(SetupDifficultyLevelChangedAlert(store: store))
             .navigationViewStyle(StackNavigationViewStyle())
         }
     }

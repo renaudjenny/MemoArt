@@ -6,8 +6,10 @@ struct ConfigurationState: Equatable, Codable {
     var cardsCount: Int { difficultyLevel.cardsCount }
     var isPresented = false
 
-    var persist: Self {
-        ConfigurationState(selectedArts: selectedArts, difficultyLevel: difficultyLevel)
+    var changeLevelAlert: AlertState<ConfigurationAction>?
+
+    private enum CodingKeys: CodingKey {
+        case selectedArts, difficultyLevel
     }
 }
 
@@ -19,6 +21,9 @@ enum ConfigurationAction: Equatable {
     case changeDifficultyLevel(DifficultyLevel)
     case present
     case hide
+    case presentChangeLevelAlert
+    case changeLevelAlertCancelTapped
+    case changeLevelAlertConfirmTapped
 }
 
 struct ConfigurationEnvironment {
@@ -48,7 +53,7 @@ let configurationReducer = Reducer<
             .debounce(id: saveDebounceId, for: .seconds(2), scheduler: environment.mainQueue)
             .eraseToEffect()
     case .save:
-        environment.save(state.persist)
+        environment.save(state)
         return .none
     case .load:
         state = environment.load()
@@ -71,6 +76,26 @@ let configurationReducer = Reducer<
         return .none
     case .hide:
         state.isPresented = false
+        return .none
+    case .presentChangeLevelAlert:
+        state.changeLevelAlert = AlertState(
+            title: "Difficulty level changed",
+            message: """
+            You have just changed the difficulty level, but there is a game currently in progress
+            Do you want to start a new game? You will loose your current progress then!
+            """,
+            primaryButton: .cancel(),
+            secondaryButton: .destructive(
+                "New game",
+                send: .changeLevelAlertConfirmTapped
+            )
+        )
+        return .none
+    case .changeLevelAlertCancelTapped:
+        state.changeLevelAlert = nil
+        return .none
+    case .changeLevelAlertConfirmTapped:
+        state.changeLevelAlert = nil
         return .none
     }
 }

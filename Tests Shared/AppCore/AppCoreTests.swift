@@ -79,7 +79,7 @@ class AppCoreTests: XCTestCase {
             reducer: appReducer,
             environment: .mocked(scheduler: scheduler)
         )
-        store.assert(
+        let configuringLevelSteps: [Step] = [
             .send(.configuration(.changeDifficultyLevel(.easy))) {
                 $0.configuration.difficultyLevel = .easy
             },
@@ -123,12 +123,11 @@ class AppCoreTests: XCTestCase {
                 $0.configuration.difficultyLevel = .hard
             },
             .receive(.configuration(.save)),
-            // As game has already started, we shouldn't receive a .game(.new) action anymore
-            // But instead we will receive the disclaimer about starting a new game
-            .receive(.presentDifficultyLevelHasChanged) {
-                $0.isDifficultyLevelHasChangedPresented = true
-            }
-        )
+        ]
+
+        // As game has already started, we shouldn't receive a .game(.new) action anymore
+        // But instead we will receive the disclaimer about starting a new game
+        store.assert(configuringLevelSteps + presentChangeLevelAlertSteps)
     }
 
     func testChangingLevelWillDisplayADisclaimerMessageAskingToSetANewGame() {
@@ -140,15 +139,14 @@ class AppCoreTests: XCTestCase {
             environment: .mocked(scheduler: scheduler)
         )
 
-        store.assert(
+        let changeDifficultyLevelSteps: [Step] = [
             .send(.configuration(.changeDifficultyLevel(.easy))) {
                 $0.configuration.difficultyLevel = .easy
             },
             .receive(.configuration(.save)),
-            .receive(.presentDifficultyLevelHasChanged) {
-                $0.isDifficultyLevelHasChangedPresented = true
-            }
-        )
+        ]
+
+        store.assert(changeDifficultyLevelSteps + presentChangeLevelAlertSteps)
     }
 
     func testPresentAndHideAbout() {
@@ -167,6 +165,23 @@ class AppCoreTests: XCTestCase {
             }
         )
     }
+
+    private var presentChangeLevelAlertSteps: [Step] {[
+        .receive(.configuration(.presentChangeLevelAlert)) {
+            $0.configuration.changeLevelAlert = AlertState(
+                title: "Difficulty level changed",
+                message: """
+                    You have just changed the difficulty level, but there is a game currently in progress
+                    Do you want to start a new game? You will loose your current progress then!
+                    """,
+                primaryButton: .cancel(),
+                secondaryButton: .destructive(
+                    "New game",
+                    send: .changeLevelAlertConfirmTapped
+                )
+            )
+        },
+    ]}
 }
 
 extension AppEnvironment {

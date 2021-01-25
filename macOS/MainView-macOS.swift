@@ -56,7 +56,6 @@ struct MainView: View {
                         .padding()
                 }
             ))
-            .modifier(SetupNewGameAlert(store: store.gameStore))
             .background(
                 Image("Motif")
                     .resizable(resizingMode: .tile)

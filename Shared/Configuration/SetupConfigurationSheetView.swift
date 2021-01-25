@@ -43,7 +43,6 @@ struct SetupConfigurationSheetView: ViewModifier {
                 .padding([.bottom, .trailing])
                 .accessibilityIdentifier("done")
             }
-            .modifier(SetupDifficultyLevelChangedAlert(store: store))
         }
     }
 }

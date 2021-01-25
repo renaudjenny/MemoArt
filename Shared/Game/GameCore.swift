@@ -7,11 +7,16 @@ struct GameState: Equatable, Codable {
     var discoveredArts: [Art] = []
     var isGameOver = false
     var level: DifficultyLevel = .normal
-    var isNewGameAlertPresented = false
+
+    var newGameAlert: AlertState<GameAction>?
 
     var hasCardsFacedUp: Bool { cards.filter { $0.isFaceUp }.count > 0 }
     var isGameInProgress: Bool { moves > 0 || hasCardsFacedUp }
     func isCardValid(id: Int) -> Bool { cards.count > id }
+
+    private enum CodingKeys: CodingKey {
+        case moves, cards, discoveredArts, isGameOver, level
+    }
 }
 
 enum GameAction: Equatable {
@@ -21,9 +26,9 @@ enum GameAction: Equatable {
     case save
     case load
     case clearBackup
-    case alertUserBeforeNewGame
-    case presentNewGameAlert
-    case hideNewGameAlert
+    case newGameButtonTapped
+    case newGameAlertCancelTapped
+    case newGameAlertConfirmTapped
 }
 
 struct GameEnvironment {
@@ -84,19 +89,26 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
     case .clearBackup:
         environment.clearBackup()
         return .none
-    case .presentNewGameAlert:
-        state.isNewGameAlertPresented = true
-        return .none
-    case .hideNewGameAlert:
-        state.isNewGameAlertPresented = false
-        return .none
-    case .alertUserBeforeNewGame:
+    case .newGameButtonTapped:
         guard state.moves > 0 && !state.isGameOver else {
             // No need to present this alert, do a new game right now
             return Effect(value: .new)
         }
-        return Effect(value: .presentNewGameAlert)
+        state.newGameAlert = AlertState(
+            title: "New game",
+            message: "This will reset the current game, you will loose your progress!",
+            primaryButton: .cancel(),
+            secondaryButton: .destructive("Reset game", send: .newGameAlertConfirmTapped)
+        )
+        return .none
+    case .newGameAlertCancelTapped:
+        state.newGameAlert = nil
+        return .none
+    case .newGameAlertConfirmTapped:
+        state.newGameAlert = nil
+        return Effect(value: .new)
     }
+
 }
 
 #if DEBUG

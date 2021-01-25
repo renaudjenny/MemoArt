@@ -6,7 +6,6 @@ struct AppState: Equatable {
     var highScores = HighScoresState()
     var configuration = ConfigurationState()
     var isNewHighScoreEntryPresented = false
-    var isDifficultyLevelHasChangedPresented = false
     var isAboutPresented = false
 }
 
@@ -16,8 +15,6 @@ enum AppAction: Equatable {
     case configuration(ConfigurationAction)
     case presentNewHighScoreView
     case newHighScoreEntered
-    case presentDifficultyLevelHasChanged
-    case hideDifficultyLevelHasChanged
     case presentAbout
     case hideAbout
 }
@@ -101,15 +98,11 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
             if state.game.moves <= 0 {
                 return Effect(value: .game(.new))
             }
-            return Effect(value: .presentDifficultyLevelHasChanged)
+            return Effect(value: .configuration(.presentChangeLevelAlert))
+        case .configuration(.changeLevelAlertConfirmTapped):
+            return Effect(value: .game(.new))
         case .configuration(.load):
             return Effect(value: .game(.shuffleCards))
-        case .presentDifficultyLevelHasChanged:
-            state.isDifficultyLevelHasChangedPresented = true
-            return .none
-        case .hideDifficultyLevelHasChanged:
-            state.isDifficultyLevelHasChangedPresented = false
-            return .none
         case .presentAbout:
             state.isAboutPresented = true
             return .none
