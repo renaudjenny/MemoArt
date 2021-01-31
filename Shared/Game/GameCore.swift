@@ -95,10 +95,10 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
             return Effect(value: .new)
         }
         state.newGameAlert = AlertState(
-            title: "New game",
-            message: "This will reset the current game, you will loose your progress!",
+            title: TextState("New game"),
+            message: TextState("This will reset the current game, you will loose your progress!"),
             primaryButton: .cancel(),
-            secondaryButton: .destructive("Reset game", send: .newGameAlertConfirmTapped)
+            secondaryButton: .destructive(TextState("Reset game"), send: .newGameAlertConfirmTapped)
         )
         return .none
     case .newGameAlertCancelTapped:
