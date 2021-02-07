@@ -55,6 +55,7 @@ struct ArtsSelectionConfigurationView: View {
                                 .modifier(SelectionCardStyle(
                                     isSelected: viewStore.selectedArts.contains(art)
                                 ))
+                                .shadow(radius: 4)
                         }
                         .buttonStyle(PlainButtonStyle())
                     }
