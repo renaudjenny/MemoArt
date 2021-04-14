@@ -18,6 +18,7 @@ struct MainView: View {
                     Text("Moves: \(viewStore.game.moves)")
                         .font(.title)
                         .animation(nil)
+                        .padding()
                     GameOverView(store: store.gameStore)
                     adaptiveGrid(level: viewStore.game.level) {
                         ForEach(viewStore.game.cards) {
@@ -26,8 +27,16 @@ struct MainView: View {
                     }
                     .padding()
                 }
+                .navigationBarTitleDisplayMode(.inline)
                 .toolbar(content: toolbar)
                 .background(navigation(highScorePreselectedLevel: viewStore.game.level))
+                .background(
+                    Image("Motif")
+                        .resizable(resizingMode: .tile)
+                        .renderingMode(.template)
+                        .opacity(1/10)
+                        .ignoresSafeArea()
+                )
             }
             .sheet(
                 isPresented: viewStore.binding(
@@ -75,7 +84,7 @@ struct MainView: View {
     private func stackOrScroll<Content: View>(@ViewBuilder content: () -> Content) -> some View {
         switch (horizontalSizeClass, verticalSizeClass) {
         case (.regular, .regular): VStack { content() }
-        default: ReversedScrollView { content() }
+        default: ScrollView { content() }
         }
     }
 
@@ -146,6 +155,13 @@ struct MainView: View {
                     .frame(width: 120, height: 120)
 
             }
+        )
+        .background(
+            Image("Motif")
+                .resizable(resizingMode: .tile)
+                .renderingMode(.template)
+                .opacity(1/10)
+                .ignoresSafeArea()
         )
     }
 }

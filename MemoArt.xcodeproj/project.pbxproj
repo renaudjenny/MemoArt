@@ -12,7 +12,6 @@
 		4C217AA9255F390900A631BB /* AddCardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F592545E5C600DAC4AB /* AddCardStyle.swift */; };
 		4C217AAD255F390C00A631BB /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF429253C520F00F2DE7C /* CardView.swift */; };
 		4C217AB1255F390F00A631BB /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF43E253C5B9900F2DE7C /* Card.swift */; };
-		4C217AB5255F391300A631BB /* ReversedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F6D2548BB2300DAC4AB /* ReversedScrollView.swift */; };
 		4C217AB9255F391700A631BB /* ConfigurationCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84849F2555F35900FBDEC2 /* ConfigurationCore.swift */; };
 		4C217ABA255F391A00A631BB /* ArtsSelectionConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8484AA2556DF1C00FBDEC2 /* ArtsSelectionConfigurationView.swift */; };
 		4C217AC2255F392400A631BB /* GameCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF434253C5B0A00F2DE7C /* GameCore.swift */; };
@@ -86,7 +85,6 @@
 		4CB482B4257C059F0058D122 /* DifficultyLevelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB482B2257C059F0058D122 /* DifficultyLevelPicker.swift */; };
 		4CC92F4B25458A8600DAC4AB /* NewHighScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F4A25458A8600DAC4AB /* NewHighScoreView.swift */; };
 		4CC92F5A2545E5C600DAC4AB /* AddCardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F592545E5C600DAC4AB /* AddCardStyle.swift */; };
-		4CC92F6E2548BB2300DAC4AB /* ReversedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F6D2548BB2300DAC4AB /* ReversedScrollView.swift */; };
 		4CCC950A25A9C87F00AFF6D7 /* Marketing+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC950925A9C87100AFF6D7 /* Marketing+Utils.swift */; };
 		4CCC954C25A9CF1A00AFF6D7 /* Marketing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC951D25A9CEEC00AFF6D7 /* Marketing.swift */; };
 		4CCC955925AA012E00AFF6D7 /* Marketing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC951D25A9CEEC00AFF6D7 /* Marketing.swift */; };
@@ -185,7 +183,6 @@
 		4CB482B2257C059F0058D122 /* DifficultyLevelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyLevelPicker.swift; sourceTree = "<group>"; };
 		4CC92F4A25458A8600DAC4AB /* NewHighScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHighScoreView.swift; sourceTree = "<group>"; };
 		4CC92F592545E5C600DAC4AB /* AddCardStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardStyle.swift; sourceTree = "<group>"; };
-		4CC92F6D2548BB2300DAC4AB /* ReversedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversedScrollView.swift; sourceTree = "<group>"; };
 		4CCC950925A9C87100AFF6D7 /* Marketing+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Marketing+Utils.swift"; sourceTree = "<group>"; };
 		4CCC951D25A9CEEC00AFF6D7 /* Marketing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marketing.swift; sourceTree = "<group>"; };
 		4CCC95C425AA314200AFF6D7 /* Marketing.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Marketing.xctestplan; sourceTree = "<group>"; };
@@ -435,7 +432,6 @@
 		4CC92F6C2548BB0F00DAC4AB /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				4CC92F6D2548BB2300DAC4AB /* ReversedScrollView.swift */,
 				4CAC4369255F4BA2009FFF68 /* Color.swift */,
 				4C805D13256A82F4003D8F25 /* AboutSheetView.swift */,
 				4CB482B2257C059F0058D122 /* DifficultyLevelPicker.swift */,
@@ -759,7 +755,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C217AB5255F391300A631BB /* ReversedScrollView.swift in Sources */,
 				4C90E1802573E465006568FB /* DifficultyLevel.swift in Sources */,
 				4C972B472596094B000BA475 /* FireworksView.swift in Sources */,
 				4C217ACE255F392F00A631BB /* HighScoresView.swift in Sources */,
@@ -835,7 +830,6 @@
 				4C8DF43A253C5B2900F2DE7C /* AppCore.swift in Sources */,
 				4CAC43AC255FD523009FFF68 /* ConfigurationView.swift in Sources */,
 				4CC92F4B25458A8600DAC4AB /* NewHighScoreView.swift in Sources */,
-				4CC92F6E2548BB2300DAC4AB /* ReversedScrollView.swift in Sources */,
 				4C8DF43F253C5B9900F2DE7C /* Card.swift in Sources */,
 				4CE02F44256ED6BC00A925F0 /* NewGameButton.swift in Sources */,
 				4CC92F5A2545E5C600DAC4AB /* AddCardStyle.swift in Sources */,

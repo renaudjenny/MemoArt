@@ -13,7 +13,8 @@ struct HighScoresView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
-                DifficultyLevelPicker(level: $level).padding([.horizontal, .bottom])
+                DifficultyLevelPicker(level: $level)
+                    .padding()
 
                 ScrollView {
                     if displayedHighScores(store: viewStore).count <= 0 {
