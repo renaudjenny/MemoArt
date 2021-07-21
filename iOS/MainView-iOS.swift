@@ -14,11 +14,7 @@ struct MainView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             NavigationView {
-                stackOrScroll {
-                    Text("Moves: \(viewStore.game.moves)")
-                        .font(.title)
-                        .animation(nil)
-                        .padding()
+                VStack {
                     GameOverView(store: store.gameStore)
                     adaptiveGrid(level: viewStore.game.level) {
                         ForEach(viewStore.game.cards) {
@@ -28,7 +24,7 @@ struct MainView: View {
                     .padding()
                 }
                 .navigationBarTitleDisplayMode(.inline)
-                .toolbar(content: toolbar)
+                .toolbar { toolbar(moves: viewStore.game.moves) }
                 .background(navigation(highScorePreselectedLevel: viewStore.game.level))
                 .background(
                     Image("Motif")
@@ -80,18 +76,13 @@ struct MainView: View {
         }
     }
 
-    @ViewBuilder
-    private func stackOrScroll<Content: View>(@ViewBuilder content: () -> Content) -> some View {
-        switch (horizontalSizeClass, verticalSizeClass) {
-        case (.regular, .regular): VStack { content() }
-        default: ScrollView { content() }
-        }
-    }
-
-    private func toolbar() -> some ToolbarContent {
+    private func toolbar(moves: Int) -> some ToolbarContent {
         Group {
             ToolbarItem(placement: .principal) {
-                Text("MemoArt")
+                VStack {
+                    Text("MemoArt")
+                    Text("Moves: \(moves)")
+                }
             }
 
             ToolbarItemGroup(placement: .navigationBarLeading) {
