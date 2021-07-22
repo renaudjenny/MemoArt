@@ -42,6 +42,7 @@
 		4C3D9A8625AB8FA8007E3539 /* GameCoreTests+Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D9A7325AB8FA7007E3539 /* GameCoreTests+Persistence.swift */; };
 		4C3D9A8725AB8FA8007E3539 /* TestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 4C3D9A7425AB8FA7007E3539 /* TestPlan.xctestplan */; };
 		4C3D9A8825AB8FA8007E3539 /* TestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 4C3D9A7425AB8FA7007E3539 /* TestPlan.xctestplan */; };
+		4C40DFDB26AA203F0079D5DF /* AdaptiveGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C40DFDA26AA203F0079D5DF /* AdaptiveGrid.swift */; };
 		4C5089BB25A2248300BC5E11 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C5089B925A2248300BC5E11 /* Localizable.strings */; };
 		4C5089C525A2392E00BC5E11 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C5089B925A2248300BC5E11 /* Localizable.strings */; };
 		4C508A0F25A3B1E500BC5E11 /* Marketing+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5089D125A3AF8000BC5E11 /* Marketing+Utils.swift */; };
@@ -148,6 +149,7 @@
 		4C3D9A7225AB8FA7007E3539 /* GameCoreTests+NewGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GameCoreTests+NewGame.swift"; sourceTree = "<group>"; };
 		4C3D9A7325AB8FA7007E3539 /* GameCoreTests+Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GameCoreTests+Persistence.swift"; sourceTree = "<group>"; };
 		4C3D9A7425AB8FA7007E3539 /* TestPlan.xctestplan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
+		4C40DFDA26AA203F0079D5DF /* AdaptiveGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveGrid.swift; sourceTree = "<group>"; };
 		4C5089BA25A2248300BC5E11 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4C5089C025A2390500BC5E11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4C5089D125A3AF8000BC5E11 /* Marketing+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Marketing+Utils.swift"; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				4C8DF404253B30DB00F2DE7C /* Info.plist */,
 				4CFF8EF325BF687C00E0A83B /* InfoPlist.strings */,
 				4CAC437E255FCCBE009FFF68 /* MainView-iOS.swift */,
+				4C40DFDA26AA203F0079D5DF /* AdaptiveGrid.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -820,6 +823,7 @@
 				4CD0E1EC2542A0B500A1E0FD /* HighScore.swift in Sources */,
 				4C8484AB2556DF1C00FBDEC2 /* ArtsSelectionConfigurationView.swift in Sources */,
 				4C8DF42A253C520F00F2DE7C /* CardView.swift in Sources */,
+				4C40DFDB26AA203F0079D5DF /* AdaptiveGrid.swift in Sources */,
 				4CAC437F255FCCBE009FFF68 /* MainView-iOS.swift in Sources */,
 				4C8DF3FC253B30D700F2DE7C /* MemoArtApp.swift in Sources */,
 				4C90E18A2573E92B006568FB /* DifficultyLevelConfigurationView.swift in Sources */,
