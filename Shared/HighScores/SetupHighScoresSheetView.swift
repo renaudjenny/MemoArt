@@ -25,7 +25,7 @@ struct SetupHighScoresSheetView: ViewModifier {
 
     private func sheet(viewStore: ViewStore<ViewState, ViewAction>) -> some View {
         VStack {
-            Text("High Scores 🏆")
+            Text("High Scores")
                 .font(.largeTitle)
                 .padding()
             HighScoresView(

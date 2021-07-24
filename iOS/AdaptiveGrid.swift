@@ -15,7 +15,7 @@ struct AdaptiveGrid<Content: View>: View {
         }
     }
 
-    private let gridItems = Array(repeating: GridItem(.adaptive(minimum: 100)), count: 4)
+    private let gridItems = Array(repeating: GridItem(.adaptive(minimum: 50)), count: 4)
 }
 
 #if DEBUG

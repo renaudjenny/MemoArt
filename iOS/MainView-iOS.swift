@@ -5,8 +5,6 @@ import RenaudJennyAboutView
 
 struct MainView: View {
     let store: Store<AppState, AppAction>
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    @Environment(\.verticalSizeClass) private var verticalSizeClass
     @State private var isConfigurationNavigationActive = false
     @State private var isAboutNavigationActive = false
     @State private var isHighScoresNavigationActive = false
@@ -23,6 +21,7 @@ struct MainView: View {
                     }
                     .padding()
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar { toolbar(moves: viewStore.game.moves) }
                 .background(navigation(highScorePreselectedLevel: viewStore.game.level))
@@ -77,7 +76,7 @@ struct MainView: View {
                 Button {
                     isHighScoresNavigationActive = true
                 } label: {
-                    Text("🏆")
+                    Image(systemName: "list.number")
                 }
                 .accessibility(label: Text("High Scores"))
                 .accessibility(identifier: "high_scores")
