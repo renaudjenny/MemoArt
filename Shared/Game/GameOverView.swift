@@ -13,7 +13,6 @@ struct GameOverView: View {
                         Text("New game")
                     })
                 }
-                .padding(.top)
                 .transition(
                     .asymmetric(insertion: .slide, removal: .opacity)
                 )

@@ -12,14 +12,19 @@ struct MainView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             NavigationView {
-                VStack {
-                    GameOverView(store: store.gameStore)
+                ZStack {
                     AdaptiveGrid {
                         ForEach(viewStore.game.cards) {
                             GameCardView(store: store.gameStore, card: $0)
                         }
                     }
                     .padding()
+
+                    GameOverView(store: store.gameStore)
+                        .padding()
+                        .background(
+                            Color.white.opacity(80/100).blur(radius: 5)
+                        )
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .navigationBarTitleDisplayMode(.inline)
