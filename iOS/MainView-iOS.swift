@@ -5,8 +5,6 @@ import RenaudJennyAboutView
 
 struct MainView: View {
     let store: Store<AppState, AppAction>
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    @Environment(\.verticalSizeClass) private var verticalSizeClass
     @State private var isConfigurationNavigationActive = false
     @State private var isAboutNavigationActive = false
     @State private var isHighScoresNavigationActive = false
@@ -14,21 +12,23 @@ struct MainView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             NavigationView {
-                stackOrScroll {
-                    Text("Moves: \(viewStore.game.moves)")
-                        .font(.title)
-                        .animation(nil)
-                        .padding()
-                    GameOverView(store: store.gameStore)
-                    adaptiveGrid(level: viewStore.game.level) {
+                ZStack {
+                    AdaptiveGrid {
                         ForEach(viewStore.game.cards) {
                             GameCardView(store: store.gameStore, card: $0)
                         }
                     }
                     .padding()
+
+                    GameOverView(store: store.gameStore)
+                        .padding()
+                        .background(
+                            Color.white.opacity(80/100).blur(radius: 5)
+                        )
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .navigationBarTitleDisplayMode(.inline)
-                .toolbar(content: toolbar)
+                .toolbar { toolbar(moves: viewStore.game.moves) }
                 .background(navigation(highScorePreselectedLevel: viewStore.game.level))
                 .background(
                     Image("Motif")
@@ -49,49 +49,13 @@ struct MainView: View {
         }
     }
 
-    private func gridItems(level: DifficultyLevel) -> [GridItem] {
-        let gridItemPattern = GridItem(.flexible(minimum: 50, maximum: 150))
-        switch (horizontalSizeClass, verticalSizeClass, level) {
-        case (.compact, .regular, _):
-            // 4x4, 4x5, 4x6 Grid
-            return Array(repeating: gridItemPattern, count: 4)
-        case (_, .compact, .easy):
-            // 4x4 Grid
-            return Array(repeating: gridItemPattern, count: 4)
-        case (_, .compact, .normal):
-            // 5x4 Grid
-            return Array(repeating: gridItemPattern, count: 5)
-        case (_, .compact, .hard):
-            // 6x4 Grid
-            return Array(repeating: gridItemPattern, count: 6)
-        case (.regular, .regular, _):
-            // 4x4, 4x5, 4x6 Grid, bigger images
-            return Array(repeating: gridItemPattern, count: 4)
-        default:
-            return [GridItem(.adaptive(minimum: 100))]
-        }
-    }
-
-    @ViewBuilder
-    private func adaptiveGrid<Content: View>(level: DifficultyLevel, @ViewBuilder content: () -> Content) -> some View {
-        switch (horizontalSizeClass, verticalSizeClass) {
-        case (.regular, .regular): LazyHGrid(rows: gridItems(level: level)) { content() }
-        default: LazyVGrid(columns: gridItems(level: level)) { content() }
-        }
-    }
-
-    @ViewBuilder
-    private func stackOrScroll<Content: View>(@ViewBuilder content: () -> Content) -> some View {
-        switch (horizontalSizeClass, verticalSizeClass) {
-        case (.regular, .regular): VStack { content() }
-        default: ScrollView { content() }
-        }
-    }
-
-    private func toolbar() -> some ToolbarContent {
+    private func toolbar(moves: Int) -> some ToolbarContent {
         Group {
             ToolbarItem(placement: .principal) {
-                Text("MemoArt")
+                VStack {
+                    Text("MemoArt")
+                    Text("Moves: \(moves)")
+                }
             }
 
             ToolbarItemGroup(placement: .navigationBarLeading) {
@@ -117,7 +81,7 @@ struct MainView: View {
                 Button {
                     isHighScoresNavigationActive = true
                 } label: {
-                    Text("🏆")
+                    Image(systemName: "list.number")
                 }
                 .accessibility(label: Text("High Scores"))
                 .accessibility(identifier: "high_scores")

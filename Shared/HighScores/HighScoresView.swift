@@ -30,7 +30,7 @@ struct HighScoresView: View {
                         }
                     }
                 }
-                .navigationTitle("High Scores 🏆")
+                .navigationTitle("High Scores")
             }
         }
     }
