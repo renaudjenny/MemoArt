@@ -1,5 +1,6 @@
 import Foundation
 import XCResultKit
+import XMLCoder
 
 let mac = "mac"
 // Set the list of devices you want screenshot to be taken on
@@ -99,38 +100,14 @@ for (deviceName, deviceSize) in devices {
 
     let path = "\(derivedDataPath)/Logs/Test/LogStoreManifest.plist"
 
-    guard let manifestPlist = try? String(contentsOf: URL(fileURLWithPath: path), encoding: .utf8)
-    else {
-        print("Error, cannot read manifest Plist for this path: \(path)")
-        continue
-    }
-
-    guard let extractXCResultFileRegExp = try? NSRegularExpression(
-        pattern: "<key>fileName</key>.*?<string>(.*?)</string>",
-        options: NSRegularExpression.Options.dotMatchesLineSeparators
+    let resultFile = try XMLDecoder().decode(
+        LogStoreManifest.self,
+        from: Data(contentsOf: URL(fileURLWithPath: path))
     )
-    else {
-        print("Error, cannot build the regular expression to extract the XCResult file")
-        continue
-    }
 
-    let range = NSRange(location: 0, length: manifestPlist.utf16.count)
-    let xcresultFileNames: [String] = extractXCResultFileRegExp.matches(in: manifestPlist, options: [], range: range)
-        .flatMap { match in
-            (1..<match.numberOfRanges).map { rangeIndex in
-                let captureRange = match.range(at: rangeIndex)
-                let lowerIndex = manifestPlist.utf16.index(manifestPlist.startIndex, offsetBy: captureRange.lowerBound)
-                let upperIndex = manifestPlist.utf16.index(manifestPlist.startIndex, offsetBy: captureRange.upperBound)
-                return String(manifestPlist.utf16[lowerIndex..<upperIndex]) ?? "Error"
-            }
-        }
-
-    guard let lastXCResultFileName = xcresultFileNames.sorted().last
-    else {
-        print("Error, no XCResult file found!")
-        continue
-    }
-    let lastXCResultFileNameURL = URL(fileURLWithPath: "\(derivedDataPath)/Logs/Test/\(lastXCResultFileName)")
+    let lastXCResultFileNameURL = URL(
+        fileURLWithPath: "\(derivedDataPath)/Logs/Test/\(resultFile.lastXCResultFileName)"
+    )
     let result = XCResultFile(url: lastXCResultFileNameURL)
 
     guard let testPlanRunSummariesId = result.testPlanSummariesId

@@ -7,7 +7,7 @@ let package = Package(
     name: "Scripts",
     platforms: [.macOS(.v11)],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
+        .package(url: "https://github.com/MaxDesiatov/XMLCoder.git", from: "0.12.0"),
         .package(url: "https://github.com/davidahouse/XCResultKit", from: "0.7.1"),
     ],
     targets: [
@@ -15,7 +15,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "Scripts",
-            dependencies: ["XCResultKit"]),
+            dependencies: ["XCResultKit", "XMLCoder"]),
         .testTarget(
             name: "ScriptsTests",
             dependencies: ["Scripts"]),
