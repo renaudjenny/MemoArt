@@ -86,7 +86,6 @@ extension Array where Element == Card {
         newGame(from: Set(Art.allCases), level: .normal)
     }
 
-    #if DEBUG
     static var predicted: Self {
         predicted()
     }
@@ -102,5 +101,4 @@ extension Array where Element == Card {
             Card(id: $0, art: $1, isFaceUp: isFaceUp)
         }
     }
-    #endif
 }
