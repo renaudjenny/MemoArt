@@ -52,10 +52,7 @@ struct MainView: View {
     private func toolbar(moves: Int) -> some ToolbarContent {
         Group {
             ToolbarItem(placement: .principal) {
-                VStack {
-                    Text("MemoArt")
-                    Text("Moves: \(moves)")
-                }
+                Text("Moves: \(moves)")
             }
 
             ToolbarItemGroup(placement: .navigationBarLeading) {

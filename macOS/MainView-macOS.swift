@@ -8,13 +8,7 @@ struct MainView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            VStack {
-                Text("Moves: \(viewStore.game.moves)")
-                    .font(.title)
-                    .padding()
-                    .padding(.top)
-                    .animation(nil)
-                GameOverView(store: store.gameStore)
+            ZStack {
                 LazyHGrid(rows: gridItems) {
                     ForEach(viewStore.game.cards) {
                         GameCardView(store: store.gameStore, card: $0)
@@ -23,9 +17,18 @@ struct MainView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding()
                 .padding(.bottom)
+
+                GameOverView(store: store.gameStore)
+                    .padding()
+                    .background(
+                        Color.white.opacity(80/100).blur(radius: 5)
+                    )
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .toolbar {
+                ToolbarItem(placement: .status) {
+                    Text("Moves: \(viewStore.game.moves)").animation(nil)
+                }
                 ToolbarItem {
                     NewGameButton(store: store.gameStore)
                 }
