@@ -33,7 +33,7 @@ extension Marketing {
         // Back button, not ideal as well...
         app.navigationBars.firstMatch.buttons.firstMatch.tap()
 
-        guard app.navigationBars.staticTexts["MemoArt"].waitForExistence(timeout: 1) else {
+        guard app.buttons["card number 0"].waitForExistence(timeout: 1) else {
             XCTFail("Back button didn't work, impossible to go back in the main screen")
             return
         }
