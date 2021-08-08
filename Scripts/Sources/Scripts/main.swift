@@ -14,7 +14,7 @@ try MarketingScreenshots.run(
         .iPadPro_110_1st_Generation,
         .iPadPro_97,
 
-        .mac
+         .mac
     ],
     iOSProjectName: "MemoArt (iOS)",
     macProjectName: "MemoArt (macOS)"

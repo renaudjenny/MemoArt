@@ -22,7 +22,6 @@
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:MemoArt.xcodeproj",
         "identifier" : "4C5089DF25A3B1BD00BC5E11",
@@ -30,7 +29,6 @@
       }
     },
     {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:MemoArt.xcodeproj",
         "identifier" : "4C5089F225A3B1D300BC5E11",
