@@ -1,21 +1,20 @@
 import Foundation
 import MarketingScreenshots
 
-try MarketingScreenshots.run(
+try MarketingScreenshots.iOS(
     devices: [
-        .iPhone12ProMax,
-        .iPhone12Pro,
+        .iPhoneSE_1st_Generation,
         .iPhone8Plus,
         .iPhoneSE_2nd_Generation,
-        .iPhoneSE_1st_Generation,
+        .iPhone12Pro,
+        .iPhone12ProMax,
 
-        .iPadPro_129_4th_Generation,
+        .iPadPro_97,
         .iPadPro_129_2nd_Generation,
         .iPadPro_110_1st_Generation,
-        .iPadPro_97,
-
-         .mac
+        .iPadPro_129_4th_Generation,
     ],
-    iOSProjectName: "MemoArt (iOS)",
-    macProjectName: "MemoArt (macOS)"
+    projectName: "MemoArt (iOS)"
 )
+
+try MarketingScreenshots.macOS(projectName: "MemoArt (macOS)")
