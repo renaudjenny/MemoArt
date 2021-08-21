@@ -49,7 +49,14 @@ struct MemoArtApp: App {
     }()
 
     #if DEBUG
-    init() { handleLaunchArguments() }
+    init() {
+        if CommandLine.arguments.contains("--reset-game-backup") {
+            Self.clearGameBackup()
+        }
+        if CommandLine.arguments.contains("--reset-configuration") {
+            Self.saveConfiguration(configuration: ConfigurationState())
+        }
+    }
     #endif
 
     var body: some Scene {
@@ -217,17 +224,3 @@ extension MemoArtApp {
         return configuration
     }
 }
-
-#if DEBUG
-// MARK: Handle Launch Arguments
-extension MemoArtApp {
-    private func handleLaunchArguments() {
-        if CommandLine.arguments.contains("--reset-game-backup") {
-            Self.clearGameBackup()
-        }
-        if CommandLine.arguments.contains("--reset-configuration") {
-            Self.saveConfiguration(configuration: ConfigurationState())
-        }
-    }
-}
-#endif

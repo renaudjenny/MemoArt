@@ -3,7 +3,7 @@ import XCTest
 
 extension Marketing {
     func navigateToConfiguration() {
-        app.buttons["configuration"].tap()
+        XCUIApplication().buttons["configuration"].tap()
     }
 
     func selectDifficulty(levelIdentifier: String) {
@@ -15,8 +15,8 @@ extension Marketing {
         default: buttonPosition = -1
         }
 
-        app.radioGroups["difficulty_level"].radioButtons.element(boundBy: buttonPosition).tap()
-        app.buttons["done"].tap()
+        XCUIApplication().radioGroups["difficulty_level"].radioButtons.element(boundBy: buttonPosition).tap()
+        XCUIApplication().buttons["done"].tap()
     }
 }
 #endif

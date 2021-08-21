@@ -1,37 +1,40 @@
 import XCTest
 
 class Marketing: XCTestCase {
-    let app = XCUIApplication()
-
     override func setUpWithError() throws {
         continueAfterFailure = false
-        app.launchArguments = ["--reset-game-backup", "--use-predicted-arts", "--reset-configuration"]
+        let app = XCUIApplication()
+        app.launchArguments = [
+            "--reset-game-backup",
+            "--use-predicted-arts",
+            "--reset-configuration",
+        ]
         app.launch()
 
-        if app.buttons[XCUIIdentifierFullScreenWindow].exists {
-            app.buttons[XCUIIdentifierFullScreenWindow].tap()
+        if XCUIApplication().buttons[XCUIIdentifierFullScreenWindow].exists {
+            XCUIApplication().buttons[XCUIIdentifierFullScreenWindow].tap()
         }
     }
 
     func testGameScreenshot() throws {
-        app.buttons["card number 0"].tap()
-        app.buttons["card number 1"].tap()
-        app.buttons["card number 2"].tap()
-        app.buttons["card number 3"].tap()
-        app.buttons["card number 0"].tap()
-        app.buttons["card number 1"].tap()
-        app.buttons["card number 2"].tap()
-        app.buttons["card number 3"].tap()
-        app.buttons["card number 1"].tap()
-        app.buttons["card number 11"].tap()
-        app.buttons["card number 3"].tap()
-        app.buttons["card number 13"].tap()
-        app.buttons["card number 4"].tap()
-        app.buttons["card number 14"].tap()
-        app.buttons["card number 2"].tap()
-        app.buttons["card number 5"].tap()
+        XCUIApplication().buttons["card number 0"].tap()
+        XCUIApplication().buttons["card number 1"].tap()
+        XCUIApplication().buttons["card number 2"].tap()
+        XCUIApplication().buttons["card number 3"].tap()
+        XCUIApplication().buttons["card number 0"].tap()
+        XCUIApplication().buttons["card number 1"].tap()
+        XCUIApplication().buttons["card number 2"].tap()
+        XCUIApplication().buttons["card number 3"].tap()
+        XCUIApplication().buttons["card number 1"].tap()
+        XCUIApplication().buttons["card number 11"].tap()
+        XCUIApplication().buttons["card number 3"].tap()
+        XCUIApplication().buttons["card number 13"].tap()
+        XCUIApplication().buttons["card number 4"].tap()
+        XCUIApplication().buttons["card number 14"].tap()
+        XCUIApplication().buttons["card number 2"].tap()
+        XCUIApplication().buttons["card number 5"].tap()
 
-        let screenshot = app.screenshot()
+        let screenshot = XCUIApplication().screenshot()
         let attachment = XCTAttachment(screenshot: screenshot)
         attachment.lifetime = .keepAlways
         add(attachment)
@@ -40,7 +43,7 @@ class Marketing: XCTestCase {
     func testConfigurationScreenshot() throws {
         navigateToConfiguration()
 
-        let screenshot = app.screenshot()
+        let screenshot = XCUIApplication().screenshot()
         let attachment = XCTAttachment(screenshot: screenshot)
         attachment.lifetime = .keepAlways
         add(attachment)
@@ -51,7 +54,7 @@ class Marketing: XCTestCase {
 
         selectDifficulty(levelIdentifier: "easy")
 
-        let screenshot = app.screenshot()
+        let screenshot = XCUIApplication().screenshot()
         let attachment = XCTAttachment(screenshot: screenshot)
         attachment.lifetime = .keepAlways
         add(attachment)
@@ -61,7 +64,7 @@ class Marketing: XCTestCase {
         navigateToConfiguration()
         selectDifficulty(levelIdentifier: "hard")
 
-        let screenshot = app.screenshot()
+        let screenshot = XCUIApplication().screenshot()
         let attachment = XCTAttachment(screenshot: screenshot)
         attachment.lifetime = .keepAlways
         add(attachment)
