@@ -84,10 +84,10 @@ let configurationReducer = Reducer<
             You have just changed the difficulty level, but there is a game currently in progress
             Do you want to start a new game? You will loose your current progress then!
             """),
-            primaryButton: .cancel(),
+            primaryButton: .cancel(TextState("Cancel")),
             secondaryButton: .destructive(
                 TextState("New game"),
-                send: .changeLevelAlertConfirmTapped
+                action: .send(.changeLevelAlertConfirmTapped)
             )
         )
         return .none

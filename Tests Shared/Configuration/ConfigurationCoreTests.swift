@@ -3,7 +3,7 @@ import XCTest
 import ComposableArchitecture
 
 class ConfigurationCoreTests: XCTestCase {
-    let scheduler = DispatchQueue.testScheduler
+    let scheduler = DispatchQueue.test
 
     func testUnselectArt() {
         let store = TestStore(

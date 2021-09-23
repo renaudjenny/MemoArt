@@ -3,7 +3,7 @@ import XCTest
 import ComposableArchitecture
 
 class AppCoreTests: XCTestCase {
-    let scheduler = DispatchQueue.testScheduler
+    let scheduler = DispatchQueue.test
     typealias Step = TestStore<AppState, AppState, AppAction, AppAction, AppEnvironment>.Step
 
     func testSavingConfiguration() {
@@ -174,10 +174,10 @@ class AppCoreTests: XCTestCase {
                 You have just changed the difficulty level, but there is a game currently in progress
                 Do you want to start a new game? You will loose your current progress then!
                 """),
-                primaryButton: .cancel(),
+                primaryButton: .cancel(TextState("Cancel")),
                 secondaryButton: .destructive(
                     TextState("New game"),
-                    send: .changeLevelAlertConfirmTapped
+                    action: .send(.changeLevelAlertConfirmTapped)
                 )
             )
         },

@@ -3,7 +3,7 @@ import XCTest
 import ComposableArchitecture
 
 class GameCoreTests: XCTestCase {
-    let scheduler = DispatchQueue.testScheduler
+    let scheduler = DispatchQueue.test
     typealias Step = TestStore<GameState, GameState, GameAction, GameAction, GameEnvironment>.Step
 
     func testReturningCards() {
