@@ -1,21 +1,54 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct AdaptiveGrid<Content: View>: View {
-    let content: () -> Content
+struct AdaptiveGrid: View {
+    let store: Store<GameState, GameAction>
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.verticalSizeClass) private var verticalSizeClass
 
     var body: some View {
-        switch (horizontalSizeClass, verticalSizeClass) {
-        case (.regular, .regular), (_, .compact):
-            LazyHGrid(rows: gridItems, content: content)
-        default:
-            LazyVGrid(columns: gridItems, content: content)
+        WithViewStore(store) { viewState in
+            VStack {
+                ForEach(grid(cards: viewState.cards), id: \.id) { rows in
+                    HStack {
+                        ForEach(rows) { card in
+                            GameCardView(store: store, card: card)
+                        }
+                    }
+                }
+            }
         }
     }
 
-    private let gridItems = Array(repeating: GridItem(.flexible(minimum: 50, maximum: 150)), count: 4)
+    private func grid(cards: [Card]) -> [[Card]] {
+        let more = cards.count/4
+        let less = cards.count/more
+        switch (horizontalSizeClass, verticalSizeClass) {
+        case (.regular, .regular), (_, .compact):
+            return cards.group(rows: less, columns: more)
+        default:
+            return cards.group(rows: more, columns: less)
+        }
+    }
+}
+
+extension Array where Element == Card {
+    var id: Int {
+        var hasher = Hasher()
+        map(\.id).forEach { hasher.combine($0) }
+        return hasher.finalize()
+    }
+
+    func group(rows: Int, columns: Int) -> [[Card]] {
+        (0..<rows).map { row in
+            (0..<columns).map { column in
+                let index = column + (row * columns)
+                guard count > index else { return nil }
+                return self[index]
+            }
+            .compactMap { $0 }
+        }
+    }
 }
 
 #if DEBUG
@@ -37,27 +70,17 @@ struct AdaptiveGrid_Previews: PreviewProvider {
         }
     }
 
-    private static func cards(level: DifficultyLevel) -> [Card] {
-        (0..<level.cardsCount).map { Card(id: $0, art: .artDeco, isFaceUp: false) }
-    }
-
     private static func preview(level: DifficultyLevel) -> some View {
-        AdaptiveGrid {
-            ForEach(cards(level: level)) {
-                GameCardView(
-                    store: Store(
-                        initialState: GameState(
-                            cards: cards(level: level),
-                            level: level
-                        ),
-                        reducer: gameReducer,
-                        environment: .preview
-                    ),
-                    card: $0
+        VStack {
+            Text("Level: \(level.rawValue) - \(level.cardsCount) cards").padding()
+            AdaptiveGrid(
+                store: Store(
+                    initialState: GameState(cards: .predicted(level: level), level: level),
+                    reducer: gameReducer,
+                    environment: .preview
                 )
-            }
+            ).padding()
         }
-        .padding()
     }
 }
 #endif

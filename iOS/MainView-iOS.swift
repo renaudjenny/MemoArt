@@ -13,12 +13,8 @@ struct MainView: View {
         WithViewStore(store) { viewStore in
             NavigationView {
                 ZStack {
-                    AdaptiveGrid {
-                        ForEach(viewStore.game.cards) {
-                            GameCardView(store: store.gameStore, card: $0)
-                        }
-                    }
-                    .padding()
+                    AdaptiveGrid(store: store.gameStore)
+                        .padding()
 
                     GameOverView(store: store.gameStore)
                         .padding()
