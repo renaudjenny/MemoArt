@@ -68,11 +68,12 @@ struct MemoArtApp: App {
                         FireworksView(level: viewStore.gameLevel)
                     }
                 }
-                .background(EmptyView().sheet(
+                .sheet(
                     isPresented: viewStore.binding(get: { $0.isAboutPresented }, send: .hideAbout)
                 ) {
                     AboutSheetView(store: store)
-                })
+                }
+                #if os(macOS)
                 .background(EmptyView().alert(
                     store.gameStore.scope(state: \.newGameAlert),
                     dismiss: .newGameAlertCancelTapped
@@ -81,6 +82,16 @@ struct MemoArtApp: App {
                     store.configurationStore.scope(state: \.changeLevelAlert),
                     dismiss: .changeLevelAlertCancelTapped
                 ))
+                #else
+                .alert(
+                    store.gameStore.scope(state: \.newGameAlert),
+                    dismiss: .newGameAlertCancelTapped
+                )
+                .alert(
+                    store.configurationStore.scope(state: \.changeLevelAlert),
+                    dismiss: .changeLevelAlertCancelTapped
+                )
+                #endif
                 .onAppear { viewStore.send(.loadGame) }
                 .onAppear { viewStore.send(.loadHighScores) }
             }
