@@ -58,15 +58,20 @@ struct AdaptiveGrid_Previews: PreviewProvider {
             preview(level: .easy)
             preview(level: .normal)
             preview(level: .hard)
-            preview(level: .easy)
-                .environment(\.verticalSizeClass, .compact)
-                .previewLayout(.fixed(width: 800, height: 400))
-            preview(level: .normal)
-                .environment(\.verticalSizeClass, .compact)
-                .previewLayout(.fixed(width: 800, height: 400))
             preview(level: .hard)
-                .environment(\.verticalSizeClass, .compact)
-                .previewLayout(.fixed(width: 800, height: 400))
+                .previewDevice(
+                    PreviewDevice(rawValue: "iPad Pro (12.9-inch) (5th generation)")
+                )
+            if #available(iOS 15, *) {
+                preview(level: .easy).previewInterfaceOrientation(.landscapeRight)
+                preview(level: .normal).previewInterfaceOrientation(.landscapeRight)
+                preview(level: .hard).previewInterfaceOrientation(.landscapeRight)
+                preview(level: .hard)
+                    .previewDevice(
+                        PreviewDevice(rawValue: "iPad Pro (12.9-inch) (5th generation)")
+                    )
+                    .previewInterfaceOrientation(.landscapeRight)
+            }
         }
     }
 
