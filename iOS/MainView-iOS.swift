@@ -13,8 +13,10 @@ struct MainView: View {
         WithViewStore(store) { viewStore in
             NavigationView {
                 ZStack {
-                    AdaptiveGrid(store: store.gameStore)
-                        .padding()
+                    VStack {
+                        AdaptiveGrid(store: store.gameStore)
+                            .padding()
+                    }
 
                     GameOverView(store: store.gameStore)
                         .padding()
@@ -26,13 +28,7 @@ struct MainView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar { toolbar(moves: viewStore.game.moves) }
                 .background(navigation(highScorePreselectedLevel: viewStore.game.level))
-                .background(
-                    Image("Motif")
-                        .resizable(resizingMode: .tile)
-                        .renderingMode(.template)
-                        .opacity(1/10)
-                        .ignoresSafeArea()
-                )
+                .background(GameBackground(store: store.gameStore))
             }
             .sheet(
                 isPresented: viewStore.binding(

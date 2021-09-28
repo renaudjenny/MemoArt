@@ -7,6 +7,7 @@ struct GameState: Equatable, Codable {
     var discoveredArts: [Art] = []
     var isGameOver = false
     var level: DifficultyLevel = .normal
+    var mode: GameMode = .singlePlayer
 
     var newGameAlert: AlertState<GameAction>?
 
@@ -29,6 +30,7 @@ enum GameAction: Equatable {
     case newGameButtonTapped
     case newGameAlertCancelTapped
     case newGameAlertConfirmTapped
+    case switchMode(GameMode)
 }
 
 struct GameEnvironment {
@@ -110,6 +112,9 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
     case .newGameAlertConfirmTapped:
         state.newGameAlert = nil
         return Effect(value: .new)
+    case let .switchMode(mode):
+        state.mode = mode
+        return .none
     }
 
 }

@@ -59,12 +59,7 @@ struct MainView: View {
                         .padding()
                 }
             ))
-            .background(
-                Image("Motif")
-                    .resizable(resizingMode: .tile)
-                    .renderingMode(.template)
-                    .opacity(1/10)
-            )
+            .background(GameBackground(store: store.gameStore))
             .onAppear { NSWindow.allowsAutomaticWindowTabbing = false }
         }
     }

@@ -25,10 +25,12 @@ struct MemoArtApp: App {
 
     let store: Store<AppState, AppAction> = {
         let usePredictedArts = CommandLine.arguments.contains("--use-predicted-arts")
-        let predictedLoadGame = { GameState(
-            cards: .predicted(level: Self.loadConfiguration().difficultyLevel),
-            level: Self.loadConfiguration().difficultyLevel
-        ) }
+        let predictedLoadGame = {
+            GameState(
+                cards: .predicted(level: Self.loadConfiguration().difficultyLevel),
+                level: Self.loadConfiguration().difficultyLevel
+            )
+        }
 
         return Store(
             initialState: AppState(configuration: loadConfiguration()),
