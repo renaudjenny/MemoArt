@@ -70,6 +70,7 @@ extension AppCoreTests {
                 $0.game.moves = 1
             },
             .receive(.game(.save)),
+            .receive(.game(.nextPlayer)),
             .send(.configuration(.selectArt(.cave))) {
                 $0.configuration.selectedArts = Set(Art.allCases)
             },

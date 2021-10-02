@@ -6,18 +6,26 @@ struct GameModeView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            Menu {
-                Button {
-                    viewStore.send(.switchMode(.singlePlayer))
-                } label: { Label("Single Player", systemImage: "person.fill") }
-                Button {
-                    viewStore.send(.switchMode(.twoPlayers(.first)))
-                } label: { Label("Two Players", systemImage: "person.2.fill") }
-            } label: {
-                Label(
-                    "Current mode: \(viewStore.mode.description)",
-                    systemImage: viewStore.mode.systemImage
-                )
+            VStack {
+                Menu {
+                    Button {
+                        viewStore.send(.switchMode(.singlePlayer))
+                    } label: { Label("Single Player", systemImage: "person.fill") }
+                    Button {
+                        viewStore.send(.switchMode(.twoPlayers(.first)))
+                    } label: { Label("Two Players", systemImage: "person.2.fill") }
+                } label: {
+                    Label(
+                        "Current mode: \(viewStore.mode.description)",
+                        systemImage: viewStore.mode.systemImage
+                    )
+                }
+                if case let .twoPlayers(playerTurn) = viewStore.state.mode {
+                    switch playerTurn {
+                    case .first: Text("First player turn")
+                    case .second: Text("Second player turn")
+                    }
+                }
             }
         }
     }

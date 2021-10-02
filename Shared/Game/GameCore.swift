@@ -31,6 +31,7 @@ enum GameAction: Equatable {
     case newGameAlertCancelTapped
     case newGameAlertConfirmTapped
     case switchMode(GameMode)
+    case nextPlayer
 }
 
 struct GameEnvironment {
@@ -64,7 +65,8 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
         case 1: return Effect(value: .save)
         case 2:
             state.moves += 1
-            if facedUpCards[0].art == facedUpCards[1].art {
+            let artDiscovered = facedUpCards[0].art == facedUpCards[1].art
+            if artDiscovered {
                 state.discoveredArts.append(facedUpCards[0].art)
             }
             guard state.discoveredArts.count < state.level.cardsCount/2 else {
@@ -72,6 +74,8 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
                 return Effect(value: .clearBackup)
             }
             return Effect(value: .save)
+                .append(artDiscovered ? .none : Effect(value: .nextPlayer))
+                .eraseToEffect()
         default:
             // turn down all cards (except ones already discovered and the one just returned)
             state.cards = state.cards.map { card in
@@ -114,6 +118,14 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
         return Effect(value: .new)
     case let .switchMode(mode):
         state.mode = mode
+        return .none
+    case .nextPlayer:
+        if case let .twoPlayers(currentPlayer) = state.mode {
+            switch currentPlayer {
+            case .first: state.mode = .twoPlayers(.second)
+            case .second: state.mode = .twoPlayers(.first)
+            }
+        }
         return .none
     }
 

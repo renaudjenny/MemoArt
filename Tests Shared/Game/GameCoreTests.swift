@@ -27,6 +27,7 @@ class GameCoreTests: XCTestCase {
                 $0.moves = 1
             },
             .receive(.save),
+            .receive(.nextPlayer),
             .send(.cardReturned(2)) {
                 // Returning on third card will turn back the two firsts
                 $0.cards = self.newCards(cardsFacedUpIds: [2], cardsFacedDownIds: [0, 1], cards: $0.cards)
@@ -42,7 +43,7 @@ class GameCoreTests: XCTestCase {
         )
     }
 
-    private func newCards(cardsFacedUpIds: [Int], cardsFacedDownIds: [Int], cards: [Card]) -> [Card] {
+    func newCards(cardsFacedUpIds: [Int], cardsFacedDownIds: [Int], cards: [Card]) -> [Card] {
         cards.map { card in
             switch card.id {
             case let cardId where cardsFacedUpIds.contains(cardId):

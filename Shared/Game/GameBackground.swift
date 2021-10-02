@@ -8,14 +8,14 @@ struct GameBackground: View {
         WithViewStore(store) { viewStore in
             ZStack {
                 if case let .twoPlayers(playerTurn) = viewStore.state.mode {
-                    playerTurn.color
+                    playerTurn.color.opacity(10/100)
                 }
                 Image("Motif")
                     .resizable(resizingMode: .tile)
                     .renderingMode(.template)
                     .opacity(1/10)
-                    .ignoresSafeArea()
             }
+            .ignoresSafeArea()
         }
     }
 }

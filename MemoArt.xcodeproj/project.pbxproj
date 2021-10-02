@@ -46,6 +46,8 @@
 		4C5089BB25A2248300BC5E11 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C5089B925A2248300BC5E11 /* Localizable.strings */; };
 		4C5089C525A2392E00BC5E11 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C5089B925A2248300BC5E11 /* Localizable.strings */; };
 		4C508A0F25A3B1E500BC5E11 /* Marketing+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5089D125A3AF8000BC5E11 /* Marketing+Utils.swift */; };
+		4C59A9732708A06900F5FB89 /* GameCoreTests+GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C59A9722708A06900F5FB89 /* GameCoreTests+GameMode.swift */; };
+		4C59A9742708A06900F5FB89 /* GameCoreTests+GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C59A9722708A06900F5FB89 /* GameCoreTests+GameMode.swift */; };
 		4C805D09256A6EF6003D8F25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C805D08256A6EF6003D8F25 /* AppDelegate.swift */; };
 		4C805D0E256A6F4D003D8F25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C805D08256A6EF6003D8F25 /* AppDelegate.swift */; };
 		4C805D14256A82F4003D8F25 /* AboutSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C805D13256A82F4003D8F25 /* AboutSheetView.swift */; };
@@ -163,6 +165,7 @@
 		4C5089E425A3B1BD00BC5E11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C5089F325A3B1D300BC5E11 /* UITests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UITests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C5089F725A3B1D300BC5E11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C59A9722708A06900F5FB89 /* GameCoreTests+GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameCoreTests+GameMode.swift"; sourceTree = "<group>"; };
 		4C805D08256A6EF6003D8F25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C805D13256A82F4003D8F25 /* AboutSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSheetView.swift; sourceTree = "<group>"; };
 		4C84849F2555F35900FBDEC2 /* ConfigurationCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationCore.swift; sourceTree = "<group>"; };
@@ -348,6 +351,7 @@
 			isa = PBXGroup;
 			children = (
 				4C3D9A7025AB8FA7007E3539 /* GameCoreTests.swift */,
+				4C59A9722708A06900F5FB89 /* GameCoreTests+GameMode.swift */,
 				4C3D9A7125AB8FA7007E3539 /* GameCoreTests+Finish.swift */,
 				4C3D9A7225AB8FA7007E3539 /* GameCoreTests+NewGame.swift */,
 				4C3D9A7325AB8FA7007E3539 /* GameCoreTests+Persistence.swift */,
@@ -871,6 +875,7 @@
 				4C3D9A7D25AB8FA7007E3539 /* AppCoreTests+Game.swift in Sources */,
 				4C3D9A8325AB8FA8007E3539 /* GameCoreTests+NewGame.swift in Sources */,
 				4C3D9A7525AB8FA7007E3539 /* ConfigurationCoreTests.swift in Sources */,
+				4C59A9742708A06900F5FB89 /* GameCoreTests+GameMode.swift in Sources */,
 				4C3D9A7725AB8FA7007E3539 /* HighScoresCoreTests.swift in Sources */,
 				4C3D9A7925AB8FA7007E3539 /* AppCoreTests.swift in Sources */,
 				4C3D9A7B25AB8FA7007E3539 /* AppCoreTests+HighScores.swift in Sources */,
@@ -887,6 +892,7 @@
 				4C3D9A7E25AB8FA7007E3539 /* AppCoreTests+Game.swift in Sources */,
 				4C3D9A8425AB8FA8007E3539 /* GameCoreTests+NewGame.swift in Sources */,
 				4C3D9A7625AB8FA7007E3539 /* ConfigurationCoreTests.swift in Sources */,
+				4C59A9732708A06900F5FB89 /* GameCoreTests+GameMode.swift in Sources */,
 				4C3D9A7825AB8FA7007E3539 /* HighScoresCoreTests.swift in Sources */,
 				4C3D9A7A25AB8FA7007E3539 /* AppCoreTests.swift in Sources */,
 				4C3D9A7C25AB8FA7007E3539 /* AppCoreTests+HighScores.swift in Sources */,

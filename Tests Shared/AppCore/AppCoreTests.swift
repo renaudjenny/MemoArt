@@ -119,6 +119,7 @@ class AppCoreTests: XCTestCase {
                 $0.game.moves = 1
             },
             .receive(.game(.save)),
+            .receive(.game(.nextPlayer)),
             .send(.configuration(.changeDifficultyLevel(.hard))) {
                 $0.configuration.difficultyLevel = .hard
             },

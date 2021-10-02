@@ -14,8 +14,11 @@ struct MainView: View {
             NavigationView {
                 ZStack {
                     VStack {
+                        GameModeView(store: store.gameStore)
+                        Spacer()
                         AdaptiveGrid(store: store.gameStore)
                             .padding()
+                        Spacer()
                     }
 
                     GameOverView(store: store.gameStore)
