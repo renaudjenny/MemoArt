@@ -7,8 +7,8 @@ struct GameBackground: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             ZStack {
-                if case let .twoPlayers(playerTurn) = viewStore.state.mode {
-                    playerTurn.color.opacity(10/100)
+                if case let .twoPlayers(twoPlayers) = viewStore.state.mode {
+                    twoPlayers.current.color.opacity(10/100)
                 }
                 Image("Motif")
                     .resizable(resizingMode: .tile)
@@ -20,7 +20,7 @@ struct GameBackground: View {
     }
 }
 
-private extension GameMode.PlayerTurn {
+extension GameMode.Player {
     var color: Color {
         switch self {
         case .first: return .red

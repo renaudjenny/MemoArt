@@ -12,7 +12,7 @@ struct GameModeView: View {
                         viewStore.send(.switchMode(.singlePlayer))
                     } label: { Label("Single Player", systemImage: "person.fill") }
                     Button {
-                        viewStore.send(.switchMode(.twoPlayers(.first)))
+                        viewStore.send(.switchMode(.twoPlayers(.init())))
                     } label: { Label("Two Players", systemImage: "person.2.fill") }
                 } label: {
                     Label(
@@ -20,8 +20,8 @@ struct GameModeView: View {
                         systemImage: viewStore.mode.systemImage
                     )
                 }
-                if case let .twoPlayers(playerTurn) = viewStore.state.mode {
-                    switch playerTurn {
+                if case let .twoPlayers(twoPlayers) = viewStore.state.mode {
+                    switch twoPlayers.current {
                     case .first: Text("First player turn")
                     case .second: Text("Second player turn")
                     }

@@ -68,6 +68,14 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
             let artDiscovered = facedUpCards[0].art == facedUpCards[1].art
             if artDiscovered {
                 state.discoveredArts.append(facedUpCards[0].art)
+                if case let .twoPlayers(twoPlayers) = state.mode {
+                    var twoPlayers = twoPlayers
+                    switch twoPlayers.current {
+                    case .first: twoPlayers.firstPlayerDiscoveredArts.append(facedUpCards[0].art)
+                    case .second: twoPlayers.secondPlayerDiscoveredArts.append(facedUpCards[0].art)
+                    }
+                    state.mode = .twoPlayers(twoPlayers)
+                }
             }
             guard state.discoveredArts.count < state.level.cardsCount/2 else {
                 state.isGameOver = true
@@ -120,11 +128,13 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
         state.mode = mode
         return .none
     case .nextPlayer:
-        if case let .twoPlayers(currentPlayer) = state.mode {
-            switch currentPlayer {
-            case .first: state.mode = .twoPlayers(.second)
-            case .second: state.mode = .twoPlayers(.first)
+        if case let .twoPlayers(twoPlayers) = state.mode {
+            var twoPlayers = twoPlayers
+            switch twoPlayers.current {
+            case .first: twoPlayers.current = .second
+            case .second: twoPlayers.current = .first
             }
+            state.mode = .twoPlayers(twoPlayers)
         }
         return .none
     }

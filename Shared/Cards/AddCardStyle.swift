@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct AddCardStyle: ViewModifier {
-    var foregroundColor: Color
+    let foregroundColor: Color
 
     func body(content: Content) -> some View {
         RoundedRectangle(cornerRadius: 8.0)

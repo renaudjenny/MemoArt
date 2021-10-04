@@ -11,32 +11,32 @@ extension GameCoreTests {
         )
 
         store.assert(
-            .send(.switchMode(.twoPlayers(.first))) {
-                $0.mode = .twoPlayers(.first)
+            .send(.switchMode(.twoPlayers(.init()))) {
+                $0.mode = .twoPlayers(.init())
             }
         )
     }
 
     func testNextPlayer() {
         let store = TestStore(
-            initialState: GameState(cards: .predicted, mode: .twoPlayers(.first)),
+            initialState: GameState(cards: .predicted, mode: .twoPlayers(.init())),
             reducer: gameReducer,
             environment: .mocked(scheduler: scheduler)
         )
 
         store.assert(
             .send(.nextPlayer) {
-                $0.mode = .twoPlayers(.second)
+                $0.mode = .twoPlayers(.init(current: .second))
             },
             .send(.nextPlayer) {
-                $0.mode = .twoPlayers(.first)
+                $0.mode = .twoPlayers(.init(current: .first))
             }
         )
     }
 
     func testNextPlayerWhenNotDiscoveringArt() {
         let store = TestStore(
-            initialState: GameState(cards: .predicted, mode: .twoPlayers(.first)),
+            initialState: GameState(cards: .predicted, mode: .twoPlayers(.init())),
             reducer: gameReducer,
             environment: .mocked(scheduler: scheduler)
         )
@@ -62,14 +62,14 @@ extension GameCoreTests {
             },
             .receive(.save),
             .receive(.nextPlayer) {
-                $0.mode = .twoPlayers(.second)
+                $0.mode = .twoPlayers(.init(current: .second))
             }
         )
     }
 
     func testKeepCurrentPlayerWhenDiscoveringArt() {
         let store = TestStore(
-            initialState: GameState(cards: .predicted, mode: .twoPlayers(.first)),
+            initialState: GameState(cards: .predicted, mode: .twoPlayers(.init())),
             reducer: gameReducer,
             environment: .mocked(scheduler: scheduler)
         )
@@ -93,6 +93,7 @@ extension GameCoreTests {
                 }
                 $0.moves = 1
                 $0.discoveredArts = [.cave]
+                $0.mode = .twoPlayers(.init(firstPlayerDiscoveredArts: [.cave]))
             },
             .receive(.save)
         )

@@ -23,7 +23,25 @@ struct GameCardView: View {
                 ),
                 action: { returnCard(store: viewStore) }
             )
+                .overlay(border(mode: viewStore.state.mode))
         }
+    }
+
+    private func border(mode: GameMode) -> some View {
+        let color: Color
+        switch mode {
+        case .singlePlayer: color = .clear
+        case let .twoPlayers(twoPlayers):
+            if twoPlayers.firstPlayerDiscoveredArts.contains(card.art) {
+                color = GameMode.Player.first.color
+            } else if twoPlayers.secondPlayerDiscoveredArts.contains(card.art) {
+                color = GameMode.Player.second.color
+            } else {
+                color = .clear
+            }
+        }
+        return RoundedRectangle(cornerRadius: 8)
+            .stroke(color, lineWidth: 3)
     }
 
     private func returnCard(store: ViewStore<GameState, GameAction>) {
