@@ -6,7 +6,7 @@ struct GameModeView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            VStack {
+            VStack(alignment: .leading) {
                 Menu {
                     Button {
                         viewStore.send(.switchMode(.singlePlayer))
@@ -21,9 +21,17 @@ struct GameModeView: View {
                     )
                 }
                 if case let .twoPlayers(twoPlayers) = viewStore.state.mode {
+                    VStack(alignment: .leading) {
+                        Text("First player discovered arts: \(twoPlayers.firstPlayerDiscoveredArts.count)")
+                            .foregroundColor(.red)
+                        Text("Second player discovered arts: \(twoPlayers.secondPlayerDiscoveredArts.count)")
+                            .foregroundColor(.blue)
+                    }
+                    .font(.caption)
+
                     switch twoPlayers.current {
-                    case .first: Text("First player turn")
-                    case .second: Text("Second player turn")
+                    case .first: Text("First player turn").foregroundColor(.red)
+                    case .second: Text("Second player turn").foregroundColor(.blue)
                     }
                 }
             }
@@ -49,12 +57,26 @@ private extension GameMode {
 
 struct GameMoveView_Previews: PreviewProvider {
     static var previews: some View {
-        GameModeView(
-            store: Store(
-                initialState: .preview,
-                reducer: gameReducer,
-                environment: .preview
+        Group {
+            GameModeView(
+                store: Store(
+                    initialState: .preview,
+                    reducer: gameReducer,
+                    environment: .preview
+                )
             )
-        )
+            GameModeView(
+                store: Store(
+                    initialState: .mocked {
+                        $0.mode = .twoPlayers(.init(
+                            firstPlayerDiscoveredArts: [.cave],
+                            secondPlayerDiscoveredArts: [.artDeco, .shadow]
+                        ))
+                    },
+                    reducer: gameReducer,
+                    environment: .preview
+                )
+            )
+        }
     }
 }
