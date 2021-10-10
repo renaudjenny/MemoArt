@@ -48,6 +48,13 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
         state.moves = 0
         state.discoveredArts = []
         state.isGameOver = false
+        if case let .twoPlayers(twoPlayers) = state.mode {
+            var twoPlayers = twoPlayers
+            twoPlayers.nextPlayer()
+            twoPlayers.firstPlayerDiscoveredArts = []
+            twoPlayers.secondPlayerDiscoveredArts = []
+            state.mode = .twoPlayers(twoPlayers)
+        }
         return Effect(value: .clearBackup).append(
             Effect(value: .shuffleCards)
                 .delay(for: .seconds(0.5), scheduler: environment.mainQueue)
@@ -130,15 +137,21 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
     case .nextPlayer:
         if case let .twoPlayers(twoPlayers) = state.mode {
             var twoPlayers = twoPlayers
-            switch twoPlayers.current {
-            case .first: twoPlayers.current = .second
-            case .second: twoPlayers.current = .first
-            }
+            twoPlayers.nextPlayer()
             state.mode = .twoPlayers(twoPlayers)
         }
         return .none
     }
 
+}
+
+extension GameMode.TwoPlayers {
+    mutating func nextPlayer() {
+        switch current {
+        case .first: current = .second
+        case .second: current = .first
+        }
+    }
 }
 
 #if DEBUG

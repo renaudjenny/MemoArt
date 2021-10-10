@@ -98,4 +98,73 @@ extension GameCoreTests {
             .receive(.save)
         )
     }
+
+    func testResetTwoPlayersDataWhenNewGame() {
+        let store = TestStore(
+            initialState: GameState(
+                moves: 10,
+                cards: .predicted,
+                discoveredArts: [
+                    .artDeco, .arty, .childish, .destructured, .geometric,
+                    .gradient, .impressionism, .pixelArt, .watercolor,
+                ],
+                mode: .twoPlayers(.almostFinishedGame)
+            ),
+            reducer: gameReducer,
+            environment: .mocked(scheduler: scheduler)
+        )
+
+        store.assert(
+            .send(.cardReturned(2)) {
+                $0.cards = $0.cards.map { card in
+                    if card.id == 2 {
+                        return Card(id: 2, art: .cave, isFaceUp: true)
+                    }
+                    return card
+                }
+            },
+            .receive(.save),
+            .send(.cardReturned(12)) {
+                $0.cards = $0.cards.map { card in
+                    if card.id == 12 {
+                        return Card(id: 12, art: .cave, isFaceUp: true)
+                    }
+                    return card
+                }
+                $0.moves = 11
+                $0.discoveredArts = $0.discoveredArts + [.cave]
+
+                var twoPlayersFinishedGame = GameMode.TwoPlayers.almostFinishedGame
+                twoPlayersFinishedGame.secondPlayerDiscoveredArts += [.cave]
+                $0.mode = .twoPlayers(twoPlayersFinishedGame)
+
+                $0.isGameOver = true
+            },
+            .receive(.clearBackup),
+            .send(.newGameButtonTapped),
+            .receive(.new) {
+                $0 = GameState(
+                    cards: .predicted,
+                    mode: .twoPlayers(.init())
+                )
+            },
+            .receive(.clearBackup),
+            .do { self.scheduler.advance(by: .seconds(0.5)) },
+            .receive(.shuffleCards) {
+                $0.cards = .predicted(level: .normal)
+            }
+        )
+    }
+}
+
+extension GameMode.TwoPlayers {
+    static var almostFinishedGame: Self {
+        .init(
+            current: .second,
+            firstPlayerDiscoveredArts: [.artDeco, .arty, .childish, .destructured, .geometric],
+            secondPlayerDiscoveredArts: [
+                .geometric, .gradient, .impressionism, .pixelArt, .watercolor,
+            ]
+        )
+    }
 }
