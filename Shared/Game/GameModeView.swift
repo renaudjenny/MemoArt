@@ -6,7 +6,7 @@ struct GameModeView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            VStack(alignment: .leading) {
+            VStack {
                 Menu {
                     Button {
                         viewStore.send(.switchMode(.singlePlayer))
@@ -21,17 +21,24 @@ struct GameModeView: View {
                     )
                 }
                 if case let .twoPlayers(twoPlayers) = viewStore.state.mode {
-                    VStack(alignment: .leading) {
-                        Text("First player discovered arts: \(twoPlayers.firstPlayerDiscoveredArts.count)")
-                            .foregroundColor(.red)
-                        Text("Second player discovered arts: \(twoPlayers.secondPlayerDiscoveredArts.count)")
-                            .foregroundColor(.blue)
-                    }
-                    .font(.caption)
-
-                    switch twoPlayers.current {
-                    case .first: Text("First player turn").foregroundColor(.red)
-                    case .second: Text("Second player turn").foregroundColor(.blue)
+                    HStack {
+                        VStack {
+                            Text("Player turn")
+                            switch twoPlayers.current {
+                            case .first: Text("First player turn").foregroundColor(.red)
+                            case .second: Text("Second player turn").foregroundColor(.blue)
+                            }
+                        }
+                        Divider().frame(maxHeight: 40)
+                        VStack {
+                            Text("Scores")
+                            HStack {
+                                Text("First: \(twoPlayers.firstPlayerDiscoveredArts.count)")
+                                    .foregroundColor(.red)
+                                Text("Second: \(twoPlayers.secondPlayerDiscoveredArts.count)")
+                                    .foregroundColor(.blue)
+                            }
+                        }
                     }
                 }
             }
