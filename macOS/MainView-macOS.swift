@@ -9,14 +9,17 @@ struct MainView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             ZStack {
-                LazyHGrid(rows: gridItems) {
-                    ForEach(viewStore.game.cards) {
-                        GameCardView(store: store.gameStore, card: $0)
+                VStack {
+                    GameModeView(store: store.gameStore).frame(maxWidth: 300)
+                    LazyHGrid(rows: gridItems) {
+                        ForEach(viewStore.game.cards) {
+                            GameCardView(store: store.gameStore, card: $0)
+                        }
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .padding()
+                    .padding(.bottom)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding()
-                .padding(.bottom)
 
                 GameOverView(store: store.gameStore)
                     .padding()

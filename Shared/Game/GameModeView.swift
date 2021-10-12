@@ -20,6 +20,8 @@ struct GameModeView: View {
                         systemImage: viewStore.mode.systemImage
                     )
                 }
+                .menuStyle(BorderlessButtonMenuStyle())
+
                 if case let .twoPlayers(twoPlayers) = viewStore.state.mode {
                     HStack {
                         VStack {
