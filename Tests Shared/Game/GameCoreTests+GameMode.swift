@@ -133,11 +133,9 @@ extension GameCoreTests {
                 }
                 $0.moves = 11
                 $0.discoveredArts = $0.discoveredArts + [.cave]
-
-                var twoPlayersFinishedGame = GameMode.TwoPlayers.almostFinishedGame
-                twoPlayersFinishedGame.secondPlayerDiscoveredArts += [.cave]
-                $0.mode = .twoPlayers(twoPlayersFinishedGame)
-
+                $0.mode = .twoPlayers(.almostFinishedGame {
+                    $0.secondPlayerDiscoveredArts += [.cave]
+                })
                 $0.isGameOver = true
             },
             .receive(.clearBackup),
@@ -159,12 +157,20 @@ extension GameCoreTests {
 
 extension GameMode.TwoPlayers {
     static var almostFinishedGame: Self {
-        .init(
-            current: .second,
-            firstPlayerDiscoveredArts: [.artDeco, .arty, .childish, .destructured, .geometric],
-            secondPlayerDiscoveredArts: [
+        .almostFinishedGame(modifier: { _ in })
+    }
+
+    static func almostFinishedGame(modifier: (inout Self) -> Void) -> Self {
+        var twoPlayers = GameMode.TwoPlayers.mocked {
+            $0.current = .second
+            $0.firstPlayerDiscoveredArts = [
+                .artDeco, .arty, .childish, .destructured, .geometric,
+            ]
+            $0.secondPlayerDiscoveredArts = [
                 .geometric, .gradient, .impressionism, .pixelArt, .watercolor,
             ]
-        )
+        }
+        modifier(&twoPlayers)
+        return twoPlayers
     }
 }

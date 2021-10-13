@@ -13,3 +13,13 @@ enum GameMode: Equatable {
     case singlePlayer
     case twoPlayers(TwoPlayers)
 }
+
+#if DEBUG
+extension GameMode.TwoPlayers {
+    static func mocked(modifier: (inout Self) -> Void) -> Self {
+        var twoPlayers = GameMode.TwoPlayers()
+        modifier(&twoPlayers)
+        return twoPlayers
+    }
+}
+#endif

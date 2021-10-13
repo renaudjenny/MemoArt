@@ -130,4 +130,40 @@ extension AppCoreTests {
             }
         )
     }
+
+    func testDoNotPresentNewHighScoreWhenGameModeIsNotSinglePlayer() throws {
+        let store = TestStore(
+            initialState: AppState.mocked {
+                $0.game = AppState.almostFinishedGame.game
+                $0.game.mode = .twoPlayers(.init())
+            },
+            reducer: appReducer,
+            environment: .mocked(scheduler: scheduler)
+        )
+
+        store.assert(
+            .send(.game(.cardReturned(2))) {
+                $0.game.cards = $0.game.cards.map { card in
+                    switch card.id {
+                    case 2: return Card(id: 2, art: .cave, isFaceUp: true)
+                    default: return card
+                    }
+                }
+            },
+            .receive(.game(.save)),
+            .send(.game(.cardReturned(12))) {
+                $0.game.cards = $0.game.cards.map { card in
+                    switch card.id {
+                    case 12: return Card(id: 12, art: .cave, isFaceUp: true)
+                    default: return card
+                    }
+                }
+                $0.game.isGameOver = true
+                $0.game.moves = 143
+                $0.game.discoveredArts = $0.game.discoveredArts + [.cave]
+                $0.game.mode = .twoPlayers(.mocked { $0.firstPlayerDiscoveredArts = [.cave] })
+            },
+            .receive(.game(.clearBackup))
+        )
+    }
 }

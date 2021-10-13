@@ -59,7 +59,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
     Reducer { state, action, environment in
         switch action {
         case .game(.cardReturned):
-            if state.game.isGameOver {
+            if state.game.isGameOver, case .singlePlayer = state.game.mode {
                 let presentNewHighScoreEffect = Just(AppAction.presentNewHighScoreView)
                     .delay(for: .seconds(0.8), scheduler: environment.mainQueue)
                     .eraseToEffect()
