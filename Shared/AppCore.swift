@@ -6,6 +6,7 @@ struct AppState: Equatable {
     var highScores = HighScoresState()
     var configuration = ConfigurationState()
     var isNewHighScoreEntryPresented = false
+    var isTwoPlayersScoresPresented = false
     var isAboutPresented = false
 }
 
@@ -15,6 +16,8 @@ enum AppAction: Equatable {
     case configuration(ConfigurationAction)
     case presentNewHighScoreView
     case newHighScoreEntered
+    case presentTwoPlayersScoresView
+    case hideTwoPlayersScoresView
     case presentAbout
     case hideAbout
 }
@@ -59,7 +62,9 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
     Reducer { state, action, environment in
         switch action {
         case .game(.cardReturned):
-            if state.game.isGameOver, case .singlePlayer = state.game.mode {
+            guard state.game.isGameOver else { return .none }
+            switch state.game.mode {
+            case .singlePlayer:
                 let presentNewHighScoreEffect = Just(AppAction.presentNewHighScoreView)
                     .delay(for: .seconds(0.8), scheduler: environment.mainQueue)
                     .eraseToEffect()
@@ -74,8 +79,10 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
                 if moves <= worstHighScoreMoves {
                     return presentNewHighScoreEffect
                 }
+                return .none
+            case .twoPlayers:
+                return Effect(value: .presentTwoPlayersScoresView)
             }
-            return .none
         case .game(.shuffleCards):
             state.game.level = state.configuration.difficultyLevel
             state.game.cards = environment.generateRandomCards(
@@ -88,6 +95,12 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
             return .none
         case .newHighScoreEntered:
             state.isNewHighScoreEntryPresented = false
+            return .none
+        case .presentTwoPlayersScoresView:
+            state.isTwoPlayersScoresPresented = true
+            return .none
+        case .hideTwoPlayersScoresView:
+            state.isTwoPlayersScoresPresented = false
             return .none
         case .configuration(.selectArt), .configuration(.unselectArt):
             if state.game.moves <= 0 {
@@ -136,16 +149,12 @@ extension AppState {
         return state
     }
 
-    static let almostFinishedGame: Self = .mocked {
-        $0.game.isGameOver = false
-        $0.game.discoveredArts = Art.allCases.filter({ $0 != .cave })
-        $0.game.moves = 142
-        $0.game.cards = [Card].predicted(isFaceUp: true).map {
-            if $0.art == .cave {
-                return Card(id: $0.id, art: $0.art, isFaceUp: false)
-            }
-            return $0
-        }
+    static let almostFinishedGame: Self = .almostFinishedGame(modifier: { _ in })
+
+    static func almostFinishedGame(modifier: (inout Self) -> Void) -> Self {
+        var state: AppState = .mocked { $0.game = .almostFinishedGame }
+        modifier(&state)
+        return state
     }
 }
 

@@ -165,16 +165,22 @@ extension GameState {
         $0.moves = 42
         $0.cards = .predicted
     }
-    static let almostFinishedGame: Self = .mocked {
-        $0.isGameOver = false
-        $0.discoveredArts = Art.allCases.filter({ $0 != .cave })
-        $0.moves = 142
-        $0.cards = [Card].predicted(isFaceUp: true).map {
-            if $0.art == .cave {
-                return Card(id: $0.id, art: $0.art, isFaceUp: false)
+    static let almostFinishedGame: Self = .almostFinishedGame { _ in }
+
+    static func almostFinishedGame(modifier: (inout Self) -> Void) -> Self {
+        var state: GameState = .mocked {
+            $0.isGameOver = false
+            $0.discoveredArts = Art.allCases.filter({ $0 != .cave })
+            $0.moves = 142
+            $0.cards = [Card].predicted(isFaceUp: true).map {
+                if $0.art == .cave {
+                    return Card(id: $0.id, art: $0.art, isFaceUp: false)
+                }
+                return $0
             }
-            return $0
         }
+        modifier(&state)
+        return state
     }
 }
 

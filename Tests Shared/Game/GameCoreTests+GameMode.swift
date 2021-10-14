@@ -101,15 +101,9 @@ extension GameCoreTests {
 
     func testResetTwoPlayersDataWhenNewGame() {
         let store = TestStore(
-            initialState: GameState(
-                moves: 10,
-                cards: .predicted,
-                discoveredArts: [
-                    .artDeco, .arty, .childish, .destructured, .geometric,
-                    .gradient, .impressionism, .pixelArt, .watercolor,
-                ],
-                mode: .twoPlayers(.almostFinishedGame)
-            ),
+            initialState: GameState.almostFinishedGame {
+                $0.mode = .twoPlayers(.almostFinishedGame)
+            },
             reducer: gameReducer,
             environment: .mocked(scheduler: scheduler)
         )
@@ -131,7 +125,7 @@ extension GameCoreTests {
                     }
                     return card
                 }
-                $0.moves = 11
+                $0.moves = 143
                 $0.discoveredArts = $0.discoveredArts + [.cave]
                 $0.mode = .twoPlayers(.almostFinishedGame {
                     $0.secondPlayerDiscoveredArts += [.cave]

@@ -163,7 +163,10 @@ extension AppCoreTests {
                 $0.game.discoveredArts = $0.game.discoveredArts + [.cave]
                 $0.game.mode = .twoPlayers(.mocked { $0.firstPlayerDiscoveredArts = [.cave] })
             },
-            .receive(.game(.clearBackup))
+            .receive(.game(.clearBackup)),
+            .receive(.presentTwoPlayersScoresView) {
+                $0.isTwoPlayersScoresPresented = true
+            }
         )
     }
 }
