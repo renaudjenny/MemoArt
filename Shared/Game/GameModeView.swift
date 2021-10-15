@@ -22,7 +22,7 @@ struct GameModeView: View {
                 }
                 .menuStyle(BorderlessButtonMenuStyle())
 
-                if case let .twoPlayers(twoPlayers) = viewStore.state.mode {
+                if case let .twoPlayers(twoPlayers) = viewStore.mode {
                     HStack {
                         VStack {
                             Text("Player turn")

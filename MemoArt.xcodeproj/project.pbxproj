@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C016E902718C790000C320B /* TwoPlayersScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C016E8F2718C63B000C320B /* TwoPlayersScoresView.swift */; };
+		4C016E912718C791000C320B /* TwoPlayersScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C016E8F2718C63B000C320B /* TwoPlayersScoresView.swift */; };
 		4C217AA1255F38FF00A631BB /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF439253C5B2900F2DE7C /* AppCore.swift */; };
 		4C217AA5255F390300A631BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8DF3FF253B30DB00F2DE7C /* Assets.xcassets */; };
 		4C217AA9255F390900A631BB /* AddCardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F592545E5C600DAC4AB /* AddCardStyle.swift */; };
@@ -145,6 +147,7 @@
 
 /* Begin PBXFileReference section */
 		4C016E8E27176CBB000C320B /* AppCoreTests+Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppCoreTests+Game.swift"; sourceTree = "<group>"; };
+		4C016E8F2718C63B000C320B /* TwoPlayersScoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoPlayersScoresView.swift; sourceTree = "<group>"; };
 		4C217A3D255F2CE100A631BB /* MemoArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C217A48255F2CE600A631BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C217A49255F2CE600A631BB /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
@@ -368,13 +371,14 @@
 				4C90E17E2573E465006568FB /* DifficultyLevel.swift */,
 				4C972B3B25960724000BA475 /* Fireworks.sks */,
 				4C972B452596094B000BA475 /* FireworksView.swift */,
+				4CB2125B2703B68F004CD02A /* GameBackground.swift */,
 				4C972B242593E8E2000BA475 /* GameCardView.swift */,
 				4C8DF434253C5B0A00F2DE7C /* GameCore.swift */,
 				4CB212582703B552004CD02A /* GameMode.swift */,
+				4CB2125E2703BBA2004CD02A /* GameModeView.swift */,
 				4CAC43A5255FD0CE009FFF68 /* GameOverView.swift */,
 				4CE02F43256ED6BB00A925F0 /* NewGameButton.swift */,
-				4CB2125B2703B68F004CD02A /* GameBackground.swift */,
-				4CB2125E2703BBA2004CD02A /* GameModeView.swift */,
+				4C016E8F2718C63B000C320B /* TwoPlayersScoresView.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -801,6 +805,7 @@
 				4C217AA9255F390900A631BB /* AddCardStyle.swift in Sources */,
 				4C217ACA255F392C00A631BB /* HighScoresCore.swift in Sources */,
 				4CE02F45256ED6BC00A925F0 /* NewGameButton.swift in Sources */,
+				4C016E912718C791000C320B /* TwoPlayersScoresView.swift in Sources */,
 				4CB212602703BBA2004CD02A /* GameModeView.swift in Sources */,
 				4C217AC2255F392400A631BB /* GameCore.swift in Sources */,
 				4C805D0E256A6F4D003D8F25 /* AppDelegate.swift in Sources */,
@@ -847,6 +852,7 @@
 				4C8DF42A253C520F00F2DE7C /* CardView.swift in Sources */,
 				4C40DFDB26AA203F0079D5DF /* AdaptiveGrid.swift in Sources */,
 				4CAC437F255FCCBE009FFF68 /* MainView-iOS.swift in Sources */,
+				4C016E902718C790000C320B /* TwoPlayersScoresView.swift in Sources */,
 				4C8DF3FC253B30D700F2DE7C /* MemoArtApp.swift in Sources */,
 				4C90E18A2573E92B006568FB /* DifficultyLevelConfigurationView.swift in Sources */,
 				4CD88EB92565B5570074EE39 /* SetupConfigurationSheetView.swift in Sources */,

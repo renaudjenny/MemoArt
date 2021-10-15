@@ -40,6 +40,12 @@ struct MainView: View {
                 ),
                 content: { NewHighScoreView(store: store) }
             )
+            .sheet(
+                isPresented: viewStore.binding(
+                    get: { $0.isTwoPlayersScoresPresented },
+                    send: .hideTwoPlayersScoresView
+                ), content: { TwoPlayersScoresView(store: store) }
+            )
             .navigationViewStyle(StackNavigationViewStyle())
         }
     }
