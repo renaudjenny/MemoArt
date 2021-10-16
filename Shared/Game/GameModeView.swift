@@ -16,32 +16,19 @@ struct GameModeView: View {
                     } label: { Label("Two Players", systemImage: "person.2.fill") }
                 } label: {
                     Label(
-                        "Current mode: \(viewStore.mode.description)",
+                        "\(viewStore.mode.description)",
                         systemImage: viewStore.mode.systemImage
                     )
                 }
                 .menuStyle(BorderlessButtonMenuStyle())
 
                 if case let .twoPlayers(twoPlayers) = viewStore.mode {
-                    HStack {
-                        VStack {
-                            Text("Player turn")
-                            switch twoPlayers.current {
-                            case .first: Text("First player turn").foregroundColor(.red)
-                            case .second: Text("Second player turn").foregroundColor(.blue)
-                            }
+                    VStack {
+                        switch twoPlayers.current {
+                        case .first: Text("First player turn").foregroundColor(.red)
+                        case .second: Text("Second player turn").foregroundColor(.blue)
                         }
-                        Divider().frame(maxHeight: 40)
-                        VStack {
-                            Text("Scores")
-                            HStack {
-                                Text("First: \(twoPlayers.firstPlayerDiscoveredArts.count)")
-                                    .foregroundColor(.red)
-                                Text("Second: \(twoPlayers.secondPlayerDiscoveredArts.count)")
-                                    .foregroundColor(.blue)
-                            }
-                        }
-                    }
+                    }.font(.headline)
                 }
             }
         }
@@ -49,10 +36,13 @@ struct GameModeView: View {
 }
 
 private extension GameMode {
-    var description: String {
+    var description: Text {
         switch self {
-        case .singlePlayer: return NSLocalizedString("Single player", comment: "")
-        case .twoPlayers: return NSLocalizedString("Two players", comment: "")
+        case .singlePlayer: return Text("Single player")
+        case let .twoPlayers(twoPlayers): return Text("Scores ")
+            + Text("🔴 \(twoPlayers.firstPlayerDiscoveredArts.count)").foregroundColor(.red)
+            + Text("  ")
+            + Text("🔵 \(twoPlayers.secondPlayerDiscoveredArts.count)").foregroundColor(.blue)
         }
     }
 

@@ -26,7 +26,6 @@ struct TwoPlayersScoresView: View {
                             color: .red,
                             score: twoPlayers.firstPlayerDiscoveredArts.count
                         )
-                        Divider().frame(maxHeight: 100)
                         resultView(
                             text: Text("Second Player"),
                             color: .blue,
@@ -39,14 +38,7 @@ struct TwoPlayersScoresView: View {
                     }
                     .padding()
                 }
-                .background(
-                    Image("Motif")
-                        .resizable(resizingMode: .tile)
-                        .renderingMode(.template)
-                        .foregroundColor(twoPlayers.winner?.color)
-                        .opacity(30/100)
-                        .background(twoPlayers.winner?.color.opacity(10/100))
-                )
+                .background(GameBackground(store: store.gameStore))
             }
         }
     }
