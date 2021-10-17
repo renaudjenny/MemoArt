@@ -45,6 +45,8 @@
 		4C3D9A8725AB8FA8007E3539 /* TestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 4C3D9A7425AB8FA7007E3539 /* TestPlan.xctestplan */; };
 		4C3D9A8825AB8FA8007E3539 /* TestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 4C3D9A7425AB8FA7007E3539 /* TestPlan.xctestplan */; };
 		4C40DFDB26AA203F0079D5DF /* AdaptiveGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C40DFDA26AA203F0079D5DF /* AdaptiveGrid.swift */; };
+		4C426068271CA879009B5D55 /* GameStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C426067271CA879009B5D55 /* GameStatusView.swift */; };
+		4C426069271CA879009B5D55 /* GameStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C426067271CA879009B5D55 /* GameStatusView.swift */; };
 		4C5089BB25A2248300BC5E11 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C5089B925A2248300BC5E11 /* Localizable.strings */; };
 		4C5089C525A2392E00BC5E11 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C5089B925A2248300BC5E11 /* Localizable.strings */; };
 		4C508A0F25A3B1E500BC5E11 /* Marketing+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5089D125A3AF8000BC5E11 /* Marketing+Utils.swift */; };
@@ -162,6 +164,7 @@
 		4C3D9A7325AB8FA7007E3539 /* GameCoreTests+Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GameCoreTests+Persistence.swift"; sourceTree = "<group>"; };
 		4C3D9A7425AB8FA7007E3539 /* TestPlan.xctestplan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 		4C40DFDA26AA203F0079D5DF /* AdaptiveGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveGrid.swift; sourceTree = "<group>"; };
+		4C426067271CA879009B5D55 /* GameStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatusView.swift; sourceTree = "<group>"; };
 		4C5089BA25A2248300BC5E11 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4C5089C025A2390500BC5E11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4C5089D125A3AF8000BC5E11 /* Marketing+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Marketing+Utils.swift"; sourceTree = "<group>"; };
@@ -379,6 +382,7 @@
 				4CAC43A5255FD0CE009FFF68 /* GameOverView.swift */,
 				4CE02F43256ED6BB00A925F0 /* NewGameButton.swift */,
 				4C016E8F2718C63B000C320B /* TwoPlayersScoresView.swift */,
+				4C426067271CA879009B5D55 /* GameStatusView.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -780,6 +784,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C426069271CA879009B5D55 /* GameStatusView.swift in Sources */,
 				4C90E1802573E465006568FB /* DifficultyLevel.swift in Sources */,
 				4C972B472596094B000BA475 /* FireworksView.swift in Sources */,
 				4C217ACE255F392F00A631BB /* HighScoresView.swift in Sources */,
@@ -841,6 +846,7 @@
 				4CB2125C2703B68F004CD02A /* GameBackground.swift in Sources */,
 				4C90E17F2573E465006568FB /* DifficultyLevel.swift in Sources */,
 				4C972B462596094B000BA475 /* FireworksView.swift in Sources */,
+				4C426068271CA879009B5D55 /* GameStatusView.swift in Sources */,
 				4CD0E1F62542A29900A1E0FD /* HighScoresCore.swift in Sources */,
 				4C8DF435253C5B0A00F2DE7C /* GameCore.swift in Sources */,
 				4CD88EBF2565B6690074EE39 /* SetupHighScoresSheetView.swift in Sources */,

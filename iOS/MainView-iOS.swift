@@ -53,7 +53,7 @@ struct MainView: View {
     private func toolbar(moves: Int) -> some ToolbarContent {
         Group {
             ToolbarItem(placement: .principal) {
-                Text("Moves: \(moves)")
+                GameStatusView(store: store.gameStore).animation(nil)
             }
 
             ToolbarItemGroup(placement: .navigationBarLeading) {

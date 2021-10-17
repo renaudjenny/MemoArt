@@ -30,7 +30,7 @@ struct MainView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .toolbar {
                 ToolbarItem(placement: .status) {
-                    Text("Moves: \(viewStore.game.moves)").animation(nil)
+                    GameStatusView(store: store.gameStore).animation(nil)
                 }
                 ToolbarItem {
                     NewGameButton(store: store.gameStore)

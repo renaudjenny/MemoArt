@@ -39,10 +39,7 @@ private extension GameMode {
     var description: Text {
         switch self {
         case .singlePlayer: return Text("Single player")
-        case let .twoPlayers(twoPlayers): return Text("Scores ")
-            + Text("🔴 \(twoPlayers.firstPlayerDiscoveredArts.count)").foregroundColor(.red)
-            + Text("  ")
-            + Text("🔵 \(twoPlayers.secondPlayerDiscoveredArts.count)").foregroundColor(.blue)
+        case .twoPlayers: return Text("Two players")
         }
     }
 
