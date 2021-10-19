@@ -9,9 +9,24 @@ struct GameStatusView: View {
             switch viewStore.mode {
             case .singlePlayer: Text("Moves: \(viewStore.moves)")
             case let .twoPlayers(twoPlayers):
-                Text("🔴 \(twoPlayers.firstPlayerDiscoveredArts.count)").foregroundColor(.red)
-                + Text("  ")
-                + Text("🔵 \(twoPlayers.secondPlayerDiscoveredArts.count)").foregroundColor(.blue)
+                VStack(spacing: 4) {
+                    HStack {
+                        Text("🔴 \(twoPlayers.firstPlayerDiscoveredArts.count)")
+                            .foregroundColor(.red)
+                        Text("🔵 \(twoPlayers.secondPlayerDiscoveredArts.count)")
+                            .foregroundColor(.blue)
+                    }
+                    GeometryReader { geometry in
+                        Rectangle()
+                            .foregroundColor(twoPlayers.current.color)
+                            .frame(width: geometry.size.width/2, height: 2)
+                            .offset(
+                                x: twoPlayers.current == .first ? 0 : geometry.size.width/2,
+                                y: 0
+                            )
+                    }
+                }
+                .fixedSize()
             }
         }
     }
@@ -25,7 +40,7 @@ struct GameStatusView_Previews: PreviewProvider {
                 reducer: gameReducer,
                 environment: .preview
             ))
-            GameStatusView(store: Store(
+            Preview(store: Store(
                 initialState: .mocked {
                     $0.mode = .twoPlayers(.mocked {
                         $0.firstPlayerDiscoveredArts = [.cave, .childish]
@@ -35,6 +50,21 @@ struct GameStatusView_Previews: PreviewProvider {
                 reducer: gameReducer,
                 environment: .preview
             ))
+        }
+    }
+
+    private struct Preview: View {
+        let store: Store<GameState, GameAction>
+
+        var body: some View {
+            VStack {
+                WithViewStore(store) { viewStore in
+                    GameStatusView(store: store)
+                    Button { viewStore.send(.nextPlayer, animation: .easeInOut) } label: {
+                        Text("Next player")
+                    }
+                }
+            }
         }
     }
 }
