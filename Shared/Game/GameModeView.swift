@@ -21,15 +21,6 @@ struct GameModeView: View {
                     )
                 }
                 .menuStyle(BorderlessButtonMenuStyle())
-
-                if case let .twoPlayers(twoPlayers) = viewStore.mode {
-                    VStack {
-                        switch twoPlayers.current {
-                        case .first: Text("First player turn").foregroundColor(.red)
-                        case .second: Text("Second player turn").foregroundColor(.blue)
-                        }
-                    }.font(.headline)
-                }
             }
         }
     }

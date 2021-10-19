@@ -9,7 +9,7 @@ struct GameCardView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             CardView(
-                color: .forLevel(viewStore.level),
+                color: viewStore.mode.color ?? .forLevel(viewStore.level),
                 image: card.art.image,
                 isFacedUp: card.isFaceUp,
                 accessibilityIdentifier: "card number \(card.id)",
@@ -46,6 +46,15 @@ struct GameCardView: View {
 
     private func returnCard(store: ViewStore<GameState, GameAction>) {
         withAnimation(.spring()) { store.send(.cardReturned(card.id)) }
+    }
+}
+
+private extension GameMode {
+    var color: Color? {
+        switch self {
+        case .singlePlayer: return nil
+        case let .twoPlayers(twoPlayers): return twoPlayers.current.color
+        }
     }
 }
 

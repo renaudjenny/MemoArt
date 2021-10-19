@@ -10,7 +10,7 @@ struct MainView: View {
         WithViewStore(store) { viewStore in
             ZStack {
                 VStack {
-                    GameModeView(store: store.gameStore).frame(maxWidth: 300)
+                    GameModeView(store: store.gameStore).frame(maxWidth: 300).padding()
                     LazyHGrid(rows: gridItems) {
                         ForEach(viewStore.game.cards) {
                             GameCardView(store: store.gameStore, card: $0)
