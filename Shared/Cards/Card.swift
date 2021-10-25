@@ -26,6 +26,7 @@ enum Art: String, CaseIterable, Codable {
     case fruitArt
     case painting
     case miki
+    case cercles
 
     var image: Image {
         switch self {
@@ -48,6 +49,7 @@ enum Art: String, CaseIterable, Codable {
         case .fruitArt: return Image("Fruit Art")
         case .painting: return Image("Painting")
         case .miki: return Image("Miki")
+        case .cercles: return Image("Cercles")
         }
     }
 
@@ -71,7 +73,8 @@ enum Art: String, CaseIterable, Codable {
         case .pattern: return NSLocalizedString("Pattern", comment: "Pattern art style")
         case .fruitArt: return NSLocalizedString("Fruit Art", comment: "Fruit Art style")
         case .painting: return NSLocalizedString("Painting", comment: "Painting art style")
-        case .miki: return NSLocalizedString("Miki", comment: "Miki the cow art style")
+        case .miki: return NSLocalizedString("Miki the cow", comment: "Miki the cow art style")
+        case .cercles: return NSLocalizedString("Cercles", comment: "Cercles art style")
         }
     }
 }
