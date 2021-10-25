@@ -1,17 +1,23 @@
 /* No comment provided by engineer. */
-"You have just changed the difficulty level, but there is a game currently in progress\nDo you want to start a new game? You will loose your current progress then!" = "Vous venez de changer le niveau de difficulté alors qu'il y a une partie en cours\nCela va lancer une nouvelle partie, vous allez perdre votre progression !";
-
-/* No comment provided by engineer. */
 "/%@" = "/%@";
 
 /* No comment provided by engineer. */
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@ points" = "%@ points";
+
+/* No comment provided by engineer. */
 "❌" = "❌";
 
 /* No comment provided by engineer. */
 "⭐️ Bravo ⭐️" = "⭐️ Bravo ⭐️";
+
+/* No comment provided by engineer. */
+"🔴 %@" = "🔴 %@";
+
+/* No comment provided by engineer. */
+"🔵 %@" = "🔵 %@";
 
 /* No comment provided by engineer. */
 "🥇" = "🥇";
@@ -64,6 +70,9 @@
 /* Cave art style */
 "Cave" = "Peinture rupestre";
 
+/* Cercles art style */
+"Cercles" = "Cercles";
+
 /* Charcoal art style */
 "Charcoal" = "Fusain";
 
@@ -75,6 +84,9 @@
 
 /* No comment provided by engineer. */
 "Choose the cards you want to play with" = "Choisissez les cartes avec lesquelles vous voulez jouer";
+
+/* No comment provided by engineer. */
+"Close" = "Fermer";
 
 /* No comment provided by engineer. */
 "Configuration" = "Configuration";
@@ -97,6 +109,12 @@
 /* No comment provided by engineer. */
 "First" = "Première place";
 
+/* No comment provided by engineer. */
+"First Player" = "Premier joueur·euse";
+
+/* No comment provided by engineer. */
+"First player won!" = "Victoire du·de la premier·ère joueur·euse !";
+
 /* Fruit Art style */
 "Fruit Art" = "Street Art";
 
@@ -113,19 +131,28 @@
 "Hard" = "Difficile";
 
 /* No comment provided by engineer. */
+"Hello world!" = "Bonjour le monde !";
+
+/* No comment provided by engineer. */
 "Hello, World!" = "Hello, World!";
 
-/* No comment provided by engineer. */
-"High Scores" = "Meilleurs Scores";
-
-/* No comment provided by engineer. */
+/* No comment provided by engineer.No comment provided by engineer. */
 "High Scores" = "Meilleurs Scores";
 
 /* Impressionism art style */
 "Impressionism" = "Impressionnisme";
 
 /* No comment provided by engineer. */
+"It's a draw!" = "C’est un match nul !";
+
+/* No comment provided by engineer. */
+"Level: %@ - %@ cards" = "Niveau : %1$@ - %2$@ cartes";
+
+/* No comment provided by engineer. */
 "MemoArt" = "MemoArt";
+
+/* Miki the cow art style */
+"Miki the cow" = "Miki la vache";
 
 /* Modern Art style */
 "Modern Art" = "Art moderne";
@@ -138,6 +165,9 @@
 
 /* No comment provided by engineer. */
 "New game" = "Nouvelle partie";
+
+/* No comment provided by engineer. */
+"Next player" = "Joueur·euse suivant·e";
 
 /* No comment provided by engineer. */
 "Normal" = "Normal";
@@ -161,10 +191,19 @@
 "Second" = "Seconde place";
 
 /* No comment provided by engineer. */
+"Second Player" = "Deuxième joueur·euse";
+
+/* No comment provided by engineer. */
+"Second player won!" = "Victoire du·de la premier·ère joueur·euse !";
+
+/* No comment provided by engineer. */
 "selected" = "sélectionné";
 
 /* Shadow art style */
 "Shadow" = "Silhouette";
+
+/* No comment provided by engineer. */
+"Single player" = "Un·e joueur·euse";
 
 /* Still Life art style */
 "Still Life" = "Nature morte";
@@ -173,10 +212,16 @@
 "Third" = "Troisième place";
 
 /* No comment provided by engineer. */
+"Two players" = "Deux joureur·euse·s";
+
+/* No comment provided by engineer. */
 "unselected" = "désélectionné";
 
 /* Watercolor art style */
 "Watercolor" = "Aquarelle";
+
+/* No comment provided by engineer. */
+"You have just changed the difficulty level, but there is a game currently in progress\nDo you want to start a new game? You will loose your current progress then!" = "Vous venez de changer le niveau de difficulté alors qu'il y a une partie en cours\nCela va lancer une nouvelle partie, vous allez perdre votre progression !";
 
 /* No comment provided by engineer. */
 "You've reached the limit.\nYou need %@ cards or more to play." = "Vous avez atteint la limite.\nVous avez besoin d’au moins %@ cartes pour jouer.";
