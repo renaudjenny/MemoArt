@@ -10,10 +10,10 @@ struct GameModeView: View {
                 Menu {
                     Button {
                         viewStore.send(.switchMode(.singlePlayer))
-                    } label: { Label("Single Player", systemImage: "person.fill") }
+                    } label: { Label("Single player", systemImage: "person.fill") }
                     Button {
                         viewStore.send(.switchMode(.twoPlayers(.init())))
-                    } label: { Label("Two Players", systemImage: "person.2.fill") }
+                    } label: { Label("Two players", systemImage: "person.2.fill") }
                 } label: {
                     Label(
                         "\(viewStore.mode.description)",
@@ -22,6 +22,7 @@ struct GameModeView: View {
                 }
                 .menuStyle(BorderlessButtonMenuStyle())
             }
+            .animation(nil)
         }
     }
 }

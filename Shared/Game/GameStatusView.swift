@@ -24,6 +24,7 @@ struct GameStatusView: View {
                                 x: twoPlayers.current == .first ? 0 : geometry.size.width/2,
                                 y: 0
                             )
+                            .animation(.easeInOut, value: viewStore.mode)
                     }
                 }
                 .fixedSize()
@@ -60,7 +61,7 @@ struct GameStatusView_Previews: PreviewProvider {
             VStack {
                 WithViewStore(store) { viewStore in
                     GameStatusView(store: store)
-                    Button { viewStore.send(.nextPlayer, animation: .easeInOut) } label: {
+                    Button { viewStore.send(.nextPlayer) } label: {
                         Text("Next player")
                     }
                 }
