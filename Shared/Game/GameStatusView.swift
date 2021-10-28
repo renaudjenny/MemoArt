@@ -16,13 +16,14 @@ struct GameStatusView: View {
                         Text("🔵 \(twoPlayers.secondPlayerDiscoveredArts.count)")
                             .foregroundColor(.blue)
                     }
+
                     GeometryReader { geometry in
                         Rectangle()
                             .foregroundColor(twoPlayers.current.color)
                             .frame(width: geometry.size.width/2, height: 2)
                             .offset(
                                 x: twoPlayers.current == .first ? 0 : geometry.size.width/2,
-                                y: 0
+                                y: geometry.size.height - 3
                             )
                             .animation(.easeInOut, value: viewStore.mode)
                     }
@@ -51,6 +52,20 @@ struct GameStatusView_Previews: PreviewProvider {
                 reducer: gameReducer,
                 environment: .preview
             ))
+            VStack {
+                GameStatusView(store: Store(
+                    initialState: .mocked {
+                        $0.mode = .twoPlayers(.mocked {
+                            $0.firstPlayerDiscoveredArts = [.cave, .childish]
+                            $0.secondPlayerDiscoveredArts = [.shadow]
+                        })
+                    },
+                    reducer: gameReducer,
+                    environment: .preview
+                ))
+            }
+            .frame(height: 50)
+            .background(Color.yellow)
         }
     }
 
