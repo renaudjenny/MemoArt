@@ -9,21 +9,14 @@ struct MainView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             ZStack {
-                VStack {
-                    HStack {
-                        GameModeView(store: store.gameStore).frame(maxWidth: 200)
-                        GameStatusView(store: store.gameStore).animation(nil)
-                    }.padding()
-
-                    LazyHGrid(rows: gridItems) {
-                        ForEach(viewStore.game.cards) {
-                            GameCardView(store: store.gameStore, card: $0)
-                        }
+                LazyHGrid(rows: gridItems) {
+                    ForEach(viewStore.game.cards) {
+                        GameCardView(store: store.gameStore, card: $0)
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .padding()
-                    .padding(.bottom)
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding()
+                .padding(.bottom)
 
                 GameOverView(store: store.gameStore)
                     .padding()
@@ -33,6 +26,12 @@ struct MainView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .toolbar {
+                ToolbarItem {
+                    GameModeView(store: store.gameStore).frame(maxWidth: 200)
+                }
+                ToolbarItem {
+                    GameStatusView(store: store.gameStore).animation(nil)
+                }
                 ToolbarItem {
                     NewGameButton(store: store.gameStore)
                 }

@@ -9,7 +9,7 @@ struct GameStatusView: View {
             switch viewStore.mode {
             case .singlePlayer: Text("Moves: \(viewStore.moves)")
             case let .twoPlayers(twoPlayers):
-                VStack(spacing: 4) {
+                ZStack {
                     HStack {
                         Text("🔴 \(twoPlayers.firstPlayerDiscoveredArts.count)")
                             .foregroundColor(.red)
@@ -18,14 +18,18 @@ struct GameStatusView: View {
                     }
 
                     GeometryReader { geometry in
-                        Rectangle()
-                            .foregroundColor(twoPlayers.current.color)
-                            .frame(width: geometry.size.width/2, height: 2)
-                            .offset(
-                                x: twoPlayers.current == .first ? 0 : geometry.size.width/2,
-                                y: geometry.size.height - 3
-                            )
-                            .animation(.easeInOut, value: viewStore.mode)
+                        VStack {
+                            Spacer()
+                            Rectangle()
+                                .foregroundColor(twoPlayers.current.color)
+                                .frame(width: geometry.size.width/2, height: 2)
+                                .padding(.vertical)
+                                .offset(
+                                    x: twoPlayers.current == .first ? 0 : geometry.size.width/2,
+                                    y: 0
+                                )
+                                .animation(.easeInOut, value: viewStore.mode)
+                        }
                     }
                 }
                 .fixedSize()
