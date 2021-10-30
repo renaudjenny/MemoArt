@@ -1,11 +1,11 @@
-enum GameMode: Equatable {
-    struct TwoPlayers: Equatable {
+enum GameMode: Equatable, Codable {
+    struct TwoPlayers: Equatable, Codable {
         var current: Player = .first
         var firstPlayerDiscoveredArts: [Art] = []
         var secondPlayerDiscoveredArts: [Art] = []
     }
 
-    enum Player {
+    enum Player: Codable {
         case first
         case second
     }

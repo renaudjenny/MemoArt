@@ -16,7 +16,7 @@ struct GameState: Equatable, Codable {
     func isCardValid(id: Int) -> Bool { cards.count > id }
 
     private enum CodingKeys: CodingKey {
-        case moves, cards, discoveredArts, isGameOver, level
+        case moves, cards, discoveredArts, isGameOver, level, mode
     }
 }
 
