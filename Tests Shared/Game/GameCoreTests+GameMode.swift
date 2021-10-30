@@ -10,9 +10,19 @@ extension GameCoreTests {
             environment: .mocked(scheduler: scheduler)
         )
 
+        let mode: GameMode = .twoPlayers(.init())
         store.assert(
-            .send(.switchMode(.twoPlayers(.init()))) {
-                $0.mode = .twoPlayers(.init())
+            .send(.gameModeSelected(mode)),
+            .receive(.switchMode(mode)) {
+                $0.mode = mode
+            },
+            .receive(.new) {
+                $0.mode = .twoPlayers(.mocked(modifier: { $0.nextPlayer() }))
+            },
+            .receive(.clearBackup),
+            .do { self.scheduler.advance(by: .seconds(0.5)) },
+            .receive(.shuffleCards) {
+                $0.cards = .predicted
             }
         )
     }

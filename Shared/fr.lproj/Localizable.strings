@@ -229,3 +229,5 @@
 /* No comment provided by engineer. */
 "Your name" = "Votre prénom";
 
+/* No comment provided by engineer. */
+"This will reset the current game, you will loose your progress!" = "Votre partie recommencera du début. Vous allez perdre votre progression !";

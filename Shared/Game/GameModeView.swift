@@ -9,10 +9,10 @@ struct GameModeView: View {
             VStack {
                 Menu {
                     Button {
-                        viewStore.send(.switchMode(.singlePlayer))
+                        viewStore.send(.gameModeSelected(.singlePlayer))
                     } label: { Label("Single player", systemImage: "person.fill") }
                     Button {
-                        viewStore.send(.switchMode(.twoPlayers(.init())))
+                        viewStore.send(.gameModeSelected(.twoPlayers(.init())))
                     } label: { Label("Two players", systemImage: "person.2.fill") }
                 } label: {
                     Label(

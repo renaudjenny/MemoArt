@@ -30,6 +30,7 @@ enum GameAction: Equatable {
     case newGameButtonTapped
     case newGameAlertCancelTapped
     case newGameAlertConfirmTapped
+    case gameModeSelected(GameMode)
     case switchMode(GameMode)
     case nextPlayer
 }
@@ -131,9 +132,25 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
     case .newGameAlertConfirmTapped:
         state.newGameAlert = nil
         return Effect(value: .new)
-    case let .switchMode(mode):
-        state.mode = mode
+    case let .gameModeSelected(mode):
+        guard state.moves > 0 && !state.isGameOver else {
+            // No need to present this alert, do a new game right now
+            return Effect(value: .switchMode(mode))
+        }
+        state.newGameAlert = AlertState(
+            title: TextState("New game"),
+            message: TextState("This will reset the current game, you will loose your progress!"),
+            primaryButton: .cancel(TextState("Cancel")),
+            secondaryButton: .destructive(
+                TextState("Reset game"),
+                action: .send(.switchMode(mode))
+            )
+        )
         return .none
+    case let .switchMode(mode):
+        state.newGameAlert = nil
+        state.mode = mode
+        return Effect(value: .new)
     case .nextPlayer:
         if case let .twoPlayers(twoPlayers) = state.mode {
             var twoPlayers = twoPlayers
