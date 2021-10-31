@@ -6,7 +6,7 @@ struct Card: Identifiable, Equatable, Codable {
     var isFaceUp: Bool
 }
 
-enum Art: String, CaseIterable, Codable {
+enum Art: String, CaseIterable, Codable, Identifiable {
     case artDeco
     case arty
     case cave
@@ -77,6 +77,8 @@ enum Art: String, CaseIterable, Codable {
         case .cercles: return NSLocalizedString("Cercles", comment: "Cercles art style")
         }
     }
+
+    var id: String { rawValue }
 }
 
 extension Array where Element == Card {

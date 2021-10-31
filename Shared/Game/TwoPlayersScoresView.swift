@@ -24,12 +24,12 @@ struct TwoPlayersScoresView: View {
                         resultView(
                             text: Text("First Player"),
                             color: .red,
-                            score: twoPlayers.firstPlayerDiscoveredArts.count
+                            arts: twoPlayers.firstPlayerDiscoveredArts
                         )
                         resultView(
                             text: Text("Second Player"),
                             color: .blue,
-                            score: twoPlayers.secondPlayerDiscoveredArts.count
+                            arts: twoPlayers.secondPlayerDiscoveredArts
                         )
                     }
                     Spacer()
@@ -43,18 +43,34 @@ struct TwoPlayersScoresView: View {
         }
     }
 
-    private func resultView(text: Text, color: Color, score: Int) -> some View {
-        ZStack {
-            color.opacity(60/100)
-            VStack {
-                text.font(.subheadline)
-                Text("\(score) points")
+    private func resultView(text: Text, color: Color, arts: [Art]) -> some View {
+        VStack {
+            ZStack {
+                color.opacity(60/100)
+                VStack {
+                    text.font(.subheadline)
+                    Text("\(arts.count) points")
+                }
+                .padding()
             }
-            .padding()
+            .fixedSize(horizontal: false, vertical: true)
+            .cornerRadius(20)
+            .padding(6)
+            ZStack {
+                ForEach(Array(arts.enumerated()), id: \.0) { index, art in
+                    CardView(
+                        color: color,
+                        image: art.image,
+                        isFacedUp: true,
+                        accessibilityIdentifier: "\(text) discovered art: \(art.description)",
+                        accessibilityFaceDownText: Text("\(text) winning card"),
+                        accessibilityFaceUpText: Text("\(text) discovered art: \(art.description)")
+                    )
+                        .frame(width: 80, height: 80)
+                        .offset(x: 0, y: CGFloat(20 * index))
+                }
+            }
         }
-        .fixedSize(horizontal: false, vertical: true)
-        .cornerRadius(20)
-        .padding(6)
     }
 }
 
