@@ -3,13 +3,13 @@ import ComposableArchitecture
 
 struct TwoPlayersScoresView: View {
     let store: Store<AppState, AppAction>
-
+    
     var body: some View {
         WithViewStore(store) { viewStore in
             if case let .twoPlayers(twoPlayers) = viewStore.game.mode {
                 VStack {
                     VictoryCardsView()
-
+                    
                     VStack {
                         switch twoPlayers.winner {
                         case .first: Text("First player won!")
@@ -19,7 +19,7 @@ struct TwoPlayersScoresView: View {
                     }
                     .font(.title)
                     .padding()
-
+                    
                     HStack(spacing: 0) {
                         resultView(
                             text: Text("First Player"),
@@ -42,7 +42,7 @@ struct TwoPlayersScoresView: View {
             }
         }
     }
-
+    
     private func resultView(text: Text, color: Color, arts: [Art]) -> some View {
         VStack {
             ZStack {
@@ -56,19 +56,28 @@ struct TwoPlayersScoresView: View {
             .fixedSize(horizontal: false, vertical: true)
             .cornerRadius(20)
             .padding(6)
-            ZStack {
-                ForEach(Array(arts.enumerated()), id: \.0) { index, art in
-                    CardView(
-                        color: color,
-                        image: art.image,
-                        isFacedUp: true,
-                        accessibilityIdentifier: "\(text) discovered art: \(art.description)",
-                        accessibilityFaceDownText: Text("\(text) winning card"),
-                        accessibilityFaceUpText: Text("\(text) discovered art: \(art.description)")
-                    )
-                        .frame(width: 80, height: 80)
-                        .offset(x: 0, y: CGFloat(20 * index))
+            GeometryReader { geometry in
+                ZStack {
+                    ForEach(Array(arts.enumerated()), id: \.0) { index, art in
+                        CardView(
+                            color: color,
+                            image: art.image,
+                            isFacedUp: true,
+                            accessibilityIdentifier: "\(text) discovered art: \(art.description)",
+                            accessibilityFaceDownText: Text("\(text) winning card"),
+                            accessibilityFaceUpText: Text("\(text) discovered art: \(art.description)")
+                        )
+                            .frame(width: 80, height: 80)
+                            .rotationEffect(
+                                .radians(.pi/16 * (index.isMultiple(of: 2) ? -1 : 1))
+                            )
+                            .offset(
+                                x: 20 * (index.isMultiple(of: 2) ? -1 : 1),
+                                y: geometry.size.height/CGFloat(arts.count * 2 + 1) * CGFloat(index)
+                            )
+                    }
                 }
+                .frame(width: geometry.size.width, alignment: .center)
             }
         }
     }
@@ -101,7 +110,7 @@ extension GameMode.TwoPlayers {
     static var finishedGame: Self {
         .mocked {
             $0.firstPlayerDiscoveredArts = [.watercolor, .geometric, .artDeco]
-            $0.secondPlayerDiscoveredArts = [.impressionism, .gradient, .shadow, .childish]
+            $0.secondPlayerDiscoveredArts = [.impressionism, .gradient, .shadow, .childish, .cercles, .shadow, .miki, .arty]
         }
     }
 }
