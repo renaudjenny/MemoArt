@@ -56,6 +56,7 @@ struct TwoPlayersScoresView: View {
             .fixedSize(horizontal: false, vertical: true)
             .cornerRadius(20)
             .padding(6)
+
             GeometryReader { geometry in
                 ZStack {
                     ForEach(Array(arts.enumerated()), id: \.0) { index, art in
@@ -73,13 +74,23 @@ struct TwoPlayersScoresView: View {
                             )
                             .offset(
                                 x: 20 * (index.isMultiple(of: 2) ? -1 : 1),
-                                y: geometry.size.height/CGFloat(arts.count * 2 + 1) * CGFloat(index)
+                                y: cardOffsetY(
+                                    index: index,
+                                    count: arts.count,
+                                    height: geometry.size.height
+                                )
                             )
                     }
                 }
-                .frame(width: geometry.size.width, alignment: .center)
+                .frame(width: geometry.size.width, height: geometry.size.height, alignment: .top)
             }
         }
+    }
+
+    private func cardOffsetY(index: Int, count: Int, height: CGFloat) -> CGFloat {
+        let index = CGFloat(index)
+        let count = CGFloat(count)
+        return index * (height - 80)/(count - 1)
     }
 }
 
@@ -110,7 +121,7 @@ extension GameMode.TwoPlayers {
     static var finishedGame: Self {
         .mocked {
             $0.firstPlayerDiscoveredArts = [.watercolor, .geometric, .artDeco]
-            $0.secondPlayerDiscoveredArts = [.impressionism, .gradient, .shadow, .childish, .cercles, .shadow, .miki, .arty]
+            $0.secondPlayerDiscoveredArts = [.impressionism, .gradient, .shadow, .childish, .cave]
         }
     }
 }
