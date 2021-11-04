@@ -3,6 +3,7 @@ import ComposableArchitecture
 
 struct TwoPlayersScoresView: View {
     let store: Store<AppState, AppAction>
+    @State private var animate = false
     
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -39,6 +40,7 @@ struct TwoPlayersScoresView: View {
                     .padding()
                 }
                 .background(GameBackground(store: store.gameStore))
+                .onAppear { animate = true }
             }
         }
     }
@@ -69,16 +71,17 @@ struct TwoPlayersScoresView: View {
                             accessibilityFaceUpText: Text("\(text) discovered art: \(art.description)")
                         )
                             .frame(width: 80, height: 80)
-                            .rotationEffect(
-                                .radians(.pi/16 * (index.isMultiple(of: 2) ? -1 : 1))
-                            )
+                            .rotationEffect(cardAngle(index: index))
                             .offset(
-                                x: 20 * (index.isMultiple(of: 2) ? -1 : 1),
-                                y: cardOffsetY(
+                                cardOffset(
                                     index: index,
                                     count: arts.count,
                                     height: geometry.size.height
                                 )
+                            )
+                            .animation(
+                                .easeInOut(duration: 5).repeatForever(autoreverses: true),
+                                value: animate
                             )
                     }
                 }
@@ -87,10 +90,15 @@ struct TwoPlayersScoresView: View {
         }
     }
 
-    private func cardOffsetY(index: Int, count: Int, height: CGFloat) -> CGFloat {
+    private func cardAngle(index: Int) -> Angle {
+        .radians(.pi/16 * (index.isMultiple(of: 2) ? -1 : 1) * (animate ? -1 : 1))
+    }
+
+    private func cardOffset(index: Int, count: Int, height: CGFloat) -> CGSize {
+        let width: CGFloat = 20 * (index.isMultiple(of: 2) ? -1 : 1) * (animate ? -1 : 1)
         let index = CGFloat(index)
         let count = CGFloat(count)
-        return index * (height - 80)/(count - 1)
+        return CGSize(width: width, height: index * (height - 80)/(count - 1))
     }
 }
 
@@ -121,7 +129,7 @@ extension GameMode.TwoPlayers {
     static var finishedGame: Self {
         .mocked {
             $0.firstPlayerDiscoveredArts = [.watercolor, .geometric, .artDeco]
-            $0.secondPlayerDiscoveredArts = [.impressionism, .gradient, .shadow, .childish, .cave]
+            $0.secondPlayerDiscoveredArts = [.impressionism, .gradient, .shadow, .cave, .arty]
         }
     }
 }
