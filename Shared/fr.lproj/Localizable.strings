@@ -5,7 +5,13 @@
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@ discovered art: %@" = "%1$@ arts découverts: %2$@";
+
+/* No comment provided by engineer. */
 "%@ points" = "%@ points";
+
+/* No comment provided by engineer. */
+"%@ winning card" = "%@ carte trouvée";
 
 /* No comment provided by engineer. */
 "❌" = "❌";
