@@ -75,25 +75,14 @@ struct MemoArtApp: App {
                 ) {
                     AboutSheetView(store: store)
                 }
-                #if os(macOS)
-                .background(EmptyView().alert(
-                    store.gameStore.scope(state: \.newGameAlert),
-                    dismiss: .newGameAlertCancelTapped
-                ))
-                .background(EmptyView().alert(
-                    store.configurationStore.scope(state: \.changeLevelAlert),
-                    dismiss: .changeLevelAlertCancelTapped
-                ))
-                #else
-                .alert(
-                    store.gameStore.scope(state: \.newGameAlert),
-                    dismiss: .newGameAlertCancelTapped
-                )
                 .alert(
                     store.configurationStore.scope(state: \.changeLevelAlert),
                     dismiss: .changeLevelAlertCancelTapped
                 )
-                #endif
+                .alert(
+                    store.gameStore.scope(state: \.newGameAlert),
+                    dismiss: .newGameAlertCancelTapped
+                )
                 .onAppear { viewStore.send(.loadGame) }
                 .onAppear { viewStore.send(.loadHighScores) }
             }

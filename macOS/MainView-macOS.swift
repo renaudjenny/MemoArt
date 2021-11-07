@@ -52,7 +52,7 @@ struct MainView: View {
             }
             .modifier(SetupConfigurationSheetView(store: store))
             .modifier(SetupHighScoresSheetView(store: store))
-            .background(EmptyView().sheet(
+            .sheet(
                 isPresented: viewStore.binding(
                     get: { $0.isNewHighScoreEntryPresented },
                     send: .newHighScoreEntered
@@ -61,7 +61,13 @@ struct MainView: View {
                     NewHighScoreView(store: store)
                         .padding()
                 }
-            ))
+            )
+            .sheet(
+                isPresented: viewStore.binding(
+                    get: { $0.isTwoPlayersScoresPresented },
+                    send: .hideTwoPlayersScoresView
+                ), content: { TwoPlayersScoresView(store: store) }
+            )
             .background(GameBackground(store: store.gameStore))
             .onAppear { NSWindow.allowsAutomaticWindowTabbing = false }
         }
