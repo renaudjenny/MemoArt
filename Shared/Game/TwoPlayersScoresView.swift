@@ -4,13 +4,13 @@ import ComposableArchitecture
 struct TwoPlayersScoresView: View {
     let store: Store<AppState, AppAction>
     @State private var animate = false
-    
+
     var body: some View {
         WithViewStore(store) { viewStore in
             if case let .twoPlayers(twoPlayers) = viewStore.game.mode {
                 VStack {
                     VictoryCardsView()
-                    
+
                     VStack {
                         switch twoPlayers.winner {
                         case .first: Text("First player won!")
@@ -20,7 +20,7 @@ struct TwoPlayersScoresView: View {
                     }
                     .font(.title)
                     .padding()
-                    
+
                     HStack(spacing: 0) {
                         resultView(
                             text: Text("First Player"),
@@ -40,11 +40,11 @@ struct TwoPlayersScoresView: View {
                     .padding()
                 }
                 .background(GameBackground(store: store.gameStore))
-                .onAppear { animate = true }
+                .onAppear { DispatchQueue.main.async { animate = true } }
             }
         }
     }
-    
+
     private func resultView(text: Text, color: Color, arts: [Art]) -> some View {
         VStack {
             ZStack {
