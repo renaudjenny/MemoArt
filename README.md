@@ -17,6 +17,7 @@
 * 🃏 If you have some favourite designs, you can select them so as to play with them only!
 * 🧮 There is a move counter, allowing you to track your real-time progress, in order to improve your technique, game after game. Obviously, the less moves you make, the best you are!
 * 🏆 You can register and visualize your top 10 High Scores for each difficulty level.
+* 🆚 Two players mode available. Who's gonna find the more pairs?
 * 💸 This application is available for iOS (iPhone and iPad) and MacOS for free, and without ads.
 
 ## Icons and illustrations
