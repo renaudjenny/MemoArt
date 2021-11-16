@@ -38,6 +38,7 @@ struct GameStatusView: View {
     }
 }
 
+#if DEBUG
 struct GameStatusView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -88,3 +89,4 @@ struct GameStatusView_Previews: PreviewProvider {
         }
     }
 }
+#endif

@@ -43,6 +43,7 @@ private extension GameMode {
     }
 }
 
+#if DEBUG
 struct GameMoveView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -68,3 +69,4 @@ struct GameMoveView_Previews: PreviewProvider {
         }
     }
 }
+#endif
