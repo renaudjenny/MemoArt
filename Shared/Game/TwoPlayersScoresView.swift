@@ -98,7 +98,8 @@ struct TwoPlayersScoresView: View {
         let width: CGFloat = 20 * (index.isMultiple(of: 2) ? -1 : 1) * (animate ? -1 : 1)
         let index = CGFloat(index)
         let count = CGFloat(count)
-        return CGSize(width: width, height: index * (height - 80)/(count - 1))
+        let height = count > 2 ? index * (height - 80)/(count - 1) : height/4
+        return CGSize(width: width, height: height)
     }
 }
 
