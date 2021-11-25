@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/renaudjenny/MarketingScreenshots",
         "state": {
           "branch": null,
-          "revision": "0ea6be6235141bd2ac7a46c1f3924b32771ee18f",
-          "version": "0.0.8"
+          "revision": "168f97677b32f300074ec94e20d4109b6648d5bb",
+          "version": "0.0.10"
         }
       },
       {
@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/MaxDesiatov/XMLCoder.git",
         "state": {
           "branch": null,
-          "revision": "887de88b37b2d691d67db950770e09776229cf6d",
-          "version": "0.13.0"
+          "revision": "f30119af03996939cc4f54e0bf0dda9f88a84da5",
+          "version": "0.13.1"
         }
       }
     ]
