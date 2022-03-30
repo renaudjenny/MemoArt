@@ -1,5 +1,6 @@
 import SwiftUI
 import Combine
+import SwiftUICardGame
 
 struct VictoryCardsView: View {
     @State private var isCardsFacedUp = Array(repeating: Bool.random(), count: 5)
@@ -12,20 +13,20 @@ struct VictoryCardsView: View {
             Spacer()
             ZStack {
                 ForEach(0..<5) { cardNumber in
-                    CardView(
+                    CardView(ImageCard(
                         color: colors[cardNumber],
                         image: images[cardNumber],
                         isFacedUp: isCardsFacedUp[cardNumber],
                         accessibilityIdentifier: "card number \(cardNumber)",
-                        accessibilityFaceDownText: Text(
+                        accessibilityFacedDownText: Text(
                             "Card in animation faced down",
                             comment: "Card for Victory animation description (for screen reader)"
                         ),
-                        accessibilityFaceUpText: Text(
+                        accessibilityFacedUpText: Text(
                             "Card in animation faced up",
                             comment: "Card for Victory animation description (for screen reader)"
                         )
-                    )
+                    ))
                     .frame(width: 80, height: 80)
                     .rotationEffect(angle(cardNumber: cardNumber))
                     .offset(offset(cardNumber: cardNumber))

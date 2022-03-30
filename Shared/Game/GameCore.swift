@@ -64,6 +64,7 @@ let gameReducer = Reducer<GameState, GameAction, GameEnvironment> { state, actio
     case .shuffleCards:
         return .none
     case let .cardReturned(cardId):
+        guard !state.cards[cardId].isFaceUp else { return .none } // FIXME: add a test for this one.
         state.cards[cardId].isFaceUp = true
         let facedUpCards = state.cards
             .filter { !state.discoveredArts.contains($0.art) }

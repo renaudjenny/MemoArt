@@ -1,5 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
+import SwiftUICardGame
 
 struct GameCardView: View {
     let store: Store<GameState, GameAction>
@@ -8,22 +9,22 @@ struct GameCardView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            CardView(
+            CardView(ImageCard(
                 color: viewStore.mode.color ?? .forLevel(viewStore.level),
                 image: card.art.image,
                 isFacedUp: card.isFaceUp,
                 accessibilityIdentifier: "card number \(card.id)",
-                accessibilityFaceDownText: Text(
+                accessibilityFacedDownText: Text(
                     "Card number \(card.id)",
                     comment: "The Card number when the card is faced down for the game (for screen reader)"
                 ),
-                accessibilityFaceUpText: Text(
+                accessibilityFacedUpText: Text(
                     "Card with the style \(card.art.description)",
                     comment: "The Card image description (for screen reader)"
                 ),
                 action: { returnCard(store: viewStore) }
-            )
-                .overlay(border(mode: viewStore.state.mode))
+            ))
+            .overlay(border(mode: viewStore.state.mode))
         }
     }
 
@@ -45,7 +46,7 @@ struct GameCardView: View {
     }
 
     private func returnCard(store: ViewStore<GameState, GameAction>) {
-        store.send(.cardReturned(card.id), animation: .spring())
+        store.send(.cardReturned(card.id))
     }
 }
 
