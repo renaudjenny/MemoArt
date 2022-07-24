@@ -36,7 +36,7 @@ struct MemoArtApp: App {
             initialState: AppState(configuration: loadConfiguration()),
             reducer: appReducer,
             environment: AppEnvironment(
-                mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
+                mainQueue: .main,
                 saveGame: saveGame,
                 loadGame: usePredictedArts ? predictedLoadGame : loadGame,
                 clearGameBackup: clearGameBackup,
@@ -126,6 +126,35 @@ private extension AppState {
             isAboutPresented: isAboutPresented
         )
     }
+
+    #if DEBUG
+    static var almostFinishedTwoPlayersGame: AppState {
+        let cards: [Card] = .predicted(isFaceUp: true, level: .hard).reduce(into: [], { cards, card in
+            if card.art == .artDeco && !cards.contains(where: { $0.art == .artDeco }) {
+                var card = card
+                card.isFaceUp = false
+                cards.append(card)
+            } else {
+                cards.append(card)
+            }
+        })
+        let firstPlayerDiscoveredArts = Array(Art.allCases[1...11])
+        let secondPlayerDiscoveredArts = Array(Art.allCases[12...12])
+        return AppState(
+            game: GameState(
+                cards: cards,
+                discoveredArts: firstPlayerDiscoveredArts + secondPlayerDiscoveredArts,
+                isGameOver: false,
+                level: .hard,
+                mode: .twoPlayers(GameMode.TwoPlayers(
+                    current: .first,
+                    firstPlayerDiscoveredArts: firstPlayerDiscoveredArts,
+                    secondPlayerDiscoveredArts: secondPlayerDiscoveredArts
+                ))
+            )
+        )
+    }
+    #endif
 }
 
 private extension AppAction {
