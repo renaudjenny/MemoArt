@@ -14,7 +14,6 @@
 		4C217AA1255F38FF00A631BB /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF439253C5B2900F2DE7C /* AppCore.swift */; };
 		4C217AA5255F390300A631BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8DF3FF253B30DB00F2DE7C /* Assets.xcassets */; };
 		4C217AA9255F390900A631BB /* AddCardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC92F592545E5C600DAC4AB /* AddCardStyle.swift */; };
-		4C217AAD255F390C00A631BB /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF429253C520F00F2DE7C /* ImageCard.swift */; };
 		4C217AB1255F390F00A631BB /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF43E253C5B9900F2DE7C /* Card.swift */; };
 		4C217AB9255F391700A631BB /* ConfigurationCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84849F2555F35900FBDEC2 /* ConfigurationCore.swift */; };
 		4C217ABA255F391A00A631BB /* ArtsSelectionConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8484AA2556DF1C00FBDEC2 /* ArtsSelectionConfigurationView.swift */; };
@@ -63,7 +62,6 @@
 		4C86574D2551FAB30040EA04 /* RenaudJennyAboutView in Frameworks */ = {isa = PBXBuildFile; productRef = 4C86574C2551FAB30040EA04 /* RenaudJennyAboutView */; };
 		4C8DF3FC253B30D700F2DE7C /* MemoArtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF3FB253B30D700F2DE7C /* MemoArtApp.swift */; };
 		4C8DF400253B30DB00F2DE7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8DF3FF253B30DB00F2DE7C /* Assets.xcassets */; };
-		4C8DF42A253C520F00F2DE7C /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF429253C520F00F2DE7C /* ImageCard.swift */; };
 		4C8DF430253C59CA00F2DE7C /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 4C8DF42F253C59CA00F2DE7C /* ComposableArchitecture */; };
 		4C8DF435253C5B0A00F2DE7C /* GameCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF434253C5B0A00F2DE7C /* GameCore.swift */; };
 		4C8DF43A253C5B2900F2DE7C /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF439253C5B2900F2DE7C /* AppCore.swift */; };
@@ -186,7 +184,6 @@
 		4C8DF404253B30DB00F2DE7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C8DF409253B30DC00F2DE7C /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8DF40F253B30DC00F2DE7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C8DF429253C520F00F2DE7C /* ImageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
 		4C8DF434253C5B0A00F2DE7C /* GameCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCore.swift; sourceTree = "<group>"; };
 		4C8DF439253C5B2900F2DE7C /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
 		4C8DF43E253C5B9900F2DE7C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -465,7 +462,6 @@
 			isa = PBXGroup;
 			children = (
 				4CC92F592545E5C600DAC4AB /* AddCardStyle.swift */,
-				4C8DF429253C520F00F2DE7C /* ImageCard.swift */,
 				4C8DF43E253C5B9900F2DE7C /* Card.swift */,
 				4CE42C882592961300EA59AD /* VictoryCardsView.swift */,
 			);
@@ -822,7 +818,6 @@
 				4CAC4386255FCD15009FFF68 /* MainView-macOS.swift in Sources */,
 				4C217AD6255F393800A631BB /* MemoArtApp.swift in Sources */,
 				4CAC43AD255FD523009FFF68 /* ConfigurationView.swift in Sources */,
-				4C217AAD255F390C00A631BB /* ImageCard.swift in Sources */,
 				4C217AA9255F390900A631BB /* AddCardStyle.swift in Sources */,
 				4C217ACA255F392C00A631BB /* HighScoresCore.swift in Sources */,
 				4CE02F45256ED6BC00A925F0 /* NewGameButton.swift in Sources */,
@@ -871,7 +866,6 @@
 				4CAC43A6255FD0CE009FFF68 /* GameOverView.swift in Sources */,
 				4CD0E1EC2542A0B500A1E0FD /* HighScore.swift in Sources */,
 				4C8484AB2556DF1C00FBDEC2 /* ArtsSelectionConfigurationView.swift in Sources */,
-				4C8DF42A253C520F00F2DE7C /* ImageCard.swift in Sources */,
 				4C40DFDB26AA203F0079D5DF /* AdaptiveGrid.swift in Sources */,
 				4CAC437F255FCCBE009FFF68 /* MainView-iOS.swift in Sources */,
 				4C016E902718C790000C320B /* TwoPlayersScoresView.swift in Sources */,

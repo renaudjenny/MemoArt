@@ -13,8 +13,8 @@ struct VictoryCardsView: View {
             Spacer()
             ZStack {
                 ForEach(0..<5) { cardNumber in
-                    CardView(ImageCard(
-                        color: colors[cardNumber],
+                    ImageCardView(
+                        backgroundColor: colors[cardNumber],
                         image: images[cardNumber],
                         isFacedUp: isCardsFacedUp[cardNumber],
                         accessibilityIdentifier: "card number \(cardNumber)",
@@ -26,7 +26,7 @@ struct VictoryCardsView: View {
                             "Card in animation faced up",
                             comment: "Card for Victory animation description (for screen reader)"
                         )
-                    ))
+                    )
                     .frame(width: 80, height: 80)
                     .rotationEffect(angle(cardNumber: cardNumber))
                     .offset(offset(cardNumber: cardNumber))
