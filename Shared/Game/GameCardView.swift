@@ -1,5 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
+import SwiftUICardGame
 
 struct GameCardView: View {
     let store: Store<GameState, GameAction>
@@ -8,22 +9,25 @@ struct GameCardView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            CardView(
-                color: viewStore.mode.color ?? .forLevel(viewStore.level),
-                image: card.art.image,
-                isFacedUp: card.isFaceUp,
-                accessibilityIdentifier: "card number \(card.id)",
-                accessibilityFaceDownText: Text(
-                    "Card number \(card.id)",
-                    comment: "The Card number when the card is faced down for the game (for screen reader)"
-                ),
-                accessibilityFaceUpText: Text(
-                    "Card with the style \(card.art.description)",
-                    comment: "The Card image description (for screen reader)"
-                ),
-                action: { returnCard(store: viewStore) }
-            )
-                .overlay(border(mode: viewStore.state.mode))
+            Button { viewStore.send(.cardReturned(card.id)) } label: {
+                ImageCardView(
+                    backgroundColor: viewStore.mode.color ?? .forLevel(viewStore.level),
+                    image: card.art.image,
+                    isFacedUp: card.isFaceUp,
+                    accessibilityIdentifier: "card number \(card.id)",
+                    accessibilityFacedDownText: Text(
+                        "Card number \(card.id)",
+                        comment: "The Card number when the card is faced down for the game (for screen reader)"
+                    ),
+                    accessibilityFacedUpText: Text(
+                        "Card with the style \(card.art.description)",
+                        comment: "The Card image description (for screen reader)"
+                    )
+                )
+            }
+            .aspectRatio(contentMode: .fit)
+            .buttonStyle(.plain)
+            .overlay(border(mode: viewStore.state.mode))
         }
     }
 
@@ -42,10 +46,6 @@ struct GameCardView: View {
         }
         return RoundedRectangle(cornerRadius: 8)
             .stroke(color, lineWidth: 3)
-    }
-
-    private func returnCard(store: ViewStore<GameState, GameAction>) {
-        store.send(.cardReturned(card.id), animation: .spring())
     }
 }
 

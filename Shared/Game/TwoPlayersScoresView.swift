@@ -1,5 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
+import SwiftUICardGame
 
 struct TwoPlayersScoresView: View {
     let store: Store<AppState, AppAction>
@@ -62,27 +63,27 @@ struct TwoPlayersScoresView: View {
             GeometryReader { geometry in
                 ZStack {
                     ForEach(Array(arts.enumerated()), id: \.0) { index, art in
-                        CardView(
-                            color: color,
+                        ImageCardView(
+                            backgroundColor: color,
                             image: art.image,
                             isFacedUp: true,
                             accessibilityIdentifier: "\(text) discovered art: \(art.description)",
-                            accessibilityFaceDownText: Text("\(text) winning card"),
-                            accessibilityFaceUpText: Text("\(text) discovered art: \(art.description)")
+                            accessibilityFacedDownText: Text("\(text) winning card"),
+                            accessibilityFacedUpText: Text("\(text) discovered art: \(art.description)")
                         )
-                            .frame(width: 80, height: 80)
-                            .rotationEffect(cardAngle(index: index))
-                            .offset(
-                                cardOffset(
-                                    index: index,
-                                    count: arts.count,
-                                    height: geometry.size.height
-                                )
+                        .frame(width: 80, height: 80)
+                        .rotationEffect(cardAngle(index: index))
+                        .offset(
+                            cardOffset(
+                                index: index,
+                                count: arts.count,
+                                height: geometry.size.height
                             )
-                            .animation(
-                                .easeInOut(duration: 5).repeatForever(autoreverses: true),
-                                value: animate
-                            )
+                        )
+                        .animation(
+                            .easeInOut(duration: 5).repeatForever(autoreverses: true),
+                            value: animate
+                        )
                     }
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height, alignment: .top)
